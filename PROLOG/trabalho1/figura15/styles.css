@@ -1,0 +1,19 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+form {
+  margin: 2rem;
+  display: block;
+}
+
+textarea {
+  width: 50rem;
+  min-width: 50rem;
+  /* border: 1px solid #888; */
+}
+
+footer {
+  font-size: smaller;
+}

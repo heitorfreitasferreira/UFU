@@ -1,0 +1,16 @@
+* {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+table {
+  border: none;
+}
+
+input {
+  margin: 0.5rem 0.3rem;
+}
+
+#primeira {
+  margin-left: 5rem;
+}
