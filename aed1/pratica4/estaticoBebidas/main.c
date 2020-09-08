@@ -3,8 +3,9 @@
 #define tam 5
 int main(int argc, char const *argv[])
 {
-  int option = 1, continuar = 1, lista_criada = 0 /*, tmp = 0*/;
+  int option = 1, continuar = 1, lista_criada = 0, tmpVol = 0;
   char tmpNome[20];
+  float tmpPreco = 0;
   Lista lst;
   while (continuar)
   {
@@ -34,17 +35,22 @@ int main(int argc, char const *argv[])
       }
       else
       {
-        printf("String a ser inserida na lista\n");
+        printf("Nome bebida: ");
         setbuf(stdin, NULL);
         scanf("%[^\n]s", tmpNome);
+        printf("Preco de %s: ", tmpNome);
+        scanf("%f", &tmpPreco);
+        printf("Volume de %s: ", tmpNome);
+        scanf("%d", &tmpVol);
         // printf("%s\n%s\n", tmpNome, tmpNome);
-        insere_elem(lst, tmpNome);
+        insere_elem(lst, tmpNome, tmpVol, tmpPreco);
       }
       break;
     case 3:
       printf("Insira a string que deseja remover\n");
       setbuf(stdin, NULL);
       scanf("%[^\n]s", tmpNome);
+      setbuf(stdin, NULL);
       if (remove_elem(lst, tmpNome))
       {
       }
@@ -61,10 +67,10 @@ int main(int argc, char const *argv[])
       /* IMPRIMINDO LISTA */
       for (size_t i = 0; i < get_size(lst); i++)
       {
-        if (get_posicao(lst, i, tmpNome))
-          printf("%s\t", tmpNome);
+        if (get_posicao(lst, i, tmpNome, &tmpVol, &tmpPreco))
+          printf("%s R$%.2f %dml\t", tmpNome, tmpPreco, tmpVol);
         else
-          printf("Aluno nao encontrado\n");
+          printf("Bebida nao encontrado\n");
       }
       printf("\n\n");
       break;
