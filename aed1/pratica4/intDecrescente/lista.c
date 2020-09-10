@@ -28,7 +28,7 @@ int insere_ord(Lista *list, int elem)
     //insere um num em no
     N->num = elem;
     //verifica se o local de insercao e no inicio da lista
-    if (lista_vazia(*list) || elem > (*list)->num)
+    if (lista_vazia(*list) || elem < (*list)->num)
     {
         //faz o no criado apontar pro 1 no da lista
         N->prox = *list;
@@ -38,7 +38,7 @@ int insere_ord(Lista *list, int elem)
     }
     //percorrendo lista
     Lista aux = *list; //faz aux apontar pro 1 no
-    while (aux->prox != NULL && aux->prox->num > elem)
+    while (aux->prox != NULL && aux->prox->num < elem)
         aux = aux->prox; // avanca na lista
     //insere na lista
     N->prox = aux->prox;
