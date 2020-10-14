@@ -1,0 +1,10 @@
+typedef struct no *Fila;
+Fila cria_fila();
+int fila_vazia(Fila *);
+int push(Fila *, double);
+// int insere_inicio(Fila *, double);
+int shift(Fila *, double *);
+// int remove_final(Fila *, double *);
+int obtem_valor_elem(Fila *, int, double *);
+int lista_tam(Fila *);
+int maior_elem(Fila *, double *);
