@@ -1,0 +1,21 @@
+tempos
+Você -> 1min
+Pesquisador -> 2 min
+Zelador -> 5 min
+Professor -> 10 min
+
+para que os todos saiam vivos temos que seguir a seguinte sequência
+
+vai você e o pesquisador -> passam 2 minutos
+
+você volta sozinho -> passa 1 minuto
+
+agora o zelador e o professor vão -> passam 10 minutos
+
+pesquisador volta sozinho -> passa 2 minutos
+
+vai você e pesquisador -> passa 2 minutos
+
+tempo total = 2+1+10+2+2 = 17 minutos
+
+temos 3 afirmações sobre um fato (os três logicistas tomarem cerveja), as duas primeiras não deixam conclusivo se o fato será verdadeiro ou falso, poderiamos considerar como "undefined", logo para sabermos se o fato será verdadeiro ou falso dependemos da terceira resposta que é afirmativo
