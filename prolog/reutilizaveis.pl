@@ -67,3 +67,11 @@ Params: ([],X)
 Retorno: X is 1 se o tamanho da lista for par, senão X is 0
 */
 
+get_index([],_,_):-false,!.
+get_index([H|_],1,H).
+
+get_index([_|T],I,X):-Is is I-1,get_index(T,Is,X).
+/*
+Params: ([],I,X)
+Retorno: X será unificado com o item na posição I da lista
+*/
