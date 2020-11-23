@@ -75,3 +75,48 @@ get_index([_|T],I,X):-Is is I-1,get_index(T,Is,X).
 Params: ([],I,X)
 Retorno: X será unificado com o item na posição I da lista
 */
+disjuntas([],_).
+disjuntas(_,[]).
+disjuntas([H|T],C2) :- not(member(H,C2)), disjuntas(T,C2).
+/*
+Params: ([],[])
+Retorno: true false se a lista é disjunta
+*/
+
+intersec([],[],[]).
+intersec([],_,[]).
+intersec(_,[],[]).
+
+intersec([H|T],L2,[H|Tr]) :- member(H,L2),intersec(T,L2,Tr),!.
+intersec([_|T],L2,Tr) :- intersec(T,L2,Tr),!.
+/*
+Params: ([],[],X)
+Retorno: X será a lista com a interseção das outras duas listas
+*/
+
+difersec([],[],[]).
+difersec([],_,[]).
+difersec(_,[],_).
+
+difersec([H|T],L2,[H|Tr]) :- not(member(H,L2)),difersec(T,L2,Tr),!.
+difersec([_|T],L2,Tr) :- difersec(T,L2,Tr),!.
+/*
+Params: ([],[],X)
+Retorno: X será a lista com a diferença das outras duas listas
+*/
+
+duplica([],[]).
+duplica([X|Xs],[X,X|Ys]) :- duplica(Xs,Ys).
+/*
+Params: ([],X)
+Retorno: X será a lista com a com os elementos copiados da outra lista [1,2,3]-> [1, 1, 2, 2, 3, 3]
+*/
+
+retira_duplicata([],[]).
+retira_duplicata([X],[X]).
+retira_duplicata([X,X|Xs],W) :- retira_duplicata([X|Xs],W).
+retira_duplicata([X,Y|U],[X|W]) :- X \= Y, retira_duplicata([Y|U],W).
+/*
+Params: ([],X)
+Retorno: X será a lista sem os elementos duplicados da outra lista [1,2,2,3]-> [1,2,3]
+*/
