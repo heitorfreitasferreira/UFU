@@ -120,3 +120,28 @@ retira_duplicata([X,Y|U],[X|W]) :- X \= Y, retira_duplicata([Y|U],W).
 Params: ([],X)
 Retorno: X será a lista sem os elementos duplicados da outra lista [1,2,2,3]-> [1,2,3]
 */
+
+inverte_lista(L1,L2) :- inverte_lista(L1,L2,[]).
+inverte_lista([],L2,L2) :- !.
+inverte_lista([X|Xs],L2,Z) :- inverte_lista(Xs,L2,[X|Z]).
+/*
+Params: ([],X)
+Retorno: X será a lista com os elementos invertidos da outra lista [1,2,3]-> [3,2,1]
+*/
+
+retira_duplicata_sequencial([],[]).
+retira_duplicata_sequencial([X],[X]).
+retira_duplicata_sequencial([X,X|Xs],Zs) :- retira_duplicata_sequencial([X|Xs],Zs).
+retira_duplicata_sequencial([X,Y|Ys],[X|Zs]) :- X \= Y, retira_duplicata_sequencial([Y|Ys],Zs).
+/*
+Params: ([],X)
+Retorno: X será a lista sem os elementos duplicados da outra lista que estejam adjacentes [1,2,2,3]-> [1,2,3]
+*/
+
+supra_crescente([X],N) :- X>=N,!.
+supra_crescente([H|T],N) :- H>=N, N1 is N+H,supra_crescente(T,N1).
+supra_crescente([H|T]) :- supra_crescente(T,H).
+/*
+Params: ([])
+Retorno: true ou false se a lista for supra crescente
+*/
