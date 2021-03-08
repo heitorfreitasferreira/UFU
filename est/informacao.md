@@ -2,6 +2,11 @@
 
 Segunda-feira 7:10
 
+# Horário de atendimento
+
+Terça 18h - 19h
+(Link no email)
+
 # Provas
 Prova | Data
 ------|------

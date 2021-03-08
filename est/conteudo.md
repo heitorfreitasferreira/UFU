@@ -53,4 +53,36 @@
     - LI¹ = Min - (c/2)
   - Determinar o limite *superior* da primeira classe LS¹:
     - LS¹ = LI¹ + c
-  - 
+
+## Amostras de população
+
+### Média
+
+>Soma dos valores divididos pela soma dos pesos
+
+### Mediana
+
+>Deixa metade da frequência abaixo e metade acima
+
+### Moda
+
+>Valor mais recorrente na frequência
+
+- Caso não aja moda, falamos que o conjunto é *amodal*
+- Caso exista 2 modas o conjunto é *bimodal*
+
+### Representação gráfica
+
+- Tortão pra esquerda
+- Tortão pra direita
+- No meio
+
+### Quantis
+
+- Quartil
+  - Valores de uma série que a divide em quatro partes
+
+### Boxplot
+
+- Desenho esquemático
+- Oferece a ideia de posição, dispersão, assimetria, caudas e dados discrepantes
