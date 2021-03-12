@@ -13,6 +13,11 @@ Gina|progfuncionalufu@gmail.com
 
 <hr>
 
+**Assunto email de envio de trabalho:** 11921BCC026_heitor-freitas-ferreira_trab02pf  
+**Assunto email de envio de duvidas:** 11921BCC026_heitor-freitas-ferreira_duvida  
+
+<hr>
+
 >https://conferenciaweb.rnp.br/webconf/gina-maira-barbosa-de-oliveira
 
 # Aula 1
@@ -36,3 +41,58 @@ Gina|progfuncionalufu@gmail.com
 
 Generalização: nome_da_função arg1 arg2 argN = operação  
 - [Vídeo aula](https://youtu.be/J9WrVk796bk)
+
+# Aula 3
+
+>Tipos
+
+- Haskell infere tipos, no exemplo acima como somamos x+y, ele já infere que como está sendo feita uma operação matemática os tipos são numéricos
+- Os tipos primitivos em Haskell são
+  - Bool
+  - Int
+  - Float
+  - Char
+  - String
+    - Essa é internamente uma lista de Char
+- Podemos e devemos ao criar uma função, falar os tipos da mesma, de todos os argumentos e da saída
+
+```haskell
+  soma :: Float -> Float -> Float
+  soma x y = x + y
+```
+
+# Aula 4
+
+>## Tuplas
+
+- Forma de estruturar dados
+- Tamanho fixo
+- Dados heterogéneos 
+- Exemplo:
+  - ("Hello World", 1.0,True, 42)
+- Duplas são tuplas com 2 elementos
+- Triplas são tuplas com 3 elementos
+- fst("primeiro", "segundo")
+  - retorna "primeiro"
+- snd("primeiro", "segundo")
+  - retorna "segundo"
+- snd("primeiro", "segundo","terceiro")
+  - Gera um erro pois só pode fazer com duplas
+
+## Type
+
+- Modo de criar um tipo composto
+- Similar a Struct do C
+- type Aluno = (String, Int, String)
+
+## Guardas
+
+>São ramificações de teste, caso o primeiro falhe ele passa pro segundo, assim em diante
+
+```haskell  
+  maior3 :: Float -> Float -> Float -> Float
+  maior3 x y z
+    |x>=y && x>=z = x --retorna x
+    |y>=z = z -- como já sei que x não é o maior, testo só entre y e z
+    |otherwise = z -- caso nenhuma guarda de true, usamos o otherwise como se fosse o default do switch case
+```
