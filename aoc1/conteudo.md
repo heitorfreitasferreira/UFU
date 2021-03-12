@@ -132,3 +132,53 @@ INSERIR OS PRINTS DE ALGUMA FORMA AQUI
       * Como é adição é necessário 2 operandos
       * Pega quais registradores e seus conteúdos e leva até a unidade aritmética
       * Com os 2 registradores e a informação de o que é pra fazer a unidade de controle faz a operação e devolve para os registradores
+
+# IAS
+
+>**Dps anota aqui seu tonto**  
+>Busca->Decodifica->Processa->Busca
+
+# Evolução dos processadores
+
+## Gerações
+
+1. Válvulas
+2. Transistores
+   * Linguagens de alto nível
+   * Aritimética de float
+3. Circuito integrado
+   * Semicondutor
+   * Microprogramming
+   * Multiprogramming
+4. Presente
+   * PCs
+   * Integração
+   * Single board computer
+5. Ultra large Scale Integration
+   * IA
+   * Network
+   * Processamento paralelo
+
+## Moore's Law
+
+* Goordon Moore - fundador da intel
+* Aumento da densidade de componentes em um chip
+* Número de transistores dobra a cada 18 meses
+* Custo permanece o mesmo
+* Maior densidade é igual a mais integrações com menor caminho físico entre elas
+* Está chegando no seu limite físico
+  * Componentes já estão no limite do que é possível
+
+## Gargalo de Von Neuman
+
+>Para cada instrução de 40 bits o processador acessa a memória 6x
+
+* Com a lei de Moore o processador se tornou muito rápido
+* Porém *a memória **não***
+* Logo o processador tem que ficar esperando a memória responder para poder fazer seu processo
+* A distância da velocidade do processador e da memória RAM só aumenta
+* Para evitar esse gargalo foi criada a memória em cachem, ou *Dynamic RAM*
+  * Cara
+  * Extremamente rápida
+  * Associativa (outra forma de acesso)
+  * Não tem grande capacidade de armazenamento
