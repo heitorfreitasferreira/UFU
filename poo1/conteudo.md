@@ -50,7 +50,7 @@
 ### Programa em linguagem OO
 
 * Definição
-  * Conjunto de objetos dizendo uns para os outros o que fazer atráves de envio de mensagens
+  * Conjunto de objetos dizendo uns para os outros o que fazer através de envio de mensagens
     * Mensagens seriam análogas a funções (métodos) que pertencem a um objeto em particular
 * Cada Objeto
   * Tem sua própria memória
@@ -91,7 +91,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
   * Para alterar atributos de um objeto somente com funções
   * Somente alguns atores do sistema podem alterar certos dados
     * Ex: somente pode mudar a marcha do carro o motorista e se o carro estiver em movimento
-    * Ex: somente o dono da conta pode acessar a interface que faz saque, e somente se ouver saldo suficiente
+    * Ex: somente o dono da conta pode acessar a interface que faz saque, e somente se houver saldo suficiente
 * Cada objeto é independente
 * Reusabilidade
   * Utilizar uma classe aluno no portal do aluno e no app da ufu
@@ -137,7 +137,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
     * Tempo de vida de um objeto
       * Temporário
         * Existe enquanto o programa ta em execução
-      * Permanete
+      * Permanente
         * Armazenar o objeto em meio físico (arquivos ou bancos de dados)
 
 ## Comunicação entre objetos
@@ -168,7 +168,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
       Rex = {
         peso: 20,
         nome: "rex",
-        cor: "marom",
+        cor: "marrom",
         altura: 0.6,
         pelagem: "curta"
       }
@@ -183,6 +183,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
   * Cada Objeto define um valor inicial, que pode coincidir com valor de outros objetos
   * Área de memória reservada
 * Atributo de classe (coletivos)
+  * Palavra reservada ```static```
   * Mesmo valor **inicial** é dividido entre todos os objetos
   * Valores armazenados na classe (mesma área de memória)
 
@@ -195,3 +196,49 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
   * Altera estado
 * Exemplo
   * Objeto carro tem o método acelerar, frenar, virar para esquerda, virar pra direita
+
+## Classes do Java para fazer leitura de dados do teclado
+
+### Scanner
+
+```java
+  import java.util.Scanner;
+  Scanner entrada = new Scanner(System.in);
+  String nomeCurso = entrada.nextLine();
+  System.out.println(nomeCurso)
+```
+
+## String
+
+>Existem 2 formas de criar uma string
+
+```java
+  String ola1 = new String("Hello World1");
+  String ola2 = "Hello World2"
+```
+
+A primeira forma tem a vantagem de poder usar os métodos da classe String
+
+* length;
+* concat();
+* contains(String s);
+* string1.equal(String string2);
+* indexOf(int ch);
+* toLowerCase();
+* toUpperCase();
+* trim();
+* replace(char oldChar, char newChar);
+* substring(int ini, int fim);
+* lastIndexOf(int ch)
+
+### Formatação de dados (string)
+
+* System.out.printf()
+  * Igual printf do C 
+* format
+  * Método da classe string
+
+      ```java
+        String name = "Heitor";
+        String sf1 = String.format("Meu nome é %s",name);
+      ```
