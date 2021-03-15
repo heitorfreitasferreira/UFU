@@ -64,6 +64,9 @@
 
 >Deixa metade da frequência abaixo e metade acima
 
+- Caso a amostra tenha tamanho ímpar é só ordenar e pegar o do meio
+- Caso a amostra tenha tamanho par pegamos os 2 valores do meio e tiramos a média deles
+
 ### Moda
 
 >Valor mais recorrente na frequência
@@ -71,18 +74,45 @@
 - Caso não aja moda, falamos que o conjunto é *amodal*
 - Caso exista 2 modas o conjunto é *bimodal*
 
-### Representação gráfica
+### Simetria
 
-- Tortão pra esquerda
-- Tortão pra direita
-- No meio
+- Caso um em uma amostra, a média, mediana e a moda sejam iguais, dizemos que o conjunto é **simétrico**
+- Caso não seja o conjunto é **assimétrico**
+  - Assimetria a *direita*: ***Média>Mediana>Móda***
+  - Assimetria a *esquerda*: ***Média<Mediana<Móda***
 
 ### Quantis
 
 - Quartil
-  - Valores de uma série que a divide em quatro partes
+  - Valores de uma série que a divide em quatro partes *iguais*
+  - Fórmula
+    - EQi = [ i(n+1) ]/2
+    - i = número de quartis
+    - n = número de observações
+
+### Percentis
+
+>Mesma ideia do quartil, porém dividido em 4
 
 ### Boxplot
 
 - Desenho esquemático
-- Oferece a ideia de posição, dispersão, assimetria, caudas e dados discrepantes
+- Análise gráfica que oferece ideia de:
+  - posição
+  - dispersão
+  - assimetria
+  - caudas
+  - dados discrepantes
+- Como construír
+  - desenhar uma "caixa"com o nível superior dado pelo terceiro quartil e inferior pelo primeiro quartil
+  - mediana (Quartil 2) é representada por um traço no interior da caixa
+  - Limites:
+    - LI = Q1 − 1, 5dq
+    - LS = Q3 + 1, 5dq
+      - dq = Q3 − Q1 denominando diferença quartílica.
+- Etapas de construção de um boxplot
+  1. Contruir um retângulo de tal maneira que os lados menores correspondem aos primeiro e terceiro quartis da distribuição.
+  1. Cortar o retângulo por um segmento paralelo aos lados menores, na altura correspondente à mediana;
+  1. Traçar um segmento paralelo ao eixo, partindo do ponto médio até o maior valor observado que NÃO supere LS;
+  1. Traçar um segmento paralelo ao eixo, partindo do ponto médio até o menor valor que NÃO é menor LI;
+  1. Caso tenha valores superiores a LS ou inferiores a LI, marcar os pontos, este valores são considerados observações discrepantes.
