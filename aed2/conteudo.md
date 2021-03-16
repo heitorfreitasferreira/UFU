@@ -80,3 +80,267 @@
 ### Notação Grande-O
 
 - O pior que o algoritmo pode ser é o Big-O
+- Não ultrapassa esse limite
+- Normalmente pode ser visto pela quantidade de laços aninhados
+- Exemplo com selection sort:
+  
+  ```c
+  int i,j,me,troca;
+    for (i = 0; i < (n - 1); i++)
+  {
+    me = i;
+
+    for (j = i+1; j < n; j++)
+    {
+      if (array[j] < array[me])
+        me = j;
+    }
+    if (i != me)
+    {
+      troca = array[i];
+      array[i] = array[me];
+      array[me] = troca;
+    }
+  }
+  ```
+
+- Primeiro deve se calcular a soma ``` nEx = 1+2+3+...+(n-1)+n ```
+- nEx é o numero de execuções do laço interno (não é simples de calcular)
+- Nesse caso é nEx equivalente a uma *prograssão aritmética* de razão 1
+- [n(1+1)]/2
+- Alternativa é estimar o *limite superior*
+  - Supomos o pior caso para o algoritmo
+  - Logo o algoritmo original é tão ruim ou melhor do que esse que calcularemos
+  - Como calcular isso?
+    - Trocar o laço interno (que varia de tamanho dependendo do laço externo) por um laço constante (n)
+    - Simplifica a análise
+    - Piora o desempenho
+      - Algumas execuções do laço são inúteis
+    - Sobramos com 2 laços aninhados cada um executando *n* vezes
+    - Logo sobramos com uma função de custo ```f(n) = n²```
+    - Utilizando a notação big-O o custo no pior caso é ``` O(n²) ```
+  - Com isso chegamos a função que delimita o limite superior de custo  de tempo
+  - O custo na prática pode ser melhor que n², mas nunca melhor
+
+### Outros tipos de análise
+
+>Apesar da Big-O ser útil e recorrente, existem outras análises
+
+- Grande-Omega
+  - Limite assintótico inferior
+  - *Melhor caso*
+  - Ω(n²) diz que na melhor das hióteses, o custo é n²
+  - Não fica melhor que isso em questão de custo, no máximo igual
+  - Como definir:
+    - Função *```f(n)```* é *```Ω(g(n))```*
+      - Se existem 2 constantes >0 chamamos de *c* e *m*
+      - *n>=m*
+      - Temos _```f(n) >= c* g(n)```_
+  - Para todos os valores de *n* a direita de *m* o resultado de *```f(n)```* é sempre >= que o valor da notação Grande-Omega x *c*
+  - Exemplo:
+    - Função com custo *```f(n) = 3n³ + 2n²```* é ***```Ω(n³)```***
+    - Consideramos *c = 1* e *n >= 0*
+    - Logo *```3n³ + 2n² >= 1n³```*
+    - ![Gráfico da função f(n) = Ω(g(n))](images/notacao_big_omega.jpg)
+    - Após o ponto *m* o custo de *```f(n)```* é sempre ***maior*** que o custo de _```c*g(n)```_
+- Grande-O
+  - Pior caso
+  - Função *```f(n)```* é *```O(g(n))```*
+  - Se existem 2 constantes >0 chamamos de *c* e *m*
+    - *n>=m*
+    - Temos _```f(n) <= c* g(n)```_
+      - Para todos os valores de *n* a direita de *m* o resultado de *```f(n)```* é sempre <= que o valor da notação Grande-O x *c*
+    - Exemplo:
+      - Função com custo *```f(n) = 3n³ + 2n²```* é ***```O(n³)```***
+      - Consideramos *c = 6* e *n >= 0*
+      - Logo *```3n³ + 2n² <= 6n³```*
+      - ![Gráfico da função f(n) = Ω(g(n))](images/notacao_big_o.jpg)
+      - Após o ponto *m* o custo de *```f(n)```* é sempre ***menor*** que o custo de _```c*g(n)```_
+  - Regra da Soma
+    - Importante quando temos algoritmos em *sequência*
+    - Nesse caso a complexidade de execussão é dada pela complexidade do **maior** deles
+    - *```O(f(n)) + O(g(n)) = O(max(f(n),g(n)))```*
+    - Exemplo:
+      - Primeiro será executado o algoritmo O(n) e depois o algoritmo O(n²)
+      - Logo a complexidade de tudo é O(n²)
+- Grande-Theta
+  - Limite assintótico **firme** ou **estreito**
+  - Analisa o limite inferior e superior *ao mesmo tempo*
+  - θ(n²) diz assintóticamente que o custo do algoritmo original é n²
+  - É como se tivessem 2 constantes, uma restringindo abaixo, e outra restringindo acima
+  - Função *```f(n)```* é *```θ(g(n))```*
+  - Se existem 3 constantes >0 chamamos de *c1*, *c2* e *m*
+    - Para *n>=m*
+    - Temos _```c1 * g(n) <= f(n) <= c2* g(n)```_
+      - Para todos os valores de *n* a direita de *m* o resultado de *```f(n)```* é sempre = ao valor da notação Grande-θ x *c1* e x *c2*
+    - Exemplo:
+      - Função com custo *```f(n) = 1/2n² - 3n```* é ***```θ(n²)```***
+      - Consideramos *c1 = 1/14*, *c2 = 1/2* e *n >= 7*
+      - Logo *```1/14n² <= 1/2n² - 3n <= 1/2n²```*
+      - ![Gráfico da função f(n) = Ω(g(n))](images/notacao_big_theta.jpg)
+      - Após o ponto *m* o custo de *```f(n)```* é sempre ***menor*** que o custo de _```c2 * g(n)```_ e ***maior*** que o custo de _```c1 * g(n)```_
+- Pequeno-o
+  - Parecida com a Grande-O
+  - Enquanto no Grande-O a relação é *<=*
+  - Já na pequeno-o a relação é *<*
+  - O custo real sempre será MENOR que o pequeno-o e *nunca igual*
+- Pequeno-omega
+  - Parecida com a Grande-Omega
+  - Enquanto no Grande-Omega a relação é *>=*
+  - Já na pequeno-omega a relação é *>*
+  - O custo real sempre será MAIOR que o pequeno-o e *nunca igual*
+
+### Classes de problemas
+
+- *```O(1)```*
+  - Ordem constante
+  - Não depende do tamanho da entrada de dados
+- *```0(log(n))```*
+  - Ordem logarítmica
+  - Resolve um problema transformando ele em problemas menores
+  - Exemplo:
+    - Realizar uma busca binária em um vetor de tamanho *n*
+- *```O(n)```*
+  - Ordem linear
+  - Uma operação é realizada para cada um dos elementos da entrada
+  - Exemplo:
+    - Printar um vetor de tamanho *n*
+- *```0(nlog(n))```*
+  - Ordem log linear
+  - Trabalha com particionamento de dados
+  - Transforma o problema em partes menores dele mesmo e resolve de forma idependende, depois une tudo
+  - Exemplo:
+    - QuickSort
+- *```O(n²)```*
+  - Ordem quadratica
+  - Dados são processados em pares
+  - Normalmente tem presença de aninhamento de laços
+  - Exemplo:
+    - Printar uma matriz de tamanho _n_ por _n_
+- *```O(n³)```*
+  - Ordem cúbica
+  - Normalmente tem presença de aninhamento de 3 laços
+  - Exemplo:
+    - Printar uma matriz de tamanho _n_ por _n_ por _n_
+- *```O(2^n)```*
+  - Ordem exponencial
+  - Solução de força bruta
+  - Não é útil do ponto de vista prático
+  - Muito lento
+  - Exemplo:
+    - Quebrar senha de sistema, é necessário testar todas as combinações
+- *```O(n!)```*
+  - Ordem fatorial
+  - Solução de força bruta
+  - Não é útil do ponto de vista prático
+  - Muito lento
+  - Comportamento **muito** pior que a exponencial
+
+> Consideremos um computador que executa 1000000 operações por segundo vamos criar uma tabela que mostra o tempo de execução do algoritmo com base no tamanho de entrada
+
+*```f(n)```* | n = 10 | n = 20 | n = 30 | n = 50 | n = 100
+-------------|--------|--------|--------|--------|--------
+*```n```* | 1x10^-5 segundos | 2x10^-5 segundos | 4x10^-5 segundos | 5x10^-5 segundos | 6x10^-5 segundos
+*```nlog(n)```* | 3.3x10^-5 segundos | 8.6x10^-5 segundos | 2.1x10^-4 segundos | 2.8x10^-4 segundos | 2.5x10^-4 segundos
+*```n²```* | 1x10^-4 segundos | 4x10^-4 segundos | 1.6x10^-3 segundos | 2.5x10^-3 segundos | 3.6x10^-3 segundos
+*```n³```* | 1x10^-3 segundos | 8x10^-3 segundos | 6.4x10^-2 segundos | 0.13 segundos | 0.22 segundos
+*```2^n```* | 0.001 segundos | 1 segundos | 2.8 dias | 35.7 anos | 365.6 séculos
+*```3^n```* | 0.059 segundos | 58 minutos | 3855.2 séculos | 2.3x10^8 séculos | 1.3x10^13 séculos
+
+>O problema da análise assintótica é que em entradas pequenas as simplificações são problemáticas
+
+- Considerando as funções _```f(n) = (10^100)n```_ e _```g(n) = 10n*logn```_
+  - Big-O da primeira é _```O(n)```_ e da segunda é _```O(nlogn)```_
+  - A primeira seria considerada mais performática de forma assintótica
+- Ao analisár a constante multiplicativa de n em f(n) descobrimos o número 10^100
+  - Logo _```10n*logn```_ > _```f(10^100)n```_ apenas para ***n>2^(10^99)***
+  - para qualquer valor abaixo desse *n*  _```10n*logn```_ < _```f(10^100)n```_
+    - Ou seja, na prática  _```10n*logn```_ é mais performático
+
+### Relações de recorrência
+
+>Relembrando conceito de função recursiva
+
+- Função que chama a sí mesmo durante a execução
+- Exemplo: fatorial(n)
+  - Matemáticamente é definido por _```0! = 1; N! = N(N-1)```_
+  - Implementação em C:
+
+    ```c
+      int fat(int n){
+        if(n==0)
+          return 1;
+        else
+          return n*fat(n-1);
+      }
+    ```
+
+>*Recorrência* ou *Relação de recorrência*
+
+- Expressão que descreve a função em termos de entradas menores da função
+- Muitos algoritmos são baseados em recorrência
+- Importante para solução de problemas combinatórios
+- É uma função recursiva
+
+>Relação de recorrência do fatorial
+
+_```T(n) = T(n-1) + n```_
+
+>Complexidade da recorrência
+
+- Não utiliza laços de repetição
+- Erroneamente imaginamos que a função possuíria complexidade ___O(1)___
+- Para saber a complexidade tem que resolver a relação de recorrência
+- Encontrar a *fórmula fechada* que da o valor da função em termos de *n*
+- Considere o relação _```T(n) = T(n-1) + 2n + 3```_
+  - Para *n* em _{2,3,4,...}_
+  - Existem inumeras funções *T* que satisfazem a recorrência
+  - Depende do caso base: T(1)
+  - Considerando T(1) = 1
+    n|1|2|3|4|5
+    -|-|-|-|-|-
+    T(n)|1|8|17|28|41
+  - Considerando T(1) = 1
+     n|1|2|3|4|5
+      -|-|-|-|-|-
+      T(n)|5|12|21|32|45
+  - **Problema**: *muitas soluções possíveis*
+    - Para cada valor *i* e *n* em _{2,3,4,...}_ existe ***uma*** função *T* que tem caso base _```T(1) = i```_ e satisfaz a recorrência
+  - **Solução**: expandir a relação até encontrar o comportamento no caso geral e assim encontrar a __fórmula fechada__
+
+>Expandindo a relação de recorrência
+
+- Considerando a seguinte relação _```T(n) = T(n-1) + 3```_
+  - Representa um algoritmo que possui *3 operações* e *1 chamada recursiva*
+- Resolução
+  - Substituir o termo _```T(n-1)```_ sobre _```T(n)```_, teremos:
+    - _```T(n-1) = T(n-2) + 3```_
+  - Substituir o termo _```T(n-2)```_ sobre _```T(n-1)```_, teremos:
+    - _```T(n-2) = T(n-3) + 3```_
+  - Juntar as 3 expressões
+    - _```T(n) = T(n-1) + 3```_
+    - _```T(n) = (T(n-2) + 3) + 3```_
+    - _```T(n) = ((T(n-3) + 3) + 3) + 3```_
+      - Simplificando tudo (somente para claridade)
+        - _```T(n) = T(n-1) + 3```_
+        - _```T(n) = T(n-2) + 3*2```_
+        - _```T(n) = T(n-3) + 3*3```_
+  - A cada passo se soma 3 e o valor de n é diminuído em 1
+  - Podemos resumir a expansão com a equação
+  - _```T(n) = T(n-k) + 3*k```_
+  - O processo de expansão acaba no caso base T(1), logo quando: _```n-k = 1```_, ou seja quando _```k = n-1```_
+  - Substituindo *k* na equação  _```T(n) = T(n-k) + 3*k```_ por *n-1*
+    - _```T(n) = T(1) + 3*(n-1)```_
+    - _```T(n) = T(1) + 3n-3```_
+    - 
+> Analisando a complexidade Big-O dessa recursão
+
+- Complexidade da recorrência _```T(n) = T(n-1) + 3```_  
+
+- _```T(n) = T(n-k) + 3k```_
+- _```T(n) = T(1) + 3(n-1)```_
+- _```T(n) = T(1) + 3n-3```_
+  - _```T(1)```_ é o caso base, que é o retorno e o custo é constante: ___O(1)___
+  - Substituindo _```T(1)```_ por _```O(1)```_
+- _```T(n) = 3n-3 + O(1)```_
+- Ou seja, a complexidade é linear _```O(n)```_
