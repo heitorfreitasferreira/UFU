@@ -332,7 +332,7 @@ _```T(n) = T(n-1) + n```_
   - Substituindo *k* na equação  _```T(n) = T(n-k) + 3*k```_ por *n-1*
     - _```T(n) = T(1) + 3*(n-1)```_
     - _```T(n) = T(1) + 3n-3```_
-    - 
+
 > Analisando a complexidade Big-O dessa recursão
 
 - Complexidade da recorrência _```T(n) = T(n-1) + 3```_  
