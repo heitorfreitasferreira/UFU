@@ -182,3 +182,20 @@ INSERIR OS PRINTS DE ALGUMA FORMA AQUI
   * Extremamente rápida
   * Associativa (outra forma de acesso)
   * Não tem grande capacidade de armazenamento
+
+# Técnicas
+
+## Pipeline
+
+>Equivalente a aumentar a velociadade em 5x
+
+![Image representativa a tecnica do pipeline](/aoc1/images/pipeline.png)
+
+* A cada transição do clock se inicia um novo trabalho de outro processo
+* Sem pipeline toda instrução deve ser iniciada e terminada de cabo a rabo
+* Traz problemas relacionados a dependencia de dados entre instruções
+
+## Multi-thread
+
+* Garantir que a execussão paralela tenha a mesma semantica que a sequêncial
+  * Problema ao depurar as instruções
