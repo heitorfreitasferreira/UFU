@@ -234,7 +234,7 @@ A primeira forma tem a vantagem de poder usar os métodos da classe String
 ### Formatação de dados (string)
 
 * System.out.printf()
-  * Igual printf do C 
+  * Igual printf do C
 * format
   * Método da classe string
 
