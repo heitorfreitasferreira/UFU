@@ -116,3 +116,68 @@
   1. Traçar um segmento paralelo ao eixo, partindo do ponto médio até o maior valor observado que NÃO supere LS;
   1. Traçar um segmento paralelo ao eixo, partindo do ponto médio até o menor valor que NÃO é menor LI;
   1. Caso tenha valores superiores a LS ou inferiores a LI, marcar os pontos, este valores são considerados observações discrepantes.
+
+## Probabilidade
+
+- Evento
+  - conjunto de resultados ao qual é associado um valor de probabilidade. Denotado por letras maiusculas (A,B,C)
+  - Exemplo
+    - No lançamento de um dado, a ocorrência de faces ímpares, ou seja, A = {1, 3, 5}
+  - Eventos especiais
+    - Conjunto vazio
+    - Espaço amostral
+
+### Probabilidade clássica
+
+- Podemos calcular a probabilidade do jeito clássico
+- Eventos/Espaço amostral
+- Definição usando conjuntos
+- \#A/#Ω 
+  - Sendo:
+    - A: Conjunto dos eventos favoráveis (desejados)
+    - Ω: Conjunto do espaço amostral (eventos totais)
+    - \#cardinalidade do conjuntos
+
+### Probabilidade Frequentista
+
+- Seja A um evento a probabilidade desse evento será denotada pela conta:
+- P(A) = lim(_n_->∞) _n_ A/_n_
+  - Sendo:
+    - _n_ A: número de ocorrência do evento A em...
+    - _n_ realizações
+
+### Probabilidade Axiomática
+
+>Axiomática-Axiomas de Kolmogorov
+
+Uma função P, definida na σ-álgebra F de subconjuntos de Ω com valores em [0, 1] é uma probabilidade ou medida de probabilidade se satisfaz os axiomasseguintes
+
+- Ax1: P(Ω) = 1;
+  - Probabilidade do espaço amostral é 1
+- Ax2: Para todo subconjunto A ∈ F, P(A) ≥ 0;
+  - Se A está no espaço a probabilidade dele é x sendo x 0>=x<=1
+- Ax3: Para toda sequência A1, A2, . . . ∈ F, mutuamente exclusivos, temos:
+  - ![Fórmula do axioma de Kolmogorov](images/axiomaKolmogorov.jpg)
+  - A trinca (Ω, F,P) é denominada espaço de probabilidade.
+- Dado um espaço de probabilidade (Ω, F,P) e considerando os eventos abaixo nesse espaço, tem-se as propriedades de probabilidade:
+  - P1: P(A) = 1 − P(A^c)
+    - P de A é 1 - probabilidade do complementar de A
+  - P2: Se A ⊂ B então P(A) ≤ P(B)
+    - se a ta dentro de b, então a probabilidade de a é menor que a de b né
+  - P3: Sendo A e B dois eventos quaisquer:
+    - P(B) = P(B ∩ A) + P(B ∩ A^c)
+    - 
+  - P4: Regra da Adição de Probabilidades:
+    - P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+  - P5: Para eventos quaisquer A1, A2,..., An
+    - ![Fórmula do axioma de Kolmogorov](images/axiomaKolmogorov.jpg)
+
+### Probabilidade Condicional
+
+>: Seja (Ω, F, P) um espaço de probabilidade. Se A e B ∈ F e P(B) > 0, então a probabilidade condicional de A dado B é definida por: _```P(A|B) = P(A ∩ B)/P(B)```_
+
+- Observações:
+  - Se A e B forem mutuamente exclusivos, então A ∩ B = ∅, desse modo P(A|B) = 0
+  - Se B ⊂ A então P(A|B) = 1
+
+Como calcular a probabilidade da interseção de dois eventos A e B em função destes eventos. Esta expressão é denominada regra do produto de probabilidade _```P(A ∩ B) = P(B)P(A|B) = P(A)P(B|A)```_
