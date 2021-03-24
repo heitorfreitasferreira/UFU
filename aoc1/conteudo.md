@@ -183,7 +183,7 @@ INSERIR OS PRINTS DE ALGUMA FORMA AQUI
   * Associativa (outra forma de acesso)
   * Não tem grande capacidade de armazenamento
 
-# Técnicas
+### Técnicas
 
 ## Pipeline
 
@@ -199,3 +199,30 @@ INSERIR OS PRINTS DE ALGUMA FORMA AQUI
 
 * Garantir que a execussão paralela tenha a mesma semantica que a sequêncial
   * Problema ao depurar as instruções
+
+# Representações numéricas
+
+* Unidade Lógica Aritmética é a parte central do computador e utiliza números para fazer seus cálculos
+* Esses números podem ser ponto fixo (*inteiro*)
+* Ou ponto flutuante (*valor real*)
+* Alguns computadores antigos possuem um co-processador matemático para lidar com pontos flutuantes
+
+## Representação de inteiros
+
+* Utiliza 0 e 1 para representar todas as coisas
+* números positivos são representados no formato binario
+  * Exemplo: 41 = 00101001
+    * Sem sinal de positivo e negativo
+    * Sem virgula
+* Representação de valores negativos
+  * Sinal magnitude
+    * Bit mais a esquerda é o sinal
+    * É necessário considerar o sinal antes de fazer a operação
+    * Tem duas representações para o 0, +0 e -0
+  * Complemento-a-dois
+    * Única representação do zero
+    * Operações mais simples
+    * Como fazer:
+      * inverte os bits
+      * soma 1
+    * 
