@@ -11,7 +11,6 @@ comparaListas (a : as) (b : bs) (c : cs)
 mmc :: Int -> Int -> Int -> Int
 mmc a b c = comparaListas (multiplos a) (multiplos b) (multiplos c)
 
-
 --4A
 gera1 :: [Int] -> [Int]
 gera1 x = [n * n * n | n <- x, even n, n >= 3, n <= 11]
@@ -24,14 +23,17 @@ gera2 x = [(n, m) | n <- x, n <= 5, m <- [n .. n * 3]]
 -- gera3M :: [Int] -> [[Int]]
 -- gera3M x = [[1 .. n] | n <- x]
 gera3 :: [Int] -> [Int]
-gera3 x = [n|parcial<-y,n<-parcial]
-  where y = [[1 .. n] | n <- x]
+gera3 x = [n | parcial <- y, n <- parcial]
+  where
+    y = [[1 .. n] | n <- x]
+
 --4D
-gera4 ::[(Int,Int)]
-gera4 = [(n,n+1)|n<-[1..10],even n]
+gera4 :: [(Int, Int)]
+gera4 = [(n, n + 1) | n <- [1 .. 10], even n]
+
 --4E
 gera5 :: [Int]
-gera5 = [fst n + snd n|n<-gera4]
+gera5 = [fst n + snd n | n <- gera4]
 
 -- 9
 fizzbuzzM :: Int -> [String]
@@ -47,10 +49,11 @@ fizzbuzz n = reverse (fizzbuzzM n)
 
 -- 10
 selMultiplos :: Int -> [Int] -> [Int]
-selMultiplos n xs = [x|x<-xs,x `mod` n ==0]
+selMultiplos n xs = [x | x <- xs, x `mod` n == 0]
+
 --11
 unica_ocorrencia :: Int -> [Int] -> Bool
-unica_ocorrencia a xs = length xs == length ([n|n<- xs,n /=a]) + 1 
+unica_ocorrencia a xs = length xs == length ([n | n <- xs, n /= a]) + 1
 
 --12
 intercala :: [a] -> [a] -> [a]
@@ -58,7 +61,6 @@ intercala [] [] = []
 intercala xs [] = xs
 intercala [] ys = ys
 intercala (x : xs) (y : ys) = x : y : intercala xs ys
-
 
 --13
 zipar :: [Int] -> [Int] -> [[Int]]
@@ -115,6 +117,7 @@ milfsCasadas i ((n, a, idade, estadoCivil) : resto) =
   if idade >= i && estadoCivil == 'C'
     then (n, a, idade, estadoCivil) : milfsCasadas i resto
     else milfsCasadas i resto
+
 --16
 insereOrd :: Integral a => a -> [a] -> [a]
 insereOrd a [] = [a]
