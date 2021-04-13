@@ -196,6 +196,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
   * Altera estado
 * Exemplo
   * Objeto carro tem o método acelerar, frenar, virar para esquerda, virar pra direita
+* Método static: método que não depende de um objeto, apenas de seus parâmetros
 
 ## Classes do Java para fazer leitura de dados do teclado
 
@@ -260,3 +261,8 @@ A primeira forma tem a vantagem de poder usar os métodos da classe String
   * package (~)
     * caso não especifique essa é a visibilidade padrão
     * visível apenas para objetos do mesmo pacote, **invisível** para objetos descendentes desse
+  * static
+    * Permanece constante para todos os objetos
+  * final
+    * Constante
+    * é possível usar ```final static``` em um atributo
