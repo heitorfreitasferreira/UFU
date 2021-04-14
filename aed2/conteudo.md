@@ -381,7 +381,7 @@ _```T(n) = T(n-1) + n```_
 
 ### Função Hash
 
-- Inserção e busca: precisa calcular a posição dos dados dentro da tabela
+- Inserção: precisa calcular a posição dos dados dentro da tabela
 - Pra isso usa a função hash
   - Dado um dado de parâmetro retorna uma posição de memória que tem o dado
 - Distribui as informações equilibrada
@@ -422,12 +422,75 @@ _```T(n) = T(n-1) + n```_
 
 >Com colisão
 
+- Calcular a posição dada a chave
+- Verificar se ouve colisão
+  - Enquanto houver, recalcular posição
+- Alocar o dado
+- Guardar a posição da alocação no vetor
+
 ### Busca
 
 >Sem colisão
 
 - Calcular a posição da chave
+- Verificar se ouve colisão
 - Verificar se há algo naquela posição
 - Se sim, retornar uma cópia do dado
 
 >Com colisão
+
+- Calcular a posição da chave
+- Verificar se ouve colisão
+  - Enquanto houver, e a chave for diferente da armazenada no local, recalcular posição
+- Verificar se há algo naquela posição
+- Se sim, retornar uma cópia do dado
+
+### Hash perfeito e imperfeito
+
+- Normalmente usamos o imperfeito
+  - Mais de uma chave resultar no mesmo valor
+  - Há colisão
+- Usamos o perfeito para problemas com escopo pequeno e limitado
+  - Exemplo: tabela das 32 palavras reservadas em C
+
+### Tratamento de colisões
+
+> Uma tabela hash é composta por duas partes: função de hash e tratamento de colisão
+
+- Escolha da função de hash
+  - Garantir bom potêncial de espalhamento
+  - Garantir distribuição de dados uniforme
+  - sempre será imperfeito
+- Técnicas 
+  - Endereçamento aberto
+    - Open addressing ou rehashing
+    - Os elementos sempre são inseridos na própria tabela, não necessita uma estrutura auxiliar
+    - Em caso de colisão, coloca na próxima posição (ou dado um critério de escolha) vaga
+    - Vantagens
+      - Maior número de posições
+      - Melhor uso de memória
+      - Busca é realizada na própria tabela
+        - Recupera mais rápido os elementos
+    - Mais adequada para aplicações com limitação de memória
+    - Desvantagem
+      - Maior tempo de processamento nos cálculos das posições, com base no número de colisões
+      - Agrupamento primário
+        - Longos trechos da tabela já ocupados
+    - Como cálcular a próx posição?
+      - Sondagem linear
+        - Tenta sempre jogar pra próxima posição
+    - Estratégia simples
+  - Espalhamento quadrático
+    - Ao invés de somente somar i, usamos uma equação do segundo grau que dependa da variável i
+      - Lembrando que i é equivalente ao número de tentativas de cálcular a posição (quantidade de colisões)
+    - ![Imagem comparando as técnicas](images/sondagem_quadratica.png)
+    - Problemas
+      - Agrupamento secundário
+        - Gera menos agrupamentos que a sondagem linear
+  - Duplo hash
+    - Primeira função de hash calcula o endereço
+    - A segunda é utilizada se houver colisão
+    - Para calcular a posição após a colisão basta fazer ```hash1 + i*hash2```
+      - hash2 não pode ter imagem que contenha o 0
+  - Encadeamento separado
+    - Cada posição do array é um ponteiro pra uma Lista Encadeada, em que a cabeça é a primeira posição inserida e a calda são as posições que deram colisão
