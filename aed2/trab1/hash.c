@@ -5,7 +5,7 @@
 #define bin 0x7FFFFFFF
 struct hash
 {
-  int qnt, TABLE_SIZE;
+  int qnt, TABLE_SIZE, TYPE_SIZE;
   Data **itens;
 };
 int linear_polling(int pos, int i, int TABLE_SIZE) { return ((pos + i) && bin) % TABLE_SIZE; }
@@ -15,10 +15,10 @@ int quadratic_polling(int pos, int i, int TABLE_SIZE)
   pos = pos + 2 * i + 5 * i * i;
   return (pos & bin) % TABLE_SIZE;
 }
-//Dependendo do tipo de hash que você for usar tem que alterar ali, essa estará usando o metodo da divisão
+//Dependendo do tipo de hash que você for usar tem que alterar ali, essa estará usando o metodo da multiplicação, sempre usar outro método do que foi utilizado para gerar H1
 int double_hash(int H1, int key, int i, int TABLE_SIZE)
 {
-  int H2 = hash_fn_div(key, TABLE_SIZE - 1) + 1;
+  int H2 = hash_fn_mult(key, TABLE_SIZE - 1) + 1;
   return ((H1 + i * H2) && bin) % TABLE_SIZE;
 }
 int hash_fn_div(int key, int TABLE_SIZE)
@@ -54,6 +54,7 @@ Hash *criaHash(int TABLE_SIZE, int TAMANHO_TIPO)
   {
     int i;
     ha->TABLE_SIZE = TABLE_SIZE;
+    ha->TYPE_SIZE = TAMANHO_TIPO;
     ha->itens = (Data **)malloc(TABLE_SIZE * sizeof(Data *));
     if (!ha->itens)
     {
@@ -66,6 +67,52 @@ Hash *criaHash(int TABLE_SIZE, int TAMANHO_TIPO)
   }
   return ha;
 }
+void resizeHashTable(Hash **antiga)
+{
+  Hash *newTable = criaHash((*antiga)->TABLE_SIZE * 2, (*antiga)->TYPE_SIZE);
+  for (size_t i = 0; i < (*antiga)->TABLE_SIZE; i++)
+  {
+    if ((*antiga)->itens[i]) //EXISTE UM ITEM NESSA POSIÇÃO
+    {
+      // aqui é feita a inserção do item não nulo, fazer alteração para usar a versão do trabalho
+      insereHash(newTable, (*antiga)->itens[i]);
+    }
+  }
+  liberaHash(*antiga);
+}
+
+// // IMPLEMENTAÇÃO MAIS PERFORMÁTICA POREM INSUPORTÁVEL
+// int resizeHashTable(Hash *antigo)
+// {
+//   int newSize = antigo->TABLE_SIZE * 2;
+//   Data **NewVet = (Data **)malloc(newSize * sizeof(Data *));
+//   if (!NewVet)
+//   {
+//     free(NewVet);
+//     return 0;
+//   }
+//   for (size_t i = 0; i < newSize; i++)
+//     NewVet[i] = NULL;
+//   for (size_t i = 0; i < antigo->TABLE_SIZE; i++)
+//   {
+//     if (antigo->itens[i])
+//     {
+//       int pos = hash_fn_div(antigo->itens[i]->matricula /*chave*/, newSize), newPos;
+//       for (size_t j = 0; j < newSize; j++)
+//       {
+//         newPos = linear_polling(pos, j, newSize);
+//         if (!NewVet[newPos])
+//           NewVet[newPos] = antigo->itens[i];
+//       }
+//       //libera o item que já foi reinserido
+//       free(antigo->itens[i]);
+//     }
+//   }
+//   antigo->itens = NewVet;
+//   antigo->TABLE_SIZE = newSize;
+//   return 1;
+// }
+
 //freeHash(Hash* ha)
 void liberaHash(Hash *ha)
 {
@@ -95,6 +142,7 @@ int insert_nc(Hash *ha, Data al)
   ha->qnt++;
   return 1;
 }
+
 //int x = search_wc(Hash *ha, int key, Data &result)
 int search_nc(Hash *ha, int key, Data *al)
 {
@@ -111,8 +159,8 @@ int insereHash(Hash *ha, Data al)
 {
   if (!ha || ha->qnt == ha->TABLE_SIZE)
     return 0;
-  int key = al.matricula;                                // pegar a chave do dado
-  int i, newPos, pos = hash_fn_div(key, ha->TABLE_SIZE); // mudar para o metodo da sua escolha
+  int key = al.matricula;                             // pegar a chave do dado
+  int newPos, pos = hash_fn_div(key, ha->TABLE_SIZE); // mudar para o metodo da sua escolha
   for (size_t i = 0; i < ha->TABLE_SIZE; i++)
   {
     newPos = linear_polling(pos, i, ha->TABLE_SIZE); // mudar para o metodo de sondagem desejado
@@ -125,6 +173,8 @@ int insereHash(Hash *ha, Data al)
       *new = al;
       ha->itens[newPos] = new;
       ha->qnt++;
+      if (ha->qnt > ha->qnt * 0.75)
+        resizeHashTable(&ha); // criar outra tabela
     }
   }
 }
