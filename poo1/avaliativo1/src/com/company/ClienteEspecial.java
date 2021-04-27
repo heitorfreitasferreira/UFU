@@ -1,13 +1,13 @@
 package com.company;
 
-public class ClienteExpecial extends Cliente{
-    float taxaEspecial;
-    public ClienteExpecial(String cpf, float taxaEspecial) {
+public class ClienteEspecial extends Cliente{
+    private float taxaEspecial;
+    public ClienteEspecial(String cpf, float taxaEspecial) {
         super(cpf);
         if(taxaEspecial>0 && taxaEspecial<=0) this.taxaEspecial = taxaEspecial;
     }
 
-    public ClienteExpecial(float saldo, String cpf) {
+    public ClienteEspecial(float saldo, String cpf) {
         super(saldo, cpf);
     }
     public boolean saque(float valor) {

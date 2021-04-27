@@ -1,28 +1,35 @@
 package com.company;
 public class Cliente {
-    private float saldo;
-    private String cpf;
+    protected float saldo,saldoAplicacao;
+    protected String cpf;
+
 
     //Construtores
-    public Cliente(String cpf){
-        this.cpf = cpf;
+    public Cliente(){
         this.saldo = 0;
+        this.saldoAplicacao = 0;
+    }
+    public Cliente(String cpf){
+        this();
+        setCpf(cpf);
     }
     public Cliente(float saldo, String cpf) {
-        Cliente(cpf);// pq isso ta dando erro?
+        this(cpf);// pq isso ta dando erro?
         deposito(saldo);
     }
-
     //getters
     public String getCpf() {
         return cpf;
     }
-    public float getSaldo() {
-        return saldo;
-    }
+    public float getSaldo() { return saldo; }
+    public float getSaldoAplicacao() { return saldoAplicacao; }
     //setters
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public boolean setCpf(String cpf) {
+        if (ValidaCPF.isCPF(cpf)){
+            this.cpf = cpf;
+            return true;
+        }
+        return false;
     }
     public boolean deposito(float valor) {
         if(valor>0) {
@@ -39,5 +46,20 @@ public class Cliente {
         }
         return false;
     }
-
+    public boolean aplicar(float valorAAplicar) {
+        if (this.saldo>=1000){
+            this.saldo -= valorAAplicar;
+            this.saldoAplicacao +=valorAAplicar;
+            return true;
+        }
+        return false;
+    }
+    public boolean retirarAplicacao(float valorARetirar){
+        if(this.saldoAplicacao>=valorARetirar){
+            this.saldo+=valorARetirar;
+            this.saldoAplicacao-=valorARetirar;
+            return true;
+        }
+        return false;
+    }
 }
