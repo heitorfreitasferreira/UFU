@@ -494,3 +494,32 @@ _```T(n) = T(n-1) + n```_
       - hash2 não pode ter imagem que contenha o 0
   - Encadeamento separado
     - Cada posição do array é um ponteiro pra uma Lista Encadeada, em que a cabeça é a primeira posição inserida e a calda são as posições que deram colisão
+
+## Grafos
+
+### Busca em largura
+
+> Faz uso do conceito de fila, 
+
+- Percorre o grafo de forma sistemática
+- Colocam todos os vértices ligado ao que você está e coloca em uma fila
+- Quando olhar o vertice de fato, retira-o da fila e insere na fila os vertices dele
+
+### Busca em profundidade
+
+> Backtracking
+
+- Resolve o problema de achar a solução de um labirinto
+- Vai sempre por um caminho até não conseguir avançar mais, ai retorna
+- Usa um conceito de pilha, porém para não precisar usar um tad pilha usa a **recursão** que já usa esse conceito
+- Tem se uma função mascara que percorre até ```i<grau->[ini]``` , se a posição i não foi visitada eu chamo a função que faz a recursão
+  - A chamada recursiva parte da proxima aresta
+
+### Busca pelo menor caminho
+
+> Lembra um pouco a busca em largura
+
+- Menor número de arastas percorridas
+- Caso seja um grafo ponderado é a menor soma dos pesos das arestas
+- Mais comum: Dijkstra
+  - Partindo de um vertice inicial, calcula a menor distância dele para todos os outros
