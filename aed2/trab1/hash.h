@@ -13,3 +13,4 @@ Hash *criaHash(int TABLE_SIZE, int TAMANHO_TIPO);
 void liberaHash(Hash *ha);
 int insereHash(Hash *ha, void *dados);
 int buscaHash(Hash *ha, int key, void *dados);
+
