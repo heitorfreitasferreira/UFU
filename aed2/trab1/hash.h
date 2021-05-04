@@ -1,4 +1,4 @@
-#define SIZE 20
+#define SIZE 19
 
 //Mudar aqui sua estrutura de dado
 typedef struct data
