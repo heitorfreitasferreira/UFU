@@ -11,7 +11,8 @@
 // Cada linha é do modelo [matricula nome n1 n2 n3] com espaço separando cada linha
 int main(int argc, char const *argv[])
 {
-  Hash *hash = criaHash(SIZE, );
+  Aluno al1, al2;
+  Hash *hash = criaHash(SIZE,sizeof(Aluno));
   FILE *p;
   char arq[100];
   int loop = 1;
@@ -24,10 +25,10 @@ int main(int argc, char const *argv[])
   {
     int matricula, n1, n2, n3;
     char nome[30];
-    fscanf(p, "%d", &matricula);
-    fscanf(p, "%s", nome);
-    fscanf(p, "%c%c%c", &n1, &n2, &n3);
-    insereHash();
+    fscanf(p, "%d", &al1.matricula);
+    fscanf(p, "%s", al1.nome);
+    fscanf(p, "%c%c%c", &al1.n1, &al1.n2, &al1.n3);
+    insereHash(hash, al1.matricula, &al1);
   }
   while (loop)
   {
@@ -37,17 +38,19 @@ int main(int argc, char const *argv[])
     switch (escolha)
     {
     case 1:
-      insereHash();
+      insereHash(hash, al1.matricula, &al1);
       break;
     case 2:
-      buscaHash(, int matricula, );
-      frea case 3 : break;
+      buscaHash(hash, al1.matricula, &al2);
+      fread(&arq,);
+    case 3:
+      break;
     default:
       printf("Digite apenas 1,2 ou 3");
       break;
     }
   }
-
+  liberaHash(hash);
   fclose(p);
   return 0;
 }
