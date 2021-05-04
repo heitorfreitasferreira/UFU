@@ -523,3 +523,23 @@ _```T(n) = T(n-1) + n```_
 - Caso seja um grafo ponderado é a menor soma dos pesos das arestas
 - Mais comum: Dijkstra
   - Partindo de um vertice inicial, calcula a menor distância dele para todos os outros
+
+### Árvore geradora mínima
+
+> Spanning tree
+
+- É o grafo mínimo que mantém o grafo conectado
+- Sempre tem um caminho entre qualquer 2 vértices
+  - Grafo conexo
+- Não pode ser digraph
+- Tem que ser ponderado
+  - Ter pesos associados as arestas
+- É utilizado para gerar labirintos
+
+> Algoritmos clássicos
+
+- Prim
+  - a cada iteração procura a *aresta de menor peso*
+  - Começa de um vertice e constrói uma árvore a partir dele
+- Kruskal
+  - Constrói várias árvores e tenta unir em uma árvore só
