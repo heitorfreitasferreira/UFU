@@ -9,8 +9,8 @@ struct hash
   int qnt, TABLE_SIZE, TYPE_SIZE;
   Data **itens;
 };
-int linear_polling(int pos, int i, int TABLE_SIZE) { return ((pos + i) && bin) % TABLE_SIZE; }
-int hash_fn_div(int key, int TABLE_SIZE) { return (key & 0x7777777 % TABLE_SIZE); }
+int linear_polling(int pos, int i, int TABLE_SIZE) { return ((pos + i) & bin) % TABLE_SIZE; }
+int hash_fn_div(int key, int TABLE_SIZE) { return (key & bin % TABLE_SIZE); }
 
 // Hash* ha = create(int number)
 Hash *criaHash(int TABLE_SIZE, int TAMANHO_TIPO)
@@ -32,18 +32,35 @@ Hash *criaHash(int TABLE_SIZE, int TAMANHO_TIPO)
   }
   return ha;
 }
-void resizeHashTable(Hash **antiga)
+// IMPLEMENTAÇÃO MAIS PERFORMÁTICA POREM INSUPORTÁVEL
+int resizeHashTable(Hash *antigo)
 {
-  Hash *newTable = criaHash((*antiga)->TABLE_SIZE * 2, (*antiga)->TYPE_SIZE);
-  for (size_t i = 0; i < (*antiga)->TABLE_SIZE; i++)
+  int newSize = antigo->TABLE_SIZE * 2;
+  Data **NewVet = (Data **)malloc(newSize * sizeof(Data *));
+  if (!NewVet)
+    return 0;
+  for (size_t i = 0; i < newSize; i++)
+    NewVet[i] = NULL;
+  for (size_t i = 0; i < antigo->TABLE_SIZE; i++)
   {
-    if ((*antiga)->itens[i]) //EXISTE UM ITEM NESSA POSIÇÃO
+    if (antigo->itens[i])
     {
-      // aqui é feita a inserção do item não nulo, fazer alteração para usar a versão do trabalho
-      insereHash(newTable, (*antiga)->itens[i]->key, (*antiga)->itens[i]->value);
+      int pos = hash_fn_div(antigo->itens[i]->key /*chave*/, newSize), newPos;
+      for (size_t j = 0; j < newSize; j++)
+      {
+        newPos = linear_polling(pos, j, newSize);
+        if (!NewVet[newPos])
+        {
+          NewVet[newPos] = antigo->itens[i];
+          break;
+        }
+      }
     }
   }
-  *antiga = newTable;
+  free(antigo->itens);
+  antigo->itens = NewVet;
+  antigo->TABLE_SIZE = newSize;
+  return 1;
 }
 
 //freeHash(Hash* ha)
@@ -65,6 +82,11 @@ int insereHash(Hash *ha, int key, void *dados)
 {
   if (!ha || ha->qnt == ha->TABLE_SIZE)
     return 0;
+  if (ha->qnt > ha->TABLE_SIZE * 0.75)
+  {
+    resizeHashTable(ha); // criar outra tabela}
+  }
+
   int newPos, pos = hash_fn_div(key, ha->TABLE_SIZE); // mudar para o metodo da sua escolha
   for (size_t i = 0; i < ha->TABLE_SIZE; i++)
   {
@@ -80,10 +102,7 @@ int insereHash(Hash *ha, int key, void *dados)
       memcpy(new->value, dados, ha->TYPE_SIZE);
       ha->itens[newPos] = new;
       ha->qnt++;
-      if (ha->qnt > ha->TABLE_SIZE * 0.75)
-      {
-        resizeHashTable(&ha); // criar outra tabela}
-      }
+
       return 1;
     }
   }
