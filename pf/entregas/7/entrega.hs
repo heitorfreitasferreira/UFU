@@ -56,11 +56,11 @@ menores10 lst = _min10 lst [] 0
         then _min10 xs (x : result) (qnt + 1)
         else _min10 xs result qnt
 
-busca_elem :: (Eq t1, Num t2) => t1 -> [t1] -> (Bool, t2)
-busca_elem x list = _busca_elem x list 0
+buscaElem :: (Eq t1, Num t2) => t1 -> [t1] -> (Bool, t2)
+buscaElem x list = _buscaElem x list 0
   where
-    _busca_elem n [] qnt = (False, qnt)
-    _busca_elem n (x : xs) qnt =
+    _buscaElem n [] qnt = (False, qnt)
+    _buscaElem n (x : xs) qnt =
       if n == x
         then (True, qnt + 1)
-        else _busca_elem n xs (qnt + 1)
+        else _buscaElem n xs (qnt + 1)
