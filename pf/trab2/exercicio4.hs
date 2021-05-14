@@ -67,21 +67,38 @@ quickSortV1 (p : xs) =
 
 {-Variação 2-}
 
+analisaPivo :: Ord a => [a] -> ([a], a)
+analisaPivo lis = 
+  let 
+   lista = fst (quickSortV1 (take 3 lis))
+   len = length lista
+   mediano = if len == 1 then lista !! 0 
+      else lista !! 1 
+  in (remove mediano lis, mediano)
+  where
+    remove :: (Ord a) => a -> [a] -> [a]
+    remove _ [] = []
+    remove a (x:xs)
+      | a == x = xs
+      | otherwise = x : (remove a xs)
 
--- quickSortV2 :: (Ord a) => [a] -> ([a], Int)
--- quickSortV2 [] = ([], 0)
--- quickSortV2 (p : xs) = 
---   let (esq, dir, contComp) = divide p xs 
---       (ordEsq, n_esq) = quickSortV2 esq
---       (ordDir, n_dir) = quickSortV2 dir
---   in (ordEsq ++ [p] ++ ordDir, contComp + n_dir + n_esq)
---   where
---     divide :: (Ord a) => a -> [a] -> ([a], [a], Int)
---     divide p xs = seleciona p xs ([], [], 0)
---       where
---         seleciona :: (Ord a) => a -> [a] -> ([a], [a], Int) -> ([a], [a], Int)
---         seleciona pivo [] (menores, maiores, c) = (menores, maiores, c)
---         seleciona pivo (h:hs) (menores, maiores, c) 
---           | h < pivo = seleciona pivo hs (menores ++ [h], maiores, c + 1)
---           | otherwise = seleciona pivo hs (menores, maiores ++ [h], c + 1) 
+  
+
+quickSortV2 :: (Ord a) => [a] -> ([a], Int)
+quickSortV2 [] = ([], 0)
+quickSortV2 list = 
+  let (xs, p) = analisaPivo list
+      (esq, dir, contComp) = divide p xs 
+      (ordEsq, n_esq) = quickSortV2 esq
+      (ordDir, n_dir) = quickSortV2 dir
+  in (ordEsq ++ [p] ++ ordDir, contComp + n_dir + n_esq)
+  where
+    divide :: (Ord a) => a -> [a] -> ([a], [a], Int)
+    divide p xs = seleciona p xs ([], [], 0)
+      where
+        seleciona :: (Ord a) => a -> [a] -> ([a], [a], Int) -> ([a], [a], Int)
+        seleciona pivo [] (menores, maiores, c) = (menores, maiores, c)
+        seleciona pivo (h:hs) (menores, maiores, c) 
+          | h < pivo = seleciona pivo hs (menores ++ [h], maiores, c + 1)
+          | otherwise = seleciona pivo hs (menores, maiores ++ [h], c + 1) 
   

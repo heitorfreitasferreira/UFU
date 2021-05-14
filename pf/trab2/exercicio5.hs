@@ -26,17 +26,19 @@ x6=[1,12,3,14,5,15,4,13,2,11,6,17,8,19,20,10,9,18,7,16]
 
 x7 = [20,8,2,11,13,3,7,18,14,4,16,10,15,1,9,17,19,12,5,6]
 
-merge :: Ord a => [a] -> [a] -> [a]
-merge xs [] = xs
-merge [] ys = ys
-merge (x:xs) (y:ys) | x <= y    = x:merge xs (y:ys)
-                    | otherwise = y:merge (x:xs) ys
+merge :: Ord a => ([a], [a], Int) -> ([a], Int)
+merge (xs, [], c) = (xs, c)
+merge ([], ys, c) = (ys, c)
+merge ((x:xs), (y:ys), c) 
+  | x <= y  = (x:merge xs (y:ys),  , c + 1)
+  | otherwise = y:merge (x:xs) ys (c + 1)
 
-mergeSort :: Ord a => [a] -> [a]
-mergeSort [] = []
-mergeSort [x] = [x]
-mergeSort list = 
+mergeSort :: Ord a => [a] -> ([a], Int)
+mergeSort [] = ([], 0)
+mergeSort [x] = ([x], 0)
+mergeSort (list, c) = 
   let 
-    esq = mergeSort (take (div (length list) 2) list)
-    dir = mergeSort (drop (div (length list) 2) list)
-  in merge esq dir
+    (esq, newCesq) = mergeSort ((take (div (length list) 2) list), c)
+    (dir, newCdir) = mergeSort ((drop (div (length list) 2) list), c)
+    (merged, cont) = merge esq dir 0
+  in (merged, cont + newCesq + newCdir)
