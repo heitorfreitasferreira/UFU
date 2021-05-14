@@ -72,7 +72,7 @@ analisaPivo lis =
   let 
    lista = fst (quickSortV1 (take 3 lis))
    len = length lista
-   mediano = if len == 1 then lista !! 0 
+   mediano = if len < 3 then lista !! 0 
       else lista !! 1 
   in (remove mediano lis, mediano)
   where
