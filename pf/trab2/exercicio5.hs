@@ -27,6 +27,10 @@ x6=[1,12,3,14,5,15,4,13,2,11,6,17,8,19,20,10,9,18,7,16]
 
 x7 = [20,8,2,11,13,3,7,18,14,4,16,10,15,1,9,17,19,12,5,6]
 
+separaListas :: Ord a => [a] -> ([a], [a])
+separaListas list = splitAt tamDiv2 list
+  where tamDiv2 = div (length list) 2
+
 merge :: Ord a => [a] -> [a] -> ([a], Int)
 merge xs [] = (xs, 0)
 merge [] ys = (ys, 0)
@@ -47,8 +51,3 @@ mergeSort list = (merged, cont + contEsq + contDir)
     (newEsq, contEsq) = mergeSort esq
     (newDir, contDir) = mergeSort dir
     (merged, cont) = merge newEsq newDir
-
-
-separaListas :: Ord a => [a] -> ([a], [a])
-separaListas list = splitAt tamDiv2 list
-  where tamDiv2 = div (length list) 2
