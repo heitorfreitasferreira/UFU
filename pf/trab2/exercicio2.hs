@@ -29,9 +29,10 @@ x7 = [20, 8, 2, 11, 13, 3, 7, 18, 14, 4, 16, 10, 15, 1, 9, 17, 19, 12, 5, 6]
 {-Original-}
 selectionSortOri :: (Ord a) => [a] -> ([a], Int)
 selectionSortOri [] = ([], 0)
-selectionSortOri xs = (fst x : fst (selectionSortOri (delElemOri (fst x) xs)), snd (selectionSortOri (delElemOri (fst x) xs)) + snd x)
+selectionSortOri xs = (x : resto, contTrocas + trocasResto)
   where
-    x = minimoOri xs 0
+    (x, contTrocas) = minimoOri xs
+    (resto, trocasResto) = selectionSortOri (delElemOri x xs)
 
 delElemOri :: (Ord a) => a -> [a] -> [a]
 delElemOri _ [] = []
@@ -39,24 +40,34 @@ delElemOri a (x : xs)
   | a == x = xs
   | otherwise = x : delElemOri a xs
 
-minimoOri :: (Ord a) => [a] -> Int -> (a, Int)
-minimoOri [] _ = undefined
-minimoOri [x] num = (x, num)
-minimoOri (x : y : xs) num
-  | x < y = minimoOri (x : xs) (num + 1)
-  | otherwise = minimoOri (y : xs) num
+minimoOri :: (Ord a) => [a] -> (a, Int)
+minimoOri [x] = (x, 0)
+minimoOri (x : y : xs)
+  | x < y = (menor1, cont1 + 1)
+  | otherwise = (menor2, cont2)
+  where
+    (menor1, cont1) = minimoOri (x : xs)
+    (menor2, cont2) = minimoOri (y : xs)
 
 {-Variação 1-}
 selectionSortV1 :: (Ord a) => [a] -> ([a], Int)
 selectionSortV1 [] = ([], 0)
-selectionSortV1 lista = (menor : fst (selectionSortV1 resto), contador + snd (selectionSortV1 resto))
+selectionSortV1 xs = (x : resto, trocas + trocasResto)
   where
-    (resto, menor, contador) = removeMenorV1 lista
+    (semMenor, x, trocas) = removeMenorV1 xs
+    (resto, trocasResto) = selectionSortV1 semMenor
 
 removeMenorV1 :: (Ord a, Num b) => [a] -> ([a], a, b)
 removeMenorV1 l = _removeMenorV1 l ([], 0)
   where
-    _removeMenorV1 [x] (lis, c) = (lis, x, c)
+    _removeMenorV1 [x] (lis, c) = (reverse lis, x, c)
     _removeMenorV1 (x : y : zs) (l, c)
-      | x < y = _removeMenorV1 (x : zs) (l ++ [y], c + 1)
-      | otherwise = _removeMenorV1 (y : zs) (l ++ [x], c)
+      | x < y = _removeMenorV1 (x : zs) (y : l, c + 1)
+      | otherwise = _removeMenorV1 (y : zs) (x : l, c)
+
+{-Variação 2-}
+selectionSortV2 :: (Ord a) => [a] -> [a]
+selectionSortV2 [] = []
+selectionSortV2 xs = x : selectionSortV2(delElemOri x xs)
+                    where x = foldl1 min xs
+                
