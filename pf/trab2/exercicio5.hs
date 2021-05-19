@@ -1,10 +1,11 @@
+{-# LANGUAGE FlexibleContexts #-}
 l1 = [1 .. 2000]
 
 l2=[2000,1999..1]
 
 l3=l1++[0]
 
-l4=[0]++l2
+l4=0 : l2
 
 l5=l1++[0]++l2
 
@@ -26,19 +27,27 @@ x6=[1,12,3,14,5,15,4,13,2,11,6,17,8,19,20,10,9,18,7,16]
 
 x7 = [20,8,2,11,13,3,7,18,14,4,16,10,15,1,9,17,19,12,5,6]
 
-merge :: Ord a => ([a], [a], Int) -> ([a], Int)
-merge (xs, [], c) = (xs, c)
-merge ([], ys, c) = (ys, c)
-merge ((x:xs), (y:ys), c) 
-  | x <= y  = (x:merge xs (y:ys),  , c + 1)
-  | otherwise = y:merge (x:xs) ys (c + 1)
+separaListas :: Ord a => [a] -> ([a], [a])
+separaListas list = splitAt tamDiv2 list
+  where tamDiv2 = div (length list) 2
+
+merge :: Ord a => [a] -> [a] -> ([a], Int)
+merge xs [] = (xs, 0)
+merge [] ys = (ys, 0)
+merge (x:xs) (y:ys)
+  | x <= y  = (x:l1, cont1 + 1)
+  | otherwise = (y:l2, cont2 + 1)
+    where
+      (l1, cont1) = merge xs (y:ys)
+      (l2, cont2) = merge (x:xs) ys
+
 
 mergeSort :: Ord a => [a] -> ([a], Int)
 mergeSort [] = ([], 0)
 mergeSort [x] = ([x], 0)
-mergeSort (list, c) = 
-  let 
-    (esq, newCesq) = mergeSort ((take (div (length list) 2) list), c)
-    (dir, newCdir) = mergeSort ((drop (div (length list) 2) list), c)
-    (merged, cont) = merge esq dir 0
-  in (merged, cont + newCesq + newCdir)
+mergeSort list = (merged, cont + contEsq + contDir)
+  where
+    (esq, dir) = separaListas list
+    (newEsq, contEsq) = mergeSort esq
+    (newDir, contDir) = mergeSort dir
+    (merged, cont) = merge newEsq newDir

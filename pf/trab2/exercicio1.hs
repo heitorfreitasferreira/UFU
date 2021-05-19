@@ -29,60 +29,64 @@ x7 = [20, 8, 2, 11, 13, 3, 7, 18, 14, 4, 16, 10, 15, 1, 9, 17, 19, 12, 5, 6]
 {-Original-}
 bolhaOri :: Ord a => [a] -> ([a], Int)
 bolhaOri [] = ([], 0)
-bolhaOri lista = bolhaOrdOri (lista, 0) (length lista)
+bolhaOri lista = bolhaOrdOri lista (length lista)
 
-bolhaOrdOri :: (Eq t, Num t, Ord a) => ([a], Int) -> t -> ([a], Int)
-bolhaOrdOri (lista, m) 0 = (lista, m)
-bolhaOrdOri (lista, m) n = bolhaOrdOri (fst trocas, snd trocas + m) (n - 1)
-  where
-    trocas = trocaOri lista
+bolhaOrdOri :: Ord a => [a] -> Int -> ([a], Int)
+bolhaOrdOri lista 0 = (lista, 0)
+bolhaOrdOri lista n = (bolhaOrd, j + cont)
+  where 
+    (lst, j) = trocaOri lista
+    (bolhaOrd, cont) = bolhaOrdOri lst (n - 1)
 
-trocaOri :: (Ord a, Num b) => [a] -> ([a], b)
-trocaOri l = _trocaOri l ([], 0)
-  where
-    _trocaOri [x] (lis, c) = (lis ++ [x], c)
-    _trocaOri (x : y : zs) (l, c)
-      | x > y = _trocaOri (x : zs) (l ++ [y], c + 1)
-      | otherwise = _trocaOri (y : zs) (l ++ [x], c)
+trocaOri :: Ord a => [a] -> ([a], Int)
+trocaOri [x] = ([x], 0)
+trocaOri (x : y : zs)
+  | x > y = (y : l1, c1 + 1)
+  | otherwise = (x : l2, c2)
+    where
+      (l1, c1) = trocaOri (x : zs)
+      (l2, c2) = trocaOri (y : zs)
 
 {-Variação 1-}
 bolhaV1 :: Ord a => [a] -> ([a], Int)
 bolhaV1 [] = ([], 0)
-bolhaV1 lista = bolhaOrdV1 (lista, 0) (length lista)
+bolhaV1 lista = bolhaOrdV1 lista (length lista)
 
-bolhaOrdV1 :: (Eq t, Num t, Ord a) => ([a], Int) -> t -> ([a], Int)
-bolhaOrdV1 (lista, m) 0 = (lista, m)
-bolhaOrdV1 (lista, m) n
-  | snd trocas == 0 = (lista, m)
-  | otherwise = bolhaOrdV1 (fst trocas, snd trocas + m) (n - 1)
-  where
-    trocas = trocaV1 lista
+bolhaOrdV1 :: Ord a => [a] -> Int -> ([a], Int)
+bolhaOrdV1 lista 0 = (lista, 0)
+bolhaOrdV1 lista n = (bolhaOrd, j + cont)
+  where 
+    (lst, j) = trocaV1 lista
+    (bolhaOrd, cont) = if j == 0 then (lst, j) else bolhaOrdV1 lst (n - 1)
 
-trocaV1 :: (Ord a, Num b) => [a] -> ([a], b)
-trocaV1 l = _trocaV1 l ([], 0)
-  where
-    _trocaV1 [x] (lis, c) = (lis ++ [x], c)
-    _trocaV1 (x : y : zs) (l, c)
-      | x > y = _trocaV1 (x : zs) (l ++ [y], c + 1)
-      | otherwise = _trocaV1 (y : zs) (l ++ [x], c)
+trocaV1 :: Ord a => [a] -> ([a], Int)
+trocaV1 [x] = ([x], 0)
+trocaV1 (x : y : zs)
+  | x > y = (y : l1, c1 + 1)
+  | otherwise = (x : l2, c2)
+    where
+      (l1, c1) = trocaV1 (x : zs)
+      (l2, c2) = trocaV1 (y : zs)
 
 {-Variação 2-}
 bolhaV2 :: Ord a => [a] -> ([a], Int)
 bolhaV2 [] = ([], 0)
-bolhaV2 lista = bolhaOrdV2 (lista, 0) (length lista)
+bolhaV2 lista = bolhaOrdV2 lista (length lista)
 
-bolhaOrdV2 :: (Eq t, Num t, Ord a) => ([a], Int) -> t -> ([a], Int)
-bolhaOrdV2 (lista, m) 0 = (lista, m)
-bolhaOrdV2 (lista, m) n
-  | snd trocas == 0 = (lista, m)
-  | otherwise = bolhaOrdV2 (fst trocas, snd trocas + m) (n - 1)
-  where
-    trocas = trocaV2 lista
+bolhaOrdV2 :: Ord a => [a] -> Int -> ([a], Int)
+bolhaOrdV2 lista 0 = (lista, 0)
+bolhaOrdV2 lista n = (bolhaOrd, j + cont)
+  where 
+    (lst, j) = trocaV2 lista n
+    {- (lst, j) = trocaV2 (take n lista) -}
+    (bolhaOrd, cont) = if j == 0 then (lst, j) else bolhaOrdV2 lst (n - 1)
 
-trocaV2 :: (Ord a, Num b) => [a] -> ([a], b)
-trocaV2 l = _trocaV2 l ([], 0)
-  where
-    _trocaV2 [x] (lis, c) = (lis ++ [x], c)
-    _trocaV2 (x : y : zs) (l, c)
-      | x > y = _trocaV2 (x : zs) (l ++ [y], c + 1)
-      | otherwise = _trocaV2 (y : zs) (l ++ [x], c)
+trocaV2 :: Ord a => [a] -> Int -> ([a], Int)
+trocaV2 [x] _ = ([x], 0)
+trocaV2 lis 0 = (lis, 0)
+trocaV2 (x : y : zs) n
+  | x > y = (y : l1, c1 + 1)
+  | otherwise = (x : l2, c2)
+    where
+      (l1, c1) = trocaV2 (x : zs) n
+      (l2, c2) = trocaV2 (y : zs) n

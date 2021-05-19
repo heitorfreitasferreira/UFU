@@ -29,15 +29,18 @@ x7 = [20,8,2,11,13,3,7,18,14,4,16,10,15,1,9,17,19,12,5,6]
 
 {-Original-}
 insertionOri :: (Ord a) => [a] -> ([a], Int)
-insertionOri [] = []
-insertionOri (x : xs) = 
-  let (list, cont) = insertionOri x [] 0
-    
-  in (insertOrdOri x (insertionOri xs), )
+insertionOri [] = ([], 0)
+insertionOri (x : xs) = (res, cont + contInsert)
+  where 
+    (list, cont) = insertionOri xs
+    (res, contInsert) = insertOrdOri x list 
 
 
-insertOrdOri :: (Ord a) => a -> [a] -> Int -> ([a], Int)
-insertOrdOri x [] = [x]
+insertOrdOri :: (Ord a) => a -> [a] -> ([a], Int)
+insertOrdOri x [] = ([x], 0)
 insertOrdOri x (y:ys)
-  | x <= y = (x:y:ys)
-  | otherwise = y : (insertOrdOri x ys)
+  | x <= y = (x:y:ys, 1)
+  | otherwise = (y : res, cont + 1)
+    where (res, cont) = insertOrdOri x ys
+
+{-Variação 1-}
