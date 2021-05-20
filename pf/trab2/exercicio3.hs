@@ -53,3 +53,14 @@ insertOrdOri x (y : ys)
 
 {-Variação 1-}
 --TODO
+insertionV1 :: (Ord a) => [a] -> ([a], Int)
+insertionV1 [] = ([], 0)
+insertionV1 lis = foldl insertOrdV1 ([], 0) lis
+  where
+    insertOrdV1 :: (Ord a) => ([a], Int) -> a -> ([a], Int)
+    insertOrdV1 ([], c) x  = ([x], c)
+    insertOrdV1 (y : ys, c) x 
+      | x <= y = (x : y : ys, c + 1)
+      | otherwise = (y : res, cont + 1)
+      where
+        (res, cont) = insertOrdV1 (ys, c) x
