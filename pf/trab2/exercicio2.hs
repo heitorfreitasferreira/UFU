@@ -65,9 +65,10 @@ removeMenorV1 l = _removeMenorV1 l ([], 0)
       | x < y = _removeMenorV1 (x : zs) (y : l, c + 1)
       | otherwise = _removeMenorV1 (y : zs) (x : l, c)
 
+--TODO
 {-Variação 2-}
 selectionSortV2 :: (Ord a) => [a] -> [a]
 selectionSortV2 [] = []
-selectionSortV2 xs = x : selectionSortV2(delElemOri x xs)
-                    where x = foldl1 min xs
-                
+selectionSortV2 xs = x : selectionSortV2 (delElemOri x xs)
+  where
+    x = foldl1 min xs

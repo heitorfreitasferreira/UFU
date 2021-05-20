@@ -29,9 +29,10 @@ x7 = [20, 8, 2, 11, 13, 3, 7, 18, 14, 4, 16, 10, 15, 1, 9, 17, 19, 12, 5, 6]
 {-Função auxiliar que filtra e conta-}
 filtrarCont :: (a -> Bool) -> [a] -> ([a], Int)
 filtrarCont _ [] = ([], 0)
-filtrarCont f (x : xs)
-  | f x = (x : lis, c + 1)
-  | otherwise = (lis, c + 1)
+filtrarCont f (x : xs) =
+  if f x
+    then (x : lis, c + 1)
+    else (lis, c + 1)
   where
     (lis, c) = filtrarCont f xs
 
@@ -44,8 +45,6 @@ quickSortOri (p : xs) = (ordEsq ++ [p] ++ ordDir, cont_esq + cont_dir + n_dir + 
     (dir, cont_dir) = filtrarCont (>= p) xs
     (ordEsq, n_esq) = quickSortOri esq
     (ordDir, n_dir) = quickSortOri dir
-
-
 
 {-Variação 1-}
 
@@ -61,10 +60,10 @@ quickSortV1 (p : xs) = (ordEsq ++ [p] ++ ordDir, contComp + n_dir + n_esq)
 divide :: (Ord a) => a -> [a] -> ([a], [a], Int)
 divide pivo [] = ([], [], 0)
 divide pivo (h : hs)
-  | h < pivo = (h:menores, maiores, cont + 1)
-  | otherwise = (menores, h:maiores, cont + 1)
-    where
-      (menores, maiores, cont) = divide pivo hs
+  | h < pivo = (h : menores, maiores, cont + 1)
+  | otherwise = (menores, h : maiores, cont + 1)
+  where
+    (menores, maiores, cont) = divide pivo hs
 
 {-Variação 2-}
 
@@ -84,11 +83,26 @@ analisaPivo lis =
       | a == x = xs
       | otherwise = x : remove a xs
 
+-- xyz
+-- xzy
+-- yxz
+-- yzx
+-- zyx
+-- zxy
+analisaPivoH :: (Ord a) => [a] -> (a, a, a, [a], Int)
+analisaPivoH (x : y : z : resto)
+  | x >= y && y >= z = (x, y, z, resto, 2)
+  | x >= z && z >= y = (x, z, y, resto, 4)
+  | y >= z && x >= z = (y, x, z, resto, 6)
+  | y >= z && z >= x = (y, z, x, resto, 8)
+  | z >= y && y >= x = (z, y, x, resto, 10)
+  | otherwise = (z, x, y, resto, 10)
+
 quickSortV2 :: (Ord a) => [a] -> ([a], Int)
 quickSortV2 [] = ([], 0)
-quickSortV2 lis = (ordEsq ++ [p] ++ ordDir, contComp + n_dir + n_esq)
+quickSortV2 list = (ordEsq ++ [p] ++ ordDir, contComp + n_dir + n_esq)
   where
-    (xs, p) = analisaPivo lis
+    (maior, p, menor, xs, trocaPivo) = analisaPivoH list
     (esq, dir, contComp) = divide p xs
-    (ordEsq, n_esq) = quickSortV1 esq
-    (ordDir, n_dir) = quickSortV1 dir
+    (ordEsq, n_esq) = quickSortV1 (menor : esq)
+    (ordDir, n_dir) = quickSortV1 (maior : dir)

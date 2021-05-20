@@ -32,13 +32,15 @@ exp1 =
   Div
     (Mul (Add (Val 3) (Val 12)) (Sub (Val 15) (Val 5)))
     (Mul (Val 1) (Val 3))
+
 -- Res: 50
 exp2 :: Exp Float
 exp2 =
-  Sub
-    (Val 0)
+  Mul
+    (Val (-1))
     ( Mul
         (Add (Val 6) (Add (Val 1) (Sub (Val 8) (Val 5))))
         (Add (Val 2) (Div (Val 6) (Val 2)))
     )
+
 -- Res: -50
