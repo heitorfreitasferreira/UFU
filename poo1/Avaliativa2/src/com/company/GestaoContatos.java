@@ -79,6 +79,108 @@ public class GestaoContatos {
         return min;
     }
 
+public void salvaContatos() throws IOException {
+        try{
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("contatosFamilia"));
+            StringBuilder texto = new StringBuilder("CONTATOS -------------+\n");
+            for (Contato contato: familia) {
+                texto.append(contato.toString()).append("\n");
+            }
+            texto.append("+-------------+%n");
+            escritor.write(texto.toString());
+            escritor.flush();
+            escritor.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        try{
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("contatosAmigos"));
+            StringBuilder texto = new StringBuilder("CONTATOS -------------+\n");
+            for (Contato contato: amigos) {
+                texto.append(contato.toString()).append("\n");
+            }
+            texto.append("+-------------+%n");
+            escritor.write(texto.toString());
+            escritor.flush();
+            escritor.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        try{
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("contatosProfissional"));
+            StringBuilder texto = new StringBuilder("CONTATOS -------------+\n");
+            for (Contato contato: profissional) {
+                texto.append(contato.toString()).append("\n");
+            }
+            texto.append("+-------------+%n");
+            escritor.write(texto.toString());
+            escritor.flush();
+            escritor.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void salvaContatosBin(){
+        FileOutputStream escritorArquivo = null;
+        ObjectOutputStream escritorObj = null;
+        try{
+            escritorArquivo =new FileOutputStream("contatosFamilia");
+            escritorObj = new ObjectOutputStream(escritorArquivo);
+            for (Contato contato : familia)
+                escritorObj.writeObject(contato);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        } finally {
+            try{
+                if(escritorArquivo != null)
+                    escritorArquivo.close();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        escritorArquivo = null;
+        escritorObj = null;
+        try{
+            escritorArquivo =new FileOutputStream("contatosAmigos");
+            escritorObj = new ObjectOutputStream(escritorArquivo);
+            for (Contato contato : amigos)
+                escritorObj.writeObject(contato);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        } finally {
+            try{
+                if(escritorArquivo != null)
+                    escritorArquivo.close();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        escritorArquivo = null;
+        escritorObj = null;
+        try{
+            escritorArquivo =new FileOutputStream("contatosProfissional");
+            escritorObj = new ObjectOutputStream(escritorArquivo);
+            for (Contato contato : profissional)
+                escritorObj.writeObject(contato);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        } finally {
+            try{
+                if(escritorArquivo != null)
+                    escritorArquivo.close();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "GestaoContatos{" +
