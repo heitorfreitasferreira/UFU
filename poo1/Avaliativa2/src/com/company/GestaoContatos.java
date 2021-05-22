@@ -1,3 +1,6 @@
+package com.company;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -5,6 +8,12 @@ public class GestaoContatos {
     private ArrayList<Contato> familia;
     private ArrayList<Contato> amigos;
     private ArrayList<Contato> profissional;
+
+    public GestaoContatos() {
+        familia = new ArrayList<Contato>();
+        amigos = new ArrayList<Contato>();
+        profissional = new ArrayList<Contato>();
+    }
 
     public void adicionaContato(Contato novoContato, int lista){
         if (lista == 1)
@@ -27,19 +36,21 @@ public class GestaoContatos {
     }
 
     public void listaContatos(int lista){
-        ArrayList<Contato> contatos = new ArrayList<Contato>();
         if (lista == 1)
-            contatos = familia;
+            for (Contato contato : familia) {
+                System.out.println(contato.toString());
+            }
         else if (lista == 2)
-            contatos = amigos;
+            for (Contato contato : amigos) {
+                System.out.println(contato.toString());
+            }
         else if (lista == 3)
-            contatos = profissional;
-        for (Contato contato : contatos) {
-            System.out.println(contato.toString());
-        }
+            for (Contato contato : profissional) {
+                System.out.println(contato.toString());
+            }
     }
 
-    public int maisVelho(int lista){
+    public Contato maisVelho(int lista){
         ArrayList<Contato> contatos = new ArrayList<Contato>();
         if (lista == 1)
             contatos = familia;
@@ -48,16 +59,17 @@ public class GestaoContatos {
         else if (lista == 3)
             contatos = profissional;
 
-        int max = 0;
+        Contato max = new Contato();
+        max.setIdade(0);
         for (Contato contato : contatos) {
-            if (contato.getIdade() > max)
-                max = contato.getIdade();
+            if (contato.getIdade() > max.getIdade())
+                max = contato;
         }
 
         return max;
     }
 
-    public int maisNovo(int lista){
+    public Contato maisNovo(int lista){
         ArrayList<Contato> contatos = new ArrayList<Contato>();
         if (lista == 1)
             contatos = familia;
@@ -66,13 +78,17 @@ public class GestaoContatos {
         else if (lista == 3)
             contatos = profissional;
 
-        int min = 0;
+        Contato min = new Contato();
         int count = 0;
         for (Contato contato : contatos) {
-            if (count == 0)
-                min = contato.getIdade();
-            if (contato.getIdade() < min)
-                min = contato.getIdade();
+            if (count == 0) {
+                min = contato;
+                count++;
+                continue;
+            }
+            if (contato.getIdade() < min.getIdade()) {
+                min = contato;
+            }
             count++;
         }
 
@@ -86,7 +102,7 @@ public void salvaContatos() throws IOException {
             for (Contato contato: familia) {
                 texto.append(contato.toString()).append("\n");
             }
-            texto.append("+-------------+%n");
+            texto.append("+-------------+");
             escritor.write(texto.toString());
             escritor.flush();
             escritor.close();
@@ -101,7 +117,7 @@ public void salvaContatos() throws IOException {
             for (Contato contato: amigos) {
                 texto.append(contato.toString()).append("\n");
             }
-            texto.append("+-------------+%n");
+            texto.append("+-------------+");
             escritor.write(texto.toString());
             escritor.flush();
             escritor.close();
@@ -115,7 +131,7 @@ public void salvaContatos() throws IOException {
             for (Contato contato: profissional) {
                 texto.append(contato.toString()).append("\n");
             }
-            texto.append("+-------------+%n");
+            texto.append("+-------------+");
             escritor.write(texto.toString());
             escritor.flush();
             escritor.close();
@@ -129,7 +145,7 @@ public void salvaContatos() throws IOException {
         FileOutputStream escritorArquivo = null;
         ObjectOutputStream escritorObj = null;
         try{
-            escritorArquivo =new FileOutputStream("contatosFamilia");
+            escritorArquivo =new FileOutputStream("contatosFamiliaBin");
             escritorObj = new ObjectOutputStream(escritorArquivo);
             for (Contato contato : familia)
                 escritorObj.writeObject(contato);
@@ -147,7 +163,7 @@ public void salvaContatos() throws IOException {
         escritorArquivo = null;
         escritorObj = null;
         try{
-            escritorArquivo =new FileOutputStream("contatosAmigos");
+            escritorArquivo =new FileOutputStream("contatosAmigosBin");
             escritorObj = new ObjectOutputStream(escritorArquivo);
             for (Contato contato : amigos)
                 escritorObj.writeObject(contato);
@@ -165,7 +181,7 @@ public void salvaContatos() throws IOException {
         escritorArquivo = null;
         escritorObj = null;
         try{
-            escritorArquivo =new FileOutputStream("contatosProfissional");
+            escritorArquivo =new FileOutputStream("contatosProfissionalBin");
             escritorObj = new ObjectOutputStream(escritorArquivo);
             for (Contato contato : profissional)
                 escritorObj.writeObject(contato);

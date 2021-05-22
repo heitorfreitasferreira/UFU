@@ -9,6 +9,8 @@ public abstract class Moradia extends Imovel{
     private String descricao;
     private boolean condominio;
 
+
+
     public Moradia(boolean disponivel, boolean paraVenda, boolean ativo, Date dataConstrucao, Date dataRegistro, float valor, float valorImobiliaria, Endereco endereco, int area, int numQuartos, int numSuites, int numSalaEstar, int numSalaJantar, int numVagasGaragem, int numArmEmbutido, String descricao, boolean condominio) {
         super(disponivel, paraVenda, ativo, dataConstrucao, dataRegistro, valor, valorImobiliaria, endereco, area);
         setNumQuartos(numQuartos);
@@ -20,7 +22,13 @@ public abstract class Moradia extends Imovel{
         setDescricao(descricao);
         setCondominio(condominio);
     }
+    public boolean isCondominio() {
+        return condominio;
+    }
 
+    public void setCondominio(boolean condominio) {
+        this.condominio = condominio;
+    }
     public int getNumQuartos() {
         return numQuartos;
     }

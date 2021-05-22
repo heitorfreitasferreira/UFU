@@ -39,8 +39,9 @@ public class Pessoa {
         this.estCivil = estCivil;
     }
 
-    public boolean isMulher() {
-        return mulher;
+    public String sexo() {
+        if(mulher) return "feminino";
+        return "masculino";
     }
 
     public void setMulher(boolean mulher) {

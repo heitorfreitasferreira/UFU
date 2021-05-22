@@ -1,14 +1,24 @@
 package com.company;
 
 public class Contato {
+<<<<<<< HEAD
+    private String nome,sexo,profissao,telefone,email;
+    private int idade;
+
+    public Contato() {
+    }
+
+    public Contato(String nome, int idade, String sexo, String profissao, String telefone, String email) {
+=======
     private String nome,sexo,profissão,telefone, email;
     private int idade;
 
     public Contato(String nome, int idade, String sexo, String profissão, String telefone, String email) {
+>>>>>>> ddeac64d80e80a96655041fe6b42ebf633677125
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
-        this.profissão = profissão;
+        this.profissao = profissao;
         this.telefone = telefone;
         this.email = email;
     }
@@ -31,11 +41,11 @@ public class Contato {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    public String getProfissão() {
-        return profissão;
+    public String getProfissao() {
+        return profissao;
     }
-    public void setProfissão(String profissão) {
-        this.profissão = profissão;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
     public String getTelefone() {
         return telefone;
@@ -51,6 +61,10 @@ public class Contato {
     }
 
     public String toString(){
+<<<<<<< HEAD
+        return getNome() + ", "+getIdade()+" anos de idade, do sexo "+getSexo()+","+getProfissao()+", telefone n.º "+getTelefone()+",e-mail:"+getEmail()+"";
+=======
         return getNome() + ", "+getIdade()+" anos de idade, do sexo "+getSexo()+","+getProfissão()+", telefone n.º "+getTelefone()+",e-mail:"+getEmail()+"";
+>>>>>>> ddeac64d80e80a96655041fe6b42ebf633677125
     }
 }
