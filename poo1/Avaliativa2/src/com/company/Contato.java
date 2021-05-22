@@ -1,9 +1,10 @@
 package com.company;
 
 public class Contato {
-    private String nome,idade,sexo,profissão,telefone,emai;
+    private String nome,sexo,profissão,telefone,emai;
+    private int idade;
 
-    public Contato(String nome, String idade, String sexo, String profissão, String telefone, String emai) {
+    public Contato(String nome, int idade, String sexo, String profissão, String telefone, String emai) {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
@@ -18,10 +19,10 @@ public class Contato {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
-    public void setIdade(String idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
     public String getSexo() {
