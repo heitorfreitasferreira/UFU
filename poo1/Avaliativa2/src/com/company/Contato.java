@@ -1,16 +1,16 @@
 package com.company;
 
 public class Contato {
-    private String nome,sexo,profissão,telefone,emai;
+    private String nome,sexo,profissão,telefone, email;
     private int idade;
 
-    public Contato(String nome, int idade, String sexo, String profissão, String telefone, String emai) {
+    public Contato(String nome, int idade, String sexo, String profissão, String telefone, String email) {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
         this.profissão = profissão;
         this.telefone = telefone;
-        this.emai = emai;
+        this.email = email;
     }
 
     public String getNome() {
@@ -43,14 +43,14 @@ public class Contato {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public String getEmai() {
-        return emai;
+    public String getEmail() {
+        return email;
     }
-    public void setEmai(String emai) {
-        this.emai = emai;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String toString(){
-        return getNome() + ", "+getIdade()+" anos de idade, do sexo "+getSexo()+","+getProfissão()+", telefone n.º "+getTelefone()+",e-mail:"+getEmai()+"";
+        return getNome() + ", "+getIdade()+" anos de idade, do sexo "+getSexo()+","+getProfissão()+", telefone n.º "+getTelefone()+",e-mail:"+getEmail()+"";
     }
 }
