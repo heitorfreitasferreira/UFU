@@ -1,10 +1,13 @@
 package pessoas;
 
+import java.util.Locale;
+
 public class Pessoa {
-    private String cpf, nome, celular,telFixo,email,estCivil;
-    private boolean mulher;
-    private Endereco endereco;
-    public Pessoa(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher,Endereco endereco) {
+    protected String cpf, nome, celular, telFixo, email, estCivil;
+    protected boolean mulher;
+    protected Endereco endereco;
+
+    public Pessoa(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher, Endereco endereco) {
         if(!setCpf(cpf)) this.cpf = "11111111111";
         setNome(nome);
         setCelular(celular);
@@ -18,10 +21,10 @@ public class Pessoa {
     public Endereco getEndereco() {
         return endereco;
     }
-
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
     public String getEmail() {
         return email;
     }
@@ -29,7 +32,6 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getEstCivil() {
         return estCivil;
@@ -39,9 +41,9 @@ public class Pessoa {
         this.estCivil = estCivil;
     }
 
-    public String sexo() {
-        if(mulher) return "feminino";
-        return "masculino";
+    public String getSexo() {
+        if(mulher) return "Feminino";
+        return "Masculino";
     }
 
     public void setMulher(boolean mulher) {

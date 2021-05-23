@@ -16,7 +16,6 @@ public class Casa extends Moradia{
     public int getNumPiscinas() {
         return numPiscinas;
     }
-
     public void setNumPiscinas(int numPiscinas) {
         this.numPiscinas = numPiscinas;
     }

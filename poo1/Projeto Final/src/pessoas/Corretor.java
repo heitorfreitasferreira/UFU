@@ -3,16 +3,15 @@ package pessoas;
 import java.util.Date;
 
 public class Corretor extends Funcionario{
-
     private boolean formadoVendas;
-    Date dataInicioCorretagem;
-    float salarioFinal;
+    private Date dataInicioCorretagem;
+    private final static float porcentagemComissao = 5;
+    private float vendaMes;
 
-    public Corretor(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher, Endereco endereco, String cargo, String usuario, String senha, Date dataIngressoEmpresa, boolean mulher1, float salario, boolean formadoVendas, Date dataInicioCorretagem, float salarioFinal) {
-        super(cpf, nome, celular, telFixo, email, estCivil, mulher, endereco, cargo, usuario, senha, dataIngressoEmpresa, mulher1, salario);
+    public Corretor(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher, Endereco endereco, String cargo, String usuario, String senha, Date dataIngressoEmpresa, boolean formadoVendas, Date dataInicioCorretagem) {
+        super(cpf, nome, celular, telFixo, email, estCivil, mulher, endereco, cargo, usuario, senha, dataIngressoEmpresa);
         setFormadoVendas(formadoVendas);
         setDataInicioCorretagem(dataInicioCorretagem);
-        setSalarioFinal(salarioFinal);
     }
 
     public boolean isFormadoVendas() {
@@ -31,11 +30,17 @@ public class Corretor extends Funcionario{
         this.dataInicioCorretagem = dataInicioCorretagem;
     }
 
-    public float getSalarioFinal() {
-        return salarioFinal;
+    public float calculaSalario() {
+        return getSalarioBase() + getVendaMes();
     }
 
-    public void setSalarioFinal(float salarioFinal) {
-        this.salarioFinal = salarioFinal;
+    public float getVendaMes() { return vendaMes; }
+
+    public void adicionaVendaMes(float vendaMes) { this.vendaMes += vendaMes; }
+
+    public void zerarVendaMes(){
+        this.vendaMes = 0;
     }
+
+    public static float getPorcentagemComissao() { return porcentagemComissao; }
 }

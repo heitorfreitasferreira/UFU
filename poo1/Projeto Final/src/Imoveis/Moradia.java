@@ -5,7 +5,7 @@ import pessoas.Endereco;
 import java.util.Date;
 
 public abstract class Moradia extends Imovel{
-    private int numQuartos,numSuites,numSalaEstar,numSalaJantar,numVagasGaragem,numArmEmbutido;
+    private int numQuartos, numSuites, numSalaEstar, numSalaJantar, numVagasGaragem, numArmEmbutido;
     private String descricao;
     private boolean condominio;
 
@@ -25,14 +25,13 @@ public abstract class Moradia extends Imovel{
     public boolean isCondominio() {
         return condominio;
     }
-
     public void setCondominio(boolean condominio) {
         this.condominio = condominio;
     }
+
     public int getNumQuartos() {
         return numQuartos;
     }
-
     public void setNumQuartos(int numQuartos) {
         this.numQuartos = numQuartos;
     }
@@ -40,7 +39,6 @@ public abstract class Moradia extends Imovel{
     public int getNumSuites() {
         return numSuites;
     }
-
     public void setNumSuites(int numSuites) {
         this.numSuites = numSuites;
     }
@@ -48,7 +46,6 @@ public abstract class Moradia extends Imovel{
     public int getNumSalaEstar() {
         return numSalaEstar;
     }
-
     public void setNumSalaEstar(int numSalaEstar) {
         this.numSalaEstar = numSalaEstar;
     }
@@ -56,7 +53,6 @@ public abstract class Moradia extends Imovel{
     public int getNumSalaJantar() {
         return numSalaJantar;
     }
-
     public void setNumSalaJantar(int numSalaJantar) {
         this.numSalaJantar = numSalaJantar;
     }
@@ -64,7 +60,6 @@ public abstract class Moradia extends Imovel{
     public int getNumVagasGaragem() {
         return numVagasGaragem;
     }
-
     public void setNumVagasGaragem(int numVagasGaragem) {
         this.numVagasGaragem = numVagasGaragem;
     }
@@ -72,16 +67,13 @@ public abstract class Moradia extends Imovel{
     public int getNumArmEmbutido() {
         return numArmEmbutido;
     }
-
     public void setNumArmEmbutido(int numArmEmbutido) {
         this.numArmEmbutido = numArmEmbutido;
     }
 
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

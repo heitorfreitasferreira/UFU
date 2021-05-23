@@ -1,7 +1,7 @@
 package pessoas;
 
 public class Endereco {
-    private String rua,complemento,cep,cidade,bairro;
+    private String rua, complemento, cep, cidade, bairro;
     private int nro;
 
     public Endereco(String rua, String complemento, String cep, String cidade, String bairro, int nro) {

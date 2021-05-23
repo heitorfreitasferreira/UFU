@@ -19,7 +19,6 @@ public class Apartamento extends Moradia {
     public int getAndar() {
         return andar;
     }
-
     public void setAndar(int andar) {
         this.andar = andar;
     }
@@ -27,7 +26,6 @@ public class Apartamento extends Moradia {
     public float getValorCondominio() {
         return valorCondominio;
     }
-
     public void setValorCondominio(float valorCondominio) {
         this.valorCondominio = valorCondominio;
     }
@@ -35,7 +33,6 @@ public class Apartamento extends Moradia {
     public boolean isPortaria24h() {
         return portaria24h;
     }
-
     public void setPortaria24h(boolean portaria24h) {
         this.portaria24h = portaria24h;
     }

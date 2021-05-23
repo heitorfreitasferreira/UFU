@@ -12,10 +12,9 @@ public class Terreno extends Imovel{
         setPossuiAclive(possuiAclive);
     }
 
-    public boolean isPossuiAclive() {
+    public boolean possuiAclive() {
         return possuiAclive;
     }
-
     public void setPossuiAclive(boolean possuiAclive) {
         this.possuiAclive = possuiAclive;
     }

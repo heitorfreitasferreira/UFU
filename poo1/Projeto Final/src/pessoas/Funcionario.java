@@ -3,17 +3,16 @@ package pessoas;
 import java.util.Date;
 
 public class Funcionario extends Pessoa{
-    String cargo,usuario,senha;
-    Date dataIngressoEmpresa;
-    float salario;
+    protected String cargo, usuario, senha;
+    protected Date dataIngressoEmpresa;
+    protected static float salarioBase;
 
-    public Funcionario(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher, Endereco endereco, String cargo, String usuario, String senha, Date dataIngressoEmpresa, boolean mulher1, float salario) {
+    public Funcionario(String cpf, String nome, String celular, String telFixo, String email, String estCivil, boolean mulher, Endereco endereco, String cargo, String usuario, String senha, Date dataIngressoEmpresa) {
         super(cpf, nome, celular, telFixo, email, estCivil, mulher, endereco);
         setCargo(cargo);
         setUsuario(usuario);
         setSenha(senha);
         setDataIngressoEmpresa(dataIngressoEmpresa);
-        setSalario(salario);
     }
 
     public String getCargo() {
@@ -33,12 +32,11 @@ public class Funcionario extends Pessoa{
     }
 
     public boolean compareSenha(String inputSenha) {
-        if(inputSenha == this.senha) return true;
-        return false;
+        return inputSenha.equals(this.senha);
     }
 
     public boolean setSenha(String senha) {
-        if (senha.length()>=6) {
+        if (senha.length() >= 6) {
             this.senha = senha;
             return true;
         }
@@ -49,15 +47,13 @@ public class Funcionario extends Pessoa{
         return dataIngressoEmpresa;
     }
 
+    public float calculaSalario() { return getSalarioBase(); }
+
     public void setDataIngressoEmpresa(Date dataIngressoEmpresa) {
         this.dataIngressoEmpresa = dataIngressoEmpresa;
     }
 
-    public float getSalario() {
-        return salario;
-    }
+    public static void setSalarioBase(float salarioBase) { Funcionario.salarioBase = salarioBase; }
 
-    public void setSalario(float salario) {
-        this.salario = salario;
-    }
+    public float getSalarioBase() { return salarioBase; }
 }
