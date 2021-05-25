@@ -158,7 +158,7 @@ main = do
   evaluate $ force x5
   evaluate $ force x6
 
-  putStrLn $ show o_l1
+  putStrLn $ show (snd o_l1)
   putStrLn $ show o_l1
   putStrLn $ show o_l2
   putStrLn $ show o_l3
