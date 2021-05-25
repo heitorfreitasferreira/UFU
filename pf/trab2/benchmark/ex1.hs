@@ -1,6 +1,7 @@
--- import Control.DeepSeq (force)
--- import Control.Exception (evaluate)
--- import Data.List ()
+import Control.DeepSeq (force)
+import Control.Exception (evaluate)
+import Data.List ()
+
 -- import qualified Criterion
 -- import qualified Criterion.Main
 
@@ -87,51 +88,117 @@ trocaV2 (x : y : zs) n
     (l1, c1) = trocaV2 (x : zs) n
     (l2, c2) = trocaV2 (y : zs) n
 
-original_l1, original_l2, original_l3, original_l4, original_l5, original_l6, original_l7 :: ([Int], Int)
-original_l1 = bolhaOri l1
-original_l2 = bolhaOri l2
-original_l3 = bolhaOri l3
-original_l4 = bolhaOri l4
-original_l5 = bolhaOri l5
-original_l6 = bolhaOri l6
-original_l7 = bolhaOri l7
+o_l1, o_l2, o_l3, o_l4, o_l5, o_l6, o_l7 :: ([Int], Int)
+o_l1 = bolhaOri l1
+o_l2 = bolhaOri l2
+o_l3 = bolhaOri l3
+o_l4 = bolhaOri l4
+o_l5 = bolhaOri l5
+o_l6 = bolhaOri l6
+o_l7 = bolhaOri l7
 
-original_x1, original_x2, original_x3, original_x4, original_x5, original_x6, original_x7 :: ([Int], Int)
-original_x1 = bolhaOri x1
-original_x2 = bolhaOri x2
-original_x3 = bolhaOri x3
-original_x4 = bolhaOri x4
-original_x5 = bolhaOri x5
-original_x6 = bolhaOri x6
-original_x7 = bolhaOri x7
+o_x1, o_x2, o_x3, o_x4, o_x5, o_x6, o_x7 :: ([Int], Int)
+o_x1 = bolhaOri x1
+o_x2 = bolhaOri x2
+o_x3 = bolhaOri x3
+o_x4 = bolhaOri x4
+o_x5 = bolhaOri x5
+o_x6 = bolhaOri x6
+o_x7 = bolhaOri x7
+
+v1_l1, v1_l2, v1_l3, v1_l4, v1_l5, v1_l6, v1_l7 :: ([Int], Int)
+v1_l1 = bolhaV1 l1
+v1_l2 = bolhaV1 l2
+v1_l3 = bolhaV1 l3
+v1_l4 = bolhaV1 l4
+v1_l5 = bolhaV1 l5
+v1_l6 = bolhaV1 l6
+v1_l7 = bolhaV1 l7
+
+v1_x1, v1_x2, v1_x3, v1_x4, v1_x5, v1_x6, v1_x7 :: ([Int], Int)
+v1_x1 = bolhaV1 x1
+v1_x2 = bolhaV1 x2
+v1_x3 = bolhaV1 x3
+v1_x4 = bolhaV1 x4
+v1_x5 = bolhaV1 x5
+v1_x6 = bolhaV1 x6
+v1_x7 = bolhaV1 x7
+
+v2_l1, v2_l2, v2_l3, v2_l4, v2_l5, v2_l6, v2_l7 :: ([Int], Int)
+v2_l1 = bolhaV2 l1
+v2_l2 = bolhaV2 l2
+v2_l3 = bolhaV2 l3
+v2_l4 = bolhaV2 l4
+v2_l5 = bolhaV2 l5
+v2_l6 = bolhaV2 l6
+v2_l7 = bolhaV2 l7
+
+v2_x1, v2_x2, v2_x3, v2_x4, v2_x5, v2_x6, v2_x7 :: ([Int], Int)
+v2_x1 = bolhaV2 x1
+v2_x2 = bolhaV2 x2
+v2_x3 = bolhaV2 x3
+v2_x4 = bolhaV2 x4
+v2_x5 = bolhaV2 x5
+v2_x6 = bolhaV2 x6
+v2_x7 = bolhaV2 x7
 
 main :: IO ()
 main = do
-  -- evaluate $ force l1
-  -- evaluate $ force l2
-  -- evaluate $ force l3
-  -- evaluate $ force l4
-  -- evaluate $ force l5
-  -- evaluate $ force l6
-  -- evaluate $ force l7
-  -- evaluate $ force x1
-  -- evaluate $ force x2
-  -- evaluate $ force x3
-  -- evaluate $ force x4
-  -- evaluate $ force x5
-  -- evaluate $ force x6
+  evaluate $ force l1
+  evaluate $ force l2
+  evaluate $ force l3
+  evaluate $ force l4
+  evaluate $ force l5
+  evaluate $ force l6
+  evaluate $ force l7
+  evaluate $ force x1
+  evaluate $ force x2
+  evaluate $ force x3
+  evaluate $ force x4
+  evaluate $ force x5
+  evaluate $ force x6
 
-  putStrLn $ show original_l1
-  putStrLn $ show original_l1
-  putStrLn $ show original_l2
-  putStrLn $ show original_l3
-  putStrLn $ show original_l4
-  putStrLn $ show original_l5
-  putStrLn $ show original_l6
-  putStrLn $ show original_l7
-  putStrLn $ show original_x1
-  putStrLn $ show original_x2
-  putStrLn $ show original_x3
-  putStrLn $ show original_x4
-  putStrLn $ show original_x5
-  putStrLn $ show original_x6
+  putStrLn $ show o_l1
+  putStrLn $ show o_l1
+  putStrLn $ show o_l2
+  putStrLn $ show o_l3
+  putStrLn $ show o_l4
+  putStrLn $ show o_l5
+  putStrLn $ show o_l6
+  putStrLn $ show o_l7
+  putStrLn $ show o_x1
+  putStrLn $ show o_x2
+  putStrLn $ show o_x3
+  putStrLn $ show o_x4
+  putStrLn $ show o_x5
+  putStrLn $ show o_x6
+
+  putStrLn $ show v1_l1
+  putStrLn $ show v1_l1
+  putStrLn $ show v1_l2
+  putStrLn $ show v1_l3
+  putStrLn $ show v1_l4
+  putStrLn $ show v1_l5
+  putStrLn $ show v1_l6
+  putStrLn $ show v1_l7
+  putStrLn $ show v1_x1
+  putStrLn $ show v1_x2
+  putStrLn $ show v1_x3
+  putStrLn $ show v1_x4
+  putStrLn $ show v1_x5
+  putStrLn $ show v1_x6
+
+  putStrLn $ show v2_l1
+  putStrLn $ show v2_l1
+  putStrLn $ show v2_l2
+  putStrLn $ show v2_l3
+  putStrLn $ show v2_l4
+  putStrLn $ show v2_l5
+  putStrLn $ show v2_l6
+  putStrLn $ show v2_l7
+  putStrLn $ show v2_x1
+  putStrLn $ show v2_x2
+  putStrLn $ show v2_x3
+  putStrLn $ show v2_x4
+  putStrLn $ show v2_x5
+  putStrLn $ show v2_x6
