@@ -1,7 +1,9 @@
 package Imoveis;
 
+import pessoas.ClienteProprietario;
 import pessoas.Endereco;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Moradia extends Imovel{
@@ -11,8 +13,8 @@ public abstract class Moradia extends Imovel{
 
 
 
-    public Moradia(boolean disponivel, boolean paraVenda, boolean ativo, Date dataConstrucao, Date dataRegistro, float valor, float valorImobiliaria, Endereco endereco, int area, int numQuartos, int numSuites, int numSalaEstar, int numSalaJantar, int numVagasGaragem, int numArmEmbutido, String descricao, boolean condominio) {
-        super(disponivel, paraVenda, ativo, dataConstrucao, dataRegistro, valor, valorImobiliaria, endereco, area);
+    public Moradia(boolean disponivel, boolean paraVenda, byte status, Date dataConstrucao, Date dataRegistro, float valor, float valorImobiliaria, Endereco endereco, int area, ArrayList<ClienteProprietario> proprietarios, int numQuartos, int numSuites, int numSalaEstar, int numSalaJantar, int numVagasGaragem, int numArmEmbutido, String descricao, boolean condominio) {
+        super(disponivel, paraVenda, status, dataConstrucao, dataRegistro, valor, valorImobiliaria, endereco, area, proprietarios);
         setNumQuartos(numQuartos);
         setNumSuites(numSuites);
         setNumSalaEstar(numSalaEstar);
