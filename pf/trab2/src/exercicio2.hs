@@ -43,8 +43,8 @@ delElemOri a (x : xs)
 minimoOri :: (Ord a) => [a] -> (a, Int)
 minimoOri [x] = (x, 0)
 minimoOri (x : y : xs)
-  | x < y = (menor1, cont1 + 1)
-  | otherwise = (menor2, cont2)
+  | x < y = (menor1, cont1)
+  | otherwise = (menor2, cont2 + 1)
   where
     (menor1, cont1) = minimoOri (x : xs)
     (menor2, cont2) = minimoOri (y : xs)
@@ -62,10 +62,9 @@ removeMenorV1 l = _removeMenorV1 l ([], 0)
   where
     _removeMenorV1 [x] (lis, c) = (reverse lis, x, c)
     _removeMenorV1 (x : y : zs) (l, c)
-      | x < y = _removeMenorV1 (x : zs) (y : l, c + 1)
-      | otherwise = _removeMenorV1 (y : zs) (x : l, c)
+      | x < y = _removeMenorV1 (x : zs) (y : l, c)
+      | otherwise = _removeMenorV1 (y : zs) (x : l, c + 1)
 
---TODO
 {-Variação 2-}
 selectionSortV2 :: (Ord a) => [a] -> ([a], Int)
 selectionSortV2 [] = ([], 0)
