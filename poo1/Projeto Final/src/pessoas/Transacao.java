@@ -11,22 +11,24 @@ public class Transacao {
     private Cliente usuario;
     private Imovel imovel;
     private Corretor corretor;
-    private final int nroContato;
+    private final int nroContrato;
     private static int qntContratosTotal;
 
     public Transacao(Cliente usuario, Imovel imovel){
         setImovel(imovel);
         setUsuario(usuario);
-        this.nroContato = qntContratosTotal;
+        this.nroContrato = qntContratosTotal;
         qntContratosTotal++;
     }
 
-    public Transacao(Date dataTransacao, String metodoPagamento, Cliente usuario, Imovel imovel, Funcionario corretor) {
-        this.dataTransacao = dataTransacao;
-        this.metodoPagamento = metodoPagamento;
+    public Transacao(Date dataTransacao, String metodoPagamento, Cliente usuario, Imovel imovel, Corretor corretor, float valor) {
+        setDataTransacao(dataTransacao);
+        setMetodoPagamento(metodoPagamento);
         setImovel(imovel);
         setUsuario(usuario);
-        this.nroContato = qntContratosTotal;
+        setCorretor(corretor);
+        setValor(valor);
+        this.nroContrato = qntContratosTotal;
         qntContratosTotal++;
     }
 
@@ -34,7 +36,7 @@ public class Transacao {
 
     public float getValor() { return valor; }
 
-    public Funcionario getCorretor() { return corretor; }
+    public Corretor getCorretor() { return corretor; }
 
     public void setCorretor(Corretor corretor) { this.corretor = corretor; }
 
@@ -62,8 +64,8 @@ public class Transacao {
         this.metodoPagamento = metodoPagamento;
     }
 
-    public int getNroContato() {
-        return nroContato;
+    public int getNroContrato() {
+        return nroContrato;
     }
 
     public boolean efetuarTransacao(){

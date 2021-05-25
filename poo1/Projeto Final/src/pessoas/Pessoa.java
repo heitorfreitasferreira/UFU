@@ -96,4 +96,17 @@ public class Pessoa {
         this.telFixo = telFixo;
     }
 
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "cpf='" + cpf + '\'' +
+                ", nome='" + nome + '\'' +
+                ", celular='" + celular + '\'' +
+                ", telFixo='" + telFixo + '\'' +
+                ", email='" + email + '\'' +
+                ", estCivil='" + estCivil + '\'' +
+                ", mulher=" + mulher +
+                ", endereco=" + endereco +
+                '}';
+    }
 }

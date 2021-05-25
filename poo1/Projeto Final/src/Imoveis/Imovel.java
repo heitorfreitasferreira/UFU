@@ -6,10 +6,10 @@ import pessoas.Endereco;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Imovel {
+public abstract class Imovel {
     private boolean disponivel, paraVenda;
     private Date dataConstrucao, dataRegistro;
-    private float valor, valorImobiliaria, area, valorFinal;
+    private float valor, valorImobiliaria, area;
     private Endereco endereco;
     private byte status; // 1 - Ativo, 2 - Inativo, 3 - Em uso
     private ArrayList<ClienteProprietario> proprietarios;
@@ -102,7 +102,9 @@ public class Imovel {
         this.valorImobiliaria = valorImobiliaria;
     }
 
-    public float getValorFinal(){
+    public float calculaValorFinal(){
         return this.valor + this.valorImobiliaria;
     }
+
+    public abstract int calculaIndiceVendaLocacao();
 }
