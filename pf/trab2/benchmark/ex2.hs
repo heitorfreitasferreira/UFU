@@ -148,48 +148,49 @@ main = do
   evaluate $ force x4
   evaluate $ force x5
   evaluate $ force x6
+  evaluate $ force x7
 
-  putStrLn $ show o_l1
-  putStrLn $ show o_l1
-  putStrLn $ show o_l2
-  putStrLn $ show o_l3
-  putStrLn $ show o_l4
-  putStrLn $ show o_l5
-  putStrLn $ show o_l6
-  putStrLn $ show o_l7
-  putStrLn $ show o_x1
-  putStrLn $ show o_x2
-  putStrLn $ show o_x3
-  putStrLn $ show o_x4
-  putStrLn $ show o_x5
-  putStrLn $ show o_x6
-
-  putStrLn $ show v1_l1
-  putStrLn $ show v1_l1
-  putStrLn $ show v1_l2
-  putStrLn $ show v1_l3
-  putStrLn $ show v1_l4
-  putStrLn $ show v1_l5
-  putStrLn $ show v1_l6
-  putStrLn $ show v1_l7
-  putStrLn $ show v1_x1
-  putStrLn $ show v1_x2
-  putStrLn $ show v1_x3
-  putStrLn $ show v1_x4
-  putStrLn $ show v1_x5
-  putStrLn $ show v1_x6
-
-  putStrLn $ show v2_l1
-  putStrLn $ show v2_l1
-  putStrLn $ show v2_l2
-  putStrLn $ show v2_l3
-  putStrLn $ show v2_l4
-  putStrLn $ show v2_l5
-  putStrLn $ show v2_l6
-  putStrLn $ show v2_l7
-  putStrLn $ show v2_x1
-  putStrLn $ show v2_x2
-  putStrLn $ show v2_x3
-  putStrLn $ show v2_x4
-  putStrLn $ show v2_x5
-  putStrLn $ show v2_x6
+  putStrLn $ show (snd o_l1)
+  putStrLn $ show (snd o_l2)
+  putStrLn $ show (snd o_l3)
+  putStrLn $ show (snd o_l4)
+  putStrLn $ show (snd o_l5)
+  putStrLn $ show (snd o_l6)
+  putStrLn $ show (snd o_l7)
+  putStrLn $ show (snd o_x1)
+  putStrLn $ show (snd o_x2)
+  putStrLn $ show (snd o_x3)
+  putStrLn $ show (snd o_x4)
+  putStrLn $ show (snd o_x5)
+  putStrLn $ show (snd o_x6)
+  putStrLn $ show (snd o_x7)
+  putStrLn $ ""
+  putStrLn $ show (snd v1_l1)
+  putStrLn $ show (snd v1_l2)
+  putStrLn $ show (snd v1_l3)
+  putStrLn $ show (snd v1_l4)
+  putStrLn $ show (snd v1_l5)
+  putStrLn $ show (snd v1_l6)
+  putStrLn $ show (snd v1_l7)
+  putStrLn $ show (snd v1_x1)
+  putStrLn $ show (snd v1_x2)
+  putStrLn $ show (snd v1_x3)
+  putStrLn $ show (snd v1_x4)
+  putStrLn $ show (snd v1_x5)
+  putStrLn $ show (snd v1_x6)
+  putStrLn $ show (snd v1_x7)
+  putStrLn $ ""
+  putStrLn $ show (snd v2_l1)
+  putStrLn $ show (snd v2_l2)
+  putStrLn $ show (snd v2_l3)
+  putStrLn $ show (snd v2_l4)
+  putStrLn $ show (snd v2_l5)
+  putStrLn $ show (snd v2_l6)
+  putStrLn $ show (snd v2_l7)
+  putStrLn $ show (snd v2_x1)
+  putStrLn $ show (snd v2_x2)
+  putStrLn $ show (snd v2_x3)
+  putStrLn $ show (snd v2_x4)
+  putStrLn $ show (snd v2_x5)
+  putStrLn $ show (snd v2_x6)
+  putStrLn $ show (snd v2_x7)
