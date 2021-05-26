@@ -11,13 +11,13 @@ public class Transacao {
     private Cliente usuario;
     private Imovel imovel;
     private Corretor corretor;
-    private final int nroContrato;
+    private final String nroContrato;
     private static int qntContratosTotal;
 
     public Transacao(Cliente usuario, Imovel imovel){
         setImovel(imovel);
         setUsuario(usuario);
-        this.nroContrato = qntContratosTotal;
+        this.nroContrato = Integer.toString(qntContratosTotal);
         qntContratosTotal++;
     }
 
@@ -28,7 +28,7 @@ public class Transacao {
         setUsuario(usuario);
         setCorretor(corretor);
         setValor(valor);
-        this.nroContrato = qntContratosTotal;
+        this.nroContrato = Integer.toString(qntContratosTotal);
         qntContratosTotal++;
     }
 
@@ -64,7 +64,7 @@ public class Transacao {
         this.metodoPagamento = metodoPagamento;
     }
 
-    public int getNroContrato() {
+    public String getNroContrato() {
         return nroContrato;
     }
 
