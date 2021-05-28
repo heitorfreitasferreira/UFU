@@ -64,42 +64,6 @@ o_x5 = mergeSort x5
 o_x6 = mergeSort x6
 o_x7 = mergeSort x7
 
--- v1_l1, v1_l2, v1_l3, v1_l4, v1_l5, v1_l6, v1_l7 :: ([Int], Int)
--- v1_l1 = quickSortV1 l1
--- v1_l2 = quickSortV1 l2
--- v1_l3 = quickSortV1 l3
--- v1_l4 = quickSortV1 l4
--- v1_l5 = quickSortV1 l5
--- v1_l6 = quickSortV1 l6
--- v1_l7 = quickSortV1 l7
-
--- v1_x1, v1_x2, v1_x3, v1_x4, v1_x5, v1_x6, v1_x7 :: ([Int], Int)
--- v1_x1 = quickSortV1 x1
--- v1_x2 = quickSortV1 x2
--- v1_x3 = quickSortV1 x3
--- v1_x4 = quickSortV1 x4
--- v1_x5 = quickSortV1 x5
--- v1_x6 = quickSortV1 x6
--- v1_x7 = quickSortV1 x7
-
--- v2_l1, v2_l2, v2_l3, v2_l4, v2_l5, v2_l6, v2_l7 :: ([Int], Int)
--- v2_l1 = quickSortV2 l1
--- v2_l2 = quickSortV2 l2
--- v2_l3 = quickSortV2 l3
--- v2_l4 = quickSortV2 l4
--- v2_l5 = quickSortV2 l5
--- v2_l6 = quickSortV2 l6
--- v2_l7 = quickSortV2 l7
-
--- v2_x1, v2_x2, v2_x3, v2_x4, v2_x5, v2_x6, v2_x7 :: ([Int], Int)
--- v2_x1 = quickSortV2 x1
--- v2_x2 = quickSortV2 x2
--- v2_x3 = quickSortV2 x3
--- v2_x4 = quickSortV2 x4
--- v2_x5 = quickSortV2 x5
--- v2_x6 = quickSortV2 x6
--- v2_x7 = quickSortV2 x7
-
 main :: IO ()
 main = do
   evaluate $ force l1
@@ -115,8 +79,8 @@ main = do
   evaluate $ force x4
   evaluate $ force x5
   evaluate $ force x6
+  evaluate $ force x7
 
-  putStrLn $ show (snd o_l1)
   putStrLn $ show (snd o_l1)
   putStrLn $ show (snd o_l2)
   putStrLn $ show (snd o_l3)
@@ -130,33 +94,4 @@ main = do
   putStrLn $ show (snd o_x4)
   putStrLn $ show (snd o_x5)
   putStrLn $ show (snd o_x6)
-
--- putStrLn $ show v1_l1
--- putStrLn $ show v1_l1
--- putStrLn $ show v1_l2
--- putStrLn $ show v1_l3
--- putStrLn $ show v1_l4
--- putStrLn $ show v1_l5
--- putStrLn $ show v1_l6
--- putStrLn $ show v1_l7
--- putStrLn $ show v1_x1
--- putStrLn $ show v1_x2
--- putStrLn $ show v1_x3
--- putStrLn $ show v1_x4
--- putStrLn $ show v1_x5
--- putStrLn $ show v1_x6
-
--- putStrLn $ show v2_l1
--- putStrLn $ show v2_l1
--- putStrLn $ show v2_l2
--- putStrLn $ show v2_l3
--- putStrLn $ show v2_l4
--- putStrLn $ show v2_l5
--- putStrLn $ show v2_l6
--- putStrLn $ show v2_l7
--- putStrLn $ show v2_x1
--- putStrLn $ show v2_x2
--- putStrLn $ show v2_x3
--- putStrLn $ show v2_x4
--- putStrLn $ show v2_x5
--- putStrLn $ show v2_x6
+  putStrLn $ show (snd o_x7)
