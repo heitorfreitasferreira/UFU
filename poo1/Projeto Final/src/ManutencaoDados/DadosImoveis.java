@@ -1,13 +1,12 @@
 package ManutencaoDados;
 
 import Imoveis.Imovel;
-import pessoas.Endereco;
+import Pessoas.Endereco;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class DadosImoveis {
     private ArrayList<Imovel> imoveis;

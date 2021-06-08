@@ -1,4 +1,4 @@
-package pessoas;
+package Pessoas;
 
 import Imoveis.Imovel;
 

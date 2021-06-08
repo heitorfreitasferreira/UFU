@@ -1,6 +1,6 @@
 package ManutencaoDados;
 
-import pessoas.Funcionario;
+import Pessoas.Funcionario;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

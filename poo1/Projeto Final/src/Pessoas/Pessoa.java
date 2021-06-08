@@ -1,6 +1,4 @@
-package pessoas;
-
-import java.util.Locale;
+package Pessoas;
 
 public class Pessoa {
     protected String cpf, nome, celular, telFixo, email, estCivil;

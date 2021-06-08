@@ -1,4 +1,4 @@
-package pessoas;
+package Pessoas;
 
 public class Endereco {
     private String rua, complemento, cep, cidade, bairro;

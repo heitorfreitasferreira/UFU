@@ -1,7 +1,7 @@
 package Imoveis;
 
-import pessoas.ClienteProprietario;
-import pessoas.Endereco;
+import Pessoas.ClienteProprietario;
+import Pessoas.Endereco;
 
 import java.util.ArrayList;
 import java.util.Date;

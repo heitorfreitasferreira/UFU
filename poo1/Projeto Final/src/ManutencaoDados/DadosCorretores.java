@@ -1,6 +1,6 @@
 package ManutencaoDados;
 
-import pessoas.Corretor;
+import Pessoas.Corretor;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
