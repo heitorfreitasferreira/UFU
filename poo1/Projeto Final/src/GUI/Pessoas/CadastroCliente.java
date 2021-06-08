@@ -1,5 +1,6 @@
 package GUI.Pessoas;
 
+import ManutencaoDados.DadosClientes;
 import Pessoas.Cliente;
 import Pessoas.Endereco;
 
@@ -15,14 +16,14 @@ public class CadastroCliente{
     private static JLabel lCpf,lNome,lCelular,lTelFixo,lEmail,lRua,lComplemento,lCep,lCidade,lMulher,lBairro,lNro,lProfissao,lEstadoCivil;
     private static JRadioButton rbHomem, rbMulher;
     private static JComboBox cbEstadoCivil;
-    public CadastroCliente(){
+    public CadastroCliente(DadosClientes clientes){
         JFrame frame = new JFrame();
         panel = new JPanel();
         panel.setLayout(null);
         frame.setTitle("Cadastro Cliente");
         frame.setSize(400,530);
         frame.add(panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Criando objetos text field
 
@@ -144,15 +145,15 @@ public class CadastroCliente{
         panel.add(cbEstadoCivil);
 
 
-         btnMenu = new JButton("Menu");
-         btnMenu.setBounds(10,460,150,30);
-         panel.add(btnMenu);
-         btnMenu.addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-
-             }
-         });
+//         btnMenu = new JButton("Menu");
+//         btnMenu.setBounds(10,460,150,30);
+//         panel.add(btnMenu);
+//         btnMenu.addActionListener(new ActionListener() {
+//             @Override
+//             public void actionPerformed(ActionEvent e) {
+//
+//             }
+//         });
 
 
         btnSubmit = new JButton("Cadastrar");
@@ -163,11 +164,11 @@ public class CadastroCliente{
             public void actionPerformed(ActionEvent e) {
                 Endereco end = new Endereco(tfRua.getText(),tfComplemento.getText(),tfCep.getText(),tfCidade.getText(),tfBairro.getText(),Integer.parseInt(tfNro.getText()));
                 Cliente c = new Cliente(tfCpf.getText(),tfNome.getText(),tfCelular.getText(),tfTelFixo.getText(),tfEmail.getText(),cbEstadoCivil.getSelectedItem().toString(),rbMulher.isSelected(),end,tfProfissao.getText());
-
+                clientes.adicionar(c);
             }
         });
 
-//        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+        panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
 
 
 
