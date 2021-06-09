@@ -11,6 +11,10 @@ import java.util.Objects;
 public class DadosFuncionarios implements IManutencao<Funcionario>{
     private ArrayList<Funcionario> funcionarios;
 
+    public DadosFuncionarios() {
+        this.funcionarios = new ArrayList<Funcionario>();
+    }
+
     @Override
     public void adicionar(Funcionario funcionario){
         funcionarios.add(funcionario);

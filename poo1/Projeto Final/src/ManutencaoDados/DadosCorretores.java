@@ -11,6 +11,10 @@ import java.util.Objects;
 public class DadosCorretores implements IManutencao<Corretor>{
     private ArrayList<Corretor> corretores;
 
+    public DadosCorretores() {
+        this.corretores = new ArrayList<Corretor>();
+    }
+
     public void adicionar(Corretor corretor){
         corretores.add(corretor);
     }
