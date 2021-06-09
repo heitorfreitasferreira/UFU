@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class DadosImoveis {
     private ArrayList<Imovel> imoveis;
 
+    public DadosImoveis() {
+        this.imoveis = new ArrayList<Imovel>();
+    }
+
     public void adicionar(Imovel imovel){
         imoveis.add(imovel);
     }
