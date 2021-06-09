@@ -1,29 +1,24 @@
 package GUI.Imoveis;
 
 import Imoveis.Apartamento;
-import ManutencaoDados.DadosClientes;
 import ManutencaoDados.DadosImoveis;
-import Pessoas.Cliente;
 import Pessoas.ClienteProprietario;
 import Pessoas.Endereco;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 public class CadastroApartamento {
     private static JPanel panel;
     private static JTextField tfValor, tfValorImob, tfArea, tfRua, tfComplemento, tfCep, tfCidade, tfBairro, tfNro, tfDataC, tfValorCondominio;
     private static JTextField tfNumQuartos, tfNumSuites, tfNumSalaEstar, tfNumSalaJantar, tfNumVagasGaragem, tfNumArmEbutido, tfDescricao, tfAndar;
-    private static JCheckBox disponivel, paraVenda, condominio, portaria24h;
+    private static JCheckBox cbDisponivel, cbParaVenda, cbCondominio, cbPortaria24h;
     private static JButton btnSubmit;
     private static JLabel lValor, lValorImob, lArea, lRua, lComplemento,lCep,lCidade,lBairro,lNro, lDataC;
     private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao, lAndar, lValorCondominio;
@@ -170,21 +165,21 @@ public class CadastroApartamento {
         cbStatus.setBounds(10,420,150,25);
         panel.add(cbStatus);
 
-        disponivel = new JCheckBox("Disponível");
-        disponivel.setBounds(10,500,80,25);
-        panel.add(disponivel);
+        cbDisponivel = new JCheckBox("Disponível");
+        cbDisponivel.setBounds(10,500,80,25);
+        panel.add(cbDisponivel);
 
-        paraVenda = new JCheckBox("Para Venda");
-        paraVenda.setBounds(10,500,80,25);
-        panel.add(paraVenda);
+        cbParaVenda = new JCheckBox("Para Venda");
+        cbParaVenda.setBounds(10,500,80,25);
+        panel.add(cbParaVenda);
 
-        condominio = new JCheckBox("Condominio");
-        condominio.setBounds(10,500,80,25);
-        panel.add(condominio);
+        cbCondominio = new JCheckBox("Condominio");
+        cbCondominio.setBounds(10,500,80,25);
+        panel.add(cbCondominio);
 
-        portaria24h = new JCheckBox("Portaria 24h");
-        portaria24h.setBounds(10,500,80,25);
-        panel.add(portaria24h);
+        cbPortaria24h = new JCheckBox("Portaria 24h");
+        cbPortaria24h.setBounds(10,500,80,25);
+        panel.add(cbPortaria24h);
 
         btnSubmit = new JButton("Cadastrar");
         btnSubmit.setBounds(180,460,150,30);
@@ -202,11 +197,11 @@ public class CadastroApartamento {
                     ex.printStackTrace();
                 }
                 Endereco end = new Endereco(tfRua.getText(),tfComplemento.getText(),tfCep.getText(),tfCidade.getText(),tfBairro.getText(),Integer.parseInt(tfNro.getText()));
-                Apartamento c = new Apartamento(disponivel.isSelected(), paraVenda.isSelected(), (byte)cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
+                Apartamento c = new Apartamento(cbDisponivel.isSelected(), cbParaVenda.isSelected(), (byte)cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
                         Float.parseFloat(tfValorImob.getText()), end, Integer.parseInt(tfArea.getText()), new ArrayList<ClienteProprietario>(), Integer.parseInt(tfNumQuartos.getText()),
                         Integer.parseInt(tfNumSuites.getText()), Integer.parseInt(tfNumSalaEstar.getText()), Integer.parseInt(tfNumSalaJantar.getText()), Integer.parseInt(tfNumVagasGaragem.getText()),
-                        Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), condominio.isSelected(), Integer.parseInt(tfAndar.getText()), Float.parseFloat(tfValorCondominio.getText()),
-                        portaria24h.isSelected());
+                        Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), cbCondominio.isSelected(), Integer.parseInt(tfAndar.getText()), Float.parseFloat(tfValorCondominio.getText()),
+                        cbPortaria24h.isSelected());
             }
         });
 
