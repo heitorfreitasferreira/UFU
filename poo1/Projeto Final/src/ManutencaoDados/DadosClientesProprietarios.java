@@ -32,7 +32,16 @@ public class DadosClientesProprietarios implements IManutencao<ClienteProprietar
             System.out.println(cliente.toString());
         }
     }
+    public String[][] getMatrizClientesProprietarios(){
 
+        String[][] data = new String[clientesProprietarios.size()][3];
+        for (int i = 0; i< clientesProprietarios.size();i++) {
+            data[i][0] = clientesProprietarios.get(i).getNome();
+            data[i][1] = clientesProprietarios.get(i).getEmail();
+            data[i][2] = clientesProprietarios.get(i).getCelular();
+        }
+        return data;
+    }
     @Override
     public ClienteProprietario buscar(String cpf){
         ClienteProprietario cli = null;

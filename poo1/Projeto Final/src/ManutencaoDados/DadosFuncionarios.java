@@ -32,7 +32,17 @@ public class DadosFuncionarios implements IManutencao<Funcionario>{
             System.out.println(funcionario.toString());
         }
     }
+    public String[][] getMatrizFuncionarios(){
 
+        String[][] data = new String[funcionarios.size()][4];
+        for (int i = 0; i< funcionarios.size();i++) {
+            data[i][0] = funcionarios.get(i).getNome();
+            data[i][1] = funcionarios.get(i).getEmail();
+            data[i][2] = funcionarios.get(i).getCelular();
+            data[i][3] = funcionarios.get(i).getCargo();
+        }
+        return data;
+    }
     @Override
     public Funcionario buscar(String cpf){
         Funcionario f = null;

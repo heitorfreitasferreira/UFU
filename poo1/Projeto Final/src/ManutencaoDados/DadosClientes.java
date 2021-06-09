@@ -32,7 +32,16 @@ public class DadosClientes implements IManutencao<Cliente>{
             System.out.println(cliente.toString());
         }
     }
+    public String[][] getMatrizClientes(){
 
+        String[][] data = new String[clientes.size()][3];
+        for (int i = 0; i< clientes.size();i++) {
+            data[i][0] = clientes.get(i).getNome();
+            data[i][1] = clientes.get(i).getEmail();
+            data[i][2] = clientes.get(i).getCelular();
+        }
+        return data;
+    }
     @Override
     public Cliente buscar(String cpf){
         Cliente cli = null;

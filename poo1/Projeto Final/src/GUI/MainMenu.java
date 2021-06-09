@@ -5,6 +5,7 @@ import GUI.Imoveis.CadastroCasa;
 import GUI.Pessoas.CadastroCliente;
 import GUI.Pessoas.CadastroCorretor;
 import GUI.Pessoas.CadastroFuncionario;
+import GUI.Pessoas.ListarClientes;
 import ManutencaoDados.*;
 import Pessoas.Cliente;
 import Pessoas.Funcionario;
@@ -18,12 +19,15 @@ public class MainMenu {
     private static JLabel label;
     private static JPanel panel;
     private static JButton btnCadastroCliente,btnCadastroFuncionario,btnCadastroCorretor,btnCadastroCasa,btnCadastroApartamento,btnCadastroTerreno;
+    private static JButton btnListarClientes,btnListarClientesProprietarios,btnListarCasas, btnListarApartamentos,btnListarTerrenos,btnListarFuncionarios,btnListarCorretores;
     //Telas
     private static CadastroCliente tlCadastroCliente;
     private static CadastroFuncionario tlCadastroFuncionario;
     private static CadastroCorretor tlCadastroCorretor;
     private static CadastroCasa tlCadastroCasa;
     private static CadastroApartamento tlCadastroApartamento;
+    private static ListarClientes tlListarClientes;
+//    private static ListarClientesProprietarios tlListarClientesProprietaros;
     //Dados
     private static DadosClientes clientes;
     private static DadosClientesProprietarios clientesProprietarios;
@@ -32,6 +36,8 @@ public class MainMenu {
     private static DadosImoveis imoveis;
 //    private static DadosCasas casas;
 //    private static DadosApartamentos apartamentos;
+//    private static DadosTerrenos terrenos;
+
 
     public MainMenu(){
         clientes = new DadosClientes();
@@ -45,7 +51,7 @@ public class MainMenu {
         panel = new JPanel();
 
 
-        frame.setSize(310,700);
+        frame.setSize(310,1000);
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("ImobiJava");
@@ -107,6 +113,39 @@ public class MainMenu {
             }
         });
         panel.add(btnCadastroCasa);
+
+        btnCadastroTerreno = new JButton("Cadastrar Terreno");
+        btnCadastroTerreno.setBounds(10,420,290,60);
+        btnCadastroTerreno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                tlCadastroTerreno = new CadastroTerreno(terrenos);
+            }
+        });
+        panel.add(btnCadastroTerreno);
+
+        btnCadastroTerreno = new JButton("Cadastrar Terreno");
+        btnCadastroTerreno.setBounds(10,420,290,60);
+        btnCadastroTerreno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                tlCadastroTerreno = new CadastroTerreno(terrenos);
+            }
+        });
+        panel.add(btnCadastroTerreno);
+
+
+        //Listagens
+
+        btnListarClientes = new JButton("Listar Clientes");
+        btnListarClientes.setBounds(10,490,290,60);
+        btnListarClientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tlListarClientes = new ListarClientes(clientes);
+            }
+        });
+        panel.add(btnListarClientes);
     }
 
 }

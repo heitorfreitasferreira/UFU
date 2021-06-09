@@ -29,7 +29,17 @@ public class DadosCorretores implements IManutencao<Corretor>{
             System.out.println(corretor.toString());
         }
     }
+    public String[][] getMatrizCorretores(){
 
+        String[][] data = new String[corretores.size()][4];
+        for (int i = 0; i< corretores.size();i++) {
+            data[i][0] = corretores.get(i).getNome();
+            data[i][1] = corretores.get(i).getEmail();
+            data[i][2] = corretores.get(i).getCelular();
+            data[i][3] = "Corretor";
+        }
+        return data;
+    }
     public Corretor buscar(String cpf){
         Corretor p = null;
         for(Corretor corretor : corretores){
