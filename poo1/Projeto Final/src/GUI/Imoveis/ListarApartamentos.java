@@ -13,7 +13,7 @@ public class ListarApartamentos {
         panel = new JPanel();
         frame.add(panel);
 
-        String[] column = {"Para","Data de Construção","Valor Final", "Cidade"};
+        String[] column = {"Para","Data de Construção","Valor Final", "Cidade", "Postaria 24h", "Andar"};
         String[][] data = aps.getMatrizAps();
         jt = new JTable(data, column);
         JScrollPane sp = new JScrollPane(jt);

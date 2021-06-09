@@ -18,11 +18,9 @@ import java.util.Date;
 public class CadastroTerreno {
     private static JPanel panel;
     private static JTextField tfValor, tfValorImob, tfArea, tfRua, tfComplemento, tfCep, tfCidade, tfBairro, tfNro, tfDataC;
-    private static JTextField tfNumQuartos, tfNumSuites, tfNumSalaEstar, tfNumSalaJantar, tfNumVagasGaragem, tfNumArmEbutido, tfDescricao;
     private static JCheckBox disponivel, paraVenda, condominio, possuiAclive;
     private static JButton btnSubmit;
     private static JLabel lValor, lValorImob, lArea, lRua, lComplemento, lCep, lCidade, lBairro, lNro, lDataC;
-    private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao;
     private static JComboBox cbStatus;
 
     public CadastroTerreno(DadosTerrenos terrenos) {
@@ -105,13 +103,6 @@ public class CadastroTerreno {
         panel.add(lArea);
         panel.add(tfArea);
 
-        lDescricao = new JLabel("Descrição: ");
-        lDescricao.setBounds(10, 230, 80, 25);
-        tfDescricao = new JTextField(20);
-        tfDescricao.setBounds(100, 230, 160, 25);
-        panel.add(lDescricao);
-        panel.add(tfDescricao);
-
         String[] status = {"Ativo", "Inativo", "Em uso"};
         cbStatus = new JComboBox(status);
         cbStatus.setBounds(10, 280, 150, 25);
@@ -134,7 +125,7 @@ public class CadastroTerreno {
         panel.add(possuiAclive);
 
         btnSubmit = new JButton("Cadastrar");
-        btnSubmit.setBounds(180, 460, 150, 30);
+        btnSubmit.setBounds(180, 400, 150, 30);
         panel.add(btnSubmit);
 
         btnSubmit.addActionListener(new ActionListener() {

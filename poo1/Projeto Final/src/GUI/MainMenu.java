@@ -1,9 +1,6 @@
 package GUI;
 
-import GUI.Imoveis.CadastroApartamento;
-import GUI.Imoveis.CadastroCasa;
-import GUI.Imoveis.ListarApartamentos;
-import GUI.Imoveis.ListarCasa;
+import GUI.Imoveis.*;
 import GUI.Pessoas.*;
 import ManutencaoDados.*;
 import Pessoas.Cliente;
@@ -47,14 +44,18 @@ public class MainMenu {
         corretores = new DadosCorretores();
         apartamentos = new DadosApartamento();
         casas = new DadosCasa();
+        terrenos = new DadosTerrenos();
 
+        int col1 = 10;
+        int col2 = 310;
+        int rowHeight = 70;
 
         JFrame frame = new JFrame();
 
         panel = new JPanel();
 
 
-        frame.setSize(350,1000);
+        frame.setSize(700,700);
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("ImobiJava");
@@ -63,12 +64,12 @@ public class MainMenu {
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
         panel.setLayout(null);
 
-        label = new JLabel("Menu");
+        label = new JLabel("Cadastros");
         label.setBounds(10,0,290,60);
         panel.add(label);
 
         btnCadastroCliente = new JButton("Cadastrar Cliente");
-        btnCadastroCliente.setBounds(10,70,290,60);
+        btnCadastroCliente.setBounds(col1,rowHeight,290,60);
         panel.add(btnCadastroCliente);
         btnCadastroCliente.addActionListener(new ActionListener() {
             @Override
@@ -78,7 +79,7 @@ public class MainMenu {
         });
 
         btnCadastroFuncionario = new JButton("Cadastrar Funcionário");
-        btnCadastroFuncionario.setBounds(10,140,290,60);
+        btnCadastroFuncionario.setBounds(col1,rowHeight*2,290,60);
         panel.add(btnCadastroFuncionario);
         btnCadastroFuncionario.addActionListener(new ActionListener() {
             @Override
@@ -88,7 +89,7 @@ public class MainMenu {
         });
 
         btnCadastroCorretor = new JButton("Cadastrar Corretor");
-        btnCadastroCorretor.setBounds(10,210,290,60);
+        btnCadastroCorretor.setBounds(col1,rowHeight*3,290,60);
         panel.add(btnCadastroCorretor);
         btnCadastroCorretor.addActionListener(new ActionListener() {
             @Override
@@ -96,19 +97,9 @@ public class MainMenu {
                 tlCadastroCorretor = new CadastroCorretor(corretores);
             }
         });
-        btnCadastroApartamento = new JButton("Cadastrar Apartamento");
-        btnCadastroApartamento.setBounds(10,280,290,60);
-        btnCadastroApartamento.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CadastroApartamento novoCadastro = new CadastroApartamento(apartamentos);
-            }
-        });
-        panel.add(btnCadastroApartamento);
-
 
         btnCadastroCasa = new JButton("Cadastrar Casa");
-        btnCadastroCasa.setBounds(10,350,290,60);
+        btnCadastroCasa.setBounds(col2,rowHeight,290,60);
         btnCadastroCasa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,8 +108,18 @@ public class MainMenu {
         });
         panel.add(btnCadastroCasa);
 
+        btnCadastroApartamento = new JButton("Cadastrar Apartamento");
+        btnCadastroApartamento.setBounds(col2,rowHeight*2,290,60);
+        btnCadastroApartamento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroApartamento novoCadastro = new CadastroApartamento(apartamentos);
+            }
+        });
+        panel.add(btnCadastroApartamento);
+
         btnCadastroTerreno = new JButton("Cadastrar Terreno");
-        btnCadastroTerreno.setBounds(10,420,290,60);
+        btnCadastroTerreno.setBounds(col2,rowHeight*3,290,60);
         btnCadastroTerreno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -130,8 +131,12 @@ public class MainMenu {
 
         //Listagens
 
+        label = new JLabel("Listagens");
+        label.setBounds(10,rowHeight*4,290,60);
+        panel.add(label);
+
         btnListarClientes = new JButton("Listar Clientes");
-        btnListarClientes.setBounds(10,490,290,60);
+        btnListarClientes.setBounds(col1,rowHeight*5,290,60);
         btnListarClientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -141,7 +146,7 @@ public class MainMenu {
         panel.add(btnListarClientes);
 
         btnListarClientesProprietarios = new JButton("Listar Clientes Proprietarios");
-        btnListarClientesProprietarios.setBounds(10,560,290,60);
+        btnListarClientesProprietarios.setBounds(col1,rowHeight*6,290,60);
         btnListarClientesProprietarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -151,7 +156,7 @@ public class MainMenu {
         panel.add(btnListarClientesProprietarios);
 
         btnListarFuncionarios = new JButton("Listar Funcionarios");
-        btnListarFuncionarios.setBounds(10,630,290,60);
+        btnListarFuncionarios.setBounds(col1,rowHeight*7,290,60);
         btnListarFuncionarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,7 +166,7 @@ public class MainMenu {
         panel.add(btnListarFuncionarios);
 
         btnListarCorretores = new JButton("Listar Corretores");
-        btnListarCorretores.setBounds(10,700,290,60);
+        btnListarCorretores.setBounds(col1,rowHeight*8,290,60);
         btnListarCorretores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -171,7 +176,7 @@ public class MainMenu {
         panel.add(btnListarCorretores);
 
         btnListarApartamentos = new JButton("Listar Apartamentos");
-        btnListarApartamentos.setBounds(10,770,290,60);
+        btnListarApartamentos.setBounds(col2,rowHeight*5,290,60);
         btnListarApartamentos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -181,7 +186,7 @@ public class MainMenu {
         panel.add(btnListarApartamentos);
 
         btnListarCasas = new JButton("Listar Casas");
-        btnListarCasas.setBounds(10,840,290,60);
+        btnListarCasas.setBounds(col2,rowHeight*6,290,60);
         btnListarCasas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -189,6 +194,16 @@ public class MainMenu {
             }
         });
         panel.add(btnListarCasas);
+
+        btnListarTerrenos = new JButton("Listar Terrenos");
+        btnListarTerrenos.setBounds(col2,rowHeight*7,290,60);
+        btnListarTerrenos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ListarTerreno ltTerr = new ListarTerreno(terrenos);
+            }
+        });
+        panel.add(btnListarTerrenos);
 
     }
 

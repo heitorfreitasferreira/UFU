@@ -34,13 +34,14 @@ public class DadosCasa {
     public String[][] getMatrizCasas(){
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        String[][] data = new String[casas.size()][4];
+        String[][] data = new String[casas.size()][5];
         for (int i = 0; i< casas.size();i++) {
             if(casas.get(i).isDisponivel()) {
                 data[i][0] = (casas.get(i).isParaVenda() ? "Venda" : "Aluguel");
                 data[i][1] = dateFormat.format(casas.get(i).getDataConstrucao());
                 data[i][2] = Float.toString(casas.get(i).calculaValorFinal());
                 data[i][3] = casas.get(i).getEndereco().getCidade();
+                data[i][4] = Integer.toString(casas.get(i).getNumPiscinas());
             }
         }
         return data;
