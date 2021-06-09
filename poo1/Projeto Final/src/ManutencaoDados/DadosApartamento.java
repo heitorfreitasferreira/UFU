@@ -6,6 +6,8 @@ import Pessoas.Endereco;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DadosApartamento {
@@ -27,6 +29,21 @@ public class DadosApartamento {
 
     public ArrayList<Apartamento> listar(){
         return apartamentos;
+    }
+
+    public String[][] getMatrizAps(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        String[][] data = new String[apartamentos.size()][4];
+        for (int i = 0; i< apartamentos.size();i++) {
+            if(apartamentos.get(i).isDisponivel()) {
+                data[i][0] = (apartamentos.get(i).isParaVenda() ? "Venda" : "Aluguel");
+                data[i][1] = dateFormat.format(apartamentos.get(i).getDataConstrucao());
+                data[i][2] = Float.toString(apartamentos.get(i).calculaValorFinal());
+                data[i][3] = apartamentos.get(i).getEndereco().getCidade();
+            }
+        }
+        return data;
     }
 
     public Apartamento buscar(Endereco endereco){

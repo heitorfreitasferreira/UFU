@@ -2,6 +2,7 @@ package GUI.Imoveis;
 
 import Imoveis.Casa;
 import Imoveis.Terreno;
+import ManutencaoDados.DadosTerrenos;
 import Pessoas.ClienteProprietario;
 import Pessoas.Endereco;
 
@@ -24,7 +25,7 @@ public class CadastroTerreno {
     private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao;
     private static JComboBox cbStatus;
 
-    public CadastroTerreno() {
+    public CadastroTerreno(DadosTerrenos terrenos) {
         JFrame frame = new JFrame();
         panel = new JPanel();
         panel.setLayout(null);
@@ -147,8 +148,9 @@ public class CadastroTerreno {
                     ex.printStackTrace();
                 }
                 Endereco end = new Endereco(tfRua.getText(), tfComplemento.getText(), tfCep.getText(), tfCidade.getText(), tfBairro.getText(), Integer.parseInt(tfNro.getText()));
-                Terreno c = new Terreno(disponivel.isSelected(), paraVenda.isSelected(), (byte) cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
+                Terreno te = new Terreno(disponivel.isSelected(), paraVenda.isSelected(), (byte) cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
                         Float.parseFloat(tfValorImob.getText()), end, Integer.parseInt(tfArea.getText()), new ArrayList<ClienteProprietario>(), possuiAclive.isSelected());
+                terrenos.adicionar(te);
             }
         });
 

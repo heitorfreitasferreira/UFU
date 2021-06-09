@@ -1,6 +1,7 @@
 package GUI.Imoveis;
 
 import Imoveis.Casa;
+import ManutencaoDados.DadosCasa;
 import ManutencaoDados.DadosImoveis;
 import Pessoas.ClienteProprietario;
 import Pessoas.Endereco;
@@ -24,7 +25,7 @@ public class CadastroCasa {
     private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao, lNumPiscinas;
     private static JComboBox cbStatus;
 
-    public CadastroCasa(DadosImoveis im) {
+    public CadastroCasa(DadosCasa casas) {
         JFrame frame = new JFrame();
         panel = new JPanel();
         panel.setLayout(null);
@@ -178,7 +179,7 @@ public class CadastroCasa {
         panel.add(condominio);
 
         btnSubmit = new JButton("Cadastrar");
-        btnSubmit.setBounds(180, 460, 150, 30);
+        btnSubmit.setBounds(180, 400, 150, 30);
         panel.add(btnSubmit);
 
         btnSubmit.addActionListener(new ActionListener() {
@@ -188,14 +189,17 @@ public class CadastroCasa {
                 Date DataC = new Date();
                 try {
                     DataC = df.parse(tfDataC.getText());
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
+                    Endereco end = new Endereco(tfRua.getText(), tfComplemento.getText(), tfCep.getText(), tfCidade.getText(), tfBairro.getText(), Integer.parseInt(tfNro.getText()));
+                    Casa c = new Casa(disponivel.isSelected(), paraVenda.isSelected(), (byte) cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
+                            Float.parseFloat(tfValorImob.getText()), end, Integer.parseInt(tfArea.getText()), new ArrayList<ClienteProprietario>(), Integer.parseInt(tfNumQuartos.getText()),
+                            Integer.parseInt(tfNumSuites.getText()), Integer.parseInt(tfNumSalaEstar.getText()), Integer.parseInt(tfNumSalaJantar.getText()), Integer.parseInt(tfNumVagasGaragem.getText()),
+                            Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), condominio.isSelected(), Integer.parseInt(tfNumPiscinas.getText()));
+                    casas.adicionar(c);
+                    JOptionPane.showMessageDialog(frame, "Casa cadastrada com sucesso!");
+                    frame.dispose();
+                } catch (Exception ex){
+                    JOptionPane.showMessageDialog(frame,ex.getMessage());
                 }
-                Endereco end = new Endereco(tfRua.getText(), tfComplemento.getText(), tfCep.getText(), tfCidade.getText(), tfBairro.getText(), Integer.parseInt(tfNro.getText()));
-                Casa c = new Casa(disponivel.isSelected(), paraVenda.isSelected(), (byte) cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
-                        Float.parseFloat(tfValorImob.getText()), end, Integer.parseInt(tfArea.getText()), new ArrayList<ClienteProprietario>(), Integer.parseInt(tfNumQuartos.getText()),
-                        Integer.parseInt(tfNumSuites.getText()), Integer.parseInt(tfNumSalaEstar.getText()), Integer.parseInt(tfNumSalaJantar.getText()), Integer.parseInt(tfNumVagasGaragem.getText()),
-                        Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), condominio.isSelected(), Integer.parseInt(tfNumPiscinas.getText()));
             }
         });
 

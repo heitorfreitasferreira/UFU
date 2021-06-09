@@ -2,6 +2,8 @@ package GUI;
 
 import GUI.Imoveis.CadastroApartamento;
 import GUI.Imoveis.CadastroCasa;
+import GUI.Imoveis.ListarApartamentos;
+import GUI.Imoveis.ListarCasa;
 import GUI.Pessoas.*;
 import ManutencaoDados.*;
 import Pessoas.Cliente;
@@ -33,9 +35,9 @@ public class MainMenu {
     private static DadosCorretores corretores;
     private static DadosFuncionarios funcionarios;
     private static DadosImoveis imoveis;
-//    private static DadosCasas casas;
-//    private static DadosApartamentos apartamentos;
-//    private static DadosTerrenos terrenos;
+    private static DadosCasa casas;
+    private static DadosApartamento apartamentos;
+    private static DadosTerrenos terrenos;
 
 
     public MainMenu(){
@@ -43,6 +45,8 @@ public class MainMenu {
         clientesProprietarios = new DadosClientesProprietarios();
         funcionarios = new DadosFuncionarios();
         corretores = new DadosCorretores();
+        apartamentos = new DadosApartamento();
+        casas = new DadosCasa();
 
 
         JFrame frame = new JFrame();
@@ -50,7 +54,7 @@ public class MainMenu {
         panel = new JPanel();
 
 
-        frame.setSize(310,1000);
+        frame.setSize(350,1000);
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("ImobiJava");
@@ -97,7 +101,7 @@ public class MainMenu {
         btnCadastroApartamento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                tlCadastroCasa = new CadastroApartamento(apartamentos);
+                CadastroApartamento novoCadastro = new CadastroApartamento(apartamentos);
             }
         });
         panel.add(btnCadastroApartamento);
@@ -108,20 +112,10 @@ public class MainMenu {
         btnCadastroCasa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                tlCadastroCasa = new CadastroCasa(casas);
+                tlCadastroCasa = new CadastroCasa(casas);
             }
         });
         panel.add(btnCadastroCasa);
-
-        btnCadastroTerreno = new JButton("Cadastrar Terreno");
-        btnCadastroTerreno.setBounds(10,420,290,60);
-        btnCadastroTerreno.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                tlCadastroTerreno = new CadastroTerreno(terrenos);
-            }
-        });
-        panel.add(btnCadastroTerreno);
 
         btnCadastroTerreno = new JButton("Cadastrar Terreno");
         btnCadastroTerreno.setBounds(10,420,290,60);
@@ -175,6 +169,26 @@ public class MainMenu {
             }
         });
         panel.add(btnListarCorretores);
+
+        btnListarApartamentos = new JButton("Listar Apartamentos");
+        btnListarApartamentos.setBounds(10,770,290,60);
+        btnListarApartamentos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 ListarApartamentos ltAps= new ListarApartamentos(apartamentos);
+            }
+        });
+        panel.add(btnListarApartamentos);
+
+        btnListarCasas = new JButton("Listar Casas");
+        btnListarCasas.setBounds(10,840,290,60);
+        btnListarCasas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ListarCasa ltCasa = new ListarCasa(casas);
+            }
+        });
+        panel.add(btnListarCasas);
 
     }
 
