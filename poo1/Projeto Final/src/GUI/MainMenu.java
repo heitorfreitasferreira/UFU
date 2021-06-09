@@ -30,8 +30,8 @@ public class MainMenu {
     private static DadosCorretores corretores;
     private static DadosFuncionarios funcionarios;
     private static DadosImoveis imoveis;
-    private static DadosCasas casas;
-    private static DadosApartamentos apartamentos;
+//    private static DadosCasas casas;
+//    private static DadosApartamentos apartamentos;
 
     public MainMenu(){
         clientes = new DadosClientes();
@@ -92,7 +92,7 @@ public class MainMenu {
         btnCadastroApartamento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tlCadastroCasa = new CadastroApartamento(apartamentos)
+//                tlCadastroCasa = new CadastroApartamento(apartamentos);
             }
         });
         panel.add(btnCadastroApartamento);
@@ -103,7 +103,7 @@ public class MainMenu {
         btnCadastroCasa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tlCadastroCasa = new CadastroCasa(casas);
+//                tlCadastroCasa = new CadastroCasa(casas);
             }
         });
         panel.add(btnCadastroCasa);

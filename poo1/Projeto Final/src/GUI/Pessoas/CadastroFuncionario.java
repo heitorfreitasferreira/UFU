@@ -176,6 +176,7 @@ public class CadastroFuncionario{
                 Date hoje = new Date();
                 Funcionario f = new Funcionario(tfCpf.getText(),tfNome.getText(),tfCelular.getText(),tfTelFixo.getText(),tfEmail.getText(),cbEstadoCivil.getSelectedItem().toString(),rbMulher.isSelected(),end,tfCargo.getText(),tfUsuario.getText(),pfSenha.getText(),hoje);
                 funcionarios.adicionar(f);
+                JOptionPane.showMessageDialog(frame,"Funcionário cadastrado com sucesso!");
                 frame.dispose();
             }
         });

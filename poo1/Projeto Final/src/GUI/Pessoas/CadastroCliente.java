@@ -165,6 +165,7 @@ public class CadastroCliente{
                 Endereco end = new Endereco(tfRua.getText(),tfComplemento.getText(),tfCep.getText(),tfCidade.getText(),tfBairro.getText(),Integer.parseInt(tfNro.getText()));
                 Cliente c = new Cliente(tfCpf.getText(),tfNome.getText(),tfCelular.getText(),tfTelFixo.getText(),tfEmail.getText(),cbEstadoCivil.getSelectedItem().toString(),rbMulher.isSelected(),end,tfProfissao.getText());
                 clientes.adicionar(c);
+                JOptionPane.showMessageDialog(frame,"Cliente cadastrado com sucesso!");
                 frame.dispose();
             }
         });

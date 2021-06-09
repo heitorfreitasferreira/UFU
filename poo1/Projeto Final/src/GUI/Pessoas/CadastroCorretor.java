@@ -190,6 +190,7 @@ public class CadastroCorretor{
                 inicioCorretagem.setYear(Integer.parseInt(temp));
                 Corretor f = new Corretor(tfCpf.getText(),tfNome.getText(),tfCelular.getText(),tfTelFixo.getText(),tfEmail.getText(),cbEstadoCivil.getSelectedItem().toString(),rbMulher.isSelected(),end,tfCargo.getText(),tfUsuario.getText(),pfSenha.getText(),hoje,cbFormadoEmVendas.isSelected(),inicioCorretagem);
                 corretores.adicionar(f);
+                JOptionPane.showMessageDialog(frame,"Corretor cadastrado com sucesso!");
                 frame.dispose();
             }
         });
