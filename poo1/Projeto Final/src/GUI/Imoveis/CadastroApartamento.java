@@ -19,7 +19,7 @@ public class CadastroApartamento {
     private static JPanel panel;
     private static JTextField tfValor, tfValorImob, tfArea, tfRua, tfComplemento, tfCep, tfCidade, tfBairro, tfNro, tfDataC, tfValorCondominio;
     private static JTextField tfNumQuartos, tfNumSuites, tfNumSalaEstar, tfNumSalaJantar, tfNumVagasGaragem, tfNumArmEbutido, tfDescricao, tfAndar;
-    private static JCheckBox cbDisponivel, cbParaVenda, cbCondominio, cbPortaria24h;
+    private static JCheckBox disponivel, paraVenda, condominio, portaria24h;
     private static JButton btnSubmit;
     private static JLabel lValor, lValorImob, lArea, lRua, lComplemento,lCep,lCidade,lBairro,lNro, lDataC;
     private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao, lAndar, lValorCondominio;
@@ -205,11 +205,11 @@ public class CadastroApartamento {
                     ex.printStackTrace();
                 }
                 Endereco end = new Endereco(tfRua.getText(),tfComplemento.getText(),tfCep.getText(),tfCidade.getText(),tfBairro.getText(),Integer.parseInt(tfNro.getText()));
-                Apartamento c = new Apartamento(cbDisponivel.isSelected(), cbParaVenda.isSelected(), (byte)cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
+                Apartamento c = new Apartamento(disponivel.isSelected(), paraVenda.isSelected(), (byte)cbStatus.getSelectedIndex(), DataC, new Date(), Float.parseFloat(tfValor.getText()),
                         Float.parseFloat(tfValorImob.getText()), end, Integer.parseInt(tfArea.getText()), new ArrayList<ClienteProprietario>(), Integer.parseInt(tfNumQuartos.getText()),
                         Integer.parseInt(tfNumSuites.getText()), Integer.parseInt(tfNumSalaEstar.getText()), Integer.parseInt(tfNumSalaJantar.getText()), Integer.parseInt(tfNumVagasGaragem.getText()),
-                        Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), cbCondominio.isSelected(), Integer.parseInt(tfAndar.getText()), Float.parseFloat(tfValorCondominio.getText()),
-                        cbPortaria24h.isSelected());
+                        Integer.parseInt(tfNumArmEbutido.getText()), tfDescricao.getText(), condominio.isSelected(), Integer.parseInt(tfAndar.getText()), Float.parseFloat(tfValorCondominio.getText()),
+                        portaria24h.isSelected());
             }
         });
 
