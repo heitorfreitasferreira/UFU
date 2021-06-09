@@ -11,6 +11,10 @@ import java.util.Objects;
 public class DadosClientesProprietarios implements IManutencao<ClienteProprietario>{
     private ArrayList<ClienteProprietario> clientesProprietarios;
 
+    public DadosClientesProprietarios() {
+        this.clientesProprietarios = new ArrayList<ClienteProprietario> ();
+    }
+
     @Override
     public void adicionar(ClienteProprietario cliente){
         clientesProprietarios.add(cliente);
