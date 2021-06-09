@@ -1,5 +1,6 @@
 package ManutencaoDados;
 
+import Imoveis.Casa;
 import Imoveis.Imovel;
 import Pessoas.Endereco;
 
@@ -10,9 +11,36 @@ import java.util.ArrayList;
 
 public class DadosImoveis {
     private ArrayList<Imovel> imoveis;
+    private DadosTerrenos dadosTerrenos;
+    private DadosCasa dadosCasa;
+    private DadosApartamento dadosApartamento;
 
     public DadosImoveis() {
         this.imoveis = new ArrayList<Imovel>();
+    }
+
+    public void setDadosApartamento(DadosApartamento dadosApartamento) {
+        this.dadosApartamento = dadosApartamento;
+    }
+
+    public void setDadosCasa(DadosCasa dadosCasa) {
+        this.dadosCasa = dadosCasa;
+    }
+
+    public void setDadosTerrenos(DadosTerrenos dadosTerrenos) {
+        this.dadosTerrenos = dadosTerrenos;
+    }
+
+    public DadosApartamento getDadosApartamento() {
+        return dadosApartamento;
+    }
+
+    public DadosCasa getDadosCasa() {
+        return dadosCasa;
+    }
+
+    public DadosTerrenos getDadosTerrenos() {
+        return dadosTerrenos;
     }
 
     public void adicionar(Imovel imovel){
@@ -25,10 +53,8 @@ public class DadosImoveis {
             System.out.println("Não foi possível encontrar nenhum imovel com o endereço correspondente!");
     }
 
-    public void listar(){
-        for (Imovel imovel : imoveis) {
-            System.out.println(imovel.toString());
-        }
+    public ArrayList<Imovel> listar(){
+        return imoveis;
     }
 
     public Imovel buscar(Endereco endereco){

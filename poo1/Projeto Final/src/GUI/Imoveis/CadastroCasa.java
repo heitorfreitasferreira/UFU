@@ -18,7 +18,7 @@ public class CadastroCasa {
     private static JPanel panel;
     private static JTextField tfValor, tfValorImob, tfArea, tfRua, tfComplemento, tfCep, tfCidade, tfBairro, tfNro, tfDataC;
     private static JTextField tfNumQuartos, tfNumSuites, tfNumSalaEstar, tfNumSalaJantar, tfNumVagasGaragem, tfNumArmEbutido, tfDescricao, tfNumPiscinas;
-    private static JCheckBox disponivel, paraVenda, condominio, portaria24h;
+    private static JCheckBox disponivel, paraVenda, condominio;
     private static JButton btnSubmit;
     private static JLabel lValor, lValorImob, lArea, lRua, lComplemento, lCep, lCidade, lBairro, lNro, lDataC;
     private static JLabel lNumQuartos, lNumSuites, lNumSalaEstar, lNumSalaJantar, lNumVagasGaragem, lNumArmEbutido, lDescricao, lNumPiscinas;
@@ -176,10 +176,6 @@ public class CadastroCasa {
         condominio = new JCheckBox("Condominio");
         condominio.setBounds(210,310,100,25);
         panel.add(condominio);
-
-        portaria24h = new JCheckBox("Portaria 24h");
-        portaria24h.setBounds(330,310,120,25);
-        panel.add(portaria24h);
 
         btnSubmit = new JButton("Cadastrar");
         btnSubmit.setBounds(180, 460, 150, 30);
