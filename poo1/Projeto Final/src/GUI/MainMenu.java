@@ -2,10 +2,7 @@ package GUI;
 
 import GUI.Imoveis.CadastroApartamento;
 import GUI.Imoveis.CadastroCasa;
-import GUI.Pessoas.CadastroCliente;
-import GUI.Pessoas.CadastroCorretor;
-import GUI.Pessoas.CadastroFuncionario;
-import GUI.Pessoas.ListarClientes;
+import GUI.Pessoas.*;
 import ManutencaoDados.*;
 import Pessoas.Cliente;
 import Pessoas.Funcionario;
@@ -27,7 +24,9 @@ public class MainMenu {
     private static CadastroCasa tlCadastroCasa;
     private static CadastroApartamento tlCadastroApartamento;
     private static ListarClientes tlListarClientes;
-//    private static ListarClientesProprietarios tlListarClientesProprietaros;
+    private static ListarClientesProprietarios tlListarClientesProprietaros;
+    private static ListarFuncionarios tlListarFuncionarios;
+    private static ListarCorretores tlListarCorretores;
     //Dados
     private static DadosClientes clientes;
     private static DadosClientesProprietarios clientesProprietarios;
@@ -146,6 +145,37 @@ public class MainMenu {
             }
         });
         panel.add(btnListarClientes);
+
+        btnListarClientesProprietarios = new JButton("Listar Clientes Proprietarios");
+        btnListarClientesProprietarios.setBounds(10,560,290,60);
+        btnListarClientesProprietarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tlListarClientesProprietaros = new ListarClientesProprietarios(clientesProprietarios);
+            }
+        });
+        panel.add(btnListarClientesProprietarios);
+
+        btnListarFuncionarios = new JButton("Listar Funcionarios");
+        btnListarFuncionarios.setBounds(10,630,290,60);
+        btnListarFuncionarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tlListarFuncionarios = new ListarFuncionarios(funcionarios);
+            }
+        });
+        panel.add(btnListarFuncionarios);
+
+        btnListarCorretores = new JButton("Listar Corretores");
+        btnListarCorretores.setBounds(10,700,290,60);
+        btnListarCorretores.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tlListarCorretores = new ListarCorretores(corretores);
+            }
+        });
+        panel.add(btnListarCorretores);
+
     }
 
 }

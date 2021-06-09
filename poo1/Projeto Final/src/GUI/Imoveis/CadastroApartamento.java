@@ -173,21 +173,21 @@ public class CadastroApartamento {
         cbStatus.setBounds(10,280,150,25);
         panel.add(cbStatus);
 
-        disponivel = new JCheckBox("Disponível");
-        disponivel.setBounds(10,310,100,25);
-        panel.add(disponivel);
+        cbDisponivel = new JCheckBox("Disponível");
+        cbDisponivel.setBounds(10,310,100,25);
+        panel.add(cbDisponivel);
 
-        paraVenda = new JCheckBox("Para Venda");
-        paraVenda.setBounds(110,310,100,25);
-        panel.add(paraVenda);
+        cbParaVenda = new JCheckBox("Para Venda");
+        cbParaVenda.setBounds(110,310,100,25);
+        panel.add(cbParaVenda);
 
-        condominio = new JCheckBox("Condominio");
-        condominio.setBounds(210,310,100,25);
-        panel.add(condominio);
+        cbCondominio = new JCheckBox("Condominio");
+        cbCondominio.setBounds(210,310,100,25);
+        panel.add(cbCondominio);
 
-        portaria24h = new JCheckBox("Portaria 24h");
-        portaria24h.setBounds(330,310,120,25);
-        panel.add(portaria24h);
+        cbPortaria24h = new JCheckBox("Portaria 24h");
+        cbPortaria24h.setBounds(330,310,120,25);
+        panel.add(cbPortaria24h);
 
         btnSubmit = new JButton("Cadastrar");
         btnSubmit.setBounds(200,400,150,30);
