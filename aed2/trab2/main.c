@@ -33,6 +33,7 @@ int main() {
         printf("\n=====================================\n");
         printf(" [0] Sair\n");
         printf(" [1] Imprimir trie\n");
+        printf(" [2] Autocompletar palavra\n");
         printf("\n=====================================\n");
         printf("Selecione uma opcao: ");
 
@@ -43,6 +44,10 @@ int main() {
                 return 1;
             case 1:
                 printTrie(trie);
+                break;
+            case 2:
+                char str[50];
+                autocompleteTrie(trie, );
                 break;
             default:
                 printf("Opção invalida.");

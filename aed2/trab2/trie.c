@@ -94,7 +94,34 @@ void printTrie(Trie *trie){
     recursivePrint(*trie, NULL, 0);
 }
 
+void recursiveAutocompleteTrie(Trie trie, char *str, int size, char *prefix) {
+    char newStr[size+2];
+    memcpy(newStr, str, size);
+    newStr[size+1] = 0;
+
+    if(trie->end){
+        printf("%s", str);
+        for (int i = 0; i < size; ++i) {
+            printf("%c", str[i]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < ALPHABET_SIZE; ++i) {
+        if(trie->child[i] != NULL) {
+            newStr[size] = i + 'a';
+            recursivePrint(trie->child[i], newStr, size + 1);
+        }
+    }
+}
+
 void autocompleteTrie(Trie* trie, char *prefix){
     if(trie == NULL) return;
 
+    Trie node = *trie;
+
+    int i = 0;
+    while(1){
+        recursiveAutocompleteTrie(*trie, NULL, 0, prefix);
+    }
 }
