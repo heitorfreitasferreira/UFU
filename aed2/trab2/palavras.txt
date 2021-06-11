@@ -113,7 +113,7 @@ bando
 bravata
 bolo
 banzo
-bom senso
+bom-senso
 brava
 boutique
 brecha
