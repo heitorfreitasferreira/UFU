@@ -4,20 +4,12 @@
 
 #include <stdio.h>
 
-struct node
-{
-    Trie child[ALPHABET_SIZE];
-    unsigned short end;
-};
+Trie* createTrie(){
 
-Trie *createTrie()
-{
+    Trie* trie = (Trie*) malloc(sizeof(Trie));
+    *trie = (Trie) malloc(sizeof(struct node));
 
-    Trie *trie = (Trie *)malloc(sizeof(Trie));
-    *trie = (Trie)malloc(sizeof(struct node));
-
-    if (*trie != NULL)
-    {
+    if(*trie != NULL) {
         memset((*trie)->child, 0, sizeof(struct node));
         (*trie)->end = 0;
 
@@ -29,29 +21,23 @@ Trie *createTrie()
     return trie;
 }
 
-void freeTrie(Trie *trie)
-{
+void freeTrie(Trie* trie) {
     free(trie);
     trie = NULL;
 }
 
-int insertTrie(Trie *trie, char *str)
-{
-    if (trie == NULL)
-        return 0;
+int insertTrie(Trie *trie, char *str){
+    if(trie == NULL) return 0;
 
     Trie node = *trie;
-    for (int i = 0; i < strlen(str); ++i)
-    {
+    for (int i = 0; i < strlen(str); ++i) {
         int index = str[i] - 'a';
-        if (node->child[index] == NULL)
-        {
-            node->child[index] = (Trie)malloc(sizeof(struct node));
+        if(node->child[index] == NULL) {
+            node->child[index] = (Trie) malloc(sizeof (struct node));
             //memset(node->child[index], 0, sizeof(struct node));
 
             node->child[index]->end = 0;
-            for (int j = 0; j < ALPHABET_SIZE; ++j)
-            {
+            for (int j = 0; j < ALPHABET_SIZE; ++j) {
                 node->child[index]->child[j] = NULL;
             }
         }
@@ -59,90 +45,82 @@ int insertTrie(Trie *trie, char *str)
         node = node->child[index];
     }
 
-    if (node->end)
-    {
+    if(node->end) {
         return 0;
-    }
-    else
-    {
+    }else{
         node->end = 1;
         return 1;
     }
 }
 
-int findTrie(Trie *trie, char *str)
-{
-    if (trie == NULL)
-        return 0;
+int findTrie(Trie* trie, char *str){
+    if(trie == NULL) return 0;
 
     Trie node = *trie;
-    for (int i = 0; i < strlen(str); ++i)
-    {
+    for (int i = 0; i < strlen(str); ++i) {
         int index = str[i] - 'a';
         node = node->child[index];
 
-        if (node == NULL)
-            return 0;
+        if(node == NULL) return 0;
     }
 
     return 1;
 }
 
-int removeTrie(Trie *trie, char *str)
-{
-    if (trie == NULL)
-        return 0;
+int removeTrie(Trie* trie, char *str){
+    if(trie == NULL) return 0;
+
+    Trie node = *trie;
+    for (int i = 0; i < strlen(str); ++i) {
+        int index = str[i] - 'a';
+        if(node->child[index] == NULL){
+            return 0;
+        }else{
+            node = node->child[index];
+        }
+    }
+
+    return 1;
 }
 
-void recursivePrint(Trie trie, char *str, int size)
-{
-    char newStr[size + 2];
+void recursivePrint(Trie trie, char *str, int size){
+    char newStr[size+2];
     memcpy(newStr, str, size);
-    newStr[size + 1] = 0;
+    newStr[size+1] = 0;
 
-    if (trie->end)
-    {
+    if(trie->end) {
         printf("%s\n", str);
     }
 
-    for (int i = 0; i < ALPHABET_SIZE; ++i)
-    {
-        if (trie->child[i] != NULL)
-        {
+    for (int i = 0; i < ALPHABET_SIZE; ++i) {
+        if(trie->child[i] != NULL) {
             newStr[size] = i + 'a';
             recursivePrint(trie->child[i], newStr, size + 1);
         }
     }
 }
 
-void printTrie(Trie *trie)
-{
-    if (trie == NULL)
-        return;
+void printTrie(Trie *trie){
+    if(trie == NULL) return;
 
     recursivePrint(*trie, NULL, 0);
 }
 
-void recursiveAutocompleteTrie(Trie trie, char *str, int size, char *prefix)
-{
-    char newStr[size + 2];
+void recursiveAutocompleteTrie(Trie trie, char *str, int size, char *prefix) {
+    char newStr[size+2];
     memcpy(newStr, str, size);
-    newStr[size + 1] = 0;
+    newStr[size+1] = 0;
 
-    if (trie->end)
-    {
+    if(trie->end){
         printf("%s", str);
-        for (int i = 0; i < size; ++i)
-        {
+        for (int i = 0; i < size; ++i) {
             printf("%c", str[i]);
         }
         printf("\n");
     }
 
-    for (int i = 0; i < ALPHABET_SIZE; ++i)
-    {
-        if (trie->child[i] != NULL)
-        {
+    for (int i = 0; i < ALPHABET_SIZE; ++i) {
+        if(trie->child[i] != NULL) {
             newStr[size] = i + 'a';
             recursiveAutocompleteTrie(trie->child[i], newStr, size + 1, prefix);
         }
@@ -159,14 +137,8 @@ void autocompleteTrie(Trie *trie, char *prefix)
     for (size_t i = 0; i < strlen(prefix); i++)
     {
 
-        node = node->child[prefix[i] + 'a'];
+        node = node->child[prefix[i] - 'a'];
     }
 
     printTrie(&node);
-
-    // int i = 0;
-    // while (1)
-    // {
-    //     recursiveAutocompleteTrie(*trie, NULL, 0, prefix);
-    // }
 }
