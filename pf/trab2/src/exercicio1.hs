@@ -26,6 +26,12 @@ x6 = [1, 12, 3, 14, 5, 15, 4, 13, 2, 11, 6, 17, 8, 19, 20, 10, 9, 18, 7, 16]
 
 x7 = [20, 8, 2, 11, 13, 3, 7, 18, 14, 4, 16, 10, 15, 1, 9, 17, 19, 12, 5, 6]
 
+d1 = [1 .. 200]
+
+d2 = [100, 99 .. 51] ++ [200, 199 .. 151] ++ [101 .. 150] ++ [1 .. 50]
+
+lst = [x1, x2, x7, d1, d2]
+
 {-Original-}
 bolhaOri :: Ord a => [a] -> ([a], Int)
 bolhaOri [] = ([], 0)
@@ -34,7 +40,7 @@ bolhaOri lista = bolhaOrdOri lista (length lista)
 bolhaOrdOri :: Ord a => [a] -> Int -> ([a], Int)
 bolhaOrdOri lista 0 = (lista, 0)
 bolhaOrdOri lista n = (bolhaOrd, j + cont)
-  where 
+  where
     (lst, j) = trocaOri lista
     (bolhaOrd, cont) = bolhaOrdOri lst (n - 1)
 
@@ -43,9 +49,9 @@ trocaOri [x] = ([x], 0)
 trocaOri (x : y : zs)
   | x > y = (y : l1, c1 + 1)
   | otherwise = (x : l2, c2)
-    where
-      (l1, c1) = trocaOri (x : zs)
-      (l2, c2) = trocaOri (y : zs)
+  where
+    (l1, c1) = trocaOri (x : zs)
+    (l2, c2) = trocaOri (y : zs)
 
 {-Variação 1-}
 bolhaV1 :: Ord a => [a] -> ([a], Int)
@@ -55,7 +61,7 @@ bolhaV1 lista = bolhaOrdV1 lista (length lista)
 bolhaOrdV1 :: Ord a => [a] -> Int -> ([a], Int)
 bolhaOrdV1 lista 0 = (lista, 0)
 bolhaOrdV1 lista n = (bolhaOrd, j + cont)
-  where 
+  where
     (lst, j) = trocaV1 lista
     (bolhaOrd, cont) = if j == 0 then (lst, j) else bolhaOrdV1 lst (n - 1)
 
@@ -64,9 +70,9 @@ trocaV1 [x] = ([x], 0)
 trocaV1 (x : y : zs)
   | x > y = (y : l1, c1 + 1)
   | otherwise = (x : l2, c2)
-    where
-      (l1, c1) = trocaV1 (x : zs)
-      (l2, c2) = trocaV1 (y : zs)
+  where
+    (l1, c1) = trocaV1 (x : zs)
+    (l2, c2) = trocaV1 (y : zs)
 
 {-Variação 2-}
 bolhaV2 :: Ord a => [a] -> ([a], Int)
@@ -76,7 +82,7 @@ bolhaV2 lista = bolhaOrdV2 lista (length lista)
 bolhaOrdV2 :: Ord a => [a] -> Int -> ([a], Int)
 bolhaOrdV2 lista 0 = (lista, 0)
 bolhaOrdV2 lista n = (bolhaOrd, j + cont)
-  where 
+  where
     (lst, j) = trocaV2 lista n
     {- (lst, j) = trocaV2 (take n lista) -}
     (bolhaOrd, cont) = if j == 0 then (lst, j) else bolhaOrdV2 lst (n - 1)
@@ -87,6 +93,6 @@ trocaV2 lis 0 = (lis, 0)
 trocaV2 (x : y : zs) n
   | x > y = (y : l1, c1 + 1)
   | otherwise = (x : l2, c2)
-    where
-      (l1, c1) = trocaV2 (x : zs) n
-      (l2, c2) = trocaV2 (y : zs) n
+  where
+    (l1, c1) = trocaV2 (x : zs) n
+    (l2, c2) = trocaV2 (y : zs) n
