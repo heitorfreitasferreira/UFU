@@ -113,7 +113,7 @@ bando
 bravata
 bolo
 banzo
-bom senso
+bom-senso
 brava
 boutique
 brecha
@@ -440,7 +440,7 @@ guerra
 guilda
 geografia
 genuinamente
-gata borralheira
+gata-borralheira
 grandemente
 gracioso
 grosseria
@@ -616,7 +616,7 @@ jerimum
 justapor
 junta
 justamente
-jazida mineral
+jazida-mineral
 jurisconsulto
 jusante
 judicial
@@ -652,13 +652,13 @@ kardecista
 km2
 kart
 km
-kung fu
+kung-fu
 kitchenette
 kitsch
 krill
 kelvin
 kantiano
-keep calm
+keep-calm
 kyrie
 keynesianismo
 kantismo
@@ -829,7 +829,7 @@ nobre
 nocivo
 necessidade
 nostalgia
-no entanto
+no-entanto
 nuance
 ninfeta
 nativo
@@ -1320,7 +1320,7 @@ urbanidade
 um
 utilizar
 usurpador
-uma vez que
+uma-vez-que
 uma
 unguento
 unilateral
@@ -1338,7 +1338,7 @@ ubiquidade
 ultrajado
 urdidura
 unificado
-unidade federativa
+unidade-federativa
 urgia
 urgente
 ufanista
@@ -1468,7 +1468,7 @@ weltanschauung
 warrant
 www
 walter
-web design
+web-design
 wu
 weber
 western
@@ -1613,7 +1613,7 @@ zeugma
 zaino
 zebu
 zoomorfismo
-zona tropical
+zona-tropical
 zaragatoa
 zurzir
 zanzar
