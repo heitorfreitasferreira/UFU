@@ -101,6 +101,12 @@ int removeTrie(Trie *trie, char *str)
         }
     }
 
+    if (!node->end)
+        return 0;
+
+    free(node);
+    prevNode->child[str[strlen(str) - 1] - 'a'] = NULL;
+
     return 1;
 }
 
