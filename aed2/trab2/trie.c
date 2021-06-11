@@ -70,15 +70,21 @@ int findTrie(Trie* trie, char *str){
 int removeTrie(Trie* trie, char *str){
     if(trie == NULL) return 0;
 
-    Trie node = *trie;
+    Trie node = *trie, prevNode;
     for (int i = 0; i < strlen(str); ++i) {
         int index = str[i] - 'a';
         if(node->child[index] == NULL){
             return 0;
         }else{
+            prevNode = node;
             node = node->child[index];
         }
     }
+
+    if(!node->end) return 0;
+
+    free(node);
+    prevNode->child[str[strlen(str) - 1] - 'a'] = NULL;
 
     return 1;
 }
