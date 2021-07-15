@@ -10,6 +10,7 @@ Dono|e-mail
 -----|----
 Claudiney|claudineyrt@gmail.com
 Gina|progfuncionalufu@gmail.com
+Gustavo|gustavofaria@ufu.br
 
 <hr>
 

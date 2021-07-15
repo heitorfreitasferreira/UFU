@@ -344,3 +344,202 @@ _```T(n) = T(n-1) + n```_
   - Substituindo _```T(1)```_ por _```O(1)```_
 - _```T(n) = 3n-3 + O(1)```_
 - Ou seja, a complexidade é linear _```O(n)```_
+
+## Tabela Hash
+
+- Estrutura chave valor
+- É feita por uma tabela de espalhamento com uma função de hash
+  - dado um parâmetro (chave) de uma função
+- No final a chave sempre será um número inteiro
+  - Caso originalmente seja texto ou um real é possível converter para int
+
+### Aplicações
+
+- Busca em base de dados
+- Verificação de integridade de dados e autenticação de mensagens
+- Armazenamento de senha e criptografia
+  - Necessita de uma função mais elegante
+  - Armazena-se o resultado da função de hash e não a senha
+  - Evitar ao máximo colisão
+    - Teriam 2 senhas que geram o mesmo hash
+- Implementação da tabela de símbolos dos compiladores
+  - Verificação de palavras chave (criação de variável)
+
+### TAD Tabela Hash
+
+- Trabalhamos com array de ponteiros
+  - Útil para guardar a informação NULL
+  - Maior desempenho
+  - Evita gasto excessivo de memória
+    - Guarda um array de ponteiro pra uma struct, e não um array de struct
+  - Fácil saber qual dado no array static está sendo usado e qual ainda ta vago (NULL)
+
+### Tamanho da tabela
+
+- Ideal é o tamanho seja um numero primo
+- Evitar potencia de 2, mesmo que seja mais fácil de buscar haverá mais colisões
+
+### Função Hash
+
+- Inserção: precisa calcular a posição dos dados dentro da tabela
+- Pra isso usa a função hash
+  - Dado um dado de parâmetro retorna uma posição de memória que tem o dado
+- Distribui as informações equilibrada
+- Não pode ser
+- Todas as posições devem ser acessiveis pela tabela hash
+- Função hash espalha os elementos, nunca haverá ordenação
+- Sempre haverá posições sobrando
+  - Não estamos preocupados com eficiencia da memória
+  - Otimizado para busca
+- Condições de um bom hash
+  - Simples e barato
+  - Garantir q valores diferentes não geram a mesma saída
+  - Diminuir colisões
+- Tipos de hash
+  - Método da divisão
+    - Método da congruência linear
+    - **resto da divisão**
+    - dada uma chave *positiva* se calcula o resto da divisão pelo tamanho da tabela
+    - Valores diferentes podem dar o mesmo resto dependendo do tamanho da tabela
+      - Para evitar isso tamanho que seja número primo
+  - Método da multiplicação
+    - Método da congruência linear multiplicativo
+    - Dada uma constante fracionária entre 0 e 1 para multiplicar pela chave
+    - Com esse resultado pega a parte fracionária do número
+    - Multiplica pelo tamanho da tabela e pega a parte inteira e tem-se a posição final do item
+  - Método da dobra
+    - Soma as metades da chave (como se fosse array)
+    - Pega só os dois primeiros itens (unidade e dezena)
+    - até que se tenha um valor na chave que seja menor ou igual o tamanho do array
+
+### Inserção
+
+>Sem colisão
+
+- Calcular a posição dada a chave
+- Alocar o dado
+- Guardar a posição da alocação no vetor
+
+>Com colisão
+
+- Calcular a posição dada a chave
+- Verificar se ouve colisão
+  - Enquanto houver, recalcular posição
+- Alocar o dado
+- Guardar a posição da alocação no vetor
+
+### Busca
+
+>Sem colisão
+
+- Calcular a posição da chave
+- Verificar se ouve colisão
+- Verificar se há algo naquela posição
+- Se sim, retornar uma cópia do dado
+
+>Com colisão
+
+- Calcular a posição da chave
+- Verificar se ouve colisão
+  - Enquanto houver, e a chave for diferente da armazenada no local, recalcular posição
+- Verificar se há algo naquela posição
+- Se sim, retornar uma cópia do dado
+
+### Hash perfeito e imperfeito
+
+- Normalmente usamos o imperfeito
+  - Mais de uma chave resultar no mesmo valor
+  - Há colisão
+- Usamos o perfeito para problemas com escopo pequeno e limitado
+  - Exemplo: tabela das 32 palavras reservadas em C
+
+### Tratamento de colisões
+
+> Uma tabela hash é composta por duas partes: função de hash e tratamento de colisão
+
+- Escolha da função de hash
+  - Garantir bom potêncial de espalhamento
+  - Garantir distribuição de dados uniforme
+  - sempre será imperfeito
+- Técnicas 
+  - Endereçamento aberto
+    - Open addressing ou rehashing
+    - Os elementos sempre são inseridos na própria tabela, não necessita uma estrutura auxiliar
+    - Em caso de colisão, coloca na próxima posição (ou dado um critério de escolha) vaga
+    - Vantagens
+      - Maior número de posições
+      - Melhor uso de memória
+      - Busca é realizada na própria tabela
+        - Recupera mais rápido os elementos
+    - Mais adequada para aplicações com limitação de memória
+    - Desvantagem
+      - Maior tempo de processamento nos cálculos das posições, com base no número de colisões
+      - Agrupamento primário
+        - Longos trechos da tabela já ocupados
+    - Como cálcular a próx posição?
+      - Sondagem linear
+        - Tenta sempre jogar pra próxima posição
+    - Estratégia simples
+  - Espalhamento quadrático
+    - Ao invés de somente somar i, usamos uma equação do segundo grau que dependa da variável i
+      - Lembrando que i é equivalente ao número de tentativas de cálcular a posição (quantidade de colisões)
+    - ![Imagem comparando as técnicas](images/sondagem_quadratica.png)
+    - Problemas
+      - Agrupamento secundário
+        - Gera menos agrupamentos que a sondagem linear
+  - Duplo hash
+    - Primeira função de hash calcula o endereço
+    - A segunda é utilizada se houver colisão
+    - Para calcular a posição após a colisão basta fazer ```hash1 + i*hash2```
+      - hash2 não pode ter imagem que contenha o 0
+  - Encadeamento separado
+    - Cada posição do array é um ponteiro pra uma Lista Encadeada, em que a cabeça é a primeira posição inserida e a calda são as posições que deram colisão
+
+## Grafos
+
+### Busca em largura
+
+> Faz uso do conceito de fila, 
+
+- Percorre o grafo de forma sistemática
+- Colocam todos os vértices ligado ao que você está e coloca em uma fila
+- Quando olhar o vertice de fato, retira-o da fila e insere na fila os vertices dele
+
+### Busca em profundidade
+
+> Backtracking
+
+- Resolve o problema de achar a solução de um labirinto
+- Vai sempre por um caminho até não conseguir avançar mais, ai retorna
+- Usa um conceito de pilha, porém para não precisar usar um tad pilha usa a **recursão** que já usa esse conceito
+- Tem se uma função mascara que percorre até ```i<grau->[ini]``` , se a posição i não foi visitada eu chamo a função que faz a recursão
+  - A chamada recursiva parte da proxima aresta
+
+### Busca pelo menor caminho
+
+> Lembra um pouco a busca em largura
+
+- Menor número de arastas percorridas
+- Caso seja um grafo ponderado é a menor soma dos pesos das arestas
+- Mais comum: Dijkstra
+  - Partindo de um vertice inicial, calcula a menor distância dele para todos os outros
+
+### Árvore geradora mínima
+
+> Spanning tree
+
+- É o grafo mínimo que mantém o grafo conectado
+- Sempre tem um caminho entre qualquer 2 vértices
+  - Grafo conexo
+- Não pode ser digraph
+- Tem que ser ponderado
+  - Ter pesos associados as arestas
+- É utilizado para gerar labirintos
+
+> Algoritmos clássicos
+
+- Prim
+  - a cada iteração procura a *aresta de menor peso*
+  - Começa de um vertice e constrói uma árvore a partir dele
+- Kruskal
+  - Constrói várias árvores e tenta unir em uma árvore só

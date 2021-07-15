@@ -196,6 +196,7 @@ Sistema possui um conjunto de objetos que possuem determinados comportamentos qu
   * Altera estado
 * Exemplo
   * Objeto carro tem o método acelerar, frenar, virar para esquerda, virar pra direita
+* Método static: método que não depende de um objeto, apenas de seus parâmetros
 
 ## Classes do Java para fazer leitura de dados do teclado
 
@@ -242,3 +243,26 @@ A primeira forma tem a vantagem de poder usar os métodos da classe String
         String name = "Heitor";
         String sf1 = String.format("Meu nome é %s",name);
       ```
+
+## Encapsulamento
+
+>Forma de tornar os dados mais seguros
+
+* A única forma de pegar e alterar um atributo de um objeto é por um método *getter* ou *setter*
+* Dada uma interface (parâmetros de um método), criamos um método que consegue manipular os dados
+  * Quem está usando sua classe não depende de como foi implementado seu serviço
+* Para deixar um  visível em Java basta usar
+  * public (+)
+    * pode ser invocado por objetos de qualquer classe
+  * private (-) 
+    * só pode ser invocado dentro da classe
+  * protected (#)
+    * visível por objetos do mesmo pacote , **visível** para objetos descendentes desse
+  * package (~)
+    * caso não especifique essa é a visibilidade padrão
+    * visível apenas para objetos do mesmo pacote, **invisível** para objetos descendentes desse
+  * static
+    * Permanece constante para todos os objetos
+  * final
+    * Constante
+    * é possível usar ```final static``` em um atributo
