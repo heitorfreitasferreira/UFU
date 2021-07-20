@@ -132,7 +132,7 @@
 
 - A única diferença é que o fechamento positivo começa em 1, logo não teremos o **ε**
 
-### Definição de linguagem formal
+## Definição de linguagem formal
 
 > Uma linguagem L é um conjunto  de palavras sobre um alfabeto Σ, ou seja L ⊂ Σ*
 
@@ -140,4 +140,68 @@
   - conjunto vazio
   - conjunto formado pela ε
     - Note que {ε} != {}
-  - 
+  
+> A definição de linguagem só faz sentido ao conhecer o alfabeto
+
+### Como representar uma linguagem formal L
+
+- Se L é finito basta listar todas as palavras
+- Se L é infinito, existem 2 formalismos
+  - Formalismo __Gerador__: ***Gramática***
+  - Formalismo __Reconhecedor__: ***Autômato***
+
+## Definição de gramática
+
+> G = {V,T,P,S}
+
+- V = conjunto __finito__ de símbolos
+  - _Váriaveis_ ou _não-terminais_
+- T = conjunto __finito de símbolos__
+  - _terminais_
+  - disjunto de V
+- P = conjunto finito de pares ordenados (α,β)
+  - Regra de produção
+  - α é a palavra de __V ∪ T__+
+  - β é a palavra de __V ∪ T__*
+    - Aqui pode aparecer ε
+- S = elemento de V
+  - variável inicial
+
+### Notação (α,β)
+
+- α -> β
+- Notação abreviada para ```α -> β1, ..., α -> βn```
+  - ```α -> β1|```
+
+### Exemplo de gramática: números naturais
+
+- G = {V,T,P,S}
+  - V = {S,D}
+  - T = {0,1,2,3,4,5,6,7,8,9}
+  - P = {S -> D, S-> DS, D -> 0|1|2|3|4|5|6|7|8|9}
+- Uma derivação do número 234
+  - S => DS => 2S => 2DS => 23S => 23D => 234
+- Portanto
+  - S =>* 234
+  - S =>+ 234
+  - S =>6 234
+
+### Derivação
+
+> Partir do símbolo inicial e ir aplicando as regras quantas vezes for necessário
+
+- Par da relação denotada por =>
+  - Com domínio em __V ∪ T__+
+  - contra-domínio em __V ∪ T__*
+  - representado de forma infixa α => β
+
+#### Sucessivos passos de derivação
+- =>* 
+  - fecho transitivo e reflexivo da relação =>
+  - zero ou mais passos de derivação sucessivos
+- =>+ 
+  - fecho transitivo da relação =>
+  - zero ou mais passos de derivação sucessivos
+- =>i
+  - fecho transitivo da relação =>
+  - zero ou mais passos de derivação sucessivos
