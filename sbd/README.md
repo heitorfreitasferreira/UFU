@@ -130,3 +130,176 @@ Caso não usassemos SBD's para guardar as informações tudo seria armazenado em
 
 > Nesta disciplica estudaresmo o ER e o Relacional
 
+# Modelo ER
+
+## Projeto de DB
+
+- Requisitos funcionais
+- *Requisitos de dados*
+  - Levantar requisitos
+  - Derivar um diagrama
+  - Gerar um modelo lógico (relacional)
+  - Projeto físico
+
+### Modelagem de dados
+
+- Alto nível
+- Foco no dominio do problema e não na solução
+- Elementos básicos
+  - Conceitos do mundo real
+  - Caracteristicas dos conceitos
+  - Relacionamentos entre os conceitos
+- É feito para que um leigo consiga entender 
+
+### Modelo Entidade-Relacionamento
+
+> MER ou simplismente **ER**
+
+- Independente de aplicação
+- Fácil compreensão
+
+> Conceitos básicos
+
+- Entidade, Tipo entidade, Conjunto de Entidades
+- Relacionamento e Conjunto de Relacionamentos
+- Atributos
+
+> **D**iagrama **E**ntidade-**R**elacionamento (***DER***) -> Representação gráfica
+
+Exemplo de um DER de uma empresa
+
+![Exemplo de um diagrama entidade relacionamento](images/DER_exemplo.jpg)
+
+## ER - Entidade
+
+> Conceito do mundo real com existência independente
+
+- Exemplos: empregado, projeto, curso
+  - empregado é um conceito físico
+  - curso é um conceito abstrato
+
+### Representação gráfica
+
+> Retângulo
+
+Na imagem acima temos de entidade o: EMPLOYEE, PROJECT, DEPARTAMENT
+
+## ER - Atributo
+
+> Propriedade de uma entidade
+
+- Exemplos: código, nome, data de nascimento
+  - Todos esses seriam atributos da entidade EMPLOYEE
+
+### Representação gráfica
+
+> Elipse ligada à entidade
+
+Na imagem acima a entidade EMPLOYEE tem os atributos
+
+- Name
+  - Fname
+  - Lname
+  - Minit
+- Bdate
+- Adress
+- Salary
+- Sex
+- Ssn
+
+### Atributo Simples (ou atômico)
+
+> Básico e indivisivel
+
+Exemplos: sexo, cpf
+
+### Atributo Composto
+
+> Pode ser divido em partes
+
+- Exemplos: endereço
+  - Rua
+  - Bairro
+  - Número
+  - Cidade
+  - Estado
+
+#### Como diferenciar
+
+Fazendo uma analogia com a linguagem C++, atributos simples seriam os dados que podem ser representados por tipos primitivos (int, float, string, char, bool), e atributos compostos seriam dados compostos, *structs*.
+
+### Atributo *multi*valorado
+
+> *Conjunto de valores* para a mesma entidade
+
+Associar com dados que precisariam de uma lista/array para ser repesentados
+
+> Representado pela ***elipse com contorno duplo***
+
+### Atributo *mono*valorado
+
+> Atributo possui *um valor para cada entidade*
+
+Associar com dados que precisariam de uma variável apenas de cada tipo, mesmo que seja um atributo multivalorado
+
+### Atributo ***chave***
+
+> Atributo *extritamente distinto para instâncias distintas* de uma entidade
+
+Exemplo: CPF, códigos de matricula, código de uma disciplina  
+Todo dado **único** é representado por um atributo chave
+
+> Representado por um ***sublinhado*** no atributo
+
+### Atributo derivado
+
+> Valor pode ser obtivo a partir de outros atributos
+
+Exemplo: idade pode ser obtida tendo a data de nascimento sendo armazenada  
+Esses atributos *não precisam ser armazenados*
+
+> Representado pela elipse ter o ***contorno tracejado***
+
+## ER - Relacionamento
+
+> *Associação* entre entidades
+
+Exemplo: lotação de empregados em um departamento
+
+### Representação gráfica 
+
+> ***Losango*** ligado às entidades
+
+![Representação gráfica da relação entre empregado e departamento](images/relacionamento_entidades.jpg)
+
+### Papeis em relacionamentos
+
+> Define como a entidade participa da relação
+
+- Exemplo:
+  - empregado *está lotado em* departamento
+  - departamento *tem lotação de* empregados
+
+> Normalmente implicito
+
+### Auto-relacionamento
+
+> Associação **entre instâncias da mesma entidade**
+
+- Exemplo, supervisão de empregados:
+  - empregado *é supervisor de* empregado
+  - empregado *é supervisionado por* empregado
+
+![Representação gráfica deste auto-relacionamento](images/auto_relacionamento.jpg)
+
+Note a cardinalidade, essa auto-relação diz que **1** supervisor supervisiona **n** supervisionados, e vice e versa
+
+### Cardinalidade 
+
+> Restrição da quantidade **máxima** de instâncias no relacionamento
+
+![Exemplo cardinalidade](images/relacionamento_cardinalidade.jpg)
+
+No exemplo acima **N** funcionários trabalham pra *no máximo* **1** departamento
+
+### Participação
