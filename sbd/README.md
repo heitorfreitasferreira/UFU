@@ -303,3 +303,88 @@ Note a cardinalidade, essa auto-relação diz que **1** supervisor supervisiona 
 No exemplo acima **N** funcionários trabalham pra *no máximo* **1** departamento
 
 ### Participação
+
+- Participação total
+  - Toda instância da entidade **tem** que estar em um relacionamento
+  - Representado por uma linha dupla
+
+### Entidade fraca
+
+> Entidade que não tem chave
+
+Para gerar uma identificação que não seja a chave é usada uma relação com uma entidade forte
+
+- Exemplo: um funcionário tem uma chave, e está relacionado a um dependente, que só tem de atributos o nome e data de nascimento, para identificar o dependente precisamos saber do funcionário
+- Nesse exemplo o nome poderia ser considerado uma *chave local*
+
+> Representado por uma participação total e um duplo sublinhado na relação e no nome da entidade fraca
+
+## ER Estendido - ERR
+
+- Semântica adicional ao ER
+- Entidades podem representar
+  - Classes
+  - Subclasses
+  - Superclasses
+
+### Especialização e Generalização
+
+> Conceitos emprestados de OO
+
+- Especialização
+  - Gerar subclasse
+- Generalização
+  - Gerar superclasse a partir de várias subclasses
+
+> Exemplo de especialização
+
+![Exemplo de especialização de funcionário em 3 tipos de funcionários](images/especializacao_exemplo.png)
+
+- Secretário, Técnico e Engenheiro são subclasses da superclasse Empregado, cada uma com seu atributo específico
+- Se tivesse criado primeiro um empregado e derivado os 3 eu teria especializado
+- Se tivesse criado Secretário, Técnico e Engenheiro e descoberto que poderia junta-los em Empregado eu teria generalizado
+
+#### Herança de relacionamentos
+
+> As subclasses herdariam qualquer relacionamento existente na superclasse
+
+- Uma instância da superclasse pode ser instância de zero ou mais subclasses, seguindo o exemplo acima um empregado poderia pertencer somente a entidade Empregado, ou ser um secretário técnico
+  - Isso depende do critério de especialização, denotado pelo circulo com o **```d```** dentro
+
+> Critério de especialização
+
+- Disjunto
+  - Subclasses são mutuamente exclusivas
+  - Segundo o exemplo um empregado poderia ser *somente 1* tipo dos 3 tipos de empregado
+  - Representado por um ***d*** no meio do círculo
+- Sobreposto
+  - Subclasses **não** são mutuamente exclusivas
+  - Segundo o exemplo um empregado poderia ser *mais de 1* tipo dos 3 tipos de empregado
+  - Representado por um ***o*** no meio do círculo
+    - Caso não coloque nada é implícito que é o critério padrão
+
+### Union Type
+
+> *Duas* superclasses gerando *uma* subclasse
+
+### Agregação
+
+> Atributos de relacionamentos
+
+![Exemplo de agregação](images/agrecacao_exemplo.png)
+
+Aqui a relação entre uma companhia e um aplicação, denotada entrevista, tem 3 atributos, que não são nem da companhia nem da aplicação
+
+#### Problema da agregação
+
+> Gerar um conceito oferta de emprego a partir da entrevista
+
+Para isso agrupamos o conceito acima em um objeto próprio, destacado em vermelho
+
+![resolução do problema da agregação](images/problema_agregacao_resolvido.png)
+
+Porem essa abordagem não é a mais recomendada, algumas literaturas não permitem, logo é gerada outra solução
+
+> Solução utilizando entidade fraca
+
+![resolução do problema de agregação em entidade fraca](images/problema_agregacao_resolvido_entidade_fraca.png)
