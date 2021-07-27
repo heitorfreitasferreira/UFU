@@ -51,3 +51,8 @@ soma <- dado1+dado2
 deu12 <- soma==12
 
 sum(deu12)/70000
+
+# Matrizes
+
+A <- matrix(c(1,2,3,4,5,6),ncol = 3,byrow = T)
+A
