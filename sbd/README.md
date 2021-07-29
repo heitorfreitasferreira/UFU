@@ -388,3 +388,97 @@ Porem essa abordagem não é a mais recomendada, algumas literaturas não permit
 > Solução utilizando entidade fraca
 
 ![resolução do problema de agregação em entidade fraca](images/problema_agregacao_resolvido_entidade_fraca.png)
+
+## Modelo Relacional
+
+> Definição
+
+Representa um bd como uma coleção de relações, relação é uma *tabela de valores*  
+Cada *linha* é um conjunto de valores relacionados  
+Cada *coluna* é um conjunto de valores do mesmo tipo
+
+![Exemplo de modelo relacional](images/modelo_relacional_exemplo.jpg)
+
+### Representação em tuplas
+
+Para representar usamos tuplas os dados  
+
+ALUNO= <nome,cpf,matricula,telefone,endereco,idade>  
+
+Podemos gerar uma instância assim  
+aluno1 =<"Heitor", "111.111.111-11", 11921BCC026, 34988887777,rua da UFU 1000, 20>  
+
+Ou podemos acessar cada item individualmente assim  
+aluno1.idade = 21  
+
+### Relação, estado, grau e cardinalidade
+
+> Relação e cardinalidade
+
+Relação r de um esquema R(A1,A2,...,An), denotado pro r(R) é um conjunto de tuplas, *n* é a cardinalidade  
+
+r = {t1,t2,...,tn}
+
+> Estado
+
+- O *estado da relação r* são as *tuplas válidas* que *representam um estado particular do mundo real*
+- O esquema R é estático, mas os estados da relação r são dinâmicos
+
+### Caracteristicas
+
+- As tuplas não possuem ordem
+- Os atributos estão ordenados de acordo com o esquema da relação
+- **Não há atributos compostos ou multivalorados**, todos atributos são atômicos(indivisíveis)
+- NULL é um valor possível
+- Relacionando com o ER uma entidade vira uma relação no modelo relacional, assim como o relacionamento
+
+### Restrições
+
+> Condições que devem ser mantidas para os estados válidos
+
+#### Categorias de restrições
+
+- Inerentes
+  - Caracteristicas do modelo de dados, por exemplo não existir atributo multivalorado
+- Baseada no esquema
+  - Restrição do modelo de dados, por exemplo o dominio
+    - Sexo = {M,F,NB}
+  - Interpretação do minimundo
+- Baseada na aplicação
+  - Não tem como representar a restrição no esquema, ai ela é implementada na aplicação que usará o bd
+
+### Superchave
+
+> Subconjunto de atributos que não existam mais de uma tupla com a mesma combinação de valores para esses atributos
+
+Obs: se esse sub conjunto for a relação inteira, o conjunto todo será a superchave, para evitar de ter relações duplicadas
+
+### Chave
+
+É uma superchave tal que a remoção de qualquer atributo da mesma gera um subconjunto que não é superchave da relação  
+
+> Chave primária
+
+É uma chama candidata dentre todas que eu escolho pra ser primária, não pode ser nula
+
+### Chave estrangeira e integridade referencial
+
+> Tem a ver com duas relações
+
+É um valor de uma relação que é emprestado de outra relação, fazendo referencia ao segundo, ou sendo nulo
+
+### Esquema de BD
+
+É um conjunto de esquemas de relações que pertencem ao BD
+
+```S = {R1,R2,...Rn}```
+
+![Exemplo de esquema](images/exemplo_de_esquema_de_bd.jpg)
+
+Neste exemplo os campos sublinhados são as chaves
+
+![Exemplo de esquema com integridade referencial](images/exemplo_de_esquema_de_bd_referencial.jpg)
+
+Neste exemplo a seta segue da relação filho em direção a relação pai  
+
+Ou seja, o *Pno* da tabela **WORKS_ON** é uma chave estrangeira de *Pnumber* da tabela **PROJECT**. Isso significa que todo valor de *Pno* ou está presente no atributo *Pnumber* na tabela pai ou então *Pno* é nulo
