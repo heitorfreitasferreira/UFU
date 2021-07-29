@@ -56,3 +56,31 @@ sum(deu12)/70000
 
 A <- matrix(c(1,2,3,4,5,6),ncol = 3,byrow = T)
 A
+A[,2] # Apenas a coluna 2
+A[1,] # Apenas a linha 1
+
+# dataframe
+
+# Precisando instalar um pacote de data frame
+
+install.packages(dslabs)
+library(dslabs)
+data(murders) #acessando o conjunto de dados
+murders
+head(murders)
+tail(murders)
+estados <- murders$state
+estados
+sum(murders$total)
+order(murders$total)
+murders[5,] # Estados com mais mortes flat
+rate <-100000*murders$total/murders$population
+rate
+indices <-order(rate)
+indices
+murders[indices[length(indices)],]$state # Estados com mais morte/qnt_populacao
+murders <- cbind(murders,rate)# Add coluna com o rate
+murders
+# outra maneira de add coluna no conjunto de addos
+murders$rate <- rate
+plot(x= murders$total,y=murders$rate)
