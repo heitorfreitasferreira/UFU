@@ -42,7 +42,7 @@ Conjunto de instâncias em um determidado momento
 
 Caso não usassemos SBD's para guardar as informações tudo seria armazenado em arquivos convencionáis (.txt), ou arquivos binários, e o acesso seria diretamente pela aplicação
 
-### Problemas de usar arquivos convencionáis
+## Problemas de usar arquivos convencionáis
 
 - Inconsistência e redundancia
 - Acesso aos dados
@@ -141,7 +141,7 @@ Caso não usassemos SBD's para guardar as informações tudo seria armazenado em
   - Gerar um modelo lógico (relacional)
   - Projeto físico
 
-### Modelagem de dados
+## Modelagem de dados
 
 - Alto nível
 - Foco no dominio do problema e não na solução
@@ -151,7 +151,7 @@ Caso não usassemos SBD's para guardar as informações tudo seria armazenado em
   - Relacionamentos entre os conceitos
 - É feito para que um leigo consiga entender 
 
-### Modelo Entidade-Relacionamento
+## Modelo Entidade-Relacionamento
 
 > MER ou simplismente **ER**
 
@@ -389,7 +389,7 @@ Porem essa abordagem não é a mais recomendada, algumas literaturas não permit
 
 ![resolução do problema de agregação em entidade fraca](images/problema_agregacao_resolvido_entidade_fraca.png)
 
-## Modelo Relacional
+# Modelo Relacional
 
 > Definição
 
@@ -399,7 +399,7 @@ Cada *coluna* é um conjunto de valores do mesmo tipo
 
 ![Exemplo de modelo relacional](images/modelo_relacional_exemplo.jpg)
 
-### Representação em tuplas
+## Representação em tuplas
 
 Para representar usamos tuplas os dados  
 
@@ -424,7 +424,7 @@ r = {t1,t2,...,tn}
 - O *estado da relação r* são as *tuplas válidas* que *representam um estado particular do mundo real*
 - O esquema R é estático, mas os estados da relação r são dinâmicos
 
-### Caracteristicas
+## Caracteristicas
 
 - As tuplas não possuem ordem
 - Os atributos estão ordenados de acordo com o esquema da relação
@@ -432,11 +432,11 @@ r = {t1,t2,...,tn}
 - NULL é um valor possível
 - Relacionando com o ER uma entidade vira uma relação no modelo relacional, assim como o relacionamento
 
-### Restrições
+## Restrições
 
 > Condições que devem ser mantidas para os estados válidos
 
-#### Categorias de restrições
+### Categorias de restrições
 
 - Inerentes
   - Caracteristicas do modelo de dados, por exemplo não existir atributo multivalorado
@@ -447,13 +447,13 @@ r = {t1,t2,...,tn}
 - Baseada na aplicação
   - Não tem como representar a restrição no esquema, ai ela é implementada na aplicação que usará o bd
 
-### Superchave
+## Superchave
 
 > Subconjunto de atributos que não existam mais de uma tupla com a mesma combinação de valores para esses atributos
 
 Obs: se esse sub conjunto for a relação inteira, o conjunto todo será a superchave, para evitar de ter relações duplicadas
 
-### Chave
+## Chave
 
 É uma superchave tal que a remoção de qualquer atributo da mesma gera um subconjunto que não é superchave da relação  
 
@@ -461,13 +461,13 @@ Obs: se esse sub conjunto for a relação inteira, o conjunto todo será a super
 
 É uma chama candidata dentre todas que eu escolho pra ser primária, não pode ser nula
 
-### Chave estrangeira e integridade referencial
+## Chave estrangeira e integridade referencial
 
 > Tem a ver com duas relações
 
 É um valor de uma relação que é emprestado de outra relação, fazendo referencia ao segundo, ou sendo nulo
 
-### Esquema de BD
+## Esquema de BD
 
 É um conjunto de esquemas de relações que pertencem ao BD
 
@@ -482,3 +482,164 @@ Neste exemplo os campos sublinhados são as chaves
 Neste exemplo a seta segue da relação filho em direção a relação pai  
 
 Ou seja, o *Pno* da tabela **WORKS_ON** é uma chave estrangeira de *Pnumber* da tabela **PROJECT**. Isso significa que todo valor de *Pno* ou está presente no atributo *Pnumber* na tabela pai ou então *Pno* é nulo
+
+# Mapeamento MER - MR
+
+## Projeto lógico
+
+> Primeira camada entre o conceito e implementação
+
+Especificação **detalhada** da estrutura em um modelo implementavel pelo SGBD
+
+## Roteiro passo a passo
+
+### Mapeamento de tipos de *entidade regular*
+
+> MER
+
+![Entidade regular](images/entiadde_empregado.png)
+
+> ER
+
+EMPREGADO(<ins>CPF_empregado</ins>,nome_empregado)
+
+### Mapeamento de tipos de *entidade fraca*
+
+> MER
+
+![Entidade fraca](images/entidade_fraca.png)
+
+> ER
+
+DEPENDENTE(<ins>CPF_empregado, nome_dependente</ins>,sexo_dependente)
+
+**FK**CPF_empregado(DEPENDENTE)=**PK**(EMPREGADO)
+**PK**(DEPENDENTE)=(CPF_empregado, nome_dependente)
+
+- A chave primária da relação será composta de sua chave local e da chave primária de sua entidade forte
+- Note que o sublinhado é continuo, denotando uma chave composta por 2 atributos, não são duas chaves
+
+### Mapeamento de tipos de *relacionamento 1:1*
+
+#### Com relacionamento **total/total**
+
+> MER
+
+![Relacionamento 1:1](images/relacionamento_1_1_total.png)
+
+> ER (criar uma relação)
+
+CLIENTE_CARREGAMENTO(<ins>Codigo_Cliente</ins>,Nome, Endereço)
+
+#### Com relacionamento **total/parcial**
+
+> MER
+
+![Relacionamento 1:1](images/relacionamento_1_1_total_parcial.png)
+
+> ER (criar duas relações)
+
+CLIENTE(<ins>Codigo_Cliente</ins>,Nome)  
+Cartao_Credito(<ins>Nro_Cartao</ins>,Limite, <ins>Codigo_Cliente</ins>)
+
+**FK**Codigo_Cliente(Cartao_Credito)=**PK**(Cliente)
+
+#### Com relacionamento **parcial/parcial**
+
+> MER
+
+![Relacionamento 1:1](images/relacionamento_1_1_parcial_parcial.png)
+
+> ER (criar três relações)
+
+HOMEM(<ins>CPF_HOMEM</ins>, NOME_HOMEM)  
+MULHER(<ins>CPF_MULHER</ins>, NOME_MULHER)  
+CASAMENTO(<ins>CPF_HOMEM</ins>, <ins>CPF_MULHER</ins>, DATA)
+
+**FK**CPF_HOMEM(CASAMENTO)=**PK**(HOMEM)
+**FK**CPF_MULHER(CASAMENTO)=**PK**(MULHER)
+
+### Mapeamento de tipos de *relacionamento 1:N*
+
+Agrupa a chave de quem tem cardinalidade 1 aos atributos de quem tem cardinalidade N
+
+> MER
+
+![Relacionamento 1:N](images/relacionamento_1_N_total.png)
+
+> ER
+
+ESTADO(<ins>SIGLA</ins>, NOME)  
+CIDADE(<ins>CODIGO</ins>, NOME, POPULAÇÃO, SIGLA_ESTADO)
+
+**FK**SIGLA_ESTADO(CIDADE)=**PK**(ESTADO)
+
+CLIENTE_CARREGAMENTO(<ins>Codigo_Cliente</ins>,Nome, Endereço)
+
+
+### Mapeamento de tipos de *relacionamento M:N*
+
+Agrupa-se os atributos do relacionamento com as chaves das entidades participantes
+
+> MER
+
+![Relacionamento N:M](images/relacionamento_N_M_total.png)
+
+> ER
+
+ALUNO(<ins>MATRICULA</ins>, NOME)  
+DISCIPLINA(<ins>CODIGO</ins>, NOME)  
+CURRICULO(<ins>MATRICULA, CODIGO_DISCIPLINA</ins>, ANO, SEMESTRE, NOTA)
+
+**FK**MATRICULA(CURRICULO)=**PK**(ALUNO)  
+**FK**CODIGO_DISCIPLINA(CURRICULO)=**PK**(DISCIPLINA)
+
+### Mapeamento de atributos *multivalorados e compostos*
+
+Não existe o conceito do atributo multivalorado no MR
+
+Crias-se uma relação com o atributo multivalorado e a chave da entidade original
+
+> MER
+
+![Relacionamento N:M](images/atributos_multivalorado.png)
+
+> ER
+
+DEPARTAMENTO(<ins>NUMERO</ins>, NOME)  
+LOCALIZAÇÕES(<ins>NUMERO_DEPTO, LOCALIZACAO</ins>)
+
+**FK**NUMERO_DEPTO(LOCALIZAÇÕES)=**PK**(DEPARTAMENTO)
+
+### Mapeamento de tipos de *relacionamento de grau > 2*
+
+Não existe o conceito do atributo multivalorado no MR
+
+Crias-se uma relação com o atributo multivalorado e a chave da entidade original
+
+> MER
+
+![Relacionamento N:M](images/relacionamento_grau_maior_dois.png)
+
+> ER
+
+PEÇA(<ins>COD_PEÇA</ins>, DESCRIÇÃO)  
+FORNECEDOR(<ins>COD_FORN</ins>,NOME, ENDEREÇO, TELEFONE)  
+PROJETO(<ins>COD_PROJETO</ins>, NOME, DATA_ABERT)  
+FORNECIMENTO(<ins>COD_PEÇA, COD_FORNECEDOR, COD_PROJETO</ins>, QTDE)  
+
+### Mapeamento de *Generalização/Especialização*
+
+superclasse C = {<ins>k</ins>,1, a2, ..., an} com **m** subclasses {S1, S2, ..., Sm} pode ser mapeada de quatro formas, aqui chamadas de
+
+- **Opção A**: uma tabela para cada entidade, inclusive C (superclasse)
+  - Mais flexivel
+- **Opção B**: uma tabela para cada entidade Si fundida com C
+  - Aplicavel para especialização *total e disjunta*
+- **Opção C**: fusão de todas as entidades com *um* atributo tipo
+  - Usado para especialização *disjunta*
+- **Opção D**:  fusão de todas as entidades com *m* atributos tipo
+
+### Mapeamento de *subclasses compartilhadas* (herança múltipla)
+
+### Mapeamento de *categorias* (tipos de união)
