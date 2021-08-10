@@ -1,36 +1,36 @@
-# Linguagens formais e automatos
+# Linguagens formais e autômatos
 
-## Automatos ou Máquinas abstratas
+## Autômatos ou Máquinas abstratas
 
 - Estado inicial
   - Normalmente denotado por Q0
   - Pode ter
 - Estado final (de aceitação)
-  - Normamente denotado por Q1
+  - Normalmente denotado por Q1
 
-## Definição de automato finito (deterministico)
+## Definição de automato finito (determinístico)
 
 ## Forma de representação em grafo
 
 - Um nó pra cada estádo
 - Uma seta para indicar quem é o estado inicial
 - Um circulo duplo para indicar quem é o estado de aceitação
+
 ## Formalismo operacional
-## Formalismo axiomatico
+## Formalismo axiomático
 ## Formalismo denotacional (ou gerador)
 
 > Expressões regulares
 
-### Associam-se regras às componetes da linguagem
+### Associam-se regras às componentes da linguagem
 
 > Regras
 
 - Permitem afirmar o que será verdadeiro após a ocorrência de cada cláusula
 
+## Introdução
 
-## Capitulo 1
-
-### Simbolo
+### Símbolo
 
 > Entidade básica que escolhemos para escrever nossa linguagem
 
@@ -38,18 +38,18 @@
 
 ### Alfabeto
 
-> Conjunto finito de simbolos
+> Conjunto finito de símbolos
 
 - Exemplo:
   - Σ¹ = {a,b,c}
   - Σ² = {0,1,2,3,...,9}
   - Σ³ = {}
-    - Especial, conjunto vazio, linguagem sem simbolo
+    - Especial, conjunto vazio, linguagem sem símbolo
     - É usado para gerar a palavra vazia (ε)
 
 ### Palavra/cadeia de caracteres
 
-> Qualquer sequência *finita* de simbolos justapostos
+> Qualquer sequência *finita* de símbolos justapostos
 
 - Exemplos
   - 31156 palavra usando o alfabeto Σ³
@@ -74,22 +74,22 @@
 
 > Propriedades
 
-- Assosietividade
+- Associatividade
 - Elemento neutro = palavra vazia (εw) = w
 
-> Prefixo: qualquer sequência de simbolos iniciais de uma palavra
+> Prefixo: qualquer sequência de símbolos iniciais de uma palavra
 
 - Toda palavra é prefixo dela mesma
 - Palavra vazia é prefixo de qualquer palavra
 
-> Sufixo: qualquer sequência de simbolos finais de uma palavra
+> Sufixo: qualquer sequência de símbolos finais de uma palavra
 
 - Toda palavra é sufixo dela mesma
 - Palavra vazia é sufixo de qualquer palavra
 
-> Subpalavra: qualquer sequência de simbolos dentro de uma palavra
+> Sub-palavra: qualquer sequência de símbolos dentro de uma palavra
 
-#### Concatenação sucetiva
+#### Concatenação sucessiva
 
 - w³ = www
 - w¹ = w
@@ -98,7 +98,7 @@
 
 > Não confundir com **potenciação**
 
-- Para distinguir se o que estiver abaixo for uma palavra é concatenação sucetiva
+- Para distinguir se o que estiver abaixo for uma palavra é concatenação sucessiva
 
 #### Produto de conjunto de palavras
 
@@ -114,7 +114,7 @@
 #### Fechamento de Kleene
 
 > Seja W um conjunto de palavras qualquer sobre um alfabeto Σ
-> W* = ∪Wi -> i>=**0**
+> W\* = ∪Wi -> i>=**0**
 > W* = W0 ∪ W1 ∪ W2 ∪ W3 ∪...
 
 - Exemplos:
@@ -127,7 +127,7 @@
 #### Fechamento Positivo
 
 > Seja W um conjunto de palavras qualquer sobre um alfabeto Σ
-> W* = ∪Wi -> i>=**1**
+> W\* = ∪Wi -> i>=**1**
 > W* = W0 ∪ W1 ∪ W2 ∪ W3 ∪...
 
 - A única diferença é que o fechamento positivo começa em 1, logo não teremos o **ε**
@@ -155,7 +155,7 @@
 > G = {V,T,P,S}
 
 - V = conjunto __finito__ de símbolos
-  - _Váriaveis_ ou _não-terminais_
+  - _Variáveis_ ou _não-terminais_
 - T = conjunto __finito de símbolos__
   - _terminais_
   - disjunto de V
@@ -196,12 +196,172 @@
   - representado de forma infixa α => β
 
 #### Sucessivos passos de derivação
-- =>* 
+
+- =>\*
   - fecho transitivo e reflexivo da relação =>
   - zero ou mais passos de derivação sucessivos
-- =>+ 
+- =>+
   - fecho transitivo da relação =>
   - zero ou mais passos de derivação sucessivos
 - =>i
   - fecho transitivo da relação =>
   - zero ou mais passos de derivação sucessivos
+
+## Automatos finitos (determinísticos)
+
+> Não possúi memória
+
+### Por que é importante estudar linguagens regulares
+
+- Aparecem em vários contextos
+- Exemplos
+  - Editores de texto
+  - Processamento de texto
+  - Pesquisa de dados
+  - Interface simples homem x máquina
+  - Protocolos de comunicação
+  - Lógica
+
+> Formalismos
+
+- *Operacionais* ou *reconhecedores*
+  - Autômato *finito* determinístico
+  - Autômato *finito* **não**-determinístico
+  - Autômato finito com Movimento vazio
+- *Axiomático* ou *gerador*
+  - Gramática Regular
+- Denotacional
+  - Expressão regular
+  - Considerado também formalismo *gerador*
+
+### Definição: Sistemas de Estados Finitos
+
+- Modelo matemático com I/O discretas
+- Pode assumir um número finito e pré definido de estados
+- Cada Estado resume somente as informações do passado **necessárias** para determinar as ações da próxima entrada
+- Exemplo (elevador):
+  - **Entrada**
+    - Requisições pendentes
+  - **Estado**
+    - Andar corrente
+    - Direção do Movimento
+  - ***Não*** memoriza as requisições anteriores
+
+### Definição: Autômato Finito (Determinístico) - Ḍef·1̣
+
+> **Máquina** reconhecedora composta por
+
+- Fita de entrada
+  - Dividida em células
+  - Cada célula armazena um símbolo
+  - ***Não é possível gravar***
+- Unidade de controle
+  - Lê célula a célula da fita
+  - Armazena o estado corrente
+  - Movimento sempre a **direita**
+  - Onde fica armazenado o programa definido abaixo
+- Programa de transição de estados
+  - É o que caracteriza o autômato
+  - Define o novo estado a partir do estado corrente e do valor lido da fita
+
+> Estado serve como única forma de memória
+
+![Representação gráfica de um autômato finito](images/automato_finito_maquina.png)
+
+> Branco (b/) representa o início e fim da fita
+
+### Definição: Autômato Finito (Determinístico) - Ḍef·1
+
+Caracterizado por uma quíntupla
+
+- A(Q,Σ,δ,q₀,F)
+- Q: Conjunto finito de estados
+- Σ: Alfabeto(símbolos da fita): Σ ∩ Q = ∅
+  - O que eu escolher pro alfabeto, não escolher como estado
+  - Alfabeto binário não pode ter nem o estado 0 nem o estado 1
+- q₀: Estado inicial: q₀ ⊆ Q
+  - Tem que estar contido no meu conjunto de estados
+  - "Dos elementos de Q, qual é o estado que é considerado **inicial**
+- δ: Função de transição de estado: Q x Σ -> Q
+  - Conjunto de instruções
+  - Estado com Símbolo do Alfabeto gera outro estado
+- F: Conjunto de estados finais (aceitação): F ⊆ Q
+  - Tem que estar contido no meu conjunto de estados
+  - "Dos elementos de Q, quais são os estados que são considerados **finais**
+
+### Definição: Função de Transição de Estados ou Programa (δ)
+
+> a.k.a.: O porquê da piada milenar de "Garoto de Programa"
+
+Para todo os estados possível do autômato (q ∈ Q), a função deve definir qual o próximo estado do autômato (q' ∈ Q), quando for lido qualquer símbolo na fita (a ∈ Σ)
+
+δ(q,a) = q'
+
+Ou seja,
+
+O autômato estando no estado ***q*** e lendo **a**, avança a fita e vai pro estado ***q'***
+
+#### Notação matemática
+
+- A = (Q,Σ,δ,q₀,F)
+- Q = {q₀,q₁}
+- Σ = {0,1}
+- F = {q1}
+- δ
+  - δ(q₀, 0) = q₀
+  - δ(q₀, 1) = q₁
+  - δ(q₁, 0) = q₁
+  - δ(q₁, 1) = q₁
+
+#### Notação matricial
+
+δ|a₀|a₁|...|aₙ
+-|-|-|-|-
+q₀|q|q||q
+q₁|q|q||q
+q₂|q|q||q
+...|
+qᶠ|q|q||q
+
+##### Exemplo anterior em notação matricial
+
+δ|0|q
+-|-|-
+=> q₀|q₀|q₁
+q₁|q₁|q₁
+
+> =>q₀ é estado inicial, indicado pela notação "=>"
+
+#### Notação em grafo
+
+> Mais alto nível
+
+![Notação em grafo](images/notacao_grafo.png)
+
+##### Exemplo anterior em notação em grafo
+
+![Notação em grafo](images/exemplo_em_grafo.png)
+
+
+### Definição: Função de transição de estados Estendida(δ̲)
+
+A função δ̲ é uma função δ̲: Q x Σ\* -> Q.
+
+- δ̲(q,ε) = q
+- δ̲(q,aw) = δ̲(δ(q,a),w), sendo w ∈ Σ\*, α ∈ Σ
+  - a = primeiro símbolo da palavra
+  - w = restante da palavra
+
+### Definição: Palavra aceita por um Autômato Finito
+
+Dado um autômato A = (Q,Σ,δ,q₀,F), uma palavra w ∈ Σ\*, w é aceito por A se δ̲(q₀,w) ∈ F.  
+
+> Se o autômato, partindo de q₀ e lendo todos os símbolos da palavra terminar em um estado final, a palavra é aceita.
+
+### Condição de parada do Autômato Finito
+
+Sempre para ao terminar de processar uma palavra, aceitando-a ou não
+
+### Definição: Linguagem reconhecida por um Autômato Finito
+
+**```L(A) = {w ∈ Σ | δ̲(q₀,w) ∈ F}```**
