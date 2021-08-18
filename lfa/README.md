@@ -365,3 +365,50 @@ Sempre para ao terminar de processar uma palavra, aceitando-a ou não
 ### Definição: Linguagem reconhecida por um Autômato Finito
 
 **```L(A) = {w ∈ Σ | δ̲(q₀,w) ∈ F}```**
+
+## Autômato Finito Não Determinístico
+
+> Para cada momento de não determinismo, a máquina abre uma cópia de sí mesma para resolver o problema
+
+### Definição: Não Determinismo
+
+Em uma transição não determinista, a partir de um estado q₁, é possível ir para mais de um estado, exemplo
+
+> ```δ(q₁,a) = {q₁,q₂}```
+
+### Definição: Autômato Finito Não Determinístico - Def1
+
+É um Autômato Finito em que são permitidas transições não determinísticas
+
+### Definição: Autômato Finito Não Determinístico - Def2
+
+> Igual à AFD, diferença na definição de função de transição
+
+- A = (Q,Σ,δ,q₀,F)
+- Q: Conjunto finito de estados
+- Σ: Alfabeto(símbolos da fita): Σ ∩ Q = ∅
+- q₀: Estado inicial: q₀ ⊆ Q
+- **δ: Função de transição de estado: Q x Σ -> 2Q**
+  - 2Q é o conjunto potência de Q (todos os subconjuntos)
+  - Saída é um conjunto de estados
+- F: Conjunto de estados finais (aceitação): F ⊆ Q
+
+### Definição: Função de Transição de Estados
+
+δ = (q,a) = {q₁,q₂,...,qₙ}
+
+Estando em um estado "q", e lendo o símbolo "a", quais são os possíveis estados para qual a máquina irá transacionar
+
+### Exemplo 1
+
+#### Representação em matriz
+
+δ₅|a|b
+-|-|-
+q₀|{q₀,q₁}|{q₀,q₂}|
+q₁|{qᶠ}|
+q₂||{qᶠ}
+qᶠ|{qᶠ}|{qᶠ}
+
+> L = {w ∈ {a,b}* | "aa" ou "bb" é subpalavra de w}
+
