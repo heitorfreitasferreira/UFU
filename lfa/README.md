@@ -366,6 +366,7 @@ Sempre para ao terminar de processar uma palavra, aceitando-a ou não
 
 **```L(A) = {w ∈ Σ | δ̲(q₀,w) ∈ F}```**
 
+<<<<<<< Updated upstream
 ## Autômato Finito Não Determinístico
 
 > Para cada momento de não determinismo, a máquina abre uma cópia de sí mesma para resolver o problema
@@ -412,3 +413,46 @@ qᶠ|{qᶠ}|{qᶠ}
 
 > L = {w ∈ {a,b}* | "aa" ou "bb" é subpalavra de w}
 
+=======
+Ou seja,
+
+Se existir algum estado final em δ̲(q₀,w)
+
+## Determinismo x Não-Determinismo
+
+- Não determinismo
+  - aparentemente há um maior poder computacional de um AF
+  - Na realidade não aumenta com relação ao AFD
+
+> Pra cada AFD existe um AFND correspondente, o contrário é verdadeiro
+
+### Equivalência entre AFD e AFND
+
+Seja uma L(A) de um AFND, exise um AFD'A que também aceita L(A)
+
+Seja o AFND A = (Q,Σ,δ,q₀,F)
+
+O AFD A' equivalente a A é dado por  A' = (Q',Σ',δ',q₀',F'), sendo:
+
+- Q' = 2ᵠ, elementos de Q' do tipo {q₁,q₂,..., qₖ}, sendo qᵢ = (i = 1, 2,..., k) ∈ Q, representados por <q₁ q₂ qₖ>
+- F' = Estados de Q' que contêm pelo menos 1 estado de F
+- Q₀' = q₀, representado por <q₀>
+- δ'({q₁,q₂,..., qⱼ},a) = δ(q₁,a) ∪ δ(q₂,a) ∪ ... ∪ δ(qⱼ,a) = {r₁, r,₂, ..., rᵢ}
+
+## Autômato Finito não Determinístico com Movimentos Vazios (AFε)
+
+> AFND com a capacidade de trocar de estados sem ler símbolo
+
+### Definição: Autômato Finito Determinístico com Movimentos Vazios (AFε) - Ḍef·1
+
+Caracterizado por uma quíntupla
+
+- A(Q,Σ,δ,q₀,F)
+- Q: Conjunto finito de estados
+- Σ: Alfabeto(símbolos da fita): Σ ∩ Q = ∅
+- q₀: Estado inicial: q₀ ⊆ Q
+- δ: Função de transição de estado: Q x Σ -> Q
+  - TODO
+  - Estado com Símbolo do Alfabeto gera outro estado
+- F: Conjunto de estados finais (aceitação): F ⊆ Q
+>>>>>>> Stashed changes
