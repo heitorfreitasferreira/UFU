@@ -12,53 +12,20 @@ size_t file_counter = 0;
 
 int main()
 {
-    int cpus = get_nprocs_conf();
-    int cpus_available = get_nprocs();
-    // char input[100];
-
-    int error = 1;
-
-    // printf("\e[1;1H\e[2J");
-    // printf("DIRECTORY FILES AND FOLDERS COUNTER by - Heitor neh mona\n");
-    // printf("----------------------------------------------------\n");
-
-    // printf("\nCPUs: %d\n---------\nCPUs Available: %d\n\n", cpus, cpus_available);
-
-    // while (error)
-    // {
-    // printf("\nDir path to list: ");
-    // scanf(" %99[^\n]", input);
-    // clean_buffer();
-
-    error = check_dir("/");
-
-    //     if (error)
-    //         printf("\nCtrl + C to exit...");
-    // }
-
-    printf("\n-------------------------------------------------------------------");
-    printf("\nTotal files: %ld\nTotal folders: %ld", file_counter, dir_counter);
-    printf("\n-------------------------------------------------------------------\n");
-
-    // printf("Press enter to exit...");
-    // getchar();
+    check_dir("/");
+    printf("\nArquivos: %ld\nDiretorios: %ld", file_counter, dir_counter);
 }
 
-// Count files and directories in *dir. Returns values by reference *dir_counter and *file_counter.
-// Do the same for subdirectories recursively
-int check_dir(char *dir /*, size_t *dir_counter, size_t *file_counter*/)
+
+int check_dir(char *dir)
 {
 
     DIR *directory;
     directory = opendir(dir);
 
     if (directory == NULL)
-    {
-        // printf("\nInvalid path!\n");
         return 1;
-    }
     struct dirent *file;
-    // printf("\nCounting files and folders in dir \"%s\".", dir);
     size_t files = 0;
     size_t folders = 0;
 
@@ -79,9 +46,6 @@ int check_dir(char *dir /*, size_t *dir_counter, size_t *file_counter*/)
 
     dir_counter += folders;
     file_counter += files;
-
-    // printf("\nTotal files in %s: %ld", dir, files);
-    // printf("\nTotal folders in %s: %ld", dir, folders);
 
     closedir(directory);
     return 0;
