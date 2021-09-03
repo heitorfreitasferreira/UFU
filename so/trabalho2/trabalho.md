@@ -178,6 +178,60 @@ Executar o arquivo output
 
 # Ex3
 
+Para solucionar a 3 basta buscar no arquivo onde começa a main
+
+```hex
+08048228 <main>:
+ 8048228:	8d 4c 24 04          	lea    0x4(%esp),%ecx
+ 804822c:	83 e4 f0             	and    $0xfffffff0,%esp
+ 804822f:	ff 71 fc             	pushl  -0x4(%ecx)
+ 8048232:	55                   	push   %ebp
+ 8048233:	89 e5                	mov    %esp,%ebp
+ 8048235:	51                   	push   %ecx
+ 8048236:	83 ec 04             	sub    $0x4,%esp
+ 8048239:	e8 26 00 00 00       	call   804824c <f1>
+ 804823e:	e8 09 00 00 00       	call   8048264 <f2>
+ 8048243:	83 c4 04             	add    $0x4,%esp
+ 8048246:	59                   	pop    %ecx
+ 8048247:	5d                   	pop    %ebp
+ 8048248:	8d 61 fc             	lea    -0x4(%ecx),%esp
+ 804824b:	c3                   	ret    
+```
+
+e alterar os valores do comando *8048239* e do *804823e*, para que a conta da posição atual com o código ao lado some a posição de onde começam os procedimentos f1 e f2
+
+```hex
+0804824c <f1>:
+ 804824c:	55                   	push   %ebp
+ 804824d:	89 e5                	mov    %esp,%ebp
+ 804824f:	83 ec 08             	sub    $0x8,%esp
+ 8048252:	83 ec 0c             	sub    $0xc,%esp
+ 8048255:	68 48 2a 0b 08       	push   $0x80b2a48
+ 804825a:	e8 31 0f 00 00       	call   8049190 <_IO_puts>
+ 804825f:	83 c4 10             	add    $0x10,%esp
+ 8048262:	c9                   	leave  
+ 8048263:	c3                   	ret    
+```
+
+```hex
+08048264 <f2>:
+ 8048264:	55                   	push   %ebp
+ 8048265:	89 e5                	mov    %esp,%ebp
+ 8048267:	83 ec 08             	sub    $0x8,%esp
+ 804826a:	83 ec 0c             	sub    $0xc,%esp
+ 804826d:	68 4b 2a 0b 08       	push   $0x80b2a4b
+ 8048272:	e8 19 0f 00 00       	call   8049190 <_IO_puts>
+ 8048277:	83 c4 10             	add    $0x10,%esp
+ 804827a:	c9                   	leave  
+ 804827b:	c3                   	ret    
+ 804827c:	90                   	nop
+ 804827d:	90                   	nop
+ 804827e:	90                   	nop
+ 804827f:	90                   	nop
+ ```
+
+ O arquivo resultante está na pasta do exercicio
+
 # Ex4
 
 ## prog02
@@ -215,3 +269,60 @@ Número de execução|real|user|sys
 Média|0,0108s|0,0007s|0,0098s
 
 # Ex5
+
+Versão 1
+
+```c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+#include <sys/sysinfo.h>
+
+int check_dir(char *dir);
+void clean_buffer();
+size_t dir_counter = 0;
+size_t file_counter = 0;
+
+int main()
+{
+    check_dir("/");
+    printf("\nArquivos: %ld\nDiretorios: %ld", file_counter, dir_counter);
+}
+
+
+int check_dir(char *dir)
+{
+
+    DIR *directory;
+    directory = opendir(dir);
+
+    if (directory == NULL)
+        return 1;
+    struct dirent *file;
+    size_t files = 0;
+    size_t folders = 0;
+
+    while (file = readdir(directory))
+    {
+        if (file->d_type == 4 && strcmp(file->d_name, ".") != 0 && strcmp(file->d_name, "..") != 0)
+        {
+            char next_dir[1000];
+            strcpy(next_dir, dir);
+            strcat(next_dir, "/");
+            strcat(next_dir, file->d_name);
+            check_dir(next_dir);
+            folders++;
+        }
+        else if (strcmp(file->d_name, ".") != 0 && strcmp(file->d_name, "..") != 0)
+            files++;
+    }
+
+    dir_counter += folders;
+    file_counter += files;
+
+    closedir(directory);
+    return 0;
+}
+```
