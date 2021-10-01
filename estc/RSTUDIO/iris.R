@@ -42,4 +42,51 @@ for (j in 1:30) {
 classificacao
 mean(treino[classificacao,5] == teste[,5])
 
+## LISTA 1
+
+#ex1
+qnt <- 0
+for (i in 1:1000000) {
+  x <- sample(x = 1:6, size = 1,replace = T)
+  y <- sample(x = 1:6, size = 1,replace = T)
+  if(((x+y)%%2 == 0 ) & (y ==5 ||x==5)){ qnt <- qnt +1}
+}
+qnt/1000000
+
+
+#ex2 tentativa 1
+positivo = 0
+for (i in 1:1000000) {
+  contraiu <- sample(x = 1:1000, size = 1)
+  if (contraiu <= 4){
+    teste <- sample(x = 1:100, size = 1)
+    if(teste>=94){
+      positivo <- positivo + 1
+    }
+  }
+  else{
+    teste <- sample(x = 1:1000, size = 1)
+    if(teste == 1){
+      positivo <- positivo + 1
+    }
+  }
+  
+}
+positivo/1000000
+#ex2 tentativa 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -25,27 +25,3 @@ for (i in 1:100000) {
   }
 }
 qnt/100000
-# eX 4
-
-xVec <- sample(0:999, 250, replace=T)
-yVec <- sample(0:999, 250, replace=T)
-
-xImpar <- c()
-for(i in xVec){
-  if(i%%2 ==1){
-    xImpar <- c(xImpar,i)
-  }
-}
-xImpar
-
-
-sumbYX = yVec[-1] - xVec[-length(xVec)]
-
-
-
-
-senDivCos <- c()
-for(i in 2:250){
-  senDivCos <- c(senDivCos,sin(yVec[i])/cos(xVec[i-1]))
-}
-senDivCos
