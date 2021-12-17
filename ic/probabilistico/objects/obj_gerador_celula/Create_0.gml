@@ -8,6 +8,7 @@ VERTICAL = 64
 #macro solo_exposto 0
 #macro arvore_queimando 1
 #macro arvore_viva 2
+#macro fator_queima 0.7
 #endregion
 #region Inicializando a matriz do reticulado
 for(var i = 0; i<VERTICAL;i++){
