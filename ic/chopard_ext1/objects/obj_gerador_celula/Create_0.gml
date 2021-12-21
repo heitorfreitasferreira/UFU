@@ -5,9 +5,16 @@ celulas = []
 #macro altura 16
 #macro HORIZONTAL 128
 #macro VERTICAL  64
-#macro solo_exposto 0
-#macro arvore_queimando 1
-#macro arvore_viva 2
+
+
+#macro solo_exposto 3
+#macro queima 0
+#macro queima2 1
+#macro queima3 2
+#macro arvore_viva 4
+#macro agua 5
+#macro asfalto 6
+#macro casa 7
 #endregion
 #region Inicializando a matriz do reticulado
 for(var i = 0; i<=VERTICAL;i++){
