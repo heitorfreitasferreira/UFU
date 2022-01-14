@@ -48,6 +48,22 @@ function chopard2(n,s,o,l,ne,no,se,so,centro){
 	if(centro == arvore_viva and f<=0.0005) return arvore_queimando
 	return centro
 }
+function chopardVento(n,s,o,l,ne,no,se,so,centro, intensidade){
+	//Função simulando vento vindo de ne
+	//intensidade: 0-1
+	var p = random_range(0,1)
+	var f = random_range(0,1)
+	var g = random_range(0,1)
+	var h = random_range(0,1)
+	var total = (n==arvore_queimando)+(s==arvore_queimando)+(o==arvore_queimando)+(l==arvore_queimando)+(ne==arvore_queimando)+(no==arvore_queimando)+(se==arvore_queimando)+(so==arvore_queimando)
+	var fogoContraVento = (ne==arvore_queimando)
+	if(centro == arvore_queimando) return solo_exposto
+	if(fogoContraVento and (intensidade*h)>0.7) return arvore_queimando
+	if(centro == arvore_viva and (total>0)*(1-g) > 0.7) return arvore_queimando
+	if(centro == solo_exposto and p<=0.01) return arvore_viva
+	//if(centro == arvore_viva and f<=0.0005) return arvore_queimando
+	return centro
+}
 /*
 i) uma celula de estado agua ou estrada não é alterada (inicialmente o modelo n não está tratando mudança de volume de corpos d’agua e construção de novas estradas/vias);
 ii) uma célula de estado casa ou arvore, com vizinha de estado fogo, transforma-se em célula de estado fogo; 
@@ -60,8 +76,8 @@ vii) no estado solo ha a probabilidade p de tornar-se arvore.
 
 */
 //Remover Borda FEITO
-//Implementar o de muitos Estados 
-//Implementar o do Vento em cima do Chopard padrão
+//Implementar o de muitos Estados FEITO
+//Implementar o do Vento em cima do Chopard padrão FEITO
 //Implementar o de muitos Estados com o Vento
 
 #endregion
@@ -88,7 +104,7 @@ for(var i = 0;i< VERTICAL; i++){
 		/*if(j == HORIZONTAL-1) var direita = HORIZONTAL
 		else*/ var direita = j +1
 		#endregion
-		novosEstados[i][j] = chopard2(	celulas[cima][j].estado,
+		novosEstados[i][j] = chopardVento(	celulas[cima][j].estado,
 									celulas[baixo][j].estado,
 									celulas[i][esquerda].estado,
 									celulas[i][direita].estado,
@@ -96,7 +112,8 @@ for(var i = 0;i< VERTICAL; i++){
 									celulas[cima][esquerda].estado,
 									celulas[baixo][direita].estado,
 									celulas[baixo][esquerda].estado,
-									celulas[i][j].estado)
+									celulas[i][j].estado,
+									1)
 	}
 }
 #endregion
