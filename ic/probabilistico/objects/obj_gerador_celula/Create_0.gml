@@ -8,6 +8,20 @@ celulas = []
 #macro solo_exposto 0
 #macro arvore_queimando 1
 #macro arvore_viva 2
+iteracoes = 0
+#endregion
+
+
+#region Inicializando a matriz de estados
+novosEstados = []
+for(var i = 0; i<VERTICAL;i++){
+	var linhas = []
+	for(var j = 0;j<HORIZONTAL; j++){
+		array_push(linhas,false)
+	}
+	array_push(novosEstados,linhas)
+	array_delete(linhas,0,array_length(linhas))
+}
 #endregion
 #region Inicializando a matriz do reticulado
 for(var i = 0; i<=VERTICAL;i++){

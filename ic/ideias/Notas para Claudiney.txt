@@ -1,0 +1,7 @@
+Disposição inicial da vegetação
+
+Considerar novas variáveis (elevação?, humidade do ar, humidade da vegetação, temperatura)
+
+comparar com um ou mais incêndio(s) da região para validar o modelo
+
+usar equação de decaimento de vento para montar a matriz?

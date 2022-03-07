@@ -1,0 +1,39 @@
+Disposição inicial da vegetação
+	Forma de transformar mapa em grid
+		Discrete Global Grid System (DGGS)
+
+Considerar novas variáveis (elevação?, humidade do ar, humidade da vegetação, temperatura)
+
+comparar com um ou mais incêndio(s) da região para validar o modelo
+
+usar equação de decaimento de vento para montar a matriz?
+
+	https://sci-hub.se/https://doi.org/10.1016/j.amc.2008.06.046
+	pag 5
+
+Elevação faz sentido num contexto de Cerrado??
+	Calcular média e desvio padrão do lugar onde os artigos que usaram e comparar com Uberlândia
+
+
+Usar algoritmo genético já?
+
+3D? (mais duas camadas de reticulado, acima e abaixo)
+
+#TODO
+Ler
+#Ver com o especialista 
+
+Pensar em estados de vegetação
+
+------------------------------------------------------------------------------------
+Escolher a quantidade de passo que é interessante pra mostrar as diferenças 
+
+Printar de X em X espaço de tempo
+Experimentos:
+	Mudar coef geral,
+	Mudar direção do vento,(o->l,ne->so),
+	# Mudar multiplicador coef para os tipos de fogo,
+	Comparar renascimento com função linear e com função exp
+
+
+

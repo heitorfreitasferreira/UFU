@@ -64,47 +64,7 @@ function chopardVento(n,s,o,l,ne,no,se,so,centro, intensidade){
 	//if(centro == arvore_viva and f<=0.0005) return arvore_queimando
 	return centro
 }
-//Matriz de probabilidade da posição gerar fogo no centro
-var coef = 1
 
-				
-matrixCoef =	[	
-					[coef*0.6,	coef*0.8,	coef*0.6],
-					[coef*0.4,	0,			coef*0.4],
-					[coef*0.2,	coef*0.1,	coef*0.2]
-				];
-
-function rotaciona90(matriz){
-	var copia=	[	
-					[0,	0,	0],
-					[0,	0,	0],
-					[0,	0,	0]
-				];
-	//array_copy(copia,0,matriz,0,array_length(matriz))
-	
-	for (var i = 0; i < 3; i++) {
-	    for (var j = 0; j < 3; j++) {
-		   copia[j][3-1-i] = matriz[i][j]
-		}
-	}
-	return copia
-}
-var intermediaria = rotaciona90(matrixCoef)
-matrixCoef = rotaciona90(intermediaria)
-/*			
-var decay1 = 0.2
-var decay2 = 0.4
-var decay3 = 0.6
-var decay4 = 0.7
-
-
-var decayM = 0.75
-matrixCoef2 =	[	
-					[coef*,	coef,	coef-decay1],
-					[coef-decay2,	0,			coef-decay1*2],
-					[coef*0.2,	coef*0.1,	coef*0.2]
-				];
-*/
 function taDandoOnda(n,s,o,l,ne,no,se,so,centro){
 	//Matriz de probabilidade da posição gerar fogo no centro
 	
@@ -185,6 +145,58 @@ function chopardVentoTunadoMatriz(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima)
 	//if(centro == arvore_viva and f<=0.0005) return arvore_queimando
 	return centro
 }
+function heitorzera1(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queimando){
+	
+	#region Matrizes
+	
+		var temQueima = [
+			[no==arvore_queimando,	n==arvore_queimando,	ne==arvore_queimando],
+			[o==arvore_queimando,		false,				l==arvore_queimando],
+			[so==arvore_queimando,	s==arvore_queimando,	se==arvore_queimando]
+		]
+		var temInicioFogo = [
+			[no==inicio_fogo, n==inicio_fogo,	 ne==inicio_fogo],
+			[o==inicio_fogo, false,				l==inicio_fogo],
+			[so==inicio_fogo, s==inicio_fogo,	se==inicio_fogo]
+		] //0.6
+		var temBrasa = [
+			[no==queima_lenta,n==queima_lenta,	ne==queima_lenta],
+			[o==queima_lenta,	false,			l==queima_lenta],
+			[so==queima_lenta,s==queima_lenta,	se==queima_lenta]
+		]//0.2
+	#endregion
+	if(centro == inicio_fogo and tempo_queimando>2) return arvore_queimando
+	if(centro == arvore_queimando and tempo_queimando>6) return queima_lenta
+	if(centro == queima_lenta and tempo_queimando >16) return solo_exposto
+	var p = random_range(0,1)
+	#region Renascimento
+	//Exp
+	//if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima*coef*coef)/250000)) return arvore_viva
+	//Linear
+	if(centro == solo_exposto and p<=0.0001) return arvore_viva
+	#endregion
+	var temQueimaSoma = temQueima[0][0] + temQueima[0][1] + temQueima[0][2] + temQueima[1][0] + temQueima[1][1] + temQueima[1][2] + temQueima[2][0] + temQueima[2][1] + temQueima[2][1] 
+	var temInicioFogoSoma = temInicioFogo[0][0] + temInicioFogo[0][1] + temInicioFogo[0][2] + temInicioFogo[1][0] + temInicioFogo[1][1] + temInicioFogo[1][2] + temInicioFogo[2][0] + temInicioFogo[2][1] + temInicioFogo[2][1] 
+	var temBrasaSoma = temBrasa[0][0] + temBrasa[0][1] + temBrasa[0][2] + temBrasa[1][0] + temBrasa[1][1] + temBrasa[1][2] + temBrasa[2][0] + temBrasa[2][1] + temBrasa[2][1] 
+
+	#region Ta pegando fogo bixo
+	if(centro == arvore_viva and temQueimaSoma+temInicioFogoSoma+temBrasaSoma>0 ){
+		var randomM =	[
+							[random_range(0,1),	random_range(0,1),	random_range(0,1)],
+							[random_range(0,1),			0,			random_range(0,1)],
+							[random_range(0,1),	random_range(0,1),	random_range(0,1)]
+						];
+		for(var i = 0; i<3;i++){
+			for(var j = 0; j<3;j++){
+				if(temInicioFogo[i][j] and randomM[i][j]<matrixCoef[i][j]*0.6) return inicio_fogo
+				if(temQueima[i][j] and randomM[i][j]<matrixCoef[i][j]) return inicio_fogo
+				if(temBrasa[i][j] and randomM[i][j]<matrixCoef[i][j]*0.2) return inicio_fogo
+			}
+		}
+	}
+	#endregion
+	return centro
+}
 #endregion
 #region Calcular novos estados
 
@@ -201,8 +213,8 @@ for(var i = 0;i< VERTICAL; i++){
 		/*if(j == HORIZONTAL-1) var direita = HORIZONTAL
 		else*/ var direita = j +1
 		#endregion
-		novosEstados[i][j] = chopardVentoTunadoMatriz(	
-							celulas[cima][j].estado,
+		novosEstados[i][j] = heitorzera1(	
+									celulas[cima][j].estado,
 									celulas[baixo][j].estado,
 									celulas[i][esquerda].estado,
 									celulas[i][direita].estado,
@@ -211,7 +223,8 @@ for(var i = 0;i< VERTICAL; i++){
 									celulas[baixo][direita].estado,
 									celulas[baixo][esquerda].estado,
 									celulas[i][j].estado,
-									celulas[i][j].tempo_desde_queima
+									celulas[i][j].tempo_desde_queima,
+									celulas[i][j].tempo_queimando
 									)
 	}
 }

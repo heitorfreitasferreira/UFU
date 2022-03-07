@@ -5,4 +5,5 @@ estado = arvore_viva
 	estado = solo_exposto
 }*/
 tempo_desde_queima = 0
-#macro qnt_estados 3
+tempo_queimando = -1
+#macro qnt_estados 6
