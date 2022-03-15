@@ -145,6 +145,34 @@ function chopardVentoTunadoMatriz(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima)
 	//if(centro == arvore_viva and f<=0.0005) return arvore_queimando
 	return centro
 }
+function dilao1993(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queimando){
+	
+		var temQueima = [
+			[no==arvore_queimando,	n==arvore_queimando,	ne==arvore_queimando],
+			[o==arvore_queimando,		false,				l==arvore_queimando],
+			[so==arvore_queimando,	s==arvore_queimando,	se==arvore_queimando]
+		]
+	
+	if(centro == arvore_queimando and tempo_queimando>3) return solo_exposto
+	
+	var temQueimaSoma = temQueima[0][0] + temQueima[0][1] + temQueima[0][2] + temQueima[1][0] + temQueima[1][1] + temQueima[1][2] + temQueima[2][0] + temQueima[2][1] + temQueima[2][1] 
+	
+	#region Ta pegando fogo bixo
+	if(centro == arvore_viva and temQueimaSoma>0 ){
+		var randomM =	[
+							[random_range(0,1),	random_range(0,1),	random_range(0,1)],
+							[random_range(0,1),			0,			random_range(0,1)],
+							[random_range(0,1),	random_range(0,1),	random_range(0,1)]
+						];
+		for(var i = 0; i<3;i++){
+			for(var j = 0; j<3;j++){
+				if(temQueima[i][j] and randomM[i][j]<matrixCoef[i][j]) return arvore_queimando
+			}
+		}
+	}
+	#endregion
+	return centro
+}
 function heitorzera1(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queimando){
 	
 	#region Matrizes
@@ -171,9 +199,10 @@ function heitorzera1(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queiman
 	var p = random_range(0,1)
 	#region Renascimento
 	//Exp
-	//if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima*coef*coef)/250000)) return arvore_viva
+	//if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima*coef/5*coef/5)/250000)) return arvore_viva //antigo
+	if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima)/20000000)) return arvore_viva
 	//Linear
-	if(centro == solo_exposto and p<=0.0001) return arvore_viva
+	//if(centro == solo_exposto and p<=0.0001) return arvore_viva
 	#endregion
 	var temQueimaSoma = temQueima[0][0] + temQueima[0][1] + temQueima[0][2] + temQueima[1][0] + temQueima[1][1] + temQueima[1][2] + temQueima[2][0] + temQueima[2][1] + temQueima[2][1] 
 	var temInicioFogoSoma = temInicioFogo[0][0] + temInicioFogo[0][1] + temInicioFogo[0][2] + temInicioFogo[1][0] + temInicioFogo[1][1] + temInicioFogo[1][2] + temInicioFogo[2][0] + temInicioFogo[2][1] + temInicioFogo[2][1] 

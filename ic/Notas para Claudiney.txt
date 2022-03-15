@@ -36,4 +36,7 @@ Experimentos:
 	Comparar renascimento com função linear e com função exp
 
 
+-------------------------------------------------------------------------------------
+
+Dividir em Quadrantes - direções diferentes
 

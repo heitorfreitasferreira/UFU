@@ -1,0 +1,48 @@
+
+- Referências
+	- enviar o nome dos artigos que vc pesquisou
+	* Adaptive Forest Fire Spread Simulation Algorithm Based on Cellular Automata
+	* STUDY ON FOREST FIRE SPREAD MODEL OF MULTI-DIMENSIONAL CELLULAR AUTOMATA BASED ON ROTHERMEL SPEED FORMULA
+	* Simulation of forest fire fronts using cellular automata
+	* A cellular automata model for forest fire spread prediction: The case
+of the wildfire that swept through Spetses Island in 1990
+
+	* Os iniciais que a Gina passou
+
+- Figuras do modelo
+	- fazer uma figura com cada estado e suas cores (ver lima2014)
+		[enviar um txt com a descrição de cada cor]
+		#744F2B - Célula queimada (sem material combustível)
+			Prob exponêncial
+		#EE7024 - Célula em fogo inicial
+			60% * vento
+		#EE1C24 - Célula em fogo completo
+			100% * vento
+		#7F1A00 - Célula em brasa
+			20% * vento
+		#138A07 - Célula com material combustível
+		#00AEF0 - Célula água (não interativa)
+	- fazer uma figura com os valores da matriz de probabilidade
+	
+
+- Figuras das simulações
+	- trocar a tonalidade do verde (rgb do print)
+	- trocar a funcao para: ((x^2)/(2*10^6)) 
+		[verificar antes se o renascimento vai ficar mais lento]
+	- verificar pq as figuras base(50) e renas_linear(50) ficaram iguais
+	- testar se uma imagem com algum fluxo de agua fica bom (print de exemplo)
+	- realizar os experimentos, e printar os tempos {10, 20, 50, 100, 200 e 300}
+		[todos modelos de outros autores e o modelo proposto (cada variação)]
+		[variações do modelo proposto [base, renas_linear, cof0.5, cof1.5, vento_dir, agua]]
+		[colocar as pastas das imagens no overleaf]
+	
+	!salvar os videos dos experimentos para colocarmos no YouTube
+
+
+- Graficos
+	- desativar o renascimento
+	- executar os experimentos e salvar:
+		. quantas celulas queimaram até que não haja mais fogo
+		. tempo real gasto em segundos
+		. executar 10 vezes para cada um (necessário para média, dp...)
+		[todos modelos dos outros autores e o modelo proposto (cada variação)]

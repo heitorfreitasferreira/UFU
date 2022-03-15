@@ -79,7 +79,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_estado","path":"sprites/spr_estado/spr_estado.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_estado",
     "tags": [],
     "resourceType": "GMSequence",

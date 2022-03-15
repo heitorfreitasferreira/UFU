@@ -1,4 +1,5 @@
 ///@description Criação do reticulado
+path = filename_path(working_directory + "level.txt");
 #region Variáveis
 celulas = []
 #macro largura sprite_get_width(spr_estado)
@@ -92,16 +93,16 @@ function rotaciona90(matriz){
 	}
 	return copia
 }
-coef = 0.2
+coef = 1
 var inicialCardeais =	[	
-							[coef*0.6,	coef*0.8,	coef*0.6],
-							[coef*0.4,	0,			coef*0.4],
-							[coef*0.2,	coef*0.1,	coef*0.2]
+							[coef*0.12,	coef*0.16,	coef*0.12],
+							[coef*0.08,	0,			coef*0.08],
+							[coef*0.04,	coef*0.002,	coef*0.04]
 						];
 var inicialColaterais =	[	
-							[coef*0.8,	coef*0.6,	coef*0.4],
-							[coef*0.6,	0,			coef*0.2],
-							[coef*0.4,	coef*0.2,	coef*0.1]
+							[coef*0.16,	coef*0.12,	coef*0.08],
+							[coef*0.12,	0,			coef*0.04],
+							[coef*0.08,	coef*0.04,	coef*0.002]
 						];
 
 matrixCoef = [	
@@ -145,5 +146,5 @@ function defineDirecao(i,f,inicialCardeais, inicialColaterais){
 	
 }
 
-matrixCoef = defineDirecao("so","ne",inicialCardeais, inicialColaterais)
+matrixCoef = defineDirecao("l","o",inicialCardeais, inicialColaterais)
 #endregion

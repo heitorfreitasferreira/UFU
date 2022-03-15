@@ -1,1 +1,2 @@
-draw_text(30,30,iteracoes)
+draw_text(0,0,iteracoes)
+//draw_text(0,0,path)
