@@ -1,5 +1,15 @@
 ///@description Avançar o estado do reticulado
 #region Funções
+function avalia_quadrante(i,j){
+	if (i < HORIZONTAL / 2 and j < VERTICAL / 2)
+	  quadrante_b++;
+	if (i < HORIZONTAL / 2 and j >= VERTICAL / 2)
+	  quadrante_a++;
+	if (i >= HORIZONTAL / 2 and j < VERTICAL / 2)
+	  quadrante_c++;
+	if (i >= HORIZONTAL / 2 and j >= VERTICAL / 2)
+	  quadrante_d++;
+}
 function regra90(esquerda,meio,direita){
 	if(esquerda and meio and direita) return false
 	if(esquerda and meio and not direita) return true
@@ -255,6 +265,8 @@ for(var i = 0;i< VERTICAL; i++){
 									celulas[i][j].tempo_desde_queima,
 									celulas[i][j].tempo_queimando
 									)
+		if novosEstados[i][j] == inicio_fogo and celulas[i][j].estado != inicio_fogo
+			avalia_quadrante(i,j)
 	}
 }
 #endregion
@@ -266,4 +278,9 @@ for(var i = 0;i< VERTICAL; i++){
 }
 #endregion
 iteracoes++
+if iteracoes<200
 alarm[0] = 1
+else{
+	mostrar_dados = true
+	instance_create_layer(0,0,"Instances",obj_divisoria)
+}

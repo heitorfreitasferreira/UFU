@@ -1,5 +1,5 @@
 ///@description Criação do reticulado
-path = filename_path(working_directory + "level.txt");
+//instance_create_layer(room_width/2,room_height/2,"Instances",obj_divisoria)
 #region Variáveis
 celulas = []
 #macro largura sprite_get_width(spr_estado)
@@ -13,6 +13,11 @@ celulas = []
 #macro arvore_viva 4
 #macro agua 5
 iteracoes = 0
+quadrante_a = 0
+quadrante_b = 0
+quadrante_c = 0
+quadrante_d = 0
+mostrar_dados = false
 #endregion
 
 #region Inicializando a matriz de estados
