@@ -1,14 +1,19 @@
-import random
+x = int(input()) # 3
+y = int(input()) # 7
+maior = 0
+menor = 0
+if x >= y:
+    maior = x
+    menor = y
+else:
+    maior = y
+    menor = x
+acum = 0
 
-uppercaseLetter1=chr(random.randint(65,90))
-uppercaseLetter2=chr(random.randint(65,90))
-lowercaseLetter1=chr(random.randint(97,122))
-lowercaseLetter2=chr(random.randint(97,122))
-digit1=chr(random.randint(48,57))
-digit2=chr(random.randint(48,57))
-ponctuationSign1=chr(random.randint(33,43))
-ponctuationSign2=chr(random.randint(33,43))
-password = uppercaseLetter1 + uppercaseLetter2 + lowercaseLetter1 + lowercaseLetter2 + digit1 + digit2 + ponctuationSign1 + ponctuationSign2
+while menor <= maior:
+    if menor % 2 == 1:
+        acum = acum + menor
+    menor = menor + 1
 
-password = ''.join(random.sample(password,len(password))) # shuffle, entregar essa parte do código para os alunos
-print(password)
+
+print(acum)
