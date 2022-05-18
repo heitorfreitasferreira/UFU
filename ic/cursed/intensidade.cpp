@@ -509,210 +509,13 @@ int main(int argc, char const *argv[])
     ;
 #pragma endregion visualizaçãoInicial
 
-#pragma region Heitorzera1_coef1
-    coef = 1;
-    for (size_t k = 0; k < NUMERO_EXPERIMENTOS; k++)
-    {
-        srand(k);
-#pragma region zerarReticulado
+#pragma region Heitorzera1_coef_umemeio
 
-        for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-        {
-            for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-            {
-                reticulado[i][j].estado = arvore_viva;
-                reticulado[i][j].tempo_desde_queima = 0;
-                reticulado[i][j].tempo_queimando = 0;
-            }
-        }
-        reticulado[TAMANHO_RETICULADO / 2][TAMANHO_RETICULADO / 2].estado = arvore_queimando;
-        for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-        {
-            reticulado[i][TAMANHO_RETICULADO].estado = solo_exposto;
-            reticulado[i][TAMANHO_RETICULADO].tempo_desde_queima = 0;
-            reticulado[i][TAMANHO_RETICULADO].tempo_desde_queima = 0;
-            /* -------------------------------------------------- */
-            reticulado[TAMANHO_RETICULADO][i].estado = solo_exposto;
-            reticulado[TAMANHO_RETICULADO][i].tempo_queimando = 0;
-            reticulado[TAMANHO_RETICULADO][i].tempo_queimando = 0;
-        }
-#pragma endregion zerarReticulado
-#pragma region avançaReticuladoAtéQueimar
-        int iteracao = 0;
-        do
-        {
-            // Calcula novos estados
-            for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-            {
-                for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-                {
-                    int cima, baixo, esquerda, direita;
-                    if (i == 0)
-                        cima = TAMANHO_RETICULADO;
-                    else
-                        cima = i - 1;
-                    baixo = i + 1;
-                    if (j == 0)
-                        esquerda = TAMANHO_RETICULADO;
-                    else
-                        esquerda = j - 1;
-                    direita = j + 1;
-                    aux_reticulado[i][j] = heitorzera1(reticulado[cima][j],         // n
-                                                       reticulado[baixo][j],        // s
-                                                       reticulado[i][esquerda],     // o
-                                                       reticulado[i][direita],      // l
-                                                       reticulado[cima][direita],   // ne
-                                                       reticulado[cima][esquerda],  // no
-                                                       reticulado[baixo][direita],  // se
-                                                       reticulado[baixo][esquerda], // so
-                                                       reticulado[i][j]             // centro
-                    );
-                    if (aux_reticulado[i][j].estado == inicio_fogo && reticulado[i][j].estado != inicio_fogo)
-                        analise_quadrante(i, j, k, "heitorzera1");
-                }
-            }
-            // Adiciona os estados na matriz principal
-            for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-            {
-                for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-                {
-                    reticulado[i][j] = aux_reticulado[i][j];
-                }
-            }
-#pragma region Visualizacao
-            /*
-            system("cls");
-            print_reticulado();
-            get_char();
-            */
-#pragma endregion Visualizacao
-            iteracao++;
-        } while (iteracao < ITERACOES_ATE_PARAR);
-#pragma endregion avançaReticuladoAtéQueimar
-// cout<<"Experimento "<<k<<" terminou em "<<iteracao<<" iteracoes"<<endl;
-#pragma region salvaDados
-        dadosHeitorzera1[k].iteracoes_ate_apagar = iteracao;
-#pragma endregion salvaDados
-    }
-#pragma region salvaDadosArquivo
-    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_coef1.csv");
-    /*cout << "Heitorzeira1" << endl;
-    print_dados(dadosHeitorzera1);
-    cout << "Media: " << pedro_franklin.media << endl;
-    cout << "Desvio Padrao: " << pedro_franklin.desvio_padrao << endl;
-    */
-    DadosEstatisticos pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
-#pragma endregion salvaDadosArquivo
-#pragma endregion Heitorzera1_coef1
-#pragma region Heitorzera1_coef_meio
-    coef = 0.5;
     for (size_t i = 0; i < 3; i++)
     {
         for (size_t j = 0; j < 3; j++)
         {
             matrixCoef[i][j] *= 0.5;
-        }
-    }
-
-    for (size_t k = 0; k < NUMERO_EXPERIMENTOS; k++)
-    {
-        srand(k);
-#pragma region zerarReticulado
-
-        for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-        {
-            for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-            {
-                reticulado[i][j].estado = arvore_viva;
-                reticulado[i][j].tempo_desde_queima = 0;
-                reticulado[i][j].tempo_queimando = 0;
-            }
-        }
-        reticulado[TAMANHO_RETICULADO / 2][TAMANHO_RETICULADO / 2].estado = arvore_queimando;
-        for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-        {
-            reticulado[i][TAMANHO_RETICULADO].estado = solo_exposto;
-            reticulado[i][TAMANHO_RETICULADO].tempo_desde_queima = 0;
-            reticulado[i][TAMANHO_RETICULADO].tempo_desde_queima = 0;
-            /* -------------------------------------------------- */
-            reticulado[TAMANHO_RETICULADO][i].estado = solo_exposto;
-            reticulado[TAMANHO_RETICULADO][i].tempo_queimando = 0;
-            reticulado[TAMANHO_RETICULADO][i].tempo_queimando = 0;
-        }
-#pragma endregion zerarReticulado
-#pragma region avançaReticuladoAtéQueimar
-        int iteracao = 0;
-        do
-        {
-            // Calcula novos estados
-            for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-            {
-                for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-                {
-                    int cima, baixo, esquerda, direita;
-                    if (i == 0)
-                        cima = TAMANHO_RETICULADO;
-                    else
-                        cima = i - 1;
-                    baixo = i + 1;
-                    if (j == 0)
-                        esquerda = TAMANHO_RETICULADO;
-                    else
-                        esquerda = j - 1;
-                    direita = j + 1;
-                    aux_reticulado[i][j] = heitorzera1(reticulado[cima][j],         // n
-                                                       reticulado[baixo][j],        // s
-                                                       reticulado[i][esquerda],     // o
-                                                       reticulado[i][direita],      // l
-                                                       reticulado[cima][direita],   // ne
-                                                       reticulado[cima][esquerda],  // no
-                                                       reticulado[baixo][direita],  // se
-                                                       reticulado[baixo][esquerda], // so
-                                                       reticulado[i][j]             // centro
-                    );
-                    if (aux_reticulado[i][j].estado == inicio_fogo && reticulado[i][j].estado != inicio_fogo)
-                        analise_quadrante(i, j, k, "heitorzera1");
-                }
-            }
-            // Adiciona os estados na matriz principal
-            for (size_t i = 0; i < TAMANHO_RETICULADO; i++)
-            {
-                for (size_t j = 0; j < TAMANHO_RETICULADO; j++)
-                {
-                    reticulado[i][j] = aux_reticulado[i][j];
-                }
-            }
-#pragma region Visualizacao
-            /*
-            system("cls");
-            print_reticulado();
-            get_char();
-            */
-#pragma endregion Visualizacao
-            iteracao++;
-        } while (iteracao < ITERACOES_ATE_PARAR);
-#pragma endregion avançaReticuladoAtéQueimar
-// cout<<"Experimento "<<k<<" terminou em "<<iteracao<<" iteracoes"<<endl;
-#pragma region salvaDados
-        dadosHeitorzera1[k].iteracoes_ate_apagar = iteracao;
-#pragma endregion salvaDados
-    }
-#pragma region salvaDadosArquivo
-    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_coef0,5.csv");
-    cout << "Heitorzeira1" << endl;
-    print_dados(dadosHeitorzera1);
-    pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
-    cout << "Media: " << pedro_franklin.media << endl;
-    cout << "Desvio Padrao: " << pedro_franklin.desvio_padrao << endl;
-#pragma endregion salvaDadosArquivo
-#pragma endregion Heitorzera1_coef_meio
-#pragma region Heitorzera1_coef_umemeio
-    coef = 1.5;
-    for (size_t i = 0; i < 3; i++)
-    {
-        for (size_t j = 0; j < 3; j++)
-        {
-            matrixCoef[i][j] *= 3;
         }
     }
     for (size_t k = 0; k < NUMERO_EXPERIMENTOS; k++)
@@ -796,10 +599,10 @@ int main(int argc, char const *argv[])
 #pragma endregion salvaDados
     }
 #pragma region salvaDadosArquivo
-    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_coef1,5.csv");
+    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_coef0,5.csv");
     cout << "Heitorzeira1" << endl;
     print_dados(dadosHeitorzera1);
-    pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
+    DadosEstatisticos pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
     cout << "Media: " << pedro_franklin.media << endl;
     cout << "Desvio Padrao: " << pedro_franklin.desvio_padrao << endl;
 #pragma endregion salvaDadosArquivo

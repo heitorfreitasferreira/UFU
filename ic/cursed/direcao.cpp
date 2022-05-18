@@ -509,9 +509,9 @@ int main(int argc, char const *argv[])
     ;
 #pragma endregion visualizaçãoInicial
 
-#pragma region Heitorzera1_o_l
+#pragma region Heitorzera1_no_se
     coef = 1;
-    set_vento("o", "l");
+    set_vento("no", "se");
     for (size_t k = 0; k < NUMERO_EXPERIMENTOS; k++)
     {
         srand(k);
@@ -596,7 +596,7 @@ int main(int argc, char const *argv[])
 #pragma endregion salvaDados
     }
 #pragma region salvaDadosArquivo
-    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_o_l.csv");
+    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_no_se.csv");
     /*cout << "Heitorzeira1" << endl;
     print_dados(dadosHeitorzera1);
     cout << "Media: " << pedro_franklin.media << endl;
@@ -604,17 +604,10 @@ int main(int argc, char const *argv[])
     */
     DadosEstatisticos pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
 #pragma endregion salvaDadosArquivo
-#pragma endregion Heitorzera1_o_l
-#pragma region Heitorzera1_se_no
-    // coef = 0.5;
-    // for (size_t i = 0; i < 3; i++)
-    // {
-    //     for (size_t j = 0; j < 3; j++)
-    //     {
-    //         matrixCoef[i][j] *= 0.5;
-    //     }
-    // }
-    set_vento("se", "no");
+#pragma endregion Heitorzera1_no_se
+#pragma region Heitorzera1_l_o
+    coef = 1;
+    set_vento("l", "o");
     for (size_t k = 0; k < NUMERO_EXPERIMENTOS; k++)
     {
         srand(k);
@@ -699,14 +692,15 @@ int main(int argc, char const *argv[])
 #pragma endregion salvaDados
     }
 #pragma region salvaDadosArquivo
-    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_se_no.csv");
-    cout << "Heitorzeira1" << endl;
+    escreve_dados_analise(dadosHeitorzera1, "heitorzera1_l_o.csv");
+    /*cout << "Heitorzeira1" << endl;
     print_dados(dadosHeitorzera1);
-    pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
     cout << "Media: " << pedro_franklin.media << endl;
     cout << "Desvio Padrao: " << pedro_franklin.desvio_padrao << endl;
+    */
+    pedro_franklin = analise_estatistica_dados(dadosHeitorzera1);
 #pragma endregion salvaDadosArquivo
-#pragma endregion Heitorzera1_se_no
+#pragma endregion Heitorzera1_l_o
 
     return 0;
 }
