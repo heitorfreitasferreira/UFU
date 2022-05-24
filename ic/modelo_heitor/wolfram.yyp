@@ -1,6 +1,6 @@
 {
   "resources": [
-    {"id":{"name":"spr_estado","path":"sprites/spr_estado/spr_estado.yy",},"order":0,},
+    {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},"order":0,},
     {"id":{"name":"obj_gerador_celula","path":"objects/obj_gerador_celula/obj_gerador_celula.yy",},"order":1,},
     {"id":{"name":"obj_celula","path":"objects/obj_celula/obj_celula.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
@@ -14,6 +14,7 @@
   ],
   "isDnDProject": false,
   "isEcma": false,
+  "tutorialPath": "",
   "configs": {
     "name": "Default",
     "children": [],
@@ -45,9 +46,9 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.2.1.618",
+    "IDEVersion": "2.3.4.583",
   },
-  "resourceVersion": "1.5",
+  "resourceVersion": "1.4",
   "name": "wolfram",
   "tags": [],
   "resourceType": "GMProject",

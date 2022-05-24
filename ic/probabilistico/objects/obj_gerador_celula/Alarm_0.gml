@@ -90,7 +90,9 @@ function rotaciona90(matriz){
 	return copia
 }
 var intermediaria = rotaciona90(matrixCoef)
-matrixCoef = rotaciona90(intermediaria)
+var i2 = rotaciona90(intermediaria)
+var i3 = rotaciona90(i2)
+matrixCoef = rotaciona90(i3)
 /*			
 var decay1 = 0.2
 var decay2 = 0.4

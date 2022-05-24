@@ -104,3 +104,17 @@ Existem vários valores de c e n0 que satisfazem a equação
 - *f(n)* = *O(g(n))* é "semelhante" à *f(n)```<=```O(g(n))*
 - *f(n)* = *Ω(g(n))* é "semelhante" à *f(n)```=>```Ω(g(n))*
 - *f(n)* = *Θ(g(n))* é "semelhante" à *f(n) ```=``` Θ(g(n))*
+
+## Ordenação por comparação
+
+- Para tomar decisão sobre determinado elemento do vetor eu preciso comparar com outros
+  - Cada 2 elementos se gasta uma comparação de <
+- Entrada tamanho *n* eu tenho *n!* entradas diferentes
+- Com *k* comparações é possível distinguir **não mais** ***2^n*** entradas
+  - k = 1 diferencio [v1,v2]
+  - k = 2 **NÃO diferencio** [v1,v2,v3]
+- Para distinguir um vetor de **n posições** eu preciso ce um k tal que *n! < 2^k*
+- Stirling: n! ~= c * sqrt(n)* (n/e)^n
+  - log(c) + 1/2 * log(n) *   n * log(n) - n * log (*e*)
+  - Jogando fora as constantes
+- Logo para ordenar um vetor eu preciso Ω(n*lg(n)) comparações para ordenar um vetor

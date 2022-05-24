@@ -178,3 +178,13 @@ Tecnollgia para acesso a múltiplos discos
   - Arquivo: array de bytes (ou de páginas)
   - Solicitação: acesso byte *i* (ou página *i*) do arquivo *f*
   - Execução pelas camadas de baixo nível: acesso ao bloco *m* da trilha *t* do cilindro *c* do disco *d*
+
+
+## Conceitos semelhantes
+
+Sistemas de Arquivos | SGBD | Modelo Relacional | EER |
+-|-|-|-|
+Arquivo | Tabela | Relação | Tipo Entidade |
+Registro | Linha | Tupla |  Entidade |
+Campo | Coluna | Atributo | Atributo |
+
