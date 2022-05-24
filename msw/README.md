@@ -34,7 +34,7 @@
 - Apêndices
 - Índices
 
-## RUP: *UML*
+## *UML*
 
 ### ***Use case***
 
@@ -204,3 +204,256 @@ Comprar um produto:
 - *MOSS:* Designer: **3**
 - *MOBS:* Architect: **3**
 
+## Modelo em Cascata
+[TODO]
+
+## RUP
+
+> Rational Unified Process
+
+- Um processo de engenharia de software
+- *Framework* para processos
+- Utiliza as melhores práticas de desenvolvimento
+
+### Processo
+
+> Define quem irá fazer o que, quando, e comoa fim de alcançar um objetivo.
+
+### Definição do processo
+
+- Objetivos
+  - prover guia
+  - especificar artefatos e quando devem ser desenvolvidos
+  - direcionar as tarefas
+  - oferecer criterio que monitora e mede o processo  
+
+### Melhores práticas
+
+- Desenvolvimento **iterativo**
+- Gerenciar requisitos
+- Arquitetura baseada em componentes
+- Modelar visualmente
+- Verificação continua de qualidade
+- Controlar alterações no software
+
+### Casos de uso no RUP
+
+> RUP é dirigido por casos de uso (use-case driven)
+
+- Criação e validação dos modelos de projeto
+- Definição dos casos de testes
+- Planejamento de iterações
+- Criação do manual do usuário
+
+### Arquitetura em RUP
+
+- Centrado na arquitetura
+- Central em relação aos esforços
+  - Requisitos analisados para montar uma arquitetura
+  - Arquitetura orienta a implementação e mudanças
+
+### 4+1
+
+![Visão 4+1](./images/4+1.png)
+
+[TODO]
+
+### Fases RUP
+
+> Alto nível do processo de desenvolvimento
+
+1. ***Concepção***
+   - Estabelecidos lógica de dominio da aplicação e escopo do projeto
+2. ***Elaboração***
+   - Coleta de requisitos mais detalhados, análise do plano para construção do sistema
+3. ***Contrução***
+   - Váris iterações para *produção do sistema*
+4. ***Transição***
+   -  Teste ajuste de performance e treinamento de usuário
+
+### Iteratividade RUP
+
+> Disciplinas iterativas ao longo do tempo no desenvolvimento com RUP
+
+![Disciplinas iterativas ao longo do tempo no desenvolvimento com RUP](images/fases_iteracoes.png)
+
+![Iteratividade do RUP](images/iteratividade.png)
+
+#### Análise de risco
+
+![Analise de risco Cascata vs Iterativo](images/analise_risco.png)
+
+
+
+#### Diferença do Cascata pro RUP
+
+No cascata eu só começo a uma disciplina após encerrar 100% a outra, no RUP as disciplinas são levementes concorrentes, algumas com mais intensidade do que outras dependendo de qual momento estou
+
+### Vantagens do RUP
+
+[TODO]
+
+## Manifesto Ágil
+
+- Interações individuais *vs* Processos e ferramentas
+- Software funcionando *vs* Documentação extensa
+- Colaboração do cliente *vs* Negociação fixa contratual
+- Responder às mudanças *vs* Seguir o plano no contrato
+
+### Premissas (ir)reais do desenvolviemento
+
+> Mentiras na hora 
+
+- Cliente e capaz de especificar um software antes de iniciar o desenvolviemtno
+- Equipe de desenvolvimento é capaz de quantificar o esforço
+- Equipe é capaz de quantificar o esforço
+- Equipe é capaz de criar o software imaginado pelo cleinte
+- Cliente ficará feliz
+
+
+### Práticas
+
+> Aqui estamos falando 100% de ambiente de desenvolvimento, não misturar com o código em produção (código que o usuário está executando)
+
+- ***Whole Team Together***
+  - Deu origem ao SCRUM
+  - *Evitar ruídos de comunicação*
+  - Escritórios "Open Plan"
+- ***User Stories***
+  - Desempenhando um certo papel, desejo atingir tal objetivo para que me beneficie de alguma forma
+  - *Usuário contando o que quer fazer, como e para que*
+- ***Information Workspace***
+  - Trello
+  - Kamban (técnica japonesa de organização)
+    - Quadro divido em:
+      - A fazer
+        - Importante priorizar qual tarefa é prioritária a fazer
+      - Fazendo
+      - Feito
+  - *Quadro com todas as informações do projeto e coisas a serem feitas*
+- ***Pequenas entregas***
+  - Cada nova versão do sistema tem ciclos de vida menores (semanais por exemplo) que entregam novas funcionalidades ou correção de bugs pequenas
+- ***Integração contínuas***
+  - Faz um commit -> da um build
+  - Sempre há uma nova versão 
+- ***Testes contínuos***
+  - Com novas versões constantes, a chance de um novo efeito colateral não testado antes é grande
+- ***Refatoração de código***
+  - Etapa normalmente negligenciada
+  - *Organizar o código para simplificação e melhoria da arquitetura*
+
+![Resumo Agile](images/agile.png)
+
+### SCRUM
+
+> Jogada do RUGBY
+
+![SCRUM](images/scrum.png)
+
+- Product Backlog
+  - Lista de itens a serem feitos no projeto todo
+- Sprint Backlog
+  - Sub-lista do Product Backlog com os itens planejados para serem feitos durante a Sprint
+- Daily Scrum
+  - Reunião recorrente para alinhar o time e destravar problemas
+
+#### SCRUM Framwork
+
+- Roles
+  - Product Owner
+    - Define as funcionalidades do produtoo
+    - Decide as datas de entregas
+    - Responsável pela rentabilidade do produto
+    - Prioriza funcionalidades de acordo com as necessidades do mercado
+  - Scrum Master
+  - Team
+- Artifacts
+  - Product Backlog
+  - Sprint Backlog
+  - Burn
+
+[TODO]
+
+## Lean Software Development
+
+> 7 Princípios
+
+1. Eliminate Waste
+2. Amplify Learning
+   - Comunicação dentro do time
+   - As coisas que estão dando certo no projeto espalhar para a organização inteira
+3. ***Decide*** as **Late** as Possible
+   - Imagine decidir no começo do planejamento do projeto o tipo de banco de dados **X**, mas antes de começar a mexer com isso surgiu alguma peculiaridade ou questão do sistema que faria ser bom usar o banco **Y**, seria melhor decidir que banco usar somente quando começar a mexer com isso!
+4. ***Deliver*** as **Fast** as Possible
+5. Empower the team
+6. Build Integrity In
+   - Evite débito técnico
+7. See the Whole
+
+### Eliminar desperdício
+
+> Coisas a se eliminar
+
+- Tudo que não adiciona valor (para o consumidor do software) ao produto
+- Código ou funcionalidade desnecessário z
+- Requisitos não claros
+- Comunicações ou processos internos lentos
+- Burocracia
+
+#### Enchergar desperdício
+
+Wastes of Manufacturing | Wastes o  Softwares Development
+-|-
+Inventory | Partially work done
+Expre processing| Paperwork or excess documentation (RUP)
+Overproduction | Extra features
+Transportation | Building the whole
+Waiting | Waiting for information
+Motion |  Task switich & Motion (Rond Robin)
+Defects | Defects (concertar bugs)
+
+### Amplificar aprendizado
+
+> A natureza do desenvolviemento de software
+
+- Propor o uso ao invés de confirmar aos requisitos
+- Tente teste e concerte
+- Não tente criar resultados repetiveis, mas tente criar soluções para problemas indivíduais
+- Design é feito melhor ao usar ciclos pequenos com investigação repetitiva, experimentação e conferência de resultados
+- Feedback koops são essenciais
+
+### Decida o mais tardiamnete possível
+
+Sequencial (Cascata) | Concorrente
+-|-
+Depht First | 
+
+[TODO]
+
+### Entregue o mais rápido possível
+
+> Por que?
+
+- Cliente gostam de entregas rápidas (Olha a amazon)
+- Entregas rápidas significa menos tempo para os clientes mudarem de ideia
+
+### Empoderar o time
+
+> Um time deve ser auto determinado
+
+- Odever de um cargo de gerência é de treinador, e de assitênte
+- Um time motivado trabalha mais
+  - Salário é um fator mas não o único
+
+### Construa integridade intrinceca
+
+Integridade percebida | Integridade Conceitual
+-|-
+Quão intuitivo é o sistema | Há um balanço entre manutenabilidade, usabilidade e expansividade? 
+[TODO] | [TODO]
+
+### Veja o todo
+
+> Um sistema não é a soma de suas partes, é o produto delas
+
+> Pergunte os porquês
