@@ -213,3 +213,29 @@ public class A5 extends M1{
 - Dê preferência para composição ao invés de herança
 
 > Reutilizar e intercambiar comportamentos entre diversas classes, facilitando a expansão, manutenção e reuso
+
+## Padrão Chain of Responsibility
+
+> Obj. Evitar o  acoplamento do remetente de uma solicitação ao receptor fornecendo uma cadeia de objetos para tratar uma solicitação
+
+- O objeto que fez a solicitação não tem conhecimento explícito de quem a tratatá - essa solicitação é dita ter um receptor implícito
+- Represent um encadeamento de objetos receptores para o processamento de uma série de solicitações diferentes
+- Esses objetos receptores passam a solicitação ao longo de cadeia até que um ou cários objetos a tratem.
+- Cada objeto receptor possui uma lógica descrevendo os tipos de solicitação que é capaz de processar e como passar adiante aquelas que requeiram processamento por outros receptores
+
+### Como é montado
+
+- É uma **lista simplesmente encadeada** de objetos que podem servir um determinado pedido
+- Em ve de acoplar o cliente a um objeto especifico para a execução de um determinado método
+- Lista encadeada de processamento
+  
+### Vantagens
+
+[TODO]
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
