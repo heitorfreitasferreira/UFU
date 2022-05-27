@@ -156,7 +156,7 @@ Extensão
 #### Aceitar amizade
 
 1. Usuário recebe notificação por push e dentro do sistema que ouve uma solicitação para criar um vinculo de amizade
-2. Usuário seleciona se aceita ou não
+2. Usuário seleciona se aceita,rejeita ou bloqueia
 
 Extensão
 
@@ -164,7 +164,10 @@ Extensão
 1. Sistema cria um vinculo de amizade entre os dois nós
 
 2b. Usuário clica em rejeitar
-1. Sistema deleta a notificação 
+1. Sistema deleta a notificação e ambos conseguem solicitar a amizade posteriormente
+
+3c. Usuário clica em bloquear
+1. Sistema não permite a solicitação novamente até que o(s) usuário(s) que bloqueou(aram) retire o outro da lista de bloqueados
 
 ## Entrega 2
 
