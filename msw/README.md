@@ -457,3 +457,25 @@ Quão intuitivo é o sistema | Há um balanço entre manutenabilidade, usabilida
 > Um sistema não é a soma de suas partes, é o produto delas
 
 > Pergunte os porquês
+# Modelos
+
+> Grafos usados pra representação
+
+## Pra que serve um modelo
+
+- Um modelo é um mecanismo de avaliação e comunicação de ante mão sobre algo que será construído.
+- Não é prático um prédio ser modelo dele mesmo
+- A ideia do modelo é ser uma representaçao conceitual do produto completo que se quer representar
+
+## Formas de Modelar 
+
+> Planejar o código  e o sistema antes de sua concepção
+
+- O problema de modelar
+  - Definição
+  - Nível abstrato
+  - Formal, semi-formal,informal
+- Linguagem de Modelagem
+  - Notações Pré-OO
+  - UML
+  - Notações Formais

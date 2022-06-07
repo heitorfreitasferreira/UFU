@@ -1,0 +1,3 @@
+C:/Users/heitor.ferreira/Documents/GitHub/UFU/poo2/decorators/cmake-build-debug/CMakeFiles/decorators.dir
+C:/Users/heitor.ferreira/Documents/GitHub/UFU/poo2/decorators/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/heitor.ferreira/Documents/GitHub/UFU/poo2/decorators/cmake-build-debug/CMakeFiles/rebuild_cache.dir
