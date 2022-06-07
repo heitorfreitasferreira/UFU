@@ -1,0 +1,1 @@
+estado = (estado-1)%qnt_estados
