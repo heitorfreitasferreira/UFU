@@ -45,7 +45,11 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
+<<<<<<< Updated upstream
     "IDEVersion": "2022.3.0.625",
+=======
+    "IDEVersion": "2.3.4.583",
+>>>>>>> Stashed changes
   },
   "resourceVersion": "1.5",
   "name": "wolfram",

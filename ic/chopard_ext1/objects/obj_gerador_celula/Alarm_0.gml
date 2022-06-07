@@ -54,7 +54,7 @@ function chopard_ext1(n,s,o,l,ne,no,se,so,centro){
 	var total_casa = (n==casa)+(s==casa)+(o==casa)+(l==casa)+(ne==casa)+(no==casa)+(se==casa)+(so==casa)
 	
 	var purb = random_range(0,1)
-	var pinc = random_range(0,1)
+	var pinc = random_range(0,100)
 	var p = random_range(0,1)
 	
 	if(centro == agua) return agua
@@ -67,7 +67,7 @@ function chopard_ext1(n,s,o,l,ne,no,se,so,centro){
 	if(centro == queima2) return queima3
 	if(centro == queima3) return solo_exposto
 	if((centro == arvore_viva or centro == solo_exposto) and purb<0.0001) return casa
-	if((centro == casa or centro == arvore_viva) and pinc<0.0001) return queima
+	if((centro == casa or centro == arvore_viva) and pinc<0.0000001) return queima
 	if(centro == solo_exposto and p<0.0001) return arvore_viva
 	return centro
 }
@@ -86,7 +86,9 @@ vii) no estado solo ha a probabilidade p de tornar-se arvore.
 //Implementar o de muitos Estados 
 //Implementar o do Vento em cima do Chopard padrão
 //Implementar o de muitos Estados com o Vento
-
+//Voltar a queima não determinista
+//Separar casa e arvore para ter 2 probabilidades
+//Probabilidades diferentes para diferentes níveis de queima
 #endregion
 #region Calcular novos estados
 var novosEstados = []

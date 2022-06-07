@@ -34,18 +34,18 @@ function chopard(n,s,o,l,ne,no,se,so,centro){
 	if(centro == arvore_queimando) return solo_exposto
 	if(centro == arvore_viva and total>0) return arvore_queimando
 	if(centro == solo_exposto and p<=0.01) return arvore_viva
-	if(centro == arvore_viva and f<=0.0005) return arvore_queimando//0.0005
+	if(centro == arvore_viva and f<=0.00000000000000005) return arvore_queimando//0.0005
 	return centro
 }
 function chopard2(n,s,o,l,ne,no,se,so,centro){
 	var p = random_range(0,1)
-	var f = random_range(0,1)
+	var f = random_range(0,100)
 	var g = random_range(0,1)
 	var total = (n==arvore_queimando)+(s==arvore_queimando)+(o==arvore_queimando)+(l==arvore_queimando)+(ne==arvore_queimando)+(no==arvore_queimando)+(se==arvore_queimando)+(so==arvore_queimando)
 	if(centro == arvore_queimando) return solo_exposto
 	if(centro == arvore_viva and (total>0)*(1-g) > 0.7) return arvore_queimando
 	if(centro == solo_exposto and p<=0.01) return arvore_viva
-	if(centro == arvore_viva and f<=0.0005) return arvore_queimando
+	if(centro == arvore_viva and f<=0.005) return arvore_queimando
 	return centro
 }
 function chopardVento(n,s,o,l,ne,no,se,so,centro, intensidade){

@@ -46,6 +46,9 @@
   "IncludedFiles": [],
   "MetaData": {
     "IDEVersion": "2022.1.0.609",
+=======
+    "IDEVersion": "2.3.4.583",
+>>>>>>> Stashed changes
   },
   "resourceVersion": "1.4",
   "name": "chopard_ext1",
