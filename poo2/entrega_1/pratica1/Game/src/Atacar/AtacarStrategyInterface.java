@@ -1,5 +1,5 @@
 package Atacar;
 
-public class AtacarStrategyInterface {
+public interface AtacarStrategyInterface {
 
 }

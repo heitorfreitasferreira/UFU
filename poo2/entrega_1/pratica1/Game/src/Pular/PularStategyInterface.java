@@ -1,6 +1,6 @@
 package Pular;
 
 // Strategy Interface
-public abstract class PularStategyInterface {
+public interface PularStategyInterface {
   public abstract String pulo();
 }
