@@ -1,6 +1,6 @@
 package Pular;
 
-public class PularAlto extends PularStategyInterface {
+public class PularAlto implements PularStategyInterface {
   public String pulo() {
     return "Pulo Alto";
   }
