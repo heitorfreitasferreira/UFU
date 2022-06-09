@@ -1,5 +1,7 @@
 package Pular;
 
-public class PularBaixo {
-
+public class PularBaixo extends PularStategyInterface {
+  public String pulo() {
+    return "Pulo Baixo";
+  }
 }
