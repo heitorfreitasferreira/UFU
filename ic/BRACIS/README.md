@@ -52,9 +52,18 @@ var inicialColaterais =	[
 
 Não consegui pensar em uma forma de implementar a umidade do ar, pode ser um multiplicador como os parâmetros anteriores mas não parece refletir a realidade.
 
-
 ## Ideias de experimentos
 
 1. Todo o reticulado savanico variando o decaimento da matriz
 2. Parâmetros padrões variando a totalidade do reticulado (campestre, florestal, savanica (base))
 3. Fogo no centro, influência 0 de vento (decaimento == 0) e ao redor diferentes vegetações
+
+## TODO 
+
+- Definir breakpoints umidades para definir a influência da umidade na queima
+- Umidade influênciar no tempo de renascimento, em caso de tempo "molhado" e em caso de tempo "seco" diminuir o tempo de queima, além da prob de queima, feita em intervalos
+  - Ver com Dermes
+- Tempo de "renascer" com as diferentes vegetações
+  - Ver com Dermes
+
+

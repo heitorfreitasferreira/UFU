@@ -1,6 +1,6 @@
 ///@description Cria as variáveis da celula
 var p = random_range(0,1)
-estado = campestre
+estado = savanica
 /*if(p>0.99){
 	estado = solo_exposto
 }*/

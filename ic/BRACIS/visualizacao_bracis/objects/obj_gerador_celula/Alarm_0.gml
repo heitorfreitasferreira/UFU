@@ -10,6 +10,8 @@ function avalia_quadrante(i,j){
 	if (i >= HORIZONTAL / 2 and j >= VERTICAL / 2)
 	  quadrante_d++;
 }
+
+
 function regra90(esquerda,meio,direita){
 	if(esquerda and meio and direita) return false
 	if(esquerda and meio and not direita) return true
@@ -261,9 +263,9 @@ function heitorzera2(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queiman
 			[so==queima_lenta,s==queima_lenta,	se==queima_lenta]
 		]//0.2
 	#endregion
-	if(centro == inicio_fogo and tempo_queimando>2) return arvore_queimando
-	if(centro == arvore_queimando and tempo_queimando>6) return queima_lenta
-	if(centro == queima_lenta and tempo_queimando >16) return solo_exposto
+	if(centro == inicio_fogo and tempo_queimando>t_inicio_fogo) return arvore_queimando
+	if(centro == arvore_queimando and tempo_queimando>t_arvore_queimando) return queima_lenta
+	if(centro == queima_lenta and tempo_queimando >t_queima_lenta) return solo_exposto
 	var p = random_range(0,1)
 	#region Renascimento
 	//Exp
@@ -295,9 +297,9 @@ function heitorzera2(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queiman
 						];
 		for(var i = 0; i<3;i++){
 			for(var j = 0; j<3;j++){
-				if(temInicioFogo[i][j] and randomM[i][j] < (matrixCoef[i][j]*0.6*vegetacao)/*-umidade_ar*/) return inicio_fogo
-				if(temQueima[i][j] and randomM[i][j] < (matrixCoef[i][j]*vegetacao)/*-umidade_ar*/) return inicio_fogo
-				if(temBrasa[i][j] and randomM[i][j] < (matrixCoef[i][j]*0.2*vegetacao)/*-umidade_ar*/) return inicio_fogo
+				if(temInicioFogo[i][j] and randomM[i][j] < (matrixCoef[i][j]*0.6*vegetacao)*coef_umidade) return inicio_fogo
+				if(temQueima[i][j] and randomM[i][j] < (matrixCoef[i][j]*vegetacao)*coef_umidade) return inicio_fogo
+				if(temBrasa[i][j] and randomM[i][j] < (matrixCoef[i][j]*0.2*vegetacao)*coef_umidade) return inicio_fogo
 			}
 		}
 	}
