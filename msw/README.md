@@ -479,3 +479,28 @@ Quão intuitivo é o sistema | Há um balanço entre manutenabilidade, usabilida
   - Notações Pré-OO
   - UML
   - Notações Formais
+
+# UML - Diagrama de Classes
+
+Retangulos tri partidos
+
+primeira seção representa o nome da classe
+
+Segunda representa seus atributos, visibilidades e tipos
+
+Terceira representa seus métodos, visibilidade e tipo de retono
+
+## Relacionamentos
+
+- Dependencia
+  - Seta pontilhada
+- Associação
+  - Linha reta simples
+  - Está ligada, se tem q importar é associação
+- Agregação
+  - Linha reta com losangulo vazio
+- Composição
+  - Linha reta com losangulo preenchido
+- Classificação
+  - Linha com seta vazia
+  - Herança ou Generalização
