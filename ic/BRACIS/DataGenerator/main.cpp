@@ -1,6 +1,7 @@
-#include "index.h"
 #include <iostream>
-// using namespace std;
+#include <array>
+#include "./Class/Celula.h"
+
 void rotatematrix(double mat[R][C], int m = 3, int n = 3)
 {
     int row = 0, col = 0;
@@ -79,4 +80,30 @@ void print_vizinhanca(double mat[3][3], int m = 3, int n = 3)
         std::cout << std::endl;
     }
 }
-char mapeiaIcone[10];
+//char mapeiaIcone[10];
+
+
+template<class T, size_t rows, size_t cols>
+class Matrix
+{
+    std::array<T, rows * cols> m_Data;
+public:
+    T& operator()(size_t y, size_t x)
+    {
+        return m_Data[y * cols + x];
+    }
+
+    // more methods go here
+};
+int main() {
+//    Celula reticulado[TAMANHO_RETICULADO + 1][TAMANHO_RETICULADO + 1] = Celula(), aux_reticulado[TAMANHO_RETICULADO][TAMANHO_RETICULADO] = Celula();
+    Celula c;
+    //std::array<std::array<Celula, TAMANHO_RETICULADO>, TAMANHO_RETICULADO> reticulado;
+    //std::array<std::array<Celula, TAMANHO_RETICULADO>, TAMANHO_RETICULADO> aux_reticulado;
+
+    Matrix<Celula, TAMANHO_RETICULADO, TAMANHO_RETICULADO> arr;
+    std::cout<<"Deu bom"<<std::endl;
+
+
+    return 0;
+}
