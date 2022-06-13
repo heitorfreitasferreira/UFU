@@ -1,7 +1,7 @@
 package Pular;
 
-public class PularBaixo implements PularStategyInterface {
-  public String pulo() {
+public class PularBaixo implements PularStrategyInterface {
+  public String pular() {
     return "Pulo Baixo";
   }
 }
