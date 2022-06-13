@@ -34,11 +34,12 @@ void Celula::set_estado(var estado)
     else
         tempo_desde_queima = -1;
     // ---------
-    if (estado == arvore_queimando)
-        tempo_queimando = t_inicio_fogo;
-    else if (estado == queima_lenta)
-        tempo_queimando = t_arvore_queimando;
-    else
+//    if (estado == arvore_queimando)
+//        tempo_queimando = t_inicio_fogo;
+//    else if (estado == queima_lenta)
+//        tempo_queimando = t_arvore_queimando;
+//    else
+    if(estado<inicio_fogo || estado>queima_lenta)
         tempo_queimando = 0;
 }
 void Celula::avanca_fogo()
@@ -71,14 +72,17 @@ float Celula::influencia_vegetacao(var estado_atual_vegetacao)
     return -1;
 }
 
-Celula::Celula(var estado, int coef)
+Celula::Celula(var estado, int coef, double umidade)
 {
     this->coef = coef;
     set_estado(estado);
-    decaimento = 0.04; // Padrão ACRI = 0.04
+    decaimento = 0.00; // Padrão ACRI = 0.04
     mult_base = 0.16;
-    coef = 1;
+    coef = 0.5;
     matrixCoef = create_MatrixCoef(R, C);
+    this->umidade = umidade;
+
+    influencia_umidade(umidade);
 }
 Celula::Celula()
 {
@@ -89,15 +93,50 @@ Celula::Celula()
     mult_base = 0.16;
     coef = 1;
     matrixCoef = create_MatrixCoef(R, C);
+    t_inicio_fogo = 2;
+    t_arvore_queimando = 6;
+    t_queima_lenta = 16;
+    this->umidade = 0.8;
+    influencia_umidade(umidade);
 }
+
+Celula::Celula(const Celula &rhs) {
+
+    decaimento = rhs.decaimento; // Padrão ACRI = 0.04
+    mult_base = rhs.mult_base;
+    coef = rhs.coef;
+    matrixCoef = rhs.matrixCoef;
+
+    this->estado = rhs.estado;
+    this->tempo_queimando = rhs.tempo_queimando;
+    this->tempo_desde_queima = rhs.tempo_desde_queima;
+
+    t_inicio_fogo = rhs.t_inicio_fogo;
+    t_arvore_queimando = rhs.t_arvore_queimando;
+    t_queima_lenta = rhs.t_queima_lenta;
+    coef_umidade = rhs.coef_umidade;
+    umidade = rhs.umidade;
+
+}
+
 var Celula::get_estado()
 {
     return this->estado;
 }
 
 // _____________________________________________
-void Celula::heitorzeira2(Celula n, Celula s, Celula o, Celula l, Celula ne, Celula no, Celula se, Celula so)
+Celula Celula::heitorzeira2(Celula n, Celula s, Celula o, Celula l, Celula ne, Celula no, Celula se, Celula so)
 {
+    Celula nova = Celula(campestre,this->coef,this->umidade);
+    nova.decaimento = this->decaimento; // Padrão ACRI = 0.04
+    nova.mult_base = this->mult_base;
+    nova.coef = this->coef;
+    nova.matrixCoef = this->matrixCoef;
+
+
+    nova.estado = this->estado;
+    nova.tempo_queimando = this->tempo_queimando;
+    nova.tempo_desde_queima = this->tempo_desde_queima;
     bool temQueima[3][3] = {
             {no.estado == arvore_queimando, n.estado == arvore_queimando, ne.estado == arvore_queimando},
             {o.estado == arvore_queimando, false, l.estado == arvore_queimando},
@@ -114,18 +153,18 @@ void Celula::heitorzeira2(Celula n, Celula s, Celula o, Celula l, Celula ne, Cel
     var temInicioFogoSoma = temInicioFogo[0][0] + temInicioFogo[0][1] + temInicioFogo[0][2] + temInicioFogo[1][0] + temInicioFogo[1][1] + temInicioFogo[1][2] + temInicioFogo[2][0] + temInicioFogo[2][1] + temInicioFogo[2][1];
     var temBrasaSoma = temBrasa[0][0] + temBrasa[0][1] + temBrasa[0][2] + temBrasa[1][0] + temBrasa[1][1] + temBrasa[1][2] + temBrasa[2][0] + temBrasa[2][1] + temBrasa[2][1];
 
-    if (estado >= inicio_fogo && estado <= queima_lenta)
-        tempo_queimando++;
-    if (estado == solo_exposto)
-        tempo_desde_queima++;
-    if (estado == inicio_fogo && tempo_queimando > 2)
-        set_estado(arvore_queimando);
-    if (estado == arvore_queimando && tempo_queimando > 6)
-        set_estado(queima_lenta);
-    if (estado == queima_lenta && tempo_queimando > 16)
-        set_estado(solo_exposto);
+    if (nova.estado >= inicio_fogo && nova.estado <= queima_lenta)
+        nova.avanca_fogo();
+    if (nova.estado == solo_exposto)
+        nova.tempo_desde_queima++;
+    if (nova.estado == inicio_fogo && nova.tempo_queimando > 2)
+        nova.set_estado(arvore_queimando);
+    if (nova.estado == arvore_queimando && nova.tempo_queimando > 6)
+        nova.set_estado(queima_lenta);
+    if (nova.estado == queima_lenta && nova.tempo_queimando > 16)
+        nova.set_estado(solo_exposto);
 
-    if (estado >= campestre && estado <= florestal && temQueimaSoma + temInicioFogoSoma + temBrasaSoma > 0)
+    if (nova.estado >= campestre && nova.estado <= florestal && (temQueimaSoma + temInicioFogoSoma + temBrasaSoma) > 0)
     {
 
         double randomM[3][3] = {
@@ -136,13 +175,32 @@ void Celula::heitorzeira2(Celula n, Celula s, Celula o, Celula l, Celula ne, Cel
         {
             for (var j = 0; j < 3; j++)
             {
-                if (temInicioFogo[i][j] && randomM[i][j] < (matrixCoef[i][j] * 0.6 * influencia_vegetacao(estado)) /*-umidade_ar*/)
-                    set_estado(inicio_fogo);
-                if (temQueima[i][j] && randomM[i][j] < (matrixCoef[i][j] * influencia_vegetacao(estado)) /*-umidade_ar*/)
-                    set_estado(inicio_fogo);
-                if (temBrasa[i][j] && randomM[i][j] < (matrixCoef[i][j] * 0.2 * influencia_vegetacao(estado)) /*-umidade_ar*/)
-                    set_estado(inicio_fogo);
+                if (temInicioFogo[i][j] && randomM[i][j] < (matrixCoef[i][j] * 0.6 * influencia_vegetacao(nova.estado) * 0.1))
+                    nova.set_estado(inicio_fogo);
+                if (temQueima[i][j] && randomM[i][j] < (matrixCoef[i][j] * influencia_vegetacao(nova.estado) * 0.1))
+                    nova.set_estado(inicio_fogo);
+                if (temBrasa[i][j] && randomM[i][j] < (matrixCoef[i][j] * 0.2 * influencia_vegetacao(nova.estado) * 0.1))
+                    nova.set_estado(inicio_fogo);
             }
         }
     }
+    return (nova);
+}
+void Celula::influencia_umidade(double umidade) {
+
+        if(umidade>0 and umidade<=0.30) {
+            coef_umidade = 1.5;
+            t_inicio_fogo = 2 ;
+            t_arvore_queimando = 7;
+            t_queima_lenta = 10;
+        }
+        if(umidade>0.30 and umidade<=0.40){
+            coef_umidade = 1;
+        }
+        if(umidade>0.40 and umidade<=0.60){
+            coef_umidade = 0.8;
+        }
+        if(umidade>0.60 and umidade<=1){
+            coef_umidade = 0.6;
+        }
 }

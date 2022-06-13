@@ -98,13 +98,13 @@ Celula::Celula(var estado, int coef)
 }
 Celula::Celula()
 {
-    set_estado(campestre);
+    // set_estado(campestre);
 
-    decaimento = 0.04; // Padrão ACRI = 0.04
+    // decaimento = 0.04; // Padrão ACRI = 0.04
 
-    mult_base = 0.16;
-    coef = 1;
-    matrixCoef = create_MatrixCoef(R, C);
+    // mult_base = 0.16;
+    // coef = 1;
+    // matrixCoef = create_MatrixCoef(R, C);
 }
 var Celula::get_estado()
 {
