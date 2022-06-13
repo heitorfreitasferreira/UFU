@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <vector>
 #include <array>
 #include "./Class/Celula.h"
 
@@ -71,39 +73,88 @@ void rotatematrix(double mat[R][C], int m = 3, int n = 3)
     // Print rotated matrix
 }
 
-void print_vizinhanca(double mat[3][3], int m = 3, int n = 3)
+using namespace std;
+
+void print_reticulado(Celula *reticulado[TAMANHO_RETICULADO])
 {
-    for (int i = 0; i < m; i++)
+//    char mapeiaIcone[7];
+//    mapeiaIcone[solo_exposto] = '.';
+//    mapeiaIcone[inicio_fogo] = '*';
+//    mapeiaIcone[arvore_queimando] = '#';
+//    mapeiaIcone[queima_lenta] = 'o';
+//    mapeiaIcone[campestre] = ';';
+//    mapeiaIcone[savanica] = 'i';
+//    mapeiaIcone[florestal] = '|';
+    for (int i = 0; i < TAMANHO_RETICULADO; i++)
     {
-        for (int j = 0; j < n; j++)
-            std::cout << mat[i][j] << " ";
-        std::cout << std::endl;
+        for (int j = 0; j < TAMANHO_RETICULADO; j++) {
+            cout << reticulado[i][j].get_estado()<< " ";
+        }
+        cout << endl;
     }
+    cout << endl;
 }
-//char mapeiaIcone[10];
 
-
-template<class T, size_t rows, size_t cols>
-class Matrix
-{
-    std::array<T, rows * cols> m_Data;
-public:
-    T& operator()(size_t y, size_t x)
-    {
-        return m_Data[y * cols + x];
+using namespace std;
+int main() {
+    Celula** reticulado = (Celula**)malloc(sizeof(Celula*) * TAMANHO_RETICULADO+1);
+    Celula** aux_reticulado = (Celula**)malloc(sizeof(Celula*) * TAMANHO_RETICULADO);
+    // Alocação das matrizes
+    for (int i = 0; i < TAMANHO_RETICULADO; ++i) {
+        aux_reticulado[i] = (Celula*)malloc(sizeof(Celula) * TAMANHO_RETICULADO);
+        for (int j = 0; j < TAMANHO_RETICULADO; ++j) {
+            aux_reticulado[i][j] = Celula(campestre, 1, UMIDADE);
+        }
+    }
+    for (int i = 0; i < TAMANHO_RETICULADO+1; ++i) {
+        reticulado[i] = (Celula*)malloc(sizeof(Celula) * TAMANHO_RETICULADO+1);
+        for (int j = 0; j < TAMANHO_RETICULADO; ++j) {
+            if(i==TAMANHO_RETICULADO || j==TAMANHO_RETICULADO)
+                reticulado[i][j] = Celula(solo_exposto,1,UMIDADE);
+            else
+                reticulado[i][j] = Celula(campestre,1,UMIDADE);
+        }
     }
 
-    // more methods go here
-};
-int main() {
-//    Celula reticulado[TAMANHO_RETICULADO + 1][TAMANHO_RETICULADO + 1] = Celula(), aux_reticulado[TAMANHO_RETICULADO][TAMANHO_RETICULADO] = Celula();
-    Celula c;
-    //std::array<std::array<Celula, TAMANHO_RETICULADO>, TAMANHO_RETICULADO> reticulado;
-    //std::array<std::array<Celula, TAMANHO_RETICULADO>, TAMANHO_RETICULADO> aux_reticulado;
 
-    Matrix<Celula, TAMANHO_RETICULADO, TAMANHO_RETICULADO> arr;
-    std::cout<<"Deu bom"<<std::endl;
-
-
+    reticulado[TAMANHO_RETICULADO/2][TAMANHO_RETICULADO/2].set_estado(arvore_queimando);
+    aux_reticulado[TAMANHO_RETICULADO/2][TAMANHO_RETICULADO/2].set_estado(arvore_queimando);
+    //    cout<<aux_reticulado[0][0].get_estado()<<endl;
+    print_reticulado(reticulado);
+    int iteracao = 0;
+    do {
+        for (int i = 0; i < TAMANHO_RETICULADO; ++i) {
+            for (int j = 0; j < TAMANHO_RETICULADO; ++j) {
+                int cima, baixo, esquerda, direita;
+                if (i == 0)
+                    cima = TAMANHO_RETICULADO;
+                else
+                    cima = i - 1;
+                baixo = i + 1;
+                if (j == 0)
+                    esquerda = TAMANHO_RETICULADO;
+                else
+                    esquerda = j - 1;
+                direita = j + 1;
+                aux_reticulado[i][j] = reticulado[i][j].heitorzeira2(reticulado[cima][j],         // n
+                                                                     reticulado[baixo][j],        // s
+                                                                     reticulado[i][esquerda],     // o
+                                                                     reticulado[i][direita],      // l
+                                                                     reticulado[cima][direita],   // ne
+                                                                     reticulado[cima][esquerda],  // no
+                                                                     reticulado[baixo][direita],  // se
+                                                                     reticulado[baixo][esquerda]    // centro
+                );
+            }
+        }
+        for (int i = 0; i < TAMANHO_RETICULADO; ++i) {
+            for (int j = 0; j < TAMANHO_RETICULADO; ++j) {
+                reticulado[i][j] = aux_reticulado[i][j];
+            }
+        }
+        iteracao++;
+        print_reticulado(reticulado);
+    }while(iteracao<10);
+    cout<<"rodou??"<<endl;
     return 0;
 }
