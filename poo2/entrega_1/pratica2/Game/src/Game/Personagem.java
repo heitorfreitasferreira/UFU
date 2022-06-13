@@ -1,6 +1,6 @@
 package Game;
 
-// import Atacar.*;
+import Atacar.*;
 import Correr.*;
 import Pular.*;
 import Vida.*;
@@ -8,8 +8,9 @@ import Vida.Estados.*;
 
 public class Personagem {
   // Strategys
-  private PularStategyInterface pulo;
+  private PularStrategyInterface pulo;
   private CorrerStrategyInterface corrida;
+  private AtacarStrategyInterface ataque;
 
   // States
   private int vida;
@@ -17,11 +18,13 @@ public class Personagem {
 
   private VidaInterface estado;
 
-  public Personagem(PularStategyInterface pulo, CorrerStrategyInterface corrida, String nome) {
+  public Personagem(PularStrategyInterface pulo, CorrerStrategyInterface corrida, AtacarStrategyInterface ataque,
+      String nome) {
     setCorrida(corrida);
     setPulo(pulo);
     setNome(nome);
     setVida(71);
+    setAtaque(ataque);
     setEstado(new Fraco(this));
   }
 
@@ -39,12 +42,7 @@ public class Personagem {
   }
 
   // ---------------------------------------------------
-  // Strategy Pattern
-  // ---------------------------------------------------
-  // Alteração/Escolha de estratégias
-  public void setPulo(PularStategyInterface pulo) {
-    this.pulo = pulo;
-  }
+  // States Pattern
 
   public int getVida() {
     return vida;
@@ -79,16 +77,32 @@ public class Personagem {
     }
   }
 
+  // ---------------------------------------------------
+  // Strategy Pattern
+  // ---------------------------------------------------
+  // Alteração/Escolha de estratégias
+  public void setPulo(PularStrategyInterface pulo) {
+    this.pulo = pulo;
+  }
+
+  public void setAtaque(AtacarStrategyInterface ataque) {
+    this.ataque = ataque;
+  }
+
   public void setCorrida(CorrerStrategyInterface corrida) {
     this.corrida = corrida;
   }
 
   // Comportamentos do Personagem (Strategys)
-  public String pulo() {
-    return pulo.pulo();
+  public String pular() {
+    return pulo.pular();
   }
 
   public String correr() {
     return corrida.correr();
+  }
+
+  public String atacar() {
+    return ataque.atacar();
   }
 }
