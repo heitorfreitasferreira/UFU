@@ -5,6 +5,7 @@ import Correr.*;
 import Pular.*;
 import Vida.*;
 import Vida.Estados.*;
+import Escudos.*;
 
 public class Personagem {
   // Strategys
@@ -16,21 +17,24 @@ public class Personagem {
   private int vida;
   private String nome;
 
+  // Escudos
+  private EscudoHandler escudo;
+
   private VidaInterface estado;
 
-  public Personagem(PularStrategyInterface pulo, CorrerStrategyInterface corrida, AtacarStrategyInterface ataque,
+  public Personagem(
+      PularStrategyInterface pulo,
+      CorrerStrategyInterface corrida,
+      AtacarStrategyInterface ataque,
+      EscudoHandler escudo,
       String nome) {
     setCorrida(corrida);
     setPulo(pulo);
     setNome(nome);
-    setVida(71);
+    setVida(70);
     setAtaque(ataque);
     setEstado(new Fraco(this));
-  }
-
-  public void setEstado(VidaInterface estado) {
-    this.estado = estado;
-    estado.lidaAlteracaoVida();
+    this.escudo = escudo;
   }
 
   public void setNome(String nome) {
@@ -42,7 +46,26 @@ public class Personagem {
   }
 
   // ---------------------------------------------------
+  // Chain of Escudos
+  // private void setPrimeiroEscudo(EscudoHandler escudo) {
+  // this.escudo = escudo;
+  // }
+
+  public int getEscudo() {
+    return escudo.getValor();
+  }
+
+  public void addEscudo(EscudoHandler escudo) {
+    this.escudo.addEscudo(escudo);
+  }
+
+  // ---------------------------------------------------
   // States Pattern
+
+  public void setEstado(VidaInterface estado) {
+    this.estado = estado;
+    estado.lidaAlteracaoVida();
+  }
 
   public int getVida() {
     return vida;
@@ -65,8 +88,10 @@ public class Personagem {
     this.estado.curar(quantidade);
   }
 
-  public void apanhar(int quantidade) {
-    this.estado.apanhar(quantidade);
+  public int apanhar(int quantidade) {
+    int tomado = escudo.danoPosMitigacao(quantidade);
+    this.estado.apanhar(tomado);
+    return tomado;
   }
 
   public void sobeDesceVida(int quantidade) {
