@@ -41,7 +41,7 @@ Atores:
   - Organizador de evento
 - API Agenda
 - API Mapa
-- Banco
+- Banco(À verificar)
 - Serviço de OAuth
 
 #### Register 
@@ -172,6 +172,11 @@ Extensão
 ## Entrega 2
 
 ### Revisão da concepção e estudo de viabilidade
+Sugestões do professor durante a apresentação:
+-Feedback com opção de comentar o por que da avaliação
+-Role Udi Maps/Role Udi Agenda
++Google Maps/Google Agenda
++Sistema de compra de ingressos(talvez)
 
 ### Especificação dos requisitos completa.
 
