@@ -173,10 +173,10 @@ Extensão
 
 ### Revisão da concepção e estudo de viabilidade
 Sugestões do professor durante a apresentação:
--Feedback com opção de comentar o por que da avaliação
--Role Udi Maps/Role Udi Agenda
-+Google Maps/Google Agenda
-+Sistema de compra de ingressos(talvez)
+- Feedback com opção de comentar o por que da avaliação
+- Tirar Role Udi Maps/Role Udi Agenda
+- Colocar Google Maps/Google Agenda
+- Sistema de compra de ingressos(talvez)
 
 ### Especificação dos requisitos completa.
 
