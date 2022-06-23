@@ -21,7 +21,7 @@ quadrante_b = 0
 quadrante_c = 0
 quadrante_d = 0
 //mostrar_dados = false
-umidade_ar = 0.8 // 1 = 100%; 0 = 0%
+umidade_ar = 0.5 // 1 = 100%; 0 = 0%
 coef_umidade = -1
 t_inicio_fogo = 2
 t_arvore_queimando = 6
@@ -44,6 +44,7 @@ function influencia_umidade(umidade){
 	}
 	if(umidade>60 and umidade<=100){
 		coef_umidade = 0.6
+		
 	}
 }
 influencia_umidade(umidade_ar)
@@ -128,7 +129,7 @@ function rotaciona90(matriz){
 	return copia
 }
 coef = 1
-decaimento = 0.04//Padrão ACRI = 0.04
+decaimento = 0.0//Padrão ACRI = 0.04
 var mult_base = 0.16
 var inicialCardeais =	[	
 							[coef*(mult_base-(decaimento*1)),	coef*(mult_base-(decaimento*0)),	coef*(mult_base-(decaimento*1))],
@@ -192,7 +193,7 @@ novos_focos = 0
 
 #region Montando mapa
 
-/*
+
 repeat(HORIZONTAL){
 
 var x1 = irandom_range(0,HORIZONTAL)
@@ -210,5 +211,5 @@ for(var i = x1; i<=x2;i++){
 }
 
 }
-*/
+
 #endregion
