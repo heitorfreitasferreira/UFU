@@ -1,5 +1,5 @@
 # Estudo de viabilidade
-Segundo o site [link] https://jrconsultoria.com.br/estudo-de-viabilidade-o-que-e-e-como-fazer  
+Segundo o site https://jrconsultoria.com.br/estudo-de-viabilidade-o-que-e-e-como-fazer  
       O estudo da viabilidade nada mais é que uma análise para saber se seu négocio é lucrativo ou desvantojoso.  
     O ideal para saber com maior exatidão todas as previsões para seu negócio seria fazer estudos sobre o nicho da area de atuação,
   ou seja, estudar o seu público-alvo, seus concorrentes e todas as adversidades que possivelmente podem mudar
