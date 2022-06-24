@@ -1,12 +1,12 @@
 # Estudo de viabilidade
-Segundo o site [link] https://jrconsultoria.com.br/estudo-de-viabilidade-o-que-e-e-como-fazer  
+Segundo o site https://jrconsultoria.com.br/estudo-de-viabilidade-o-que-e-e-como-fazer  
       O estudo da viabilidade nada mais é que uma análise para saber se seu négocio é lucrativo ou desvantojoso.  
     O ideal para saber com maior exatidão todas as previsões para seu negócio seria fazer estudos sobre o nicho da area de atuação,
   ou seja, estudar o seu público-alvo, seus concorrentes e todas as adversidades que possivelmente podem mudar
   suas vendas, despesas ou oportunidades novas.  
     No entanto é quase impossível estar ciente de todas as adversidades, portanto uma ótima qualidade para aumentar
   a chance do seu negócio sucedir é a capacidade de se **Adaptar** as situações que forem encontradas pelo caminho.  
-  Uma das técnicas usadas para esse estudo é dividi-lo em 4 pilares, estes são:
+  Uma das técnicas usadas para esse estudo é dividi-lo em 3 pilares, estes são:
 1. Projeção de receitas
 2. Projeção de custos, despesas e investimentos
 3. Projeção de fluxo dos caixas
@@ -37,4 +37,4 @@ Outros custos e despesas seriam:
 Os investimentos estão em torno de R$2000 a R$4000.
 E os custos mensais em torno de R$128 a R$628+.
 ### Projeção de fluxo dos caixas
-### Análise de indicadores
+A ideia do RoleUdi primeiramente é que quase não tenha gastos fixos diários a não ser com o host do aplicativo e bugs no programa e a entrada seja a média de R$6080/mês na média, portanto para sair com o caixa positivo o gasto com manutenção/correção de bugs só não pode passar de 6080 - 128 = R$5952
