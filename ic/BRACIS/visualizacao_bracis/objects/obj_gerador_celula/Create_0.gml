@@ -21,7 +21,33 @@ quadrante_b = 0
 quadrante_c = 0
 quadrante_d = 0
 //mostrar_dados = false
-umidade_ar = 1 // 1 = 100%; 0 = 0%
+umidade_ar = 0.5 // 1 = 100%; 0 = 0%
+coef_umidade = -1
+t_inicio_fogo = 2
+t_arvore_queimando = 6
+t_queima_lenta = 16
+
+
+function influencia_umidade(umidade){
+	umidade*=100
+	if(umidade>0 and umidade<=30) {
+		coef_umidade = 1.5
+		t_inicio_fogo-=1
+		t_arvore_queimando+=1
+		t_queima_lenta-=6
+	}
+	if(umidade>30 and umidade<=40){
+		coef_umidade = 1
+	}
+	if(umidade>40 and umidade<=60){
+		coef_umidade = 0.8
+	}
+	if(umidade>60 and umidade<=100){
+		coef_umidade = 0.6
+		
+	}
+}
+influencia_umidade(umidade_ar)
 #endregion
 
 #region Inicializando a matriz de estados
@@ -102,7 +128,7 @@ function rotaciona90(matriz){
 	return copia
 }
 coef = 1
-decaimento = 0.03//Padrão ACRI = 0.04
+decaimento = 0.0//Padrão ACRI = 0.04
 var mult_base = 0.16
 var inicialCardeais =	[	
 							[coef*(mult_base-(decaimento*1)),	coef*(mult_base-(decaimento*0)),	coef*(mult_base-(decaimento*1))],

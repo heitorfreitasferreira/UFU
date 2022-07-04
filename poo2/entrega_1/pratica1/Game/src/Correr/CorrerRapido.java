@@ -1,5 +1,7 @@
 package Correr;
 
-public class CorrerRapido {
-
+public class CorrerRapido implements CorrerStrategyInterface {
+  public String correr() {
+    return "Corrida Rapida";
+  }
 }

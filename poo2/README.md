@@ -9,9 +9,9 @@
 
 GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orientado a objetos.** Porto Alegre : Bookman, 2005
 
+# 2. Padrões Compotamentais
 
-
-## 1.2. Padrões de projeto
+## 2.1. Padrões de projeto
 
 > **Reutilizar a experiência** de outros devs com problemas semelhantes
 > 
@@ -23,13 +23,13 @@ GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orient
 - Projeto deve ser flexível para atender requisitos futuros
 - Bons projetistas não caem em POG (programação orientada a gambiarra), e projetam realmente orientado a objetos
 
-### 1.2.1. Caracteristicas de um padrão de projeto
+### 2.1.1. Caracteristicas de um padrão de projeto
 
 - Encapsulamento: um padrao encapsula um problema em uma solução bem definida
 - Generalidade: todo padrão de projeto deve 
 - Abstrato: representação abstratas
 
-### 1.2.2. Conjuntos de padrões 
+### 2.1.2. Conjuntos de padrões 
 
 - ***Criação***: criar novos objetos
 - ***Estruturais***: associaçoes entre classes e objetos
@@ -37,7 +37,7 @@ GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orient
 - ***Comportamentais***: interações e divisões de responsabilidades
   - Melhora em tempo de execução
 
-## 1.3. Padrão Strategy
+## 2.2. Padrão Strategy
 
 > As vezes a herança não resolve, cria soluções inflexíveis e difíceis de manter...
 
@@ -97,7 +97,7 @@ Mas ao usar o padrão Strategy é imporatante **identificar os aspectos que vari
 
 Pergunta: quais aspectos variam, quantas variações temos
 
-### 1.3.1. Aplicando o padrão strategy
+### 2.2.1. Aplicando o padrão strategy
 
 - Permite definir famílias de comportamentos, que podem ser (re)utilizados de forma intercambiável
 - permite que o algoritmo varie independentemente dos clientes que o usam
@@ -207,14 +207,16 @@ public class A5 extends M1{
 
 > Dica: sempre programe para o super-tipo, e não para o
 
-### 1.3.2. Orientações para o Strategy
+### 2.2.2. Orientações para o Strategy
 
 - Programe sempre para interface(abstrações)
 - Dê preferência para composição ao invés de herança
 
 > Reutilizar e intercambiar comportamentos entre diversas classes, facilitando a expansão, manutenção e reuso
 
-## 1.4. Padrão Chain of Responsibility
+# 3. Padrões Estruturais
+
+## 3.1. Padrão Chain of Responsibility
 
 > Obj. Evitar o  acoplamento do remetente de uma solicitação ao receptor fornecendo uma cadeia de objetos para tratar uma solicitação
 
@@ -223,13 +225,13 @@ public class A5 extends M1{
 - Esses objetos receptores passam a solicitação ao longo de cadeia até que um ou cários objetos a tratem.
 - Cada objeto receptor possui uma lógica descrevendo os tipos de solicitação que é capaz de processar e como passar adiante aquelas que requeiram processamento por outros receptores
 
-### 1.4.1. Como é montado
+### 3.1.1. Como é montado
 
 - É uma **lista simplesmente encadeada** de objetos que podem servir um determinado pedido
 - Em ve de acoplar o cliente a um objeto especifico para a execução de um determinado método
 - Lista encadeada de processamento
   
-### 1.4.2. Vantagens
+### 3.1.2. Vantagens
 
 [TODO]
 ```mermaid
@@ -240,7 +242,7 @@ graph TD;
     C-->D;
 ```
 
-## 1.5. Padrão Decorator
+## 3.2. Padrão Decorator
 
 > Resposabilidades à instâncias, e nao à toda classe
 
@@ -248,7 +250,7 @@ graph TD;
 - Permite aplicar funcionalidades à um objeto específico
 - Diminui a quantidade de classess
 
-### 1.5.1. Exemplo base
+### 3.2.1. Exemplo base
 
 Usado quando há uma classe base e há necessidade de especialização de indivíduos especificos
 
@@ -292,7 +294,7 @@ class DecoratorB: public Decorator{
 }
 ```
 
-### 1.5.2. Exemplo com jogo
+### 3.2.2. Exemplo com jogo
 
 ```cpp
 
@@ -343,7 +345,7 @@ class Heal: public SummonerSpell{
 
 ```
 
-### 1.5.3. Exemplo na prática
+### 3.2.3. Exemplo na prática
 
 - Tenho um carro básico
   - Componente concréto 
@@ -458,3 +460,38 @@ int main (){
   Vanda.vender(c);
 }
 ```
+# 4. Padrões de criação
+## 4.1. Factory
+
+### 4.1.1. Simple Factory
+
+- Encapsula criação de objetos
+- Desacopla cliente dos objetos que irá criar
+- Transfere a resposabilidade de instanciação para a fábrica
+- Evita modificação de código quando novas classes são criadas, ou *quando a forma de instanciar é modificada*
+
+### 4.1.2. Factory Method
+
+> Interface para criação de objeto, permite deferir a instanciação para subclasses 
+
+- Usando na construção de frameworks
+
+```java
+public abstract class Game{
+  public abstract Personagem createPersonagem(int tipo);
+  public void Jogar(){ // FactoryMethod
+    //lógica de execução (controller)
+    Personamge p1 = createPersonagem(1);
+    Personamge p2 = createPersonagem(2);
+    p1.atacar(p2);
+    p2.correr();
+    p2.atacar(p1);
+  }
+}
+
+public class AdvancedGame extends Game{
+  public Personagem
+  //TODO
+}
+```
+

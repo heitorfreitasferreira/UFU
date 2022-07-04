@@ -1,5 +1,7 @@
 package Atacar;
 
-public class AtacarForte {
-
+public class AtacarForte implements AtacarStrategyInterface {
+  public String atacar() {
+    return "Ataque Forte";
+  }
 }

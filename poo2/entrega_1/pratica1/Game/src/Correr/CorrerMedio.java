@@ -1,5 +1,7 @@
 package Correr;
 
-public class CorrerMedio {
-
+public class CorrerMedio implements CorrerStrategyInterface {
+  public String correr() {
+    return "Corrida Media";
+  }
 }

@@ -1,5 +1,7 @@
 package Correr;
 
-public class CorrerDevagar {
-
+public class CorrerDevagar implements CorrerStrategyInterface {
+  public String correr() {
+    return "Corrida Devagar";
+  }
 }
