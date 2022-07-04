@@ -67,7 +67,6 @@ for(var i = 0;i< VERTICAL; i++){
 	celulas[i][HORIZONTAL] = celula_temp
 }
 celulas[VERTICAL][HORIZONTAL] = celula_temp
-celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 #endregion
 
 #region Jeito antigo
@@ -181,9 +180,11 @@ var tipo_vegetacao = choose(campestre,savanica,florestal)
 for(var i = x1; i<=x2;i++){
 	for(var j = y1; j<=y2; j++){
 		celulas[i][j].estado = tipo_vegetacao
+		celulas[i][j].estado_inicial = tipo_vegetacao
 	}
 }
 
 }
+celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 
 #endregion
