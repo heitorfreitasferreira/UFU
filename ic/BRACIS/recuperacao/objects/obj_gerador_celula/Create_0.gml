@@ -21,20 +21,34 @@ quadrante_b = 0
 quadrante_c = 0
 quadrante_d = 0
 //mostrar_dados = false
-umidade_ar = 1 // 1 = 100%; 0 = 0%
+umidade_ar = 0.90 // 1 = 100%; 0 = 0%
+coef_umidade = -1
+t_inicio_fogo = 2 ;
+t_arvore_queimando = 6;
+t_queima_lenta = 16;
+#endregion
+#region Funções auxiliares
+function influencia_umidade(umidade){
+	if(umidade>0 and umidade<=0.30) {
+            coef_umidade = 1.5;
+            t_inicio_fogo = 2 ;
+            t_arvore_queimando = 7;
+            t_queima_lenta = 10;
+        }
+        if(umidade>0.30 and umidade<=0.40){
+            coef_umidade = 1;
+        }
+        if(umidade>0.40 and umidade<=0.60){
+            coef_umidade = 0.8;
+        }
+        if(umidade>0.60 and umidade<=1){
+            coef_umidade = 0.6;
+        }
+}
+influencia_umidade(umidade_ar)
 #endregion
 
-#region Inicializando a matriz de estados
-novosEstados = []
-for(var i = 0; i<VERTICAL;i++){
-	var linhas = []
-	for(var j = 0;j<HORIZONTAL; j++){
-		array_push(linhas,false)
-	}
-	array_push(novosEstados,linhas)
-	array_delete(linhas,0,array_length(linhas))
-}
-#endregion
+
 #region Inicializando a matriz do reticulado
 for(var i = 0; i<=VERTICAL;i++){
 	var linhas = []
@@ -44,7 +58,15 @@ for(var i = 0; i<=VERTICAL;i++){
 	array_push(celulas,linhas)
 	array_delete(linhas,0,array_length(linhas))
 }
-
+novosEstados = []
+for(var i = 0; i<VERTICAL;i++){
+	var linhas = []
+	for(var j = 0;j<HORIZONTAL; j++){
+		array_push(linhas,false)
+	}
+	array_push(novosEstados,linhas)
+	array_delete(linhas,0,array_length(linhas))
+}
 #endregion
 #region Colocando uma celula em cada posição do 
 for(var i = 0;i< VERTICAL; i++){
@@ -102,8 +124,8 @@ function rotaciona90(matriz){
 	return copia
 }
 coef = 1
-decaimento = 0.03//Padrão ACRI = 0.04
-var mult_base = 0.16
+decaimento = 0.00//Padrão ACRI = 0.04
+var mult_base = 0.10
 var inicialCardeais =	[	
 							[coef*(mult_base-(decaimento*1)),	coef*(mult_base-(decaimento*0)),	coef*(mult_base-(decaimento*1))],
 							[coef*(mult_base-(decaimento*2)),	0,			coef*(mult_base-(decaimento*2))],
@@ -166,7 +188,7 @@ novos_focos = 0
 
 #region Montando mapa
 
-
+/*
 repeat(HORIZONTAL){
 
 var x1 = irandom_range(0,HORIZONTAL)
@@ -185,6 +207,30 @@ for(var i = x1; i<=x2;i++){
 }
 
 }
+*/
+
+/*
+for(var i = 0; i<=VERTICAL;i++){
+	for(var j = 0;j<=HORIZONTAL; j++){
+		
+	}
+}
+*/
+for(var i = 0; i<=VERTICAL;i++){
+	for(var j = 0;j<=HORIZONTAL; j++){
+		if(j<HORIZONTAL/2){
+			celulas[i][j].estado = savanica
+			celulas[i][j].estado_inicial = savanica
+		}
+		else{
+			celulas[i][j].estado_inicial = savanica
+			celulas[i][j].estado = savanica
+		}
+			
+	}
+}
+
 celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 
+celulas[VERTICAL/2][HORIZONTAL/2-1].estado = arvore_queimando
 #endregion

@@ -243,7 +243,7 @@ function heitorzera1(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queiman
 	#endregion
 	return centro
 }
-function heitorzera2(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queimando){
+function heitorzera2(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queimando,estado_inicial){
 	
 	#region Matrizes
 	
@@ -270,7 +270,11 @@ function heitorzera2(n,s,o,l,ne,no,se,so,centro,tempo_desde_queima,tempo_queiman
 	#region Renascimento
 	//Exp
 	//if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima*coef/5*coef/5)/250000)) return florestal //antigo
-	if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima)/20000000)) return campestre
+	if(centro == solo_exposto and p<=((tempo_desde_queima*tempo_desde_queima)/20000000)) {
+		if(estado_inicial == florestal)								return estado_inicial
+		if(estado_inicial == savanica and random_range(0,1) < 0.8)	return estado_inicial
+		if(estado_inicial == savanica and random_range(0,1) < 0.6)	return estado_inicial
+	}
 	//Linear
 	//if(centro == solo_exposto and p<=0.0001) return florestal
 	#endregion
@@ -335,7 +339,9 @@ for(var i = 0;i< VERTICAL; i++){
 									celulas[baixo][esquerda].estado,
 									celulas[i][j].estado,
 									celulas[i][j].tempo_desde_queima,
-									celulas[i][j].tempo_queimando
+									celulas[i][j].tempo_queimando,
+									celulas[i][j].estado_inicial
+									
 									)
 		if novosEstados[i][j] == inicio_fogo and celulas[i][j].estado != inicio_fogo
 			avalia_quadrante(i,j)
