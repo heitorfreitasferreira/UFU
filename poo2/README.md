@@ -495,3 +495,85 @@ public class AdvancedGame extends Game{
 }
 ```
 
+### Abstract Factory
+
+- Fornece uma interface para criar famílias de objetos relacionados sem especificar as suas classes concretas
+- Existe uma **classe conhecida pelo cliente** que é a *"Fábrica Abstrata"*
+- Cria conjuntos de objetos
+- É útil quando tem variabilidade de familia de objetos
+
+> Conclusão
+
+# Padrão Singleton
+
+> Problema
+
+- Há objetos que precisamos apenas de um
+- Garantir que determinadas classes sejam instanciadas uma única vez
+
+> Solução
+
+- Convenção para garantir que apenas um objetos seja instanciados para garantir uma classe
+
+> Objetivos
+
+- Garantir por exemplo que um objeto que tenha informações gerais 
+- Não usar mais memória do que o necessário
+
+> Lazy instantiation
+> Só ocorre quando pedir
+> Maior desempenho no início do programa
+
+
+```java
+public class Singleton{
+  private static Singleton instancia = null;
+  private Singleton(){
+    super();
+    /*
+    Construtor de Object, é redundante
+    Código do construtor virá aqui
+    */
+    }
+  // Se o cliente tentar dar um 
+  // new Singleton()
+  // será gerado um erro pois o construtor padrão foi sobrescrito
+
+  public static syncronized Singleton getInstancia(){
+    if(instancia == null){
+      instancia = new Singleton();
+    }
+    return instancia;
+  }
+  /* 
+  Syncronized garante que o método seja atomico
+  que só um cliente consiga
+  acessar o método por vez 
+  em um cenário multithread (semaforização)
+
+
+  */
+}
+public class main{
+  public static void main(){
+    Singleton objetoUnico1 = Singleton.getInstancia();
+    Singleton objetoUnico2 = Singleton.getInstancia();
+
+    // As duas variáveis apontam para o mesmo objeto
+  }
+}
+```
+
+> Early instantiation
+> Mais caro na "partida" do programa
+
+```java
+public class Singletion{
+  private static Singleton instancia = new Singletion();
+
+  private Singleton(){super();}
+  public static Singleton getInstancia(){
+    return instancia;
+  }
+}
+```
