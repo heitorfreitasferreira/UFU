@@ -189,24 +189,7 @@ novos_focos = 0
 #region Montando mapa
 
 /*
-repeat(HORIZONTAL){
 
-var x1 = irandom_range(0,HORIZONTAL)
-var x2 = irandom_range(x1,HORIZONTAL)
-
-var y1 = irandom_range(0,VERTICAL)
-var y2 = irandom_range(y1,VERTICAL)
-
-var tipo_vegetacao = choose(campestre,savanica,florestal)
-
-for(var i = x1; i<=x2;i++){
-	for(var j = y1; j<=y2; j++){
-		celulas[i][j].estado = tipo_vegetacao
-		celulas[i][j].estado_inicial = tipo_vegetacao
-	}
-}
-
-}
 */
 
 /*
@@ -229,7 +212,24 @@ for(var i = 0; i<=VERTICAL;i++){
 			
 	}
 }
+repeat(HORIZONTAL){
 
+var x1 = irandom_range(0,HORIZONTAL)
+var x2 = irandom_range(x1,HORIZONTAL)
+
+var y1 = irandom_range(0,VERTICAL)
+var y2 = irandom_range(y1,VERTICAL)
+
+var tipo_vegetacao = choose(campestre,savanica,florestal)
+
+for(var i = x1; i<=x2;i++){
+	for(var j = y1; j<=y2; j++){
+		celulas[i][j].estado = tipo_vegetacao
+		celulas[i][j].estado_inicial = tipo_vegetacao
+	}
+}
+
+}
 celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 
 celulas[VERTICAL/2][HORIZONTAL/2-1].estado = arvore_queimando
