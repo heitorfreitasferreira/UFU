@@ -460,6 +460,39 @@ int main (){
   Vanda.vender(c);
 }
 ```
+
+
+## 3.3. Padrão composite
+
+> Objetivos
+
+- Compor objetos em estruturas de ***árvore*** para representar *hierarquias partes-todo*
+- Permitir aos clientes tratarem de maneira uniforme objetos individuais e composiçoes de objetos
+- Estrutura composta
+  - Operação pode ser aplicada tanto na composição quanto nos objetos indivíduais
+
+```java
+public interface Component {
+    public void doThis();
+}
+public class Leaf implements Component {
+    public void doThis() {
+        System.out.println("Leaf.doThis()");
+    }
+}
+public class Composite implements Component{
+    private Component element;
+    // "element " será ou um nó intermediário ou um nó folha
+    //---------------------------------
+    public void doThis() {
+        System.out.println("Composite.doThis()");
+    }
+    public void add(Component c) {
+        System.out.println("Composite.add()");
+    }
+}
+```
+
 # 4. Padrões de criação
 ## 4.1. Factory
 
@@ -495,7 +528,7 @@ public class AdvancedGame extends Game{
 }
 ```
 
-### Abstract Factory
+### 4.1.3. Abstract Factory
 
 - Fornece uma interface para criar famílias de objetos relacionados sem especificar as suas classes concretas
 - Existe uma **classe conhecida pelo cliente** que é a *"Fábrica Abstrata"*
@@ -504,7 +537,9 @@ public class AdvancedGame extends Game{
 
 > Conclusão
 
-# Padrão Singleton
+# 5. Outros padrões
+
+## 5.1. Padrão Singleton
 
 > Problema
 
@@ -575,5 +610,53 @@ public class Singletion{
   public static Singleton getInstancia(){
     return instancia;
   }
+}
+```
+
+
+## 5.2. Template Method
+
+> Usado em criação de framework do tipo "Caixa Branca" ou "Inheritance-focused"
+
+Para o uso do mesmo é necessário saber qual classe especializar e quais métodos irá sobrepor
+
+
+
+```java
+public abstract class AbstractClass{
+    public final void templateMethod(){
+    // Final significa que não pode ter sobreposição
+    // nesse metodo nas classes que o herdam
+
+    System.out.println("Executando: método template");
+    primitiveOperation1();
+    primitiveOperation2();
+    }
+    protected abstract void primitiveOperation1();
+    protected abstract void primitiveOperation2();
+}
+public class Concrete1 extends AbstractClass{
+    protected void primitiveOperation1(){
+        System.out.println("Executando: método 1 do Concrete1");
+    }
+    protected void primitiveOperation2(){
+        System.out.println("Executando: método 2 do Concrete1");
+    }
+}
+public class Concrete2 extends AbstractClass{
+    protected void primitiveOperation1(){
+        System.out.println("Executando: método 1 do Concrete2");
+    }
+    protected void primitiveOperation2(){
+        System.out.println("Executando: método 2 do Concrete2");
+    }
+}
+public class TemplateMethod{
+    public static void main(String[] args){
+        AbstractClass c1 = new Concrete1();
+        AbstractClass c2 = new Concrete2();
+        c1.templateMethod();
+        c2.templateMethod();
+    }
 }
 ```
