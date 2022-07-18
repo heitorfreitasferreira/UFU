@@ -285,10 +285,10 @@ Portanto o lucro semanal seria de 1488 na maioria das semanas.
 
 #### Diagrama de componentes
 
-[TODO]
+![hQIYNHSGzK](https://user-images.githubusercontent.com/12802096/179526432-817dda87-7fab-418f-b35f-c691918e066d.png)
 
 #### Diagrama de atividade
 
-[TODO]
+![StarUML_LClJVJiYfC](https://user-images.githubusercontent.com/12802096/179526322-02625c08-850a-4972-b392-1914076b499f.png)
 
 ## Entrega 4
