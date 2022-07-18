@@ -289,6 +289,8 @@ Portanto o lucro semanal seria de 1488 na maioria das semanas.
 
 #### Diagrama de atividade
 
+https://photos.app.goo.gl/9Qj1jxzjthVxcH4T7
+
 ![StarUML_LClJVJiYfC](https://user-images.githubusercontent.com/12802096/179526322-02625c08-850a-4972-b392-1914076b499f.png)
 
 ## Entrega 4
