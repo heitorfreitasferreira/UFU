@@ -290,7 +290,75 @@ public class A5 extends M1{
 
 Para o uso do mesmo é necessário saber qual classe especializar e quais métodos irá sobrepor
 
+### 2.2.1. Definição rápida
 
+Define o **esqueleto** do algoritmo, como se fosse a **sequência de passos a ser executada** para realizar uma tarefa, o *cliente apenas define o que cada método* dessa sequência fará
+
+### 2.2.2. Diagrama de classe genérico
+
+```mermaid
+classDiagram
+
+AbstractTemplate --|> implementacao1Template
+AbstractTemplate --|> implementacao2Template
+AbstractTemplate --|> implementacaoNTemplate
+
+class AbstractTemplate{
+  +templateMethod()
+  +passo1()*
+  +passo2()*
+  +passoN()*
+}
+class implementacao1Template{
+  +passo1()
+  +passo2()
+  +passoN()
+}
+class implementacao2Template{
+  +passo1()
+  +passo2()
+  +passoN()
+}
+class implementacaoNTemplate{
+  +passo1()
+  +passo2()
+  +passoN()
+}
+```
+
+### 2.2.3. Diagrama de classe com exemplo
+
+
+```mermaid
+classDiagram
+
+MineradorDados --|> MineirarTXT
+MineradorDados --|> MineirarCSV
+
+class MineradorDados{
+  +minerar(caminho: String)
+  +abrirArquivo(caminho: String)* File
+  +extrairDados(arquivo: File)* String
+  +transformarDados(String dadosNaoTratados)* ArrayDados
+  +analisarDados(ArrayDados)log
+  +enviarAnalise(log)void
+  +fecharArquivo(arquivo: File)*
+}
+class MineirarCSV{
+  +abrirArquivo(caminho: String) File
+  +extrairDados(arquivo: File) String
+  +transformarDados(String dadosNaoTratados)ArrayDados
+  +fecharArquivo(arquivo: File)
+}
+class MineirarTXT{
+  +abrirArquivo(caminho: String) File
+  +extrairDados(arquivo: File) String
+  +transformarDados(String dadosNaoTratados)ArrayDados
+  +fecharArquivo(arquivo: File)
+}
+```
+
+### 2.2.4. Exemplo de código
 
 ```java
 public abstract class AbstractClass{
@@ -336,9 +404,7 @@ public class TemplateMethod{
 
 > Vantagem
 
-# 3. Padrões Estruturais
-
-## 3.1. Padrão Chain of Responsibility
+## 2.4. Padrão Chain of Responsibility
 
 > Obj. Evitar o  acoplamento do remetente de uma solicitação ao receptor fornecendo uma cadeia de objetos para tratar uma solicitação
 
@@ -347,13 +413,13 @@ public class TemplateMethod{
 - Esses objetos receptores passam a solicitação ao longo de cadeia até que um ou cários objetos a tratem.
 - Cada objeto receptor possui uma lógica descrevendo os tipos de solicitação que é capaz de processar e como passar adiante aquelas que requeiram processamento por outros receptores
 
-### 3.1.1. Como é montado
+### 2.4.1. Como é montado
 
 - É uma **lista simplesmente encadeada** de objetos que podem servir um determinado pedido
 - Em ve de acoplar o cliente a um objeto especifico para a execução de um determinado método
 - Lista encadeada de processamento
   
-### 3.1.2. Vantagens
+### 2.4.2. Vantagens
 
 - Determina em tempo de execução:
   - Qual objeto irá tratar a requisição
@@ -361,7 +427,7 @@ public class TemplateMethod{
 - Evita condicional
 - Reduz acoplamento, toda implementação depende apenas desses objetos da interface que foi criada
 
-### 3.1.3. Itens da cadeia
+### 2.4.3. Itens da cadeia
 
 > Handler
 
@@ -378,7 +444,7 @@ public class TemplateMethod{
 
 - Faz o pedido pra cadeia da processamento
 
-### 3.1.4. Diagrama de Classes
+### 2.4.4. Diagrama de classes genérico
 
 ```mermaid
 classDiagram
@@ -398,7 +464,30 @@ classDiagram
     }
 ```
 
-## 3.2. Padrão Decorator
+### 2.4.5. Diagrama de classes com exemplo
+
+```mermaid
+classDiagram
+    Client..>Handler
+    Handler o-- Handler
+    ConcreteHandler1<|--Handler
+    ConcreteHandlerN<|--Handler
+
+    class Handler{
+      +handleRequest(request: Request)* void
+    }
+    class ConcreteHandler1{
+      +handleRequest(request: Request) void
+    }
+    class ConcreteHandlerN{
+      +handleRequest(request: Request) void
+    }
+```
+
+
+# 3. Padrões Estruturais
+
+## 3.1. Padrão Decorator
 
 > Resposabilidades à instâncias, e nao à toda classe
 
@@ -406,7 +495,7 @@ classDiagram
 - Permite aplicar funcionalidades à um objeto específico
 - Diminui a quantidade de classess
 
-### 3.2.1. Exemplo base
+### 3.1.1. Exemplo base
 
 Usado quando há uma classe base e há necessidade de especialização de indivíduos especificos
 
@@ -450,7 +539,7 @@ class DecoratorB: public Decorator{
 }
 ```
 
-### 3.2.2. Exemplo com jogo
+### 3.1.2. Exemplo com jogo
 
 ```cpp
 
@@ -501,7 +590,7 @@ class Heal: public SummonerSpell{
 
 ```
 
-### 3.2.3. Exemplo na prática
+### 3.1.3. Exemplo na prática
 
 - Tenho um carro básico
   - Componente concréto 
@@ -618,7 +707,7 @@ int main (){
 ```
 
 
-## 3.3. Padrão composite
+## 3.2. Padrão composite
 
 > Objetivos
 
@@ -752,6 +841,7 @@ public class main{
 ```
 
 > Early instantiation
+
 > Mais caro na "partida" do programa
 
 ```java
