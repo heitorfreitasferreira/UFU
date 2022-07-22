@@ -9,9 +9,7 @@
 
 GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orientado a objetos.** Porto Alegre : Bookman, 2005
 
-# 2. Padrões Compotamentais
-
-## 2.1. Padrões de projeto
+## 1.2. Padrões de projeto
 
 > **Reutilizar a experiência** de outros devs com problemas semelhantes
 > 
@@ -23,13 +21,13 @@ GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orient
 - Projeto deve ser flexível para atender requisitos futuros
 - Bons projetistas não caem em POG (programação orientada a gambiarra), e projetam realmente orientado a objetos
 
-### 2.1.1. Caracteristicas de um padrão de projeto
+### 1.2.1. Caracteristicas de um padrão de projeto
 
 - Encapsulamento: um padrao encapsula um problema em uma solução bem definida
 - Generalidade: todo padrão de projeto deve 
 - Abstrato: representação abstratas
 
-### 2.1.2. Conjuntos de padrões 
+### 1.2.2. Conjuntos de padrões 
 
 - ***Criação***: criar novos objetos
 - ***Estruturais***: associaçoes entre classes e objetos
@@ -37,9 +35,81 @@ GAMA, Erich. **Padrões de projeto: soluções reutilizáveis de software orient
 - ***Comportamentais***: interações e divisões de responsabilidades
   - Melhora em tempo de execução
 
-## 2.2. Padrão Strategy
+# 2. Padrões Compotamentais
+
+## 2.1. Padrão Strategy
 
 > As vezes a herança não resolve, cria soluções inflexíveis e difíceis de manter...
+
+
+> **Família de algoritmos**
+
+### 2.1.1. Diagrama de classe genérico
+
+```mermaid
+classDiagram
+
+Cliente --> Context
+Cliente ..> ConcreteStrategy1
+Cliente ..> ConcreteStrategyN
+ConcreteStrategy1 ..|> Strategy
+ConcreteStrategyN..|> Strategy
+Strategy <|--o Context
+
+
+class Context{
+ -strategy: Strategy
+ +setStrategy(strategy: Strategy)
+ +doSomething()
+}
+class Strategy{
+  <<interface>>
+  +execute(data)
+}
+class ConcreteStrategy1{
+  +execute(data)
+}
+class ConcreteStrategyN{
+  +execute(data)
+}
+class Cliente{
+  -Strategy
+}
+```
+
+### 2.1.2. Diagrama de classe com exemplo
+
+
+```mermaid
+classDiagram
+
+Cliente --> MeioTransporte
+Cliente ..> Bicicleta
+Cliente ..> Carro
+Bicicleta ..|> TransporteStrategy
+Carro..|> TransporteStrategy
+TransporteStrategy <|--o MeioTransporte
+
+class MeioTransporte{
+ -meioTransporte: TransporteStrategy
+ +definirMeioTransporte(meio: TransporteStrategy)
+ +irDePara(partida: Local, destino: Local)
+}
+
+class TransporteStrategy{
+  <<interface>>
+  +irPara(partida: Local, destino: Local)
+}
+class Bicicleta{
+  +irPara(partida: Local, destino: Local)
+}
+class Carro{
+  +irPara(partida: Local, destino: Local)
+}
+class Cliente{
+  -Strategy
+}
+```
 
 Exemplo: 
 Uma classe *A* implementa dois métodos, ***m1(a1)*** e ***m2(a2)***  
@@ -97,7 +167,7 @@ Mas ao usar o padrão Strategy é imporatante **identificar os aspectos que vari
 
 Pergunta: quais aspectos variam, quantas variações temos
 
-### 2.2.1. Aplicando o padrão strategy
+### 2.1.3. Aplicando o padrão strategy
 
 - Permite definir famílias de comportamentos, que podem ser (re)utilizados de forma intercambiável
 - permite que o algoritmo varie independentemente dos clientes que o usam
@@ -207,12 +277,64 @@ public class A5 extends M1{
 
 > Dica: sempre programe para o super-tipo, e não para o
 
-### 2.2.2. Orientações para o Strategy
+### 2.1.4. Orientações para o Strategy
 
 - Programe sempre para interface(abstrações)
 - Dê preferência para composição ao invés de herança
 
 > Reutilizar e intercambiar comportamentos entre diversas classes, facilitando a expansão, manutenção e reuso
+
+## 2.2. Template Method
+
+> Usado em criação de framework do tipo "Caixa Branca" ou "Inheritance-focused"
+
+Para o uso do mesmo é necessário saber qual classe especializar e quais métodos irá sobrepor
+
+
+
+```java
+public abstract class AbstractClass{
+    public final void templateMethod(){
+    // Final significa que não pode ter sobreposição
+    // nesse metodo nas classes que o herdam
+
+    System.out.println("Executando: método template");
+    primitiveOperation1();
+    primitiveOperation2();
+    }
+    protected abstract void primitiveOperation1();
+    protected abstract void primitiveOperation2();
+}
+public class Concrete1 extends AbstractClass{
+    protected void primitiveOperation1(){
+        System.out.println("Executando: método 1 do Concrete1");
+    }
+    protected void primitiveOperation2(){
+        System.out.println("Executando: método 2 do Concrete1");
+    }
+}
+public class Concrete2 extends AbstractClass{
+    protected void primitiveOperation1(){
+        System.out.println("Executando: método 1 do Concrete2");
+    }
+    protected void primitiveOperation2(){
+        System.out.println("Executando: método 2 do Concrete2");
+    }
+}
+public class TemplateMethod{
+    public static void main(String[] args){
+        AbstractClass c1 = new Concrete1();
+        AbstractClass c2 = new Concrete2();
+        c1.templateMethod();
+        c2.templateMethod();
+    }
+}
+```
+
+
+## 2.3. Observer
+
+> Vantagem
 
 # 3. Padrões Estruturais
 
@@ -233,13 +355,47 @@ public class A5 extends M1{
   
 ### 3.1.2. Vantagens
 
-[TODO]
+- Determina em tempo de execução:
+  - Qual objeto irá tratar a requisição
+  - Cadeia de métodos que irá tratar o processamento
+- Evita condicional
+- Reduz acoplamento, toda implementação depende apenas desses objetos da interface que foi criada
+
+### 3.1.3. Itens da cadeia
+
+> Handler
+
+- **Interface** para tratar os pedidos
+- Implementa a ligação (lista) com o próximo elemento da cadeia de processamento
+
+> Concrete Handler
+
+- Objeto da interface Handler
+- Nó de processamento da cadeia
+- Se tratar o pedido o faz, se não o passa pra frente na cadeia
+
+> Client
+
+- Faz o pedido pra cadeia da processamento
+
+### 3.1.4. Diagrama de Classes
+
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+classDiagram
+    Client..>Handler
+    Handler o-- Handler
+    ConcreteHandler1<|--Handler
+    ConcreteHandlerN<|--Handler
+
+    class Handler{
+      +handleRequest(request: Request)* void
+    }
+    class ConcreteHandler1{
+      +handleRequest(request: Request) void
+    }
+    class ConcreteHandlerN{
+      +handleRequest(request: Request) void
+    }
 ```
 
 ## 3.2. Padrão Decorator
@@ -535,11 +691,7 @@ public class AdvancedGame extends Game{
 - Cria conjuntos de objetos
 - É útil quando tem variabilidade de familia de objetos
 
-> Conclusão
-
-# 5. Outros padrões
-
-## 5.1. Padrão Singleton
+## 4.2. Padrão Singleton
 
 > Problema
 
@@ -612,51 +764,4 @@ public class Singletion{
   }
 }
 ```
-
-
-## 5.2. Template Method
-
-> Usado em criação de framework do tipo "Caixa Branca" ou "Inheritance-focused"
-
-Para o uso do mesmo é necessário saber qual classe especializar e quais métodos irá sobrepor
-
-
-
-```java
-public abstract class AbstractClass{
-    public final void templateMethod(){
-    // Final significa que não pode ter sobreposição
-    // nesse metodo nas classes que o herdam
-
-    System.out.println("Executando: método template");
-    primitiveOperation1();
-    primitiveOperation2();
-    }
-    protected abstract void primitiveOperation1();
-    protected abstract void primitiveOperation2();
-}
-public class Concrete1 extends AbstractClass{
-    protected void primitiveOperation1(){
-        System.out.println("Executando: método 1 do Concrete1");
-    }
-    protected void primitiveOperation2(){
-        System.out.println("Executando: método 2 do Concrete1");
-    }
-}
-public class Concrete2 extends AbstractClass{
-    protected void primitiveOperation1(){
-        System.out.println("Executando: método 1 do Concrete2");
-    }
-    protected void primitiveOperation2(){
-        System.out.println("Executando: método 2 do Concrete2");
-    }
-}
-public class TemplateMethod{
-    public static void main(String[] args){
-        AbstractClass c1 = new Concrete1();
-        AbstractClass c2 = new Concrete2();
-        c1.templateMethod();
-        c2.templateMethod();
-    }
-}
-```
+> Conclusão
