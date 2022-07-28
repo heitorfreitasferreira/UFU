@@ -402,8 +402,77 @@ public class TemplateMethod{
 
 ## 2.3. Observer
 
-> Vantagem
+> Fornece um design em que sujeitos e observadores são **levemente** ligados
 
+- Única coisa que o *sujeito* sabe sobre um *observador* é que ele implementa uma interface **observer**
+- Pode-se adicionar novos *observadores* a qualquer momento
+- Não é necessário alterar o *sujeito* para adicionar novos tipos de *observadores*
+- *Sujeito* e *observadores* são **INDEPENDENTES**
+- Alteração em um *sujeito* ou em um *observador* não afetam um ao outro
+- Um objeto pode observar vários *sujeitos*
+
+### Diagrama de classes genérico
+
+```mermaid
+classDiagram
+ISubject--|>ConcreteObserver
+IObserver--|>ConcreteSubject
+ConcreteObserver-->ConcreteSubject
+ISubject-->IObserver
+
+class ConcreteObserver{
+  +addObserver(IObserver o)  :void
+  +removeObserver(IObserver o):void
+  +notifyObserver():void
+}
+class ConcreteSubject{
+  +viewUpdates()
+}
+class ISubject{
+  <<interface>>
+  +addObserver(IObserver o)*:void
+  +removeObserver(IObserver o)*:void
+  +notifyObserver()*:void
+}
+class IObserver{
+  <<interface>>
+  +viewUpdates()*
+}
+```
+### Diagrama de classes com exemplo
+
+```mermaid
+classDiagram
+Sujeito--|>Bola
+Observador--|>Jogador
+Bola-->Jogador
+Sujeito-->Observador
+
+class Bola{
+  +int x
+  +int y
+  +registrarObservador(Observador o)  :void
+  +removerObservador(Observador o):void
+  +notificarObservadores():void
+}
+class Jogador{
+  +int x
+  +int y
+  +chutar(Bola b)
+  +verNotificacoes()
+}
+class Sujeito{
+  <<interface>>
+  +registrarObservador(Observador o)*:void
+  +removerObservador(Observador o)*:void
+  +notificarObservadores()*:void
+}
+class Observador{
+  <<interface>>
+  +verNotificacoes()*
+}
+```
+  
 ## 2.4. Padrão Chain of Responsibility
 
 > Obj. Evitar o  acoplamento do remetente de uma solicitação ao receptor fornecendo uma cadeia de objetos para tratar uma solicitação
