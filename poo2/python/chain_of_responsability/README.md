@@ -265,7 +265,43 @@ handler1.handle(pedido)
 ## Como criar uma cadeia para tratar usuários em Python
 
 
+### Gabarito do exercício do vídeo
 
+> Processamento de estar logado
+
+```py
+from Handlers.IUserHandler import IUserHandler
+from User import User
+
+
+class LoggedHandler(IUserHandler):
+    def handle(self, user: User):
+        retorno: str = ""
+        if user.logged == False:
+            retorno += "User isn't logged\n"
+        if self._next_handler:
+            return retorno + self._next_handler.handle(user)
+        else:
+            return retorno
+```
+
+> Processamento do email
+
+```py
+from Handlers.IUserHandler import IUserHandler
+from User import User
+
+
+class EmailHandler(IUserHandler):
+    def handle(self, user: User):
+        retorno: str = ""
+        if "@" not in user.email:
+            retorno += "User's email is invalid'\n"
+        if self._next_handler:
+            return retorno + self._next_handler.handle(user)
+        else:
+            return retorno
+```
 
 ## Esse conteúdo parece familiar...
 
