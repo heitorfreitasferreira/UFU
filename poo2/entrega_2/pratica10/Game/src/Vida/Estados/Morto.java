@@ -10,6 +10,6 @@ public class Morto extends VidaInterface {
 
   public void lidaAlteracaoVida() {
     // Transição de estado (não há)
-    System.out.println("Você morreu!");
+    System.out.println(getPersonagem().getNome() +" morreu!");
   }
 }
