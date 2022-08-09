@@ -6,5 +6,9 @@ public class Saida implements Labirinto {
         System.out.println(personagem.getNome()+" encontrou a saída do labirinto!");
         System.out.println("");
     }
+
+    public void jogar(Personagem personagem) {
+        selecionarCaminho(personagem);
+    }
     
 }

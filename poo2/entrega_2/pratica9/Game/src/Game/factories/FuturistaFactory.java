@@ -1,11 +1,9 @@
 package Game.factories;
 
-import Atacar.ArcoFlecha;
 import Atacar.AtacarStrategyInterface;
 import Atacar.RaioParalisante;
 import Escudos.EscudoHandler;
 import Escudos.EscudoMedieval;
-import Game.Personagens.Arqueiro;
 import Game.Personagens.Personagem;
 import Game.Personagens.Robo;
 

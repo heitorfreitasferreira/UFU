@@ -1,5 +1,3 @@
-import java.time.Period;
-
 import Game.Personagens.Personagem;
 
 public class Abismo implements Labirinto{
@@ -7,5 +5,8 @@ public class Abismo implements Labirinto{
         personagem.setVida(personagem.getVida()-personagem.getVida());
         System.out.println(personagem.getNome()+ " perdeu "+personagem.getVida()+" pontos de vida ao cair em um abismo!");
         System.out.println("");
+    }
+    public void jogar(Personagem personagem){
+        selecionarCaminho(personagem);
     }
 }
