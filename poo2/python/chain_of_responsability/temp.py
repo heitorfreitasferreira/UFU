@@ -1,65 +1,32 @@
 from abc import ABC, abstractmethod
+
 # biblioteca que permite que classes sejam abstratas
 
-
-class Funcionario(ABC):
-    _superior = None
-
+class IHandler(ABC):
+    nextHandler = None
     @abstractmethod
-    def lida_pedido(self, pedido):
-        pass
+    def handle(self, request):
+        raise NotImplementedError
+    def setNext(self, handler):
+        self.nextHandler = handler
+        return handler
 
-    def define_superior(self, superior):
-        self._superior = superior
-        return superior
-        # Esse retorno ajudará na hora de definir a ordem da cadeia
+class Handler1(IHandler):
+    def handle(self, request):
+        print(f"{request} tratado pelo Handler1")
+        if self.nextHandler:
+            self.nextHandler.handle(request)   
 
-
-class Vendedor(Funcionario):
-    estoque = ["Item 1", "Item 2", "Item 3"]
-
-    def lida_pedido(self, pedido):
-        if pedido in self.estoque:
-            print("Vendedor diz: Toma aqui seu pedido")
-        # Tenta passar o pedido para um superior, se o mesmo existir
-        else:
-            if self._superior is not None:
-                self._superior.lida_pedido(pedido)
-            else:
-                print("Não temos o que você precisa")
+class Handler2(IHandler):
+    def handle(self, request):
+        print(f"{request} tratado pelo Handler2")
+        if self.nextHandler:
+            self.nextHandler.handle(request)
 
 
-class Gerente(Funcionario):
-    estoque = ["Item 4", "Item 5", "Item 6"]
 
-    def lida_pedido(self, pedido):
-        if pedido in self.estoque:
-            print("Gerente diz: Toma aqui seu pedido")
-        else:
-            if self._superior is not None:
-                self._superior.lida_pedido(pedido)
-            else:
-                print("Não temos o que você precisa")
-
-
-class RepresentanteRegional(Funcionario):
-    estoque = ["Item 7", "Item 8", "Item 9"]
-
-    def lida_pedido(self, pedido):
-        if pedido in self.estoque:
-            print("Representante Regional diz: Toma aqui seu pedido")
-        else:
-            if self._superior is not None:
-                self._superior.lida_pedido(pedido)
-            else:
-                print("Não temos o que você precisa")
-
-
-repre_regional = RepresentanteRegional()
-gerente = Gerente()
-vendedor = Vendedor()
-
-# Como o método define_superior retorna o parametro que foi passado, é possível definir a cadeia assim:
-vendedor.define_superior(gerente).define_superior(repre_regional)
-
-vendedor.lida_pedido("Item 10")
+pedido = "Pedido de compra"
+handler1 = Handler1()
+handler2 = Handler2()
+handler1.setNext(handler2)
+handler1.handle(pedido)

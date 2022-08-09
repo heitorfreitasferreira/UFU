@@ -81,7 +81,7 @@ Agora que você entendeu a estrutura de dados, ficou fácil de entender o que es
 
 ## Organização do código
 
-O objetivo de um padrão de projeto é ser uma solução que torna uma implementação mais fácil de entender e manter e reutilizar, então vamos mudar o código seguindo alguns princípios de design de orientação a objetos chamado [**S.O.L.I.D**](https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530): 
+O objetivo de um padrão de projeto é ser uma solução que **torna uma implementação mais fácil de entender e manter e reutilizar**, então vamos mudar o código seguindo alguns princípios de design de orientação a objetos chamado [**S.O.L.I.D**](https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530): 
 
 Primeiro é possível identificar que todas as classes do exemplo eram algum tipo de funcionário, e todos funcionáros tem algum tipo de forma de lidar com o pedido, então podemos criar uma classe que represente o funcionário geral, que é o pai das outras classes, e que possuir um [método abstrato](https://www.feg.unesp.br/Home/PaginasPessoais/profedsonluizfrancasenne/pc2-cap5.pdf) para lidar com o pedido, e uma informação de quem é o seu superior, que lidará com o pedido caso esse funcionario não consiga lidar.
 
@@ -205,16 +205,205 @@ class ConcreteHandler2{
 
 ```
 
-### Itens da cadeia
+### Itens do padrão
 
 > Handler
 
-- **Interface** para tratar os pedidos
-  - Como o Python não tem interfaces, usaremos classes abstratas
-  - Em linguagens 
-- Implementa a ligação (lista) com o próximo elemento da cadeia de processamento
+- Nó genérico, nele implementamos a lógica de definir o próximo nó de processamento que é genérica à todos handlers
+- Não é implementada a lógica do processamento do nó (método handle), pois está é especifica à cada nó
 
 > Concrete Handlers
 
-- Objeto da interface Handler
-- Nó de processamento da cadeia
+- Classe concreta que herda a implementação de definição do próximo handler
+- Deve implementar o método handle que trata o pedido que está passando pela cadeia
+- O processamento do pedido normalmente é feito de duas formas:
+  - Nós que **testam se um pedido está no formato esperado**, normalmente chamam a execução do próximo nó de processamento somente caso o pedido passe em seu teste
+  - Nós que **manipulam um pedido durante a cadeia**, normalmente modificam certos atributos de um objeto e passam para o próximo nó modificar outros atributos
+
+```py
+class IHandler(ABC):
+    nextHandler = None
+    @abstractmethod
+    def handle(self, request):
+        raise NotImplementedError
+    def setNext(self, handler):
+        self.nextHandler = handler
+        return handler
+
+class Handler1(IHandler):
+    def handle(self, request):
+        print(f"{request} tratado pelo Handler1")
+        if self.nextHandler:
+            self.nextHandler.handle(request)   
+
+class Handler2(IHandler):
+    def handle(self, request):
+        print(f"{request} tratado pelo Handler2")
+        if self.nextHandler:
+            self.nextHandler.handle(request)
+```
+
+Com a criação destas classes, é possível utilizar a cadeia da seguinte forma
+
+```py
+# Criação do pedido
+pedido = "Pedido de compra"
+# Criação dos handlers
+handler1 = Handler1()
+handler2 = Handler2()
+# Definição da ordem da cadeia de handlers
+handler1.setNext(handler2)
+# Tratamento do pedido pela caideia
+handler1.handle(pedido)
+#Outpu no console:
+"""
+  Pedido de compra tratado pelo Handler1
+  Pedido de compra tratado pelo Handler2
+"""
+```
+
+## Como criar uma cadeia para tratar usuários em Python
+
+
+
+
+## Esse conteúdo parece familiar...
+
+Caso você esteja vendo similaridades com o que já estudou anteriromente, parabéns! Os frameworks que usamos para facilitar o desenvolvimento de softwares usam amplamente padrões de projeto para prover funcionalidades da melhor forma para seus usuários.  
+Um framework que usa o padrão **Chain of Responsability** em um de seus componentes é o *Express*, que você aprendeu a utilizar para criação de servidores e apis em Javascript e rodando em cima do Nodejs.  
+Esse padrão é utilizado pelos [Midlewares](https://expressjs.com/en/guide/using-middleware.html), que são métodos que tem acesso ao request, à response de uma chamada HTTP e são executados antes de executar o método de alguma rota particular, ou antes de todas as rotas. Normalmente são usados no express para validação de usuários
+
+
+### Exemplo de middleware 
+
+```js
+const express = require("express")
+const server = express()
+
+const middlerwareLocal = function(req,res,next){
+    // processamento do nó
+    console.log("Passou pelo middleware 1")
+    //Chamada do proximo middleware
+    next()
+}
+const middlerwareGlobal = function(req,res,next){
+    console.log("Passou pelo middleware global")
+    next()
+}
+
+// Configuração do middleware que é executado antes de todas as rotas
+server.use(middlerwareGlobal)
+
+//Rotas
+
+//Rota que usa o middlewareLocal
+server.get("/com",middlerwareLocal, function(req,res){
+    res.send("Hello World tratado localmente e globalmente")
+})
+// Rota que não usa o middleware1
+server.get("/sem",function(req,res){
+    res.send("Hello World tratado globalmente")
+})
+
+// Execução do servidor na porta 3000
+server.listen(3000,function(){
+    console.log("Server is running")
+})
+```
+
+### Material complementar de middlewares no Express
+
+- [Documentação oficial do express](https://expressjs.com/en/guide/using-middleware.html)
+- [Documentação oficial de como usar no express](https://expressjs.com/en/guide/writing-middleware.html)
+- [Guia completo de middlewares no express](https://expressjs.com/en/guide/writing-middleware.html)
+
+
+## Exercício
+
+Cria uma cadeia que recebe como pedido um inteiro que representa um valor monetário em real e mostre a decomposição desse valor considerando notas de 100, 50, 20, 10, 5, 2. Cada nó da cadeia deve ser responsável por remover a quantidade de notas de R$X,00 e printar a quantidade que foi removida, o pedido para o próximo nó será da quantidade restante monetária
+
+Exemplo de entrada | Exemplo de saída
+-|-
+576 | 5 nota(s) de R$ 100.00 <br /> 1 nota(s) de R$ 50.00 <br /> 1 nota(s) de R$ 20.00 <br /> 0 nota(s) de R$ 10.00 <br /> 1 nota(s) de R$ 5.00 <br /> 0 nota(s) de R$ 2.00
+
+> Dica: para separar as notas use resto da divisão e divisão inteira
+
+## Gabarito
+
+```py
+from abc import ABC, abstractmethod
+
+class SeparadorDeNotas(ABC):
+    proximoNo = None
+    @abstractmethod
+    def handle(self, nota):
+        raise NotImplementedError
+    def setNext(self, prox_separador):
+        self.proximoNo = prox_separador
+        return prox_separador
+
+class Separador100(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 100 # divisão inteira arredondando para baixo
+        print(f"{qnt_notas} nota(s) de R$ 100,00")
+        restante = nota % 100 # Quantidade após remover as notas de 100 do valor
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador50(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 50
+        print(f"{qnt_notas} nota(s) de R$ 50,00")
+        restante = nota % 50
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador20(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 20
+        print(f"{qnt_notas} nota(s) de R$ 20,00")
+        restante = nota % 20
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador10(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 10
+        print(f"{qnt_notas} nota(s) de R$ 10,00")
+        restante = nota % 10
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador5(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 5
+        print(f"{qnt_notas} nota(s) de R$ 5,00")
+        restante = nota % 5
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador2(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota // 2
+        print(f"{qnt_notas} nota(s) de R$ 2,00")
+        restante = nota % 2
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+class Separador1(SeparadorDeNotas):
+    def handle(self, nota):
+        qnt_notas = nota 
+        print(f"{qnt_notas} nota(s) de R$ 1,00")
+        restante = nota % 1
+        if self.proximoNo and restante>0:
+            self.proximoNo.handle(restante)
+
+
+# Criação da cadeia de responsabilidades
+
+separador_de_notas = Separador100()
+
+separador_de_notas.setNext(Separador50()).setNext(Separador20()).setNext(Separador10()).setNext(Separador5()).setNext(Separador2()).setNext(Separador1())
+# Caso "falte" alguma nota no caixa, basta remover um dos nós da cadeia
+separador_de_notas.handle(576)
+```
