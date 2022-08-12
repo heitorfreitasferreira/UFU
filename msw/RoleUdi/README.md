@@ -294,3 +294,113 @@ https://photos.app.goo.gl/9Qj1jxzjthVxcH4T7
 ![StarUML_LClJVJiYfC](https://user-images.githubusercontent.com/12802096/179526322-02625c08-850a-4972-b392-1914076b499f.png)
 
 ## Entrega 4
+
+
+### Estudo da viabilidade
+
+ O estudo da viabilidade nada mais é que uma análise para saber se seu négocio é lucrativo ou desvantojoso.  
+    O ideal para saber com maior exatidão todas as previsões para seu negócio seria fazer estudos sobre o nicho da area de atuação,
+  ou seja, estudar o seu público-alvo, seus concorrentes e todas as adversidades que possivelmente podem mudar
+  suas vendas, despesas ou oportunidades novas.  
+    No entanto é quase impossível estar ciente de todas as adversidades, portanto uma ótima qualidade para aumentar
+  a chance do seu negócio sucedir é a capacidade de se **Adaptar** as situações que forem encontradas pelo caminho.  
+  Uma das técnicas usadas para esse estudo é dividi-lo em 4 pilares, estes são:
+1. Projeção de receitas
+2. Projeção de custos, despesas e investimentos
+3. Projeção de fluxo dos caixas
+
+#### Projeção de receitas
+  Os possíveis ganhos monetários da RoleUdi são a partir das taxas das vendas de ingressos e venda de dados dos usuários.  
+   Como pensamos inicialmente no aplicativo sendo apenas para Uberlândia(para lançarmos em outras regiões teria que ser 
+  feito outro estudo nas devidas regiões para saber sua viabilidade), fizemos as previsões com base nos números das festa 
+  que ocorreram em Uberlândia:
+  - HH Chama na chama - Aproximadamente 800 pessoas
+  - HH Hello World - Aproximadamente 800 pessoas  
+(Geralmente tem uma média de 800 pessoas por rolê)  
+Como são projeções de lucros é muito importante ser realista ou até pessimista em relação aos números para que nap haja muita quebra de expectativas.  
+Portanto com uma taxa de R$1,00 e 4% de taxas de bancos para compras com cartão de crédito e 2% para débito(como a maioria compra com crédito,decidi optar
+por usar a taxa de 4% e com uma margem de erro aumentar para 5%).  
+Se obtivermos a exclusividade com as atléticas/baterias de os ingressos serem comprados apenas através do RoleUdi os lucros nessas 3 festas seria de  
+800 + 800 +  = 1600 * ( 1 * 0,95) = R$1520,00 nos 2 rolês.  
+Portanto como ocorrem em média 2 rolês por final de semana(8 por mês).  
+4 * 1520 = R$6080 na média por mês
+
+#### Projeção de custos, despesas e investimentos
+
+Primeiramente um dos primeiros gastos seria o investimento:  
+- Em alguns sites de freelance o preço para desevolver um aplicativo custa em torno de R$1000 a R$2000, sendo o maior investimento.
+- Outro ponto é que mesmo que as taxas sejam mais baratas que nos concorrentes(IngressoLive e CheersApp cobram pelo menos R$3 de taxa), ele só começará a ser usado se tiver uma funcionalidade melhor ou pelo menos igual aos concorrentes e quando tiver popularidade.   
+   Por isso um dos investimentos é comprar a exclusidade da compra do ingresso via RoleUdi com os organizadores dos eventos. A sugestão inicial seria R$500 por essa exclusividade, porém é algo flexível e discutível, porém no máximo de R$1000 por festa e no máximo para até 4 festas.
+Outros custos e despesas seriam:
+- A manutenção do aplicativo caso ocorra bugs - em torno de R$500 com freelancer
+- Servidores para hostear o aplicativo - $25 = R$128 por mês variável conforme o preço do dolár
+Os investimentos estão em torno de R$2000 a R$4000.
+E os custos mensais em torno de R$128 a R$628+.
+
+#### Projeção de fluxo dos caixas
+Como os ganhos seriam por evento e não diariamente, o fluxo seria por fim de semana(momento em que ocorrem a maioria dos eventos) e os gastos são R$128 mensais pelo host do aplicativo e como a entrada semanal é 1520 na média os gastos só não podem passar de 1520 - (128/4 = 32) = 1488 por semana, o que é muito pouco provavel.  
+Portanto o lucro semanal seria de 1488 na maioria das semanas.
+
+### Especificação dos requisitos completa.
+
+#### Funcionais
+
+| ID_Req | Requisito                                           | Descrição                                                                                                                                                                                                                                                                                 |
+| ------ | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RF01   | Cadastrar                                           | Usuário não logado cria uma conta no banco de dados da aplicação, podendo ser criação de conta com email, conta Google ou conta Meta                                                                                                                                                      |
+| RF02   | Logar                                               | Usuário não logado e com conta cadastrada no banco de dados da aplicação fornece os dados                                                                                                                                                                                                 |
+| RF03   | Marcar presença em evento                           | Dentro da página de um evento que já tenha data confirmada, usuário pode marcar que irá, não irá com certeza ou que está com vontade de ir no evento                                                                                                                                      |
+| RF04   | Adicionar amizade                                   | Usuário vê as pessoas da sua lista de contatos do celular, e caso não tenha ela conectada como amiga pode enviar uma solicitação                                                                                                                                                          |
+| RF05   | Aceitar convite amizade                             | Usuário que recebeu um convite em sua caixa de notificações pode aceitar, ignorar ou bloquear a solicitação, em caso de bloqueio os futuros convites de amizade não serão notificados ao usuário que os receberia                                                                         |
+| RF06   | Avaliar evento                                      | Dentro da página de um evento que já tenha sido concluído, o usuário pode dar a nota de 1 a 5, com justficativa ou não da nota, em um modelo semelhantes à avaliação de lojas em aplicativos                                                                                              |
+| RF07   | Filtrar por data                                    | Na página inicial da aplicação o usuário pode selecionar o modo de visualização por data, abrindo uma janela dividida em colunas (dias) e que nas colunas, os eventos com maior coeficiente de desejo do público estarão no topo da coluna                                                |
+| RF08   | Filtrar por localização                             | Na página inicial da aplicação o usuário pode selecionar o modo de visualização por localização, abrindo uma janela com um mapa da área que o usuário se encontra, e com "pins" nos locais onde haverão eventos, similar à visualização de pontos comerciais do Google Maps               |
+| RF09   | Trocar data analisada                               | Em qualquer uma das visualizações, o usuário pode selecionar qual período ele quer analisar, no caso da visualização por data é possível ver as diferentes semanas, e na por localização é possível selecionar o dia em que será visto o mapa                                             |
+| RF10   | Escolher nicho evento                               | No momento de criação da conta, o usuário deverá selecionar 1 ou mais nichos de eventos que ele tem interesse, o mesmo menu pode ser acessado novamente nas configurações da aplicação, onde poderão ser trocados os nichos de interesse, desde que tenha pelo menos um nicho selecionado |
+| RF11   | Calcular coeficiente de desejo do público ao evento | Análise do fluxo de entradas de dados dos usuários (presença ou não em eventos e notas em eventos dos organizadores passados) para ranquear os eventos que estão em alta e que serão priorizados nas vizualizações                                                                        |
+| RF12   | Cadastro cartão de crédito/débito                   | Usuário insere informações de cartão, sistema faz uma compra e estorno de um valor infimo para verificação da conta bancária                                                                                                                                                              |
+
+---
+
+#### Não funcionais
+
+| ID_Req | Requisito                      | Descrição                                                                                                                          |
+| ------ | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| RNF01  | Plataformas                    | Sistema pode ser usado tanto via interface web responsiva, ou aplicação nativa Android                                             |
+| RNF02  | Banco de dados                 | Banco de dados de Grafo para guardar as conexões entre usuários, banco de dados não-relacional para os outros tipos de informações |
+| RNF03  | Design interface               | Uso das guidelines da Material U da Google para montar as telas                                                                    |
+| RNF04  | Tempo resposta cartão          | O tempo de resposta de qualquer transação monetária dentro da aplicação não deve passar de 10 segundos (similar ao pix)            |
+| RNF05  | Tempo de confirmação de compra | Usuário tem até 5 minutos para encerrar a compra desde seu início                                                                  |
+| RNF06  | API                            | API aberta para busca de informações de eventos do sistema                                                                         |
+| RNF07  | Linguagens                     | Para implementação do sistema será utilizada a stack **"MERN"**,  ***M***ongoDB/***E***xpress/***R***eact/***N***odeJS,            |
+
+### Diagramas de casos de uso
+
+![Diagrama de casos de uso](./images/UseCaseDiagram3.png)
+
+
+### Diagrama de atividades
+
+![Diagrama de atividades](./images/ActivitieDiagram1.3.png)
+
+### Diagrama de classes
+
+![Diagrama de classes](./images/ClassDiagram2.png)
+
+### Diagramas de sequencia
+
+> Login
+
+![Diagrama de sequencia](./images/SeqLogin.png)
+
+> Marcar presença e avaliar evento pós data
+
+![Diagrama de sequencia](./images/SeqMarcarPres.png)
+
+### Diagrama de componentes
+
+![Diagrama de componente](./images/ComponentDiagram1.png)
+
+### Diagrama de deploy
+
+![Diagrama de deploy](./images/DeployDiagram1.png)
