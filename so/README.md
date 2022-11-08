@@ -727,8 +727,251 @@ Cada processo criado pelo token recebe uma cópia do mesmo
 
 - Controla o que o processo pode ou não fazer
 
-
 # 3. Organização da memória
+
+## Exclusão mútua e sincronização
+
+> Concorrência
+
+- Aplicações múltiplas
+  - Multiprogramação necessita em compartilhamento de tempo de processamento entre as aplicações ativas
+- Aplicações estruturadas
+  - Modularidade de software
+- Estruturas do SO 
+  - SO é implementado como um conjunto de processos
+
+### Princiípios de concorrência entre processos
+
+> Tanto em multiprogramado quanto em multiprocessado, as técnicas de entrelaçamento e sobreposição podem ser vistam como exemplos de concorrência, e ambas apresentam os mesmos problemas:
+
+- Compartilhamento de recussos globais
+  - Se processos compartilham recursos globais, e ambos fazem IO, a oderm de execução dos processos pode afetar o resultado
+- Difícil para o SO gerencias alocação de recursos
+  - Se um processo requisita uso de IO e em seguida é suspenso, pode ser ineficiente para o SO bloquear o canal e nã permitir o uso por outros processos
+- Difícil a localização de erros de programação, resultados não são fácilmente reproduziveis
+
+> **Região critica**: Conjunto de instruções do processo que fazem referencia ao recurso que também é referenciado por outro conjunto de instruções em outro processo
+
+### Exclusão mútua
+
+> Exclusão mútua: evitar incesistências
+
+- Garantir que 2 ou mais processos não estejam simultaneamente dentro de suas regiões críticas referentes ao mesmo recurso compartilhado
+- Mútua exclusão deve ser contemplada de forma independente da velocidade relativa dos processos ou mesmo do número de processadores
+- Nenhum processo executando fora da região crítica pode bloquear outro processo
+- Nenhum processo pode aguardar um tempo arbitrariamente longo
+
+#### Exclusão mútua: Abordagem por software
+
+Algo para marcar para o processo e/ou ao SO que está executando uma região crítica ou não
+
+```python
+isOnCritical = [False,False]
+data = 0
+def f(processID):
+  while
+  if not isOnCritical[processID]:
+    # região critica
+    isOnCritical = True
+    data+=1
+
+if __name__ == "__main__"
+  thread = Thread(target = f, args = 1)
+  thread.start()
+  f(0)
+  thread.join()
+```
+
+### Exclusão mútua: Suporte por hardware
+
+> Desabilitar interrupções ao entrar em uma região critica
+
+- Desabilita interrupções
+- Entra na região critica
+- Habilita interrupções
+
+Exclusão mútual é garantida na marra, com um preço algo a ser pago
+
+> Solução alternativa: instruções de forma atômica
+
+#### Test and Set instruction
+
+Operação atômica não sujeita a interrupções que testa o valor de seu argumento, modificando-o sob certa condição e retornando true ou false conforme a operação realizada
+
+```python
+def testset(i:int)->bool:
+  if i == 0:
+    i = 1
+    return true
+  else:
+    return false
+
+qntProcess: int = 3 # qualquer valor
+bolt: int 
+def troca(i,j):
+  tmp = i
+  i = j
+  j = tmp
+
+def p(i: int):
+  while True:
+    if testset(bolt):
+      break
+  print("Entrando na região crítica")
+  bolt = 0
+
+```
+
+### Mecanismos de semáforos
+
+> Comunicação por meio de sinais para parar o processamento antes de receber um sinal em particular
+
+Variável especial para sinalização que possibilita o envio de um sinal a um processo através do comando ```signal(s)``` e a espera por um sinal através do comando ```wait(s)```
+
+```python 
+class Semafaro:
+  def __init__(self, value: int):
+    self.value = value
+    self.queue = []
+
+  def wait(self):
+    self.value -= 1
+    if self.value < 0:
+      self.queue.append(current_thread())
+      block()
+
+  def signal(self):
+    self.value += 1
+    if self.value <= 0:
+      t = self.queue.pop(0)
+      wakeup(t)
+```
+
+> [TODO] Problemas produtor/consumidor com semáforos e semáforos binários
+
+#### Problema da barbearia
+
+Uso de semáforos na implementação de concorrência é o problema encontrado no corte de cabelo emu ma barbearia são similares aos encontrados num sistema operacional real
+
+![Print do problema](./images/barbeiro.png)
+
+```python
+
+class BarberShop:
+  def __init__(self):
+    self.capacity = Semaforo(20)
+    self.sofa = Semaforo(4)
+    self.barber_chain = Semaforo(3)
+    self.cust_ready = Semaforo(0)
+    self.finished = Semaforo(0)
+    self.coord = Semaforo(0)
+    self.payment = Semaforo(0)
+    self.coord = Semaforo(3)
+    self.leave_b_chair = Semaforo(0)
+    self.receipt = Semaforo(0)
+  
+  def cut_hair():
+    print("Cortando cabelo")
+
+  def barber(self):
+    while True:
+      self.cust_ready.wait()
+      self.coord.wait()
+      self.coord.wait()
+
+      self.cut_hair()
+
+      self.coord.signal()
+      self.finished.signal()
+      self.leave_b_chair.wait()
+      self.barber_chain.signal()
+  
+  def accept_payment():
+    print("Pagamento aceito")
+  
+  def cashier(self):
+    while True:
+      self.payment.wait()
+      self.coord.wait()
+      self.accept_payment()
+      self.coord.signal()
+      self.receipt.signal()
+      
+```
+> Problema: Todos os barbeiros estão ocupados e o cliente não tem onde sentar, se um barbeiro for mais rápido que o outro o primeiro será forçado a liberar a poltrona e pagar pelo corte completo, enquanto o outro não pode deixar a poltrona mesmo após terminar o cortes
+
+> Solução: mais semáforos (Fig 5.21 do livro texto)
+
+### Mecanismos de monitores
+
+> Construção em linguagem de programação que provê funcionalidade equivalente a do semáforo, mas mais fácil de usar
+
+Caracteristicas do monitor
+
+- Dados de vearáveis locais sãoaacessíveis somente pelos procedimentos do monitor
+- Processo tem acesso ao monitor invocando um procedimento
+- Somente um processo pode executar um monitor em um dado instante, ou seja, qualquer outro processo que invocar o monitor será suspendido
+  - Logo garante a exclusão mútua
+
+### Problema dos escritores/leitores
+
+> Ler não gera inconsistência, escrever gera inconsistência
+
+Sequintes condições devem ser satisfeitas
+
+1. Qualquer número de leitores pode simultaneamente ler o arquivo;
+2. Somente um escritor pode escrever no arquivo;
+3. Se um escritor está escrevendo no arquivo, nenhum leitor por ler.
+
+> Soluções possíveis
+
+- Leitores tem prioridade
+- Escritores tem prioridade
+
+## Deadlock
+
+Bloqueio permanente de um conjunto de processos que competem por recursso do sistema ou comunicam-se com outros processos.
+
+> Situação em que dois ou mais processos estão esperando por um evento que somente outro processo pode gerar, similar a bloqueio de carros em cruzamento
+
+Condições necessárias para existência do deadlock
+
+1. Exclusão mútua - Somente um processo pode utilizar o dado ou recurso por vez
+2. Manter e esperar - um processo pode manter recursso alocados enquanto espera pela alocação de outro recurso
+3. Nenhuma preempção - nenhum recurso pode ser retirado de maneira forçada de um processo que a está utilizando
+
+### Estratégia de prevenção
+
+> Vacina
+
+Projetar o sistema de modo que a possibilidade de *deadlock* seja executada a *priori*.
+
+> Classes de prevenção
+
+- Método indireto
+  - previnir a ocorrência de uma tas três condições necessárias descritas anteriormente
+- Método direto
+  - previnir a ocorrência da espera circular
+
+1. Geralmente a primeira condição não é desabilitavel, posto que o acesso para estes recursos já pressupõe a garantia de exclusão mútua
+2. Por esta condição poderíamos exigir cqu todos pos rocessos requisitassem todos os recursos ao mesmo tempo, em vez de uma por vez com espera
+
+### Estratégia de evitar o deadlock
+
+É necessário informar oo SO tudo que cada processo necessita
+
+```python
+resorces = [R1,R2,..., Rn] # Total de recursos no sistema
+avaliable =[V1,V2,...,Vn] # Total de recursos disponíveis
+
+claim [[C11,C12,C3,...,C1m],[C21,C22,C23,...,C2m],...,[Cn1,Cn2,Cn3,...,Cnm]] # Requerimento de cada processo acerca de cada recurso
+
+allocation [[A11,A12,A13,...,A1m],[A21,A22,A23,...,A2m],...,[An1,An2,An3,...,Anm]] # Alocação conrente dos recursos por cada um dos processos
+```
+
+> Com base nos vetores e matriz acima, as relações devem ser satisfeitas
+
+1. Recursos o alocados, ou disponíveis, $R_i = V_i + \sum\limits_{i=1}^{n}A_ki$ $\forall i $
 
 # 4. Entrada/Saída
 
