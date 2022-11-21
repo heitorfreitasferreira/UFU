@@ -440,6 +440,42 @@ Se tivéssemos um rológio variável, cada instrução demoraria apenas o tempo 
 
 ## Arquitetura pipelining e superscalares
 
+> RELEMBRANDO: Estágios da instrução mips
+
+1. Busca
+2. Decodificação
+3. Execução na ULA
+4. Memória
+5. Escrita do resultado no registrador de destino
+
+Dependendo de que estágio se está, os componentes para execução dos outros estados estão **ociososos**, logo se está desperdiçãndo hardware
+
+Exemplo:
+
+- Instrução 1: lw $t0, 0($s0)
+- Instrução 2: $y = y + z$
+
+Enquanto a primeira instrução estiver no estágio de **decodificação (2)**, a segunda estará no estágio de **busca (1)**
+
+### Definição de **pipeline**	
+
+- Ténica ed otimização que **maximiza o uso do hardware** ao sobrepor a **execução das instruções**
+- Baseia-se no fato de que cada um dos 5 estágios de execução da instrução MIPS pode ser executado em paralelo
+
+> Latência: Número de ciclos que uma instrução leva para executar o complementamente
+
+*O pipeline não melhora a latência*
+
+> Vazão: Número de ciclos necessários para que uma nova instrução seja concluída, a partir 
+
+*Pipeline melhora a vazão* a partir da 5 instrução
+
+- Pipeline está ***em preenchimento*** quando ainda **há componentes não utilizados** (até chegar na 5 instrução)
+- Pipeline está ***cheio*** quando **todos os componentes estão em uso** (a partir da 5 instrução)
+- Pipeline ***está em esvaziamento*** quando há **componentes funcionais vão sendo liberados** (nas 4 últimas instruções)
+
+> Paradoxo do pipeline: **melhorar a vazão** pode **piorar a latência**
+
 ## Técnicas para explorar o paralelismo
 
 ## Arquitetura VLIW(Very Large Instruction Word): Emissão múltipla
