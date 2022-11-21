@@ -21,7 +21,7 @@ quadrante_b = 0
 quadrante_c = 0
 quadrante_d = 0
 //mostrar_dados = false
-umidade_ar = 0.90 // 1 = 100%; 0 = 0%
+umidade_ar = 0.50 // 1 = 100%; 0 = 0%
 coef_umidade = -1
 t_inicio_fogo = 2 ;
 t_arvore_queimando = 6;
@@ -201,17 +201,18 @@ for(var i = 0; i<=VERTICAL;i++){
 */
 for(var i = 0; i<=VERTICAL;i++){
 	for(var j = 0;j<=HORIZONTAL; j++){
-		if(j<HORIZONTAL/2){
-			celulas[i][j].estado = savanica
-			celulas[i][j].estado_inicial = savanica
+		if(j<HORIZONTAL/7){
+			celulas[i][j].estado = florestal
+			celulas[i][j].estado_inicial = florestal
 		}
 		else{
-			celulas[i][j].estado_inicial = savanica
-			celulas[i][j].estado = savanica
+			celulas[i][j].estado_inicial = florestal
+			celulas[i][j].estado = florestal
 		}
 			
 	}
 }
+/*
 repeat(HORIZONTAL){
 
 var x1 = irandom_range(0,HORIZONTAL)
@@ -229,7 +230,7 @@ for(var i = x1; i<=x2;i++){
 	}
 }
 
-}
+}*/
 celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 
 celulas[VERTICAL/2][HORIZONTAL/2-1].estado = arvore_queimando
