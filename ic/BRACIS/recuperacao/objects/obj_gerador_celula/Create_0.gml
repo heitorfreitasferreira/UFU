@@ -21,7 +21,7 @@ quadrante_b = 0
 quadrante_c = 0
 quadrante_d = 0
 //mostrar_dados = false
-umidade_ar = 0.50 // 1 = 100%; 0 = 0%
+umidade_ar = 0.1 // 1 = 100%; 0 = 0%
 coef_umidade = -1
 t_inicio_fogo = 2 ;
 t_arvore_queimando = 6;
@@ -124,8 +124,8 @@ function rotaciona90(matriz){
 	return copia
 }
 coef = 1
-decaimento = 0.00//Padrão ACRI = 0.04
-var mult_base = 0.10
+decaimento = 0.04//Padrão ACRI = 0.04
+var mult_base = 0.16
 var inicialCardeais =	[	
 							[coef*(mult_base-(decaimento*1)),	coef*(mult_base-(decaimento*0)),	coef*(mult_base-(decaimento*1))],
 							[coef*(mult_base-(decaimento*2)),	0,			coef*(mult_base-(decaimento*2))],
@@ -212,7 +212,7 @@ for(var i = 0; i<=VERTICAL;i++){
 			
 	}
 }
-/*
+
 repeat(HORIZONTAL){
 
 var x1 = irandom_range(0,HORIZONTAL)
@@ -230,7 +230,7 @@ for(var i = x1; i<=x2;i++){
 	}
 }
 
-}*/
+}
 celulas[VERTICAL/2][HORIZONTAL/2].estado = arvore_queimando
 
 celulas[VERTICAL/2][HORIZONTAL/2-1].estado = arvore_queimando
