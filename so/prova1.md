@@ -66,3 +66,12 @@
   - Como isso se relaciona com o estado do processo
   - Arranjos 1:1, M:1, 1:M, N:M
     - Cap 4 pag 38
+
+
+# Prova 2
+
+Capitulo 5, 6, 7, 8
+
+Comunicação e sincronização
+
+Deadlock starvation

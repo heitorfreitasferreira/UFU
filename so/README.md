@@ -973,6 +973,178 @@ allocation [[A11,A12,A13,...,A1m],[A21,A22,A23,...,A2m],...,[An1,An2,An3,...,Anm
 
 1. Recursos o alocados, ou disponíveis, $R_i = V_i + \sum\limits_{i=1}^{n}A_ki$ $\forall i $
 
+## Memória virtual
+
+- Particionamento fixo
+  - Escolhe o tamanho do processo maior
+  - Alta fragmentação interna
+- Particionamento variável
+  - Diversos tamanhos de partição e o SO escolhe o que melhor se encaixa
+- Alocação dinâmica
+- Paginação simples
+- Segmentação simples
+
+
+> Termos importantes
+
+Termo | Definição
+---|---
+Memória virtual | Alocação de memória no qual a memória secundária pode ser endereçada como se fizesse parte da memória principal
+Endereço virtual | Endereço atribuído a um local na memória virtual para permitir que esse local seja acessado como se fizesse parte da memória principal, ou seja, uma extensão da memória principal	
+Espaço de endereçamento virtual | memória virtual atribuída a um processo
+Espaço de endereçamento | O que a máquina é capaz de endereçar (tamanho do barramento de endereço)
+Endereço real | Endereço de uma posição na memória princpal, ou seja, nedereço físico considerando o espaço real disponível na memória física instalada no sistema computacional
+
+
+### Estrutura de controle da unidade de gerenciamento de memória
+
+> Localidade e memória virtual
+
+Princípios básicos para gereciamento de memória
+
+1. Todas as referências dentro de um processo são endereços lógicos traduzidos dinamicamente para endereços físicos em tempo de execução (**process at run time**)
+2. Um processo pode ser dividido em várias partes, essas partes não necessárimente estão contíguas na memória principal
+
+Implicações que conduzem a melhora de performace
+
+- Mais processos podem ficar na memória principal, posque que apenas algumas partes de cada processo são carregados
+- Processos podem ser maiores que a memória principal, pois apenas algumas partes são carregadas
+- Proporciona um multiprogramação efetiva e libera os usuários das procupações acerca da memória principal
+
+#### Paginação simples
+
+***Paginação simples*** | ***Paginação virtual da memória***
+---|---
+Memória principal particionada em pequenos frames de tamanho fixo | Memória principal particionada em pequenos frames de tamanho fixo
+Programa é dividido em páginas de tamanho fixo  pelo compilador ou sistema de gerenciamento de memória | Programa é dividido em páginas de tamanho fixo pelo compilador ou sistema de gerenciamento de memória
+Fragmentação interna dentro dos frames | Fragmentação interna dentro dos frames
+Não há fragmentação externa | Não há fragmentação externa
+SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página | SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página
+SO deve manter uma lista de frames vazios | SO deve manter uma lista de frames vazios
+Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal | Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal
+Todas os segmentos de um  processo devem estar na memória principal para o processo ser capaz de executar, a não ser que seja usado overlay | Nem todos os segmentos de um processos precisam estar nos frames da memória principal para o processo ser capaz de executar. Segmentos poder ser carregados e descarregados conforme necessário
+N.S.A. | Ler um segmento para a memória principal necessita de escrever um ou mais segmentos para a memória secundária
+
+- Desvantagem
+  -  Tamanho da página é proporcional ao do espço de endereço virtual
+  -  Tabela de páginas invertida
+     -  Abordagem alternativa para o uso de tabelas de páginas de um ou vários níveis é o uso de uma estrutura da **tabela de páginas invertida**
+
+#### Segmentação simples (particionamento variável)
+
+Similar a uma página, mas com **tamanho variável**
+
+Contem uma informação a mais que se refere ao tamanho do segmento
+
+#### Paginação e segmentação combinadas
+#### 
+
+Combina as vantagens da segmentação e da paginação
+
+
+### Algoritmos para gerenciar a memória
+
+> Objetivo: Desenvolver política de escolher qual parte da memória virtual irá para a memória principal em um dado momento
+
+
+Considerações
+
+1. Usar ou não memória virtual
+2. Usar segmentação, paginação ou o conjunto de ambos
+3. Qual algoritmo escolher para gerenciar
+
+#### Política de BUSCA
+
+1. Paginação sob demanda
+   1. Trazida para a memória apenas quando se faz referência a algo que está na página (instrução/dado)
+   2. Quando o processo é iniciado várias páginas faltando
+   3. Segundo o princípio da localidade, ao longo do ciclo de vida do processo as referencias futuras vão tender a estar na memória principal
+2. Pré-processamento
+   1. Trazidas para a memória principal sem que haja um gatilho de necessidade
+   2. Considerando páginas contíguas na memória, se estou usando a página $n$, logo mais precisarei da página $n+1$
+   3. **Maioria das páginas trazidas não são utilizadas**
+3. Política de alocação
+   1. Considerando segmetação pura, politicas como best-fit,first-fit, etc são consideradas como alternativas
+   2. Se há paginação, o posicionamento na memória principal é irrelevante
+  
+#### Política de ATRIBUIÇÃO/LOCALIZAÇÃO
+
+> Onde na memória principal o processo deve residir
+
+#### Política de SUBSTITUIÇÃO
+
+> Quando uma página deve ser removida para dar local a outra
+
+Conceitos:
+
+1. Quantos frames devem ser alocados para cada processo ativo
+2. Se o conjunto de páginas a ser considerado para substituição deve ser limitado àquelas do processo que causou a falta de páginas ou abrange todos os frames da memória principal?
+3. No conjunto de páginas consideradas, qual página particular deve ser selecionada para substituição?
+
+> 1,2 são resdent set management, 3 é page replacement policy
+
+
+FRAME LOCKING:
+
+- Restrição à política de substituição onde alguns dos frames podem estar bloqueados
+- Quando um frame é bloqueado, ele não pode ser substituído
+- Muito do kernel do SO como suas estruturas de armazenamento de frames não pode ser substituída
+- Buffers de IO e áreas críticas de tempo podem ser bloqueadas
+
+Algoritmos básicos:
+
+- **Optmal**:
+  - Política ideal, para substituição de página para a qual o tempo para a próxima referência é o maior e que resulta em menor número de falhas de página
+  - Impossível de implementar
+  - Exige que o SO tenha conhecimento do futuro
+  - Serve como padrão ou referência para comparar com algoritmos aplicaveis
+- **Least recently used**
+  - Substitui a página que não foi referenciada há mais tempo
+  - Pelo princípio da localidade, deve ser a página com menor probabilidade de ser referenciada no futuro próximo
+- **FIFO**
+  - Páginas alocadas na memória principal são colocadas em uma fila circular, estilo *round-robin*
+- **Clock** (padrão, existem variações com melhor performance)
+  - Transforma a memória principal em uma lista circular de frames de tamanho N
+  - Associação de um bit adicional a cada frame (USE-BIT)
+  - Quando o frame é carregado, o use-bit é colocado em 1
+  - Quando todos os frames estão carregados, o SO começa a varrer a lista circular, começando pelo frame mais antigo, se o USE-BIT é 1, troca por 0 e continua, se for 0, substitui a página e sai do loop
+
+
+#### Resident Set management
+
+> Memória principal paginada, não é necessário e de fato pode não ser possível trazer todas páginas de um processo para a memória
+
+1. quanto menor a quantidade de memória alocada a um processo mais processos podem estar na memória
+2. Se o número relativo de páginas de um processo mantidas em meória for baixo, a taxa com que ocorrem faltas de páginas será alta
+3. Depois de um dado tamanho, alocações adicionais de memória para um processo não irão diminuir a taxa de faltas de páginas
+
+- **Fixed allocation policy**: aloca um número fixo de frames para cada processo.
+  - Número decidido no momento de criação do processo e pode ser determinado com base no tipo de processo
+  - Com a política de alocação fica, sempre que ocorrer uma falha de página na execução de um processo, uma das páginas desse processo deve ser substituídap pela página necessária
+- **Replacement Scope**: escopo de uma estratégia de substituição pode ser categorizado como global ou local
+  - Ambas políticas são ativadas por uma falta de página
+  - *Local*: substituição de páginas do processo que causou a falta de página
+  - *Global*: substituição de páginas de qualquer processo
+  - Políticas locais são mais fáceis de analisar, não há evidência donvincente de que tenham um desempenho melhor que as globais
+  - Políticas globais são atraentes em razão de sua simplicidade de implementação e sobrecarga mínima
+
+#### Política de retirada de informação
+
+> Oposto de política de busca, determina quando uma página modificada deve ser gravada na memória secundária
+
+
+- **Demand cleaning**
+  - Página é gravada na memória secundária apenas qunado é selecionada para a substituição
+- **Precleaning**
+  - Pré-limpeza, páginas são gravadas na memória secundária em lote antes de serem substituídas
+
+#### Load Control
+
+> Determinação do número de processos que ficarão residentes na memória principal (***nível de multiprogramação***)
+
+[CÉREBRO DERRETEU, DESCULPE QUEM ESTAVA ACOMPANHANDO, VOU REFAZER]
+[TODO]
+
 # 4. Entrada/Saída
 
 # 5. Sistemas distribuídos
