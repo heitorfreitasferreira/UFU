@@ -476,6 +476,64 @@ Enquanto a primeira instrução estiver no estágio de **decodificação (2)**, 
 
 > Paradoxo do pipeline: **melhorar a vazão** pode **piorar a latência**
 
+### Hazzards
+
+#### Hazzard de dados
+
+> Ocorre quando uma instrução depende do resultado de outra instrução que ainda não foi executada
+
+Exemplo:
+
+```
+sub $2, $1, $3
+add $12, $2, $5
+or  $13, $6, $2
+add $14, $1, $3
+add $15, 100($3)
+```
+
+- A instrução 2 depende do resultado da instrução 1
+- A instrução 3 depende do resultado da instrução 2 e consequêntemente do resultado da instrução 1
+- A instrução 4 depende do resultado da instrução 1
+
+##### Possíveis soluções
+
+- Escalonamento: trocar a ordem das instruções para que as dependencias estejam resolvidas quando for executar a instrução, antecipando as interdependentes
+  - Pode ser executada pelo programador e/ou pelo compilador
+- NOP
+  - No OPeration: Instrução que apenas aumenta o PC
+  - Programador ou compilador insere NOPs para aguardar o resultado de uma instrução
+  - Gasta ciclo atoa
+- Congelamento do pipeline
+  - Detectar ocorrência de hazzard implementada em hardware
+  - Como fazer: colocando zeros nos sinais de controles
+  - Assim serão geradas Bolhas (stalls)
+  - ![Unidade de detecção de hazard](./images/hazzard_detection_circuit.png)
+  - **Como:** Comparar índices de registradores a serem lidos e escritos nos registradores do pipeline e se a instrução escreve em um registrador
+  - Resultado similar à NOP, mas implementado com hardware
+  - ![Exemplo de bolhas adicionadas por conta do conflito de dados](./images/exemplo_bolha.png)
+  - Legenda: Verde - bolha adiconada
+  - **Em resumo:** instrução $N+1$ precisa da saída da $N$. Logo a unidade de detecção de hazzards após buscar $N+1$ congela o pipeline por **2 ciclos**, até alinhas a *decodificação (ID)* de $N+1$ com o *WriteBack (WB)* de $N$. Se for no lugar da $N+1$ a $N+2$, será congelado apenas por **1 ciclo**
+- Adiantamento (Fowarding)
+  - Quando os registradores de pipeline já tem o resutado da ULA o mesmo pode ser adiantado para as próximas instruções que precisam do resultado
+  - Funciona com base que as instruções só precisam do dado no estágio de execução, e após a execução o dado já existe
+  - Logo se a instrução $N+1$ precisa do resultado da instrução $N$, ela pega direto do registrador de pipeline após a execução de $N$ ao invés de pegar do registrador de destino de $N$
+  - ![Exemplo de fowarding](./images/fowarding.png)
+  - **Em resumo:** O parametro da instrução que é executada na ULA ou pega direto da saída da ULA se precisa do dado gerado pela instrução imediatamente atrás, ou do registrador de barreira após a saída da ULA se precisa do dado gerado por uma instrução duas atrás
+  - ***NÃO* PRECISA DE BOLHAS PARA INSTRUÇÕES DO ```TIPO R``` APENAS SE FOR APÓS UM ```LW```**
+- Predição de desvio
+  - Problema: O que colocar no pipeline após um desvio (if ou else)?
+  - Caso carregue o errado, teremos que descartar todo o pipeline (flush), 2 ciclos de clock perdidos pois a decisão ocorre no estágio de execução (3º)
+  - Técnicas para previsão
+    - Desvio NUNCA é tomado
+    - Desvio SEMPRE é tomado
+      - Bom para o FOR, pois o mesmo é sempre tomado 
+    - Desvio DEPENDE DO CÓDIGO
+    - Desvio DEPENDE DO HISTÓRICO
+      - Tabela auxiliar de uma tabela de histórico de desvios
+      - Armazena endereço de instrução, endereço do desvio e estado
+      - Se adapta ao programador/compilador
+
 ## Técnicas para explorar o paralelismo
 
 ## Arquitetura VLIW(Very Large Instruction Word): Emissão múltipla
@@ -485,7 +543,7 @@ Enquanto a primeira instrução estiver no estágio de **decodificação (2)**, 
 # Capítulo 4
 
 > Paralelismo em nível de dados, entender como a GPU funciona
- =
+
 ## Arquiteturas vetoriais
 
 ## Extensões SIMD
