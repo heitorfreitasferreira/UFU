@@ -87,19 +87,11 @@ w --- a
 
 [DESENHAR DOIS CONJUNTOS G e B, B CONTIDO EM G E FAZER UM CAMINHO INICIANDO EM B E TERMINANDO EM B]
 
-<<<<<<< HEAD
-## 1.5. Propriedades de um bloco
-
-Uma ponte e um bloco e um vertice isolado tambem
-
-Considerando um grafo feito pela união de blocos (blocos, pontes e vertices isolados), devido a maximidade do bloco, blocos em um grafo compartilham no máximo um vértice, este vértice compartilhado é uma vertice de corte.
-=======
 ## Propriedades de um bloco
 
 Uma ponte é um bloco e um vértice isolado também
 
 Considerando um grafo feito pela união de blocos (blocos, pontes e vertices isolados), devido a maximidade do bloco, blocos em um grafo compartilham no máximo um vértice, este vértice compartilhado é um vértice de corte (ponto de articulaç).
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
 
 Portanto todo nó em um grafo está em um único bloco, e este grafo é a união de todos os blocos.
 
@@ -110,11 +102,7 @@ Portanto todo nó em um grafo está em um único bloco, e este grafo é a união
 
 1. Qualquer ciclo é um subgrafo conexo sem um vertice de corte (dai vem sua maximidade), logo é um bloco.
    1. [DESENHAR UM CICLO E REMOVER UM VERTICE]
-<<<<<<< HEAD
-2. Considerando um corte no grafo, com os vértices $xy \subset B$, sendo $B$ um bloco
-=======
 2. Considerando um corte no grafo, com a aresta $xy \subset B$, sendo $B$ um bloco
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
    1. pela maximidade do bloco, o grafo não possuí um $B$-caminho no grafo, logo todo caminho entre $x$ e $y$ passa por $B$, então se eu cortar um caminho em $B$ que separa $x$ e $y$, também corta o caminho no grafo em que esta contido
 
 > Logo blocos são para a 2-conectividade o que componentes conexas são para a conectividade.
@@ -125,28 +113,6 @@ Como os blocos são disjuntos a não ser pelos  vértices de corte (articulaçõ
 
 Logo todo bloco de um grafo ou é um subgrafo conexo maximal, ou é uma ponte ou é um vértice isolado.
 
-<<<<<<< HEAD
-## 1.6. Teoremas de inicio para a prova do teorma geral para grafos 2-conexo
-
-> Teorema geral para grafos 2-conexo: Todo grafo 2-conexo e um ciclo inicial unido a H-caminhos
-
-- [DESENHAR UM GRAFO 2-CONEXO E UM CICLO INICIAL E UM H-CAMINHO]
-
-### 1.6.1. Teorema 1
-
-- Se G é um grafo 2-conexo, então G tem um ciclo.
-  - Por absurdo, assumimos que G não tem um ciclo
-  - Logo, G e um grafo que não tem um ciclo -> G seria uma arvore
-  - Arvores por definição são 1-conexos
-  - Absurdo! G e 2-conexo
-  - Logo, G tem um ciclo
-
-## 1.7. Aplicação
-
-- Apresentar o código do wikiscrapper
-- Comentar sobre a forma de popular o grafo (bfs vs dfs)
-- Algorigmo de gerar lista ordenada com base nos critérios
-=======
 ## Teoremas de inicio para a prova do teorma geral para grafos 2-conexo
 
 > Teorema geral para grafos 2-conexo: Todo grafo 2-conexo é um ciclo inicial unido a H-caminhos
@@ -167,6 +133,5 @@ Logo todo bloco de um grafo ou é um subgrafo conexo maximal, ou é uma ponte ou
 - Apresentar o código do wikiscrapper
 - Comentar sobre a forma de popular o grafo (bfs vs dfs)
 - Algoritmo de gerar lista ordenada com base nos critérios
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
   1. Quantidade de caminhos disjuntos entre o vértice de origem e o vértice de destino
   2. Considerando os com a mesma quantidade de caminhos disjuntos, escolher o vértice de menor distância
