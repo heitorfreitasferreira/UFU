@@ -16,7 +16,7 @@ Ou também, devido ao teorema de Menger pode ser expressa por
 
 ## Exemplo de grafo 1-Conexo
 
-mermaid
+```mermaid
 graph LR
 
 u --- x
@@ -44,7 +44,7 @@ a --- b
 w --- b
 
 w --- a
-
+```
 
 > v é vertice de corte
 
@@ -65,9 +65,9 @@ w --- a
 
 ## Propriedades de um bloco
 
-Uma ponte e um bloco e um vertice isolado tambem
+Uma ponte é um bloco e um vértice isolado também
 
-Considerando um grafo feito pela união de blocos (blocos, pontes e vertices isolados), devido a maximidade do bloco, blocos em um grafo compartilham no máximo um vértice, este vértice compartilhado é uma vertice de corte.
+Considerando um grafo feito pela união de blocos (blocos, pontes e vertices isolados), devido a maximidade do bloco, blocos em um grafo compartilham no máximo um vértice, este vértice compartilhado é um vértice de corte (ponto de articulaç).
 
 Portanto todo nó em um grafo está em um único bloco, e este grafo é a união de todos os blocos.
 
@@ -91,7 +91,7 @@ Logo todo bloco de um grafo ou é um subgrafo conexo maximal, ou é uma ponte ou
 
 ## Teoremas de inicio para a prova do teorma geral para grafos 2-conexo
 
-> Teorema geral para grafos 2-conexo: Todo grafo 2-conexo e um ciclo inicial unido a H-caminhos
+> Teorema geral para grafos 2-conexo: Todo grafo 2-conexo é um ciclo inicial unido a H-caminhos
 
 - [DESENHAR UM GRAFO 2-CONEXO E UM CICLO INICIAL E UM H-CAMINHO]
 
@@ -99,15 +99,15 @@ Logo todo bloco de um grafo ou é um subgrafo conexo maximal, ou é uma ponte ou
 
 - Se G é um grafo 2-conexo, então G tem um ciclo.
   - Por absurdo, assumimos que G não tem um ciclo
-  - Logo, G e um grafo que não tem um ciclo -> G seria uma arvore
+  - Logo, G é um grafo que não tem um ciclo -> G seria uma arvore
   - Arvores por definição são 1-conexos
-  - Absurdo! G e 2-conexo
+  - Absurdo! G é 2-conexo
   - Logo, G tem um ciclo
 
 ## Aplicação
 
 - Apresentar o código do wikiscrapper
 - Comentar sobre a forma de popular o grafo (bfs vs dfs)
-- Algorigmo de gerar lista ordenada com base nos critérios
+- Algoritmo de gerar lista ordenada com base nos critérios
   1. Quantidade de caminhos disjuntos entre o vértice de origem e o vértice de destino
   2. Considerando os com a mesma quantidade de caminhos disjuntos, escolher o vértice de menor distância
