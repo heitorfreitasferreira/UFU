@@ -1,36 +1,20 @@
-<<<<<<< HEAD
-# 1. Teoremas grafos 2-conexo
-
-## 1.1. K-Conectividade (Teoremas grafos 2-conexo)
-
-> Dado um grafo conexo, você precisa de remover *pelo menos k *vértices** para tornar o grafo desconexo.
-=======
 # Teoremas grafos 2-conexo
 
 ## K-Conectividade (Teoremas grafos 2-conexo)
 
 > Dado um grafo conexo, você precisa de remover pelo menos k *vértices* para tornar o grafo desconexo.
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
 
 Ou também, devido ao teorema de Menger pode ser expressa por
 
 > Dado um grafo conexo, ele é k-conexo se e somente se quaisquer par de vértice existem k caminhos independentes entre eles.
 
-<<<<<<< HEAD
-## 1.2. Grafo 2-Conexo
-=======
 ## Grafo 2-Conexo
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
 
 > Grafo em que qualquer par de vértices tem pelo menos 2 caminhos independentes entre eles.
 
 > Grafo que precisa de mais de um vértice ser removido para se tornar desconexo.
 
-<<<<<<< HEAD
-## 1.3. Exemplo de grafo 1-Conexo
-=======
 ## Exemplo de grafo 1-Conexo
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
 
 ```mermaid
 graph LR
@@ -62,19 +46,11 @@ w --- b
 w --- a
 ```
 
-<<<<<<< HEAD
-> *v* é vertice de corte
-
-## 1.4. Teorema 3.1.1 Blocos
-
-### 1.4.1. Definições (grafos 2-conexo)
-=======
 > v é vertice de corte
 
 ## Teorema 3.1.1 Blocos
 
 ### Definições (grafos 2-conexo)
->>>>>>> 23b82e357e546f7a6f21ad6eea8ffde5f365f75d
 
 | Termo            | Definição                                                                |
 | ---------------- | ------------------------------------------------------------------------ |
