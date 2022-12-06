@@ -1147,4 +1147,31 @@ Algoritmos básicos:
 
 # 4. Entrada/Saída
 
+## Uniprocessos Scheduling
+
+- Múltiplos processos são mantidos em memória principal, cada qual alternando o uso do processador, esperando alguma operação de I/O ser completada ou algum outro evento ocorrer
+
+### Tipos de escalonamentos
+
+Tipo | Descrição
+--|--
+Long-term | Decisão de adicionar um processo ao conjunto de processos
+Medium-term | Decisão de adicionar o número de processos que estão parcialmente ou completamente na memória principal
+Short-term | Decisão de drogar processos disponúveis será executada pelo processador
+IO | Decisão de trocar a requicisão de IO pendende do processo deve ser lidada por outro dispositivo de IO 
+
+- Long e medium estão relacionados com aspectos de performance, ou grau de multiprogramação
+  - Realizado quando um processo é criado ou permutado da secundária para a primária, bloqueado ou não
+- Short alto grau de refinamento o escalonamento de processo que estão prontos em memória à espera do processador
+
+> Objetivo do escalonador: Atribuir processos para processadores, para melhorar parametros como va~zoa, tempo de resposta e eficiência
+
+![Tipos de escalonador](./images/)
+
+### Algoritmos de escalonamento
+
+### Performance dos algoritmos
+
+### Escalonamento do UNIX Tradicional
+
 # 5. Sistemas distribuídos
