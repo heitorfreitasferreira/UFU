@@ -534,11 +534,65 @@ add $15, 100($3)
       - Armazena endereço de instrução, endereço do desvio e estado
       - Se adapta ao programador/compilador
 
-## Técnicas para explorar o paralelismo
+## Arquitetura superpipeline
+
+> Cada estágio do pipeline é quebrado em mais partes ainda
+
+Mesmo raciocício do projeto multiciclo  aplicado ao pipeline, muitos estágios do pipeline necessitam menos que a metade de um clock
+
+Também conhecido como *deep-pipeline*
+
+Cada substágio continua executando uma instrução por clock, mas, como o clock é multiplicado, o pipeline pode aceitar duas ou mais instruções para cada clock externo
+
+### Consequências
+
+- Ritmo do sistema é dado pelo tempo de execução de um subestágio
+  - Substágio mais lento
+  - Caminho crítico
+  - Gargalo
+- Aumento da frequência do processador
+- Cada subestágio faz menos trabalho que no estágio do pipeline original
+
+### Limitações
+
+- Hazards de dados
+  - Pipeline maior, + dependências, + stalls
+- Hazards de controle
+  - Pipeline maior, + estágios para preencher, saltos mais lentos
+- Tempo dos registradores do pipeline (barreiras temporais)
+  - Limita o tempo mínimo do estágio
+  - Overhead
 
 ## Arquitetura VLIW(Very Large Instruction Word): Emissão múltipla
 
 > Compilador entrega ao processador um pacote de instruções paralelizaveis
+
+> Usadas múltiplas inidades funcionais com a mesma função
+
+- Replicação de hardware
+- São usadas múltiplas unidades funcionais com a mesma função, o que permite ao processador executar várias instruções similares concorrentemente
+
+> Despacho múltiplo
+
+Disparar várias instruções por estágio permite que a velocidade de execução da instrução exceda a velocidade de clock. Assim, conseguimos um $CPI < 1$, ou sob a ótica da instrução por ciclo, um $IPC > 1$
+
+$CPI = \frac{1}{IPC}$
+
+> Despacho múltiplo: implementação
+
+- **Estático**
+  - Decisões são tomadas **em tempo de compilação**
+  - Precisa da **ajuda do compilador**
+  - Gasta *menos energia*, sobrecarga no compilador, logo é preferivel em *dispositivos baseados em bateria*
+- Dinâmico
+  - Decisões tomadas em **tempo de execução**
+  - Unidades funcionais são replicadas para executar múltiplas instruções simultaneamente
+
+Criado então **pacotes de despacho** chamados de *Very Long Instruction Word (VLIW)*, normalmente 2 instruções concatenadas juntas, tem que ser uma do tipo R e outra 
+
+![VLIW](./images/vliw.png)
+
+
 
 # Capítulo 4
 

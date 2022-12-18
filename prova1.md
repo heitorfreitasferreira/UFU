@@ -1,4 +1,7 @@
 # Questão 1
+
+Descreva o comportamento do código abaixo
+
 ```js
   let a = 10;
   let b = 20;
@@ -14,6 +17,9 @@
   }
 ```
 # Questão 2
+
+Descreva o comportamento do código abaixo
+
 ```js
   let a = 10;
   let i = 0;
@@ -23,6 +29,8 @@
   }
 ```
 # Questão 3
+
+Descreva o comportamento do código abaixo
 
 ```js
   let a = 10;
@@ -72,4 +80,4 @@ Faça um programa que busque um pokemon e mostre imagem de toda sua cadeia de ev
 
 Faça um site que mude de tema de acordo com a hora do dia, de dia tema claro (fundo branco, fonte preta) e de noite tema escuro (fundo preto, fonte branca)
 
-O site terá um input que se o usuário mexer, altera a preferencia de tema do site que sobre escreve a lógica de hora do dia, essa preferencia deve ser salva no localStorage
+O site terá um input que se o usuário mexer, altera a preferencia de tema do site que sobrescreve a lógica de hora do dia, essa preferencia deve ser salva no localStorage
