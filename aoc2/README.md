@@ -598,9 +598,90 @@ Criado então **pacotes de despacho** chamados de *Very Long Instruction Word (V
 
 > Paralelismo em nível de dados, entender como a GPU funciona
 
+## Sobre paralelismo
+
+- ILP:Paralelismo a nível de **instrução**
+  - Execução fora de ordem
+  - IPC com muito esforço atinge pouco mais que 2
+- DLP:Paralelismo a nível de **dados**
+  - Processadores vetoriais, *SIMDe GPU's*
+    - **S**ingle **I**nstruction **M**ultiple **D**ata
+- TLP:Paralelismo a nível de **thread**
+  - Multiprocessadores e hardware multhreading
+- RLP:Paralelismo a nível de **requisições**
+  - Datacenters
+
+
+
 ## Arquiteturas vetoriais
 
+> SIMD
+
+ˋˋˋpy
+l1 = [1,2,3,4,5]
+l2 = [6,7,8,9,10]
+l3 = []
+for i in range(len(l1)):
+  l3.push(l1[i]+l2[1])
+ˋˋˋ
+Cada iteração do for é feita em uma thread
+
+Comumente usado em computação cientifica e em tratamento de áudio e vídeo
+
 ## Extensões SIMD
+
+Arquitetura vetorial VMIPS
+
+- Baseado no supercomputador Cray-I
+- Registradores vetoriais
+  - Cada registrador vetorial mantém 64 elementos de 64bits/elemento
+  - O arquivo de re gistradores possui 16 portas de leitura e 9 portas de escrita
+- Unidade Funcionais Vetoriais
+  - Totalmente pipelined
+  - Hazards de dados e controles são detectados
+- Unidade Load-Store Vetorial
+  - Totalmente pipelined
+  - Uma palavra por ciclo de clock após a latência inicial
+- Conjunto de registradores escalares
+
+### Chaining
+
+- Sequencias com dependências RAW podem ser colocadas no mesmo comooio atráves do chaining
+- Sem encadeamento, deve esperar que o último elemento do resultado seja escrito antes de iniciar a instrução dependente
+- Oencadeamento permite que uma operação vetorial comece assim que os elementos individuais do operando-fonte desse vetor fiquem disponíveis   
+
+### Múltiplas Pistas - Multiple Lanes
+
+O n-ésimo elemento do registrador vetorial A partidpa das operaçãoes
+(hardwired) com o n-ésimo elemento do registrador vetorial B
+
+
+A unidade funcional vetorial pode ser estruturada com múltplas pistas (lanes)
+paralelas.
+
+### Como tratar os casos em que o tamanho dos vetores é diferente do tamanho dos registradores?
+
+> O tamanho de determinada operação vetorial normalmente é desconhecido durante a compilação.
+ 
+A soluçīo para esse prablema é disponiblilizar um registrador que controle o tamanho de qualquer operação vetorial (Vector Length Register - VLR)
+
+O valor de VLR no pode ser maior do *tamanho máximo dos registradores vetorials(MVL)*.
+Empregar a técnica **strip mining** para vetores maiores do que MVL
+
+
+### Otimização do Sistema de Memória
+
+- O Sistema de memória deve ser projetado para suportar grande largura de banda (high bandwidth) para as operações de carregamento-armazenamento vetorial (vector loads and stores)
+- Espalhar o acesso através de mjiltiplos bancos
+  - Control bank addresses independently
+  - Load or store non sequential words
+- Support multiple vector processors sharing the same memory
+
+Exemplo:
+32 processors, each generating 4 loads and 2 stores/cycle
+Processor cycle time is 2.1 67 ns, SRAM cycle time is 15 ns
+Quantos bancos de memória serão necessários?
+[TODO]
 
 ## GPUs, Graphical Processing Units
 
