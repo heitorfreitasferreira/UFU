@@ -987,13 +987,13 @@ allocation [[A11,A12,A13,...,A1m],[A21,A22,A23,...,A2m],...,[An1,An2,An3,...,Anm
 
 > Termos importantes
 
-Termo | Definição
----|---
-Memória virtual | Alocação de memória no qual a memória secundária pode ser endereçada como se fizesse parte da memória principal
-Endereço virtual | Endereço atribuído a um local na memória virtual para permitir que esse local seja acessado como se fizesse parte da memória principal, ou seja, uma extensão da memória principal	
-Espaço de endereçamento virtual | memória virtual atribuída a um processo
-Espaço de endereçamento | O que a máquina é capaz de endereçar (tamanho do barramento de endereço)
-Endereço real | Endereço de uma posição na memória princpal, ou seja, nedereço físico considerando o espaço real disponível na memória física instalada no sistema computacional
+| Termo                           | Definição                                                                                                                                                                          |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Memória virtual                 | Alocação de memória no qual a memória secundária pode ser endereçada como se fizesse parte da memória principal                                                                    |
+| Endereço virtual                | Endereço atribuído a um local na memória virtual para permitir que esse local seja acessado como se fizesse parte da memória principal, ou seja, uma extensão da memória principal |
+| Espaço de endereçamento virtual | memória virtual atribuída a um processo                                                                                                                                            |
+| Espaço de endereçamento         | O que a máquina é capaz de endereçar (tamanho do barramento de endereço)                                                                                                           |
+| Endereço real                   | Endereço de uma posição na memória princpal, ou seja, nedereço físico considerando o espaço real disponível na memória física instalada no sistema computacional                   |
 
 
 ### Estrutura de controle da unidade de gerenciamento de memória
@@ -1013,17 +1013,17 @@ Implicações que conduzem a melhora de performace
 
 #### Paginação simples
 
-***Paginação simples*** | ***Paginação virtual da memória***
----|---
-Memória principal particionada em pequenos frames de tamanho fixo | Memória principal particionada em pequenos frames de tamanho fixo
-Programa é dividido em páginas de tamanho fixo  pelo compilador ou sistema de gerenciamento de memória | Programa é dividido em páginas de tamanho fixo pelo compilador ou sistema de gerenciamento de memória
-Fragmentação interna dentro dos frames | Fragmentação interna dentro dos frames
-Não há fragmentação externa | Não há fragmentação externa
-SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página | SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página
-SO deve manter uma lista de frames vazios | SO deve manter uma lista de frames vazios
-Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal | Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal
-Todas os segmentos de um  processo devem estar na memória principal para o processo ser capaz de executar, a não ser que seja usado overlay | Nem todos os segmentos de um processos precisam estar nos frames da memória principal para o processo ser capaz de executar. Segmentos poder ser carregados e descarregados conforme necessário
-N.S.A. | Ler um segmento para a memória principal necessita de escrever um ou mais segmentos para a memória secundária
+| ***Paginação simples***                                                                                                                     | ***Paginação virtual da memória***                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Memória principal particionada em pequenos frames de tamanho fixo                                                                           | Memória principal particionada em pequenos frames de tamanho fixo                                                                                                                               |
+| Programa é dividido em páginas de tamanho fixo  pelo compilador ou sistema de gerenciamento de memória                                      | Programa é dividido em páginas de tamanho fixo pelo compilador ou sistema de gerenciamento de memória                                                                                           |
+| Fragmentação interna dentro dos frames                                                                                                      | Fragmentação interna dentro dos frames                                                                                                                                                          |
+| Não há fragmentação externa                                                                                                                 | Não há fragmentação externa                                                                                                                                                                     |
+| SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página                                  | SO deve manter uma tabela de páginas para cada processo mostrando qual frame está alocado para cada página                                                                                      |
+| SO deve manter uma lista de frames vazios                                                                                                   | SO deve manter uma lista de frames vazios                                                                                                                                                       |
+| Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal                                 | Processador usa o número de página, deslocamento para calculpar o caminho absoluto para a memória principal                                                                                     |
+| Todas os segmentos de um  processo devem estar na memória principal para o processo ser capaz de executar, a não ser que seja usado overlay | Nem todos os segmentos de um processos precisam estar nos frames da memória principal para o processo ser capaz de executar. Segmentos poder ser carregados e descarregados conforme necessário |
+| N.S.A.                                                                                                                                      | Ler um segmento para a memória principal necessita de escrever um ou mais segmentos para a memória secundária                                                                                   |
 
 - Desvantagem
   -  Tamanho da página é proporcional ao do espço de endereço virtual
@@ -1153,12 +1153,12 @@ Algoritmos básicos:
 
 ### Tipos de escalonamentos
 
-Tipo | Descrição
---|--
-Long-term | Decisão de adicionar um processo ao conjunto de processos
-Medium-term | Decisão de adicionar o número de processos que estão parcialmente ou completamente na memória principal
-Short-term | Decisão de drogar processos disponúveis será executada pelo processador
-IO | Decisão de trocar a requicisão de IO pendende do processo deve ser lidada por outro dispositivo de IO 
+| Tipo        | Descrição                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------- |
+| Long-term   | Decisão de adicionar um processo ao conjunto de processos                                               |
+| Medium-term | Decisão de adicionar o número de processos que estão parcialmente ou completamente na memória principal |
+| Short-term  | Decisão de drogar processos disponúveis será executada pelo processador                                 |
+| IO          | Decisão de trocar a requicisão de IO pendende do processo deve ser lidada por outro dispositivo de IO   |
 
 - Long e medium estão relacionados com aspectos de performance, ou grau de multiprogramação
   - Realizado quando um processo é criado ou permutado da secundária para a primária, bloqueado ou não
@@ -1175,3 +1175,112 @@ IO | Decisão de trocar a requicisão de IO pendende do processo deve ser lidada
 ### Escalonamento do UNIX Tradicional
 
 # 5. Sistemas distribuídos
+
+# 6. File System
+
+Elemento central, todos os SOs oferecem um FS
+
+Permite salvar e compartilhar dados a longo prazo, sendo o file system remoto ou local
+
+Alivia a carga de dificuldade de lidar com os dados e o armazenamento perene
+
+## Excecoes
+
+Aplicacoes de tempo real e ou especializados, a entrada para o app e por meio de um arquivo
+
+
+##Sistema de gerenciamento de arguivos
+
+Programas utilizarios do SO executados com um privilegio
+
+## Operacoes tipicas
+
+- Criar
+- Remover
+- Abrir
+- Fechar
+
+## Elementos que compoem um arquiv
+
+- Campo (field)
+  -  Elemento basico dos dados que contem um unico valor
+-  Colecao (record)
+   -  Conjunto de campos relacionados que podem ser tratados como uma unidade 
+-  Arquivo
+   -  Conjunto de colecoes
+-  Banco de dados
+   -  Permite que multiplos processos acessem a massa de dados
+-  retrieve_one
+-  retrive_next
+-  retrive_all
+-  retiive_few
+   -  "select com query"
+-  insert_one
+-  delete_one
+-  update_one
+
+## Objetivos
+
+- Atender as necessidades e requisitos de gerenciamento de dados do usu[ario, que incluem o armazenamento de dados  e a capacidade de realizar as operacoes acima mencionadas
+- Atender {as necessidades e requisitos de gerenciamentode dados do usuario para garantir a validade dos dados
+- Otimizar desempenho, tanto de taxa de transfer"encia quanto tempo de resposta
+- Suporte para IO com diferentes dispositivos de armazenamento
+- Minimizar ou eliminar o potencial de perda ou destruicao de dados
+- Conjunto padronizado de rotinas de interface de IO
+
+## Requisito do usu[ario
+
+1. Criar, excluir, ler, gravar e modificar arquivos
+2. Ter acesso controlado aos arquivosde outros usuarios
+3. Controlar quais tipos de acessos sao permitidos
+4. Mover dados entre arquivos
+5. Fazer backup em caso de danos
+6. Ter permissao para acessar seus arquivos pelo nome e nao pelo identificador numerico
+
+## Arquitetura em camadas
+
+1. Primeira camada (proximo ao usuario)
+   1. Pile
+   2. Sequential
+   3. Indexed Sequencial
+   4. Indexed
+   5. Hashed
+2. Segunda camada
+   1. Logical IO
+3. Terceira camada
+   1. Supervisor basico de IO
+      - Iniciar e finalizar o dispositivo
+      - Manter as estruturas de controle
+      - 
+4. Quarta camada
+   1. Sistema de arquivo basico
+      - Interface principal
+5. Quinta camada (proximo a maquina)
+   1.  Drivers de dispositivo
+   2.  
+
+### Metodos de acesso
+
+> Pilha
+
+Registros de comprimento variavel, campos de comprimento variavel, dados sao gerados em ordem cronologica, forma mais simples, serve apenas para guardar os dados. Como cada campo tem tamanhos variaveis, ha um campo pro tipo, um pro valor e um pro tamanho. Comporta apenas busca exaustiva.  
+
+> Arquivo sequencial
+
+Registros de tamanho fixo, com um conjunto fixo de campos com tamanhos pre estabelecidos. Como os tamanhos sao fixos, e armazenado apenas o dado sem o meta dado
+
+> Arquivo sequencial indexado
+
+Arquivo adicional que tem dois campos, uma chave e um ponteiro para a localizacao do arquivo, reduz drasticamente a quantidade de registros acessados, mas aumenta os acessos a disco
+
+> Arquivo indexado
+
+Registras acessados
+
+> B-Trees
+
+Arquivo de indice estruturado
+
+![B-tree](./images/b_tree.png)
+
+Mexer na estrutura e bastante custoso, pois e necessario rebalancear tudo
