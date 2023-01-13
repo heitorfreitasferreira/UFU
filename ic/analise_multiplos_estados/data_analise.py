@@ -125,7 +125,7 @@ def plot_humidity_comparison(humidity_mean: dict) -> None:
 
 
 if __name__ == "__main__":
-    data = extract_data('/mnt/j/dadosIC/est')
+    data = extract_data('/mnt/d/dadosIC/est')
     vegetation_dicts, humidity_dicts = humidity_vegetation_dicts(data)
     vegetation_mean, humidity_mean = normalize_data(
         vegetation_dicts, humidity_dicts)
