@@ -628,8 +628,6 @@ Cada iteração do for é feita em uma thread
 
 Comumente usado em computação cientifica e em tratamento de áudio e vídeo
 
-## Extensões SIMD
-
 Arquitetura vetorial VMIPS
 
 - Baseado no supercomputador Cray-I
@@ -682,6 +680,109 @@ Exemplo:
 Processor cycle time is 2.1 67 ns, SRAM cycle time is 15 ns
 Quantos bancos de memória serão necessários?
 [TODO]
+ 
+## Extenções SIMD
+
+> Estretégia de melhorar a velocidade do processamento 
+
+### Intel SIMD Extensions
+
+- Expondiu as tecnologias SIMDdo ponto de vista de hardware e software
+- SUporte a x86 SIMD
+- Modulos
+  - **MMX** (1997)
+    - Operações de vetor de 64-bits
+    - Tipos de dados:8, 16, 32 bits
+  - **SSE** (Streaming SSIMD Extensions, 1999)
+    - Operações de veor de 128-bits
+    -  Tipos de dados:8,16, 32, 64 bits inteiros, ou 32, 64 bits float
+ -  **AVX**
+    -  [TODO]
+ 
+### Como usar extenções vetoriais
+
+- Explorar o paralelismo em nível de dados presentes em *laços*
+- Diferentes formas
+  - Usar **vendor libraries** (ex.:Intel MKL library)
+  - Vetorização automática no compilador
+    - Diretivas de compilação
+    - 
+  - Usar [**Vetores Intrinsecos**](https://www.intel.com/content/www/us/en/docs/instrinsics-guide/index.html#techs=SSE_ALL)
+  - Programar direto em Assembly
+- gcc tem suporte a vetorização automática
+  - ˋˋˋ-O3 or -ftree-vectorize and -mavxˋˋˋ
+  - Diretiva de compilação de otimização, vê o código em quais partes se pode vetorizar, tipo de máquina SIMD
+
+#### Vetores instrinsecos
+
+
+ˋˋˋcpp
+double A[SIZE], B[SIZE]
+for(int i= 0; i<SIZE; i++) A[i]+=B[i]
+ˋˋˋ
+
+
+
+ˋˋˋcpp
+for(int i= 0; i<SIZE; i++) A[i]+=B[i]
+__m512d A_vec = _ mm512_load_pd(A);
+__m512d B_vec - mm512_load_pd(B);
+A_vec = _ mm512_ add_pd (A_vec,B_vec);
+__mm512_store_pd(A,A_vec);
+ˋˋˋ
+
+Arquivos cabeçalhos de protótipo para cada arquitetura
+
+ˋˋˋcpp
+#include <mmintrin.h>   // MMX
+
+#include <xmmintrin.h>  // SSE
+#include <emmintrin.h>  // SSE2
+#include <pmmintrin.h>  // SSE3
+#include <tmmintrin.h>  // SSSE3
+#include <smmintrin.h>  // SSE4.I
+#include <immintrin.h>  // AVX, AVX2
+ˋˋˋ
+Tipos de dados
+
+
+ˋˋˋcpp
+
+__mI28:   (SSE) 128-bit packed single-precision floating point
+__mI28g:  (SSE) 128-bit packed double-precision floating point
+__ml28i:  (SSE) 128-bit packed integer
+__m256:   (AVX) 256-bit packed single-precision floating point
+__m256d:  (AVX) 256-bit packed double-precision floating point
+__m256i:  (AVX) 256-bit packed integer
+__m256 f; // = (float f0, f1, f2, f3, f4, f5, f6, f7)
+__m256d d;// = (double do, d1, d3, d4)
+__m256i i;// 32 8-bit, 16 16-bit, 8 32-bit, or 4 64-bit
+ˋˋˋ
+### Conjunto de instruções SIMD assembly
+
+- Movimentação de dados
+  - Mover dados de entrada e saída nos registros vetoriais
+- Aritméticas
+- Lógicas
+- Embaralhamento
+  - Instruções para mover o dado, útil em ordenação por exemplo
+- Outros
+  - (muitos)
+
+### Convenção de nomeclaturas de instrinsecs
+
+ˋˋˋ_mm<width>_[function]_[type]ˋˋˋ
+
+Exemplo:ˋˋˋ_mm256_fmadd_psˋˋˋ
+
+fmadd (multiplicação-adição de float) em pacotes de 256bits de floats de presição simples (8 deles)
+
+| Width | Prefix    |
+| ----- | --------- |
+| 128   | \_mm\_    |
+| 256   | \_mm256\_ |
+| 512   | \_mm512\_ |
+
 
 ## GPUs, Graphical Processing Units
 
