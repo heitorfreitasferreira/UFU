@@ -786,6 +786,80 @@ fmadd (multiplicação-adição de float) em pacotes de 256bits de floats de pre
 
 ## GPUs, Graphical Processing Units
 
+> Introdução a CUDA C
+
+
+- Escrever e lançar um CUDA C **kernel**
+- Gerenciar a memória da GPU
+- Rodar kernels de CUDA C em paralelo
+- Comunicação paralela e sincronização
+- Condições de corrida e operações atomicas
+
+> Terminologia
+
+**Host:** CPU e sua memória
+**Device:** GPU e sua memória
+
+Compilador CUDA: *nvcc* para C
+
+### Programação com Cuda
+
+> Hello World
+
+ˋˋˋc
+/*
+Modificador __global__
+
+Indica que a função 
+1. roda no device
+2. é chamada a partir do código do host
+
+Logo o nvcc irá lidar com essa parte, o resto do código é executado pelo GCC
+/*/
+__global__ void kernel(void){
+
+}
+
+int main (void){
+  kernel<<<1,1>>>();// Chamada de função que processa em GPU
+  /*
+    Aqui é montada a arquitetura das threads, onde há 2 elementos
+
+    Grids: Quantos blocos de threads
+    (Cada Bloco de thread vai pra um SM)
+    Threads/Bloco
+
+    Sintaxe na hora de executar a função:
+    <<<bloco,thread>>> 
+  */
+  printf("Hello World\n");
+}
+ˋˋˋ
+
+ˋˋˋc
+
+__global__ void add(int *a, int *b, int *c){
+  *c = *a + *b;
+}
+# define SIZE 1024
+int main(void){
+  int a[SIZE], b[SIZE], c[SIZE], dev_a[SIZE], dev_b[SIZE], dev_c[SIZE];
+  for (int i = 0; i< SIZE; i++){
+    a[i] = 1;
+    b[i] = 1;
+    c[i] = 1;
+  } 
+  for (int i = 0; i< SIZE; i++){
+
+  } 
+
+  
+}
+ˋˋˋ
+
+
+
+
 # Capítulo 5
 
 > Paralelismo em nível de threads
