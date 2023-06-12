@@ -1,50 +1,42 @@
-import numpy as np
+from math import *
 
 
-def aproximar_integral(funcao, a, b, num_trapezios=1000):
-    h = (b - a) / num_trapezios
+def aproximar_integral(
+    funcao: callable,
+    intervalo: tuple[float, float],
+    num_trapezios: int = 1000
+):
 
+    inicio_intervalo = min(intervalo)
+    fim_intervalo = max(intervalo)
+    h = (fim_intervalo - inicio_intervalo) / num_trapezios
     soma = 0
-    for i in range(1, num_trapezios):
-        x = a + i * h
-        soma += funcao(x)
-
-    integral = (h / 2) * (funcao(a) + 2 * soma + funcao(b))
-    return integral
-
-# Exemplo de uso:
-# Definindo a função f(x) = x^2
+    while inicio_intervalo < fim_intervalo:
+        soma += funcao(inicio_intervalo)
+        inicio_intervalo += h
+    return (h / 2) * (funcao(inicio_intervalo) +
+                      2 * soma + funcao(fim_intervalo))
 
 
-def ler_coefs_functs() -> list[float]:
-    lista = []
+def ler_lambda() -> callable:
     while True:
         try:
-            valor = float(
-                input(f"Digite o coeficiente de x^{len(lista)} (ou 'q' para sair): "))
-            lista.append(valor)
-        except ValueError:
-            break
-    return lista
+            return eval(f"lambda x:{input('Insira a f(x): ')}")
+        except:
+            print("Função inválida!")
 
 
-def criar_funcao(coeficientes: list[float]):
-    def funcao(x):
-        # Elevar cada termo à potência correspondente
-        termos = [coef * x ** i for i, coef in enumerate(coeficientes)]
-        # Somar todos os termos
-        resultado = np.sum(termos)
-        return resultado
+def main():
+    f = ler_lambda()
+    a = float(input("Digite INICIO o do intervalo: "))
+    b = float(input("Digite FIM o do intervalo: "))
 
-    return funcao
+    integral_aproximada = aproximar_integral(
+        funcao=f,
+        intervalo=(a, b)
+    )
+    print("Integral aproximada:", integral_aproximada)
 
 
-# Definindo o intervalo [a, b]
-print("Digite os coeficientes da função:")
-funcao = criar_funcao(ler_coefs_functs())
-a = float(input("Digite INICIO o do intervalo: "))  # 0
-b = float(input("Digite FIM o do intervalo: "))  # 1
-# Aproximando a integral da função no intervalo [a, b] usando 1000 trapézios
-integral_aproximada = aproximar_integral(funcao, a, b, num_trapezios=1000)
-
-print("Integral aproximada:", integral_aproximada)
+if __name__ == "__main__":
+    main()
