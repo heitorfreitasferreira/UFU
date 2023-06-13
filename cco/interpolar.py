@@ -1,16 +1,24 @@
-def interpolar_funcao(x_valores: list[float], y_valores: list[float], x_interpolar: float) -> float:
-    n = len(x_valores)
-    y_interpolar = 0
+from numpy import prod as produtorio
 
-    for i in range(n):
-        L_i = 1
-        for j in range(n):
-            if j != i:
-                L_i *= (x_interpolar - x_valores[j]) / \
-                    (x_valores[i] - x_valores[j])
-        y_interpolar += y_valores[i] * L_i
 
-    return y_interpolar
+def interpolar_funcao(
+        x_valores: list[float],
+        y_valores: list[float],
+        x_interpolar: float
+) -> float:
+    grau = len(x_valores)
+
+    def L(i: int, x: float) -> float:
+        return produtorio(
+            (x - x_valores[j]) / (x_valores[i] - x_valores[j])
+            for j in range(grau)
+            if j != i
+        )
+
+    return sum(
+        y_valores[i] * L(i, x_interpolar)
+        for i in range(grau)
+    )
 
 
 # Exemplo de uso:
