@@ -10,13 +10,13 @@ The following work aims to study and analyse classical data mining techniques to
 
 O League of Legends (LoL) é um jogo eletrônico extremamente popular que cativou milhões de jogadores ao redor do mundo. Desenvolvido pela Riot Games e lançado em 2009, o League of Legends rapidamente se tornou um fenômeno global, revolucionando o gênero de jogos online multiplayer de arena de batalha (MOBA, na sigla em inglês).
 
-No jogo, jogadores assumem o papel de "invocadores", que controlam poderosos personagens fictícios em confrontos emocionantes e estratégicos. O objetivo principal é destruir a base inimiga enquanto defende a própria base dos ataques inimigos.
+No jogo, jogadores assumem o papel de "invocadores", que controlam poderosos personagens fictícios em confrontos estratégicos. O objetivo principal é destruir a base inimiga enquanto defende a própria base dos ataques inimigos.
 
-Os jogadores podem escolher entre mais de 140 personagens, cada um com habilidades únicas e estilos de jogo distintos. Os campeões são divididos em seis classes principais: Assassino, Lutador, Mago, Atirador, Suporte e Tanque. Cada classe possui um papel específico dentro do jogo, e os jogadores devem escolher campeões que se complementem para formar uma equipe equilibrada e capaz de vencer a partida.
+Os jogadores podem escolher entre mais de 140 personagens, cada um com habilidades únicas e estilos de jogo distintos. Os jogadores são divididos em cinco classes posições principais: topo, caçador, meio, carregador de dano, e suporte. Cada jogador possui um papel específico dentro do jogo, eles devem escolher campeões que se complementem para formar uma equipe equilibrada e capaz de vencer a partida.
 
 Durante a partida, os jogadores acumulam ouro e experiência ao derrotar inimigos e monstros. O ouro pode ser utilizado para comprar itens que melhoram as habilidades do campeão, enquanto a experiência permite que o campeão evolua e desbloqueie novas habilidades. Os jogadores também podem utilizar runas e talentos para personalizar ainda mais o campeão, permitindo que ele se adapte a diferentes situações e estratégias.
 
-O jogo se destaca pela sua cena competitiva, com torneios profissionais emocionantes e de alto nível. As ligas regionais e os campeonatos mundiais atraem milhões de espectadores online e presenciais, transformando jogadores habilidosos em ídolos e celebridades no mundo dos esports.
+O jogo se destaca pela sua cena competitiva, com torneios profissionais. As ligas regionais e os campeonatos mundiais atraem milhões de espectadores online e presenciais, transformando jogadores habilidosos em ídolos e celebridades no mundo dos esports.
 
 ### Definição do problema
 
@@ -28,7 +28,7 @@ A tarefa de mineração utilizada é a classificação, a qual será responsáve
 
 ### Técnicas de pré-processamento usadas
 
-E no processo de pre técnicas utilizadas no pre-processamento dos dados foram: normalização por média e desvio, seleção/remoção de atributos e seleção de amostras.
+E no processo de pre técnicas utilizadas no pre-processamento dos dados foram: normalização por média e desvio padrão, seleção/remoção de atributos, seleção de amostras e mapeamento de dados para um novo espaço.
 
 ### Técnicas de mineração usadas
 
