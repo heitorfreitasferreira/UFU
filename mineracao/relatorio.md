@@ -103,11 +103,8 @@ Para isso, foi utilizado o método de remoção de atributos e as seguinte colun
 - opp_xpat15
 - opp_csat15
 - wardsplaced
-  
-Após a remoção dos atributos, o dataset final ficou com 15 atributos, sendo que cada um detêm informações de times, com os dados completos e dentro dos times de ligas principais.
 
 ### Características das técnicas usadas
-
 
 
 ### Medidas de avaliação
@@ -120,4 +117,4 @@ Ambos os modelos tiveram resultados satisfatórios com relação à classificaç
 
 ## Referências
 
-- 
+- [LoL E-sports 2022 Competitive Match Data](https://www.kaggle.com/datasets/arthur1511/lol-esports-2022)
