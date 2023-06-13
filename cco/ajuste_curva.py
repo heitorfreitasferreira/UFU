@@ -3,53 +3,53 @@ import matplotlib.pyplot as plt
 
 
 def ajustar_curva(x_valores, y_valores, grau):
-    n = len(x_valores)
-    A = [[x**i for i in range(grau + 1)] for x in x_valores]
+    def matriz_coefientes(x_valores, y_valores, grau):
+        n = len(x_valores)
+        A = [[x**i for i in range(grau + 1)] for x in x_valores]
+        print(f"A = {A}")
+        # Calcular a transposta de A
+        A_T = [[A[j][i] for j in range(n)] for i in range(grau + 1)]
+        print(f"A transposta = {A_T}")
+        # Calcular o produto A_T * A
+        A_T_A = [[sum(A_T_row[k] * A_col[k] for k in range(n))
+                  for A_col in A_T] for A_T_row in A_T]
+        print(f"A transposta * A = {A_T_A}")
+        # Calcular o produto A_T * y_valores
+        A_T_y = [sum(A_T_row[i] * y_valores[i] for i in range(n))
+                 for A_T_row in A_T]
+        print(f"A transposta * y = {A_T_y}")
+        # Resolver o sistema linear utilizando a eliminação de Gauss
+        coeficientes = eliminacao_gauss(A_T_A, A_T_y)
 
-    # Calcular a transposta de A
-    A_T = [[A[j][i] for j in range(n)] for i in range(grau + 1)]
+        return coeficientes
 
-    # Calcular o produto A_T * A
-    A_T_A = [[sum(A_T_row[k] * A_col[k] for k in range(n))
-              for A_col in A_T] for A_T_row in A_T]
+    def eliminacao_gauss(A, b):
+        n = len(A)
 
-    # Calcular o produto A_T * y_valores
-    A_T_y = [sum(A_T_row[i] * y_valores[i] for i in range(n))
-             for A_T_row in A_T]
+        # Etapa de eliminação
+        for i in range(n):
+            pivo = A[i][i]
 
-    # Resolver o sistema linear utilizando a eliminação de Gauss
-    coeficientes = eliminacao_gauss(A_T_A, A_T_y)
-
-    return coeficientes
-
-
-def eliminacao_gauss(A, b):
-    n = len(A)
-
-    # Etapa de eliminação
-    for i in range(n):
-        pivo = A[i][i]
-
-        # Dividir a linha i pela diagonal principal (pivô)
-        for j in range(i, n):
-            A[i][j] /= pivo
-        b[i] /= pivo
-
-        # Zerar elementos abaixo do pivô
-        for k in range(i + 1, n):
-            fator = A[k][i]
+            # Dividir a linha i pela diagonal principal (pivô)
             for j in range(i, n):
-                A[k][j] -= fator * A[i][j]
-            b[k] -= fator * b[i]
+                A[i][j] /= pivo
+            b[i] /= pivo
 
-    # Etapa de retrosubstituição
-    coeficientes = [0] * n
-    for i in range(n - 1, -1, -1):
-        coeficientes[i] = b[i]
-        for j in range(i + 1, n):
-            coeficientes[i] -= A[i][j] * coeficientes[j]
+            # Zerar elementos abaixo do pivô
+            for k in range(i + 1, n):
+                fator = A[k][i]
+                for j in range(i, n):
+                    A[k][j] -= fator * A[i][j]
+                b[k] -= fator * b[i]
 
-    return coeficientes
+        # Etapa de retrosubstituição
+        coeficientes = [0] * n
+        for i in range(n - 1, -1, -1):
+            coeficientes[i] = b[i]
+            for j in range(i + 1, n):
+                coeficientes[i] -= A[i][j] * coeficientes[j]
+
+        return coeficientes
 
 
 def ler_lista_floats() -> list[float]:
