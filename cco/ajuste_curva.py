@@ -3,56 +3,51 @@ import matplotlib.pyplot as plt
 
 
 def ajustar_curva(x_valores, y_valores, grau):
-    def matriz_coefientes(x_valores, y_valores, grau):
-        n = len(x_valores)
-        A = [[x**i for i in range(grau + 1)] for x in x_valores]
-        print(f"A = {A}")
-        # Calcular a transposta de A
-        A_T = [[A[j][i] for j in range(n)] for i in range(grau + 1)]
-        print(f"A transposta = {A_T}")
-        # Calcular o produto A_T * A
-        A_T_A = [[sum(A_T_row[k] * A_col[k] for k in range(n))
-                  for A_col in A_T] for A_T_row in A_T]
-        print(f"A transposta * A = {A_T_A}")
-        # Calcular o produto A_T * y_valores
-        A_T_y = [sum(A_T_row[i] * y_valores[i] for i in range(n))
-                 for A_T_row in A_T]
-        print(f"A transposta * y = {A_T_y}")
-        # Resolver o sistema linear utilizando a eliminação de Gauss
-        coeficientes = eliminacao_gauss(A_T_A, A_T_y)
-
-        return coeficientes
+    def matriz_coefientes(x_valores, y_valores, dimensao):
+        m = len(x_valores)
+        A = np.empty((dimensao, dimensao))
+        b = np.empty((dimensao))
+        # Somatórios de x^i, i = 0, 1, ..., dimensao+1
+        somatorios = [sum([x_valores[k]**i for k in range(m)]) for i in range(dimensao+2)]
+        # Preenche a matriz de dispersão
+        for i in range(dimensao):
+            for j in range(i, dimensao):
+                A[i,j] = somatorios[i+j]
+                if i != j:
+                    A[j,i] = A[i,j]
+        # Preenche o vetor de resultados da matriz de dispersão * coeficientes
+        # Cada posição do vetor é um somatório de x^i * y
+        for i in range(dimensao):
+            b[i] = sum([y_valores[k]*x_valores[k]**i for k in range(m)])
+        return A, b
 
     def eliminacao_gauss(A, b):
         n = len(A)
-
         # Etapa de eliminação
         for i in range(n):
             pivo = A[i][i]
-
             # Dividir a linha i pela diagonal principal (pivô)
             for j in range(i, n):
                 A[i][j] /= pivo
             b[i] /= pivo
-
             # Zerar elementos abaixo do pivô
             for k in range(i + 1, n):
                 fator = A[k][i]
                 for j in range(i, n):
                     A[k][j] -= fator * A[i][j]
                 b[k] -= fator * b[i]
-
         # Etapa de retrosubstituição
         coeficientes = [0] * n
         for i in range(n - 1, -1, -1):
             coeficientes[i] = b[i]
             for j in range(i + 1, n):
                 coeficientes[i] -= A[i][j] * coeficientes[j]
+        return coeficientes[::-1]
+    
+    A, b = matriz_coefientes(x_valores, y_valores, grau+1)
+    return eliminacao_gauss(A, b)
 
-        return coeficientes
-
-
-def ler_lista_floats() -> list[float]:
+def ler_lista_floats() -> np.array:
     lista = []
     while True:
         try:
@@ -60,32 +55,35 @@ def ler_lista_floats() -> list[float]:
             lista.append(valor)
         except ValueError:
             break
-    return lista
+    return np.array(lista)
+
+def plotar(x_valores, y_valores, coeficientes):
+    x_plot = np.linspace(min(x_valores), max(x_valores), 100)
+    y_plot = np.polyval(coeficientes, x_plot)
+
+    # Plotar os pontos conhecidos e a curva ajustada
+    plt.scatter(x_valores, y_valores, color='red', label='Pontos Conhecidos')
+    plt.plot(x_plot, y_plot, label='Curva Ajustada')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def main():
+    x_valores = np.array([-1.0, -0.75, -0.6,	-0.5,	-0.3, 0, 0.2, 0.4, 0.5,	0.7, 1])
+    y_valores = np.array([2.05, 1.153, 0.45,	0.4,	0.5, 0,	0.2, 0.6, 0.512, 1.2, 2.05])
+
+    # Grau do polinômio a ser ajustado
+    grau = 2 # int(input("Digite o grau do polinomio a ser ajustado")) 
+
+    # Ajustar a curva utilizando o método dos quadrados mínimos
+    coeficientes = ajustar_curva(x_valores, y_valores, grau)
+    print("Coeficientes ajustados:", coeficientes)
+
+    if input("Deseja plotar o gráfico? (s/n) ").lower() == 's':
+        plotar(x_valores, y_valores, coeficientes)
 
 
-# Exemplo de uso:
-# Valores conhecidos: x e y
-x_valores = ler_lista_floats()  # [1, 2, 3, 4, 5]
-y_valores = ler_lista_floats()  # [3, 6, 9, 12, 15]
-
-# Grau do polinômio a ser ajustado
-grau = int(input("Digite o grau do polinomio a ser ajustado"))  # 2
-
-# Ajustar a curva utilizando o método dos quadrados mínimos
-coeficientes = ajustar_curva(x_valores, y_valores, grau)
-
-# Imprimir os coeficientes encontrados
-print("Coeficientes ajustados:", coeficientes)
-
-# Gerar pontos para plotar a curva ajustada
-x_plot = np.linspace(min(x_valores), max(x_valores), 100)
-y_plot = np.polyval(coeficientes, x_plot)
-
-# Plotar os pontos conhecidos e a curva ajustada
-plt.scatter(x_valores, y_valores, color='red', label='Pontos Conhecidos')
-plt.plot(x_plot, y_plot, label='Curva Ajustada')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-plt.grid(True)
-plt.show()
+if __name__ == "__main__":
+    main()
