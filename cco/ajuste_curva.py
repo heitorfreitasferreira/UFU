@@ -8,20 +8,21 @@ def ajustar_curva(x_valores, y_valores, grau):
         A = np.empty((dimensao, dimensao))
         b = np.empty((dimensao))
         # Somatórios de x^i, i = 0, 1, ..., dimensao+1
-        somatorios = [sum([x_valores[k]**i for k in range(m)]) for i in range(dimensao+2)]
+        somatorios = [sum([x_valores[k]**i for k in range(m)])
+                      for i in range(dimensao+2)]
         # Preenche a matriz de dispersão
         for i in range(dimensao):
             for j in range(i, dimensao):
-                A[i,j] = somatorios[i+j]
+                A[i, j] = somatorios[i+j]
                 if i != j:
-                    A[j,i] = A[i,j]
+                    A[j, i] = A[i, j]
         # Preenche o vetor de resultados da matriz de dispersão * coeficientes
         # Cada posição do vetor é um somatório de x^i * y
         for i in range(dimensao):
             b[i] = sum([y_valores[k]*x_valores[k]**i for k in range(m)])
         return A, b
 
-    def eliminacao_gauss(A, b):
+    def gauss(A, b):
         n = len(A)
         # Etapa de eliminação
         for i in range(n):
@@ -43,9 +44,10 @@ def ajustar_curva(x_valores, y_valores, grau):
             for j in range(i + 1, n):
                 coeficientes[i] -= A[i][j] * coeficientes[j]
         return coeficientes[::-1]
-    
+
     A, b = matriz_coefientes(x_valores, y_valores, grau+1)
-    return eliminacao_gauss(A, b)
+    return gauss(A, b)
+
 
 def ler_lista_floats() -> np.array:
     lista = []
@@ -56,6 +58,7 @@ def ler_lista_floats() -> np.array:
         except ValueError:
             break
     return np.array(lista)
+
 
 def plotar(x_valores, y_valores, coeficientes):
     x_plot = np.linspace(min(x_valores), max(x_valores), 100)
@@ -70,12 +73,15 @@ def plotar(x_valores, y_valores, coeficientes):
     plt.grid(True)
     plt.show()
 
+
 def main():
-    x_valores = np.array([-1.0, -0.75, -0.6,	-0.5,	-0.3, 0, 0.2, 0.4, 0.5,	0.7, 1])
-    y_valores = np.array([2.05, 1.153, 0.45,	0.4,	0.5, 0,	0.2, 0.6, 0.512, 1.2, 2.05])
+    x_valores = np.array(
+        [-1.0, -0.75, -0.6,	-0.5,	-0.3, 0, 0.2, 0.4, 0.5,	0.7, 1])
+    y_valores = np.array([2.05, 1.153, 0.45,	0.4,	0.5,
+                         0,	0.2, 0.6, 0.512, 1.2, 2.05])
 
     # Grau do polinômio a ser ajustado
-    grau = 2 # int(input("Digite o grau do polinomio a ser ajustado")) 
+    grau = 2  # int(input("Digite o grau do polinomio a ser ajustado"))
 
     # Ajustar a curva utilizando o método dos quadrados mínimos
     coeficientes = ajustar_curva(x_valores, y_valores, grau)
