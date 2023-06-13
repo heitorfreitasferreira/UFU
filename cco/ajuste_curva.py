@@ -49,7 +49,8 @@ def ajustar_curva(x_valores, y_valores, grau):
     return gauss(A, b)
 
 
-def ler_lista_floats() -> np.array:
+def newList(message: str = "") -> np.array:
+    print(message, end="")
     lista = []
     while True:
         try:
@@ -75,13 +76,13 @@ def plotar(x_valores, y_valores, coeficientes):
 
 
 def main():
-    x_valores = np.array(
-        [-1.0, -0.75, -0.6,	-0.5,	-0.3, 0, 0.2, 0.4, 0.5,	0.7, 1])
-    y_valores = np.array([2.05, 1.153, 0.45,	0.4,	0.5,
-                         0,	0.2, 0.6, 0.512, 1.2, 2.05])
+    # np.array([-1.0, -0.75, -0.6,	-0.5,	-0.3, 0, 0.2, 0.4, 0.5,	0.7, 1])
+    x_valores = newList()
+    # np.array([2.05, 1.153, 0.45,	0.4,	0.5, 0,	0.2, 0.6, 0.512, 1.2, 2.05])
+    y_valores = newList()
 
     # Grau do polinômio a ser ajustado
-    grau = 2  # int(input("Digite o grau do polinomio a ser ajustado"))
+    grau = int(input("Digite o grau do polinomio a ser ajustado"))
 
     # Ajustar a curva utilizando o método dos quadrados mínimos
     coeficientes = ajustar_curva(x_valores, y_valores, grau)
