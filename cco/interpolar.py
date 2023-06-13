@@ -1,5 +1,9 @@
-from numpy import prod as produtorio
 
+def produtorio(iteravel)->float:
+    prod = 1
+    for i in iteravel:
+        prod *= i
+    return prod
 
 def interpolar_funcao(
         x_valores: list[float],
@@ -24,7 +28,7 @@ def interpolar_funcao(
 # Exemplo de uso:
 # Valores conhecidos: x e f(x)
 def newList(message: str = "") -> list[float]:
-    print(message, end="")
+    print(message)
     lista = []
     while True:
         try:
@@ -37,7 +41,7 @@ def newList(message: str = "") -> list[float]:
 
 def main():
     x_valores = newList("Digite os valores de x")
-    y_valores = newList("Digite os valores de x")
+    y_valores = newList("Digite os valores de y:")
     # Valor a ser interpolado
     x_interpolar: float = float(
         input("Digite o valor a ser interpolado:"))  # 1.32
