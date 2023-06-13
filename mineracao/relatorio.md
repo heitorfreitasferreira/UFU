@@ -1,8 +1,8 @@
-# Classification model performance analysis for League of Legends team matches using KNN and Decision Tree algorithms
+# Classification model performance analysis for League of Legends 2022 competitive team matches using KNN and Decision Tree algorithms
 
 ## Abstract
 
-The following work aims to study and analyse classical data mining techniques to predict the result of League of Legends matches, allowing games that have not been classified before to have their label automatically defined. In order to achieve this goal, classical algorithms like KNN and Decision Tree algorithms were used, and the results were compared by generated metrics.
+The following work aims to study and analyse classical data mining techniques to predict the result of League of Legends matches, allowing games that have not been classified before to have their label automatically defined. In order to achieve this goal, classical algorithms like KNN and Decision Tree algorithms were used, and the results were compared through generated metrics.
 
 - more
 
@@ -40,9 +40,75 @@ Finalmente, após a classificação das partidas, foram utilizadas as matrizes d
 
 ## Desenvolvimento
 
-Inicialmente, temos um dataset com informações de players em partidas de League of Legends, com 123 atributos e 149232 amostras
+Inicialmente, foi utilizado um dataset com informações de players em partidas de League of Legends com 123 atributos e 149232 amostras, sendo que cada uma detêm informações de jogadores e times.
+
+Dessa forma, foi necessário realizar um pré-processamento nos dados para que fosse possível realizar a classificação das partidas em relação apenas aos times.
+
+Para isso, foram selecionadas amostras utilizando os seguintes critérios:
+
+- seleção de amostras com o atributo 'position' igual a 'team';
+- com 'datacompleteness' igual a 'complete';
+- com o atributo 'league' dentro dos valores:
+  - ['LCK', 'SL', 'LCK CL', 'NLC', 'PRM', 'VCS', 'LMF', 'LCS', 'PCS', 'LFL','CBLOL', 'LEC', 'LAS', 'TCL', 'LJL', 'LCO', 'LPLOL', 'NEXO', 'LLA', 'EBL', 'GL', 'PGN', 'WCS','MSI', 'CDF','LCL'];
+- e com o atributo 'year' igual a 2022, pois apesar do dataset dizer que contêm apenas de informações de 2022, foram encontradas amostras de outros anos.
+
+No final do processo acima, o dataset utilizado termina com 12000 amostras sendo que cada uma detêm informações de times, com os dados completos e dentro dos times de ligas principais.
+
+A seleção de amostras realizada tave uma mudança significativa no tamanho do dataset inicial, porém teve como objetivo selecionar amostras mais qualificadas com experiência melhor de jogo e dados mais confiáveis.
+
+Após a escolha de de elementos mais qualificados, foi necessário realizar a seleção de atributos, pois o dataset inicial contêm 123 atributos, sendo que nem todos são relevantes para a classificação das partidas.
+
+Para isso, foi utilizado o método de remoção de atributos e as seguinte colunas foram removidas
+
+- datacompleteness
+- position
+- gameid
+- year
+- url
+- date
+- playerid
+- split
+- playoffs
+- patch
+- participantid
+- playername
+- teamid
+- champion
+- firstbloodkill
+- firstbloodassist
+- firstbloodvictim
+- dragons (type unknown)
+- damageshare
+- earnedgold
+- earned gpm
+- earnedgoldshare
+- goldspent
+- gspd
+- total cs
+- monsterkillsownjungle
+- monsterkillsenemyjungle
+- damagetochampions
+- wardskilled
+- visionscore
+- goldat10
+- xpat10
+- csat10
+- opp_goldat10
+- opp_xpat10
+- opp_csat10
+- goldat15
+- xpat15
+- csat15
+- opp_goldat15
+- opp_xpat15
+- opp_csat15
+- wardsplaced
+  
+Após a remoção dos atributos, o dataset final ficou com 15 atributos, sendo que cada um detêm informações de times, com os dados completos e dentro dos times de ligas principais.
 
 ### Características das técnicas usadas
+
+
 
 ### Medidas de avaliação
 
@@ -52,5 +118,6 @@ Inicialmente, temos um dataset com informações de players em partidas de Leagu
 
 Ambos os modelos tiveram resultados satisfatórios com relação à classificação da partida em vitória ou derrota usando os top 15 atributos mais relacionados com a variável alvo (resultado da partida), futuramente em outra pesquisa o grupo pretende usar a mesma base para agrupar os jogadores conforme seus dados individuais ao longo de todas as ligas e realizar a classificação para prever o resultado com os dados coletados no meio da partida (15 minutos de jogo).
 
-
 ## Referências
+
+- 
