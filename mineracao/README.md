@@ -1,4 +1,11 @@
-# Software necessário:
+# Classification model performance analysis for League of Legends 2022 competitive team matches using KNN and Decision Tree algorithms
+
+Aluno|Matricula
+-|-
+Guilherme Alves Carvalho | 11921BCC016
+Heitor Freitas Ferreira | 11921BCC026
+
+## Software necessário:
 
 Python 3 ou superior e gerenciador de pacotes pip
 
@@ -8,7 +15,9 @@ Python 3 ou superior e gerenciador de pacotes pip
 - math
 - sklearn
 
-## Instalação 
+### Instalação 
+
+Caso seja necessário, instalar as bibliotecas com os comandos
 
 ```pip install jupyter```  
 ```pip install scikit-learn```  
