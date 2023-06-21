@@ -4,11 +4,11 @@
 
 The following work aims to study and analyse classical data mining techniques to predict the result of League of Legends matches, allowing games that have not been classified before to have their label automatically defined. In order to achieve this goal, classical algorithms like KNN and Decision Tree algorithms were used, and the results were compared through generated metrics.
 
-- more
+- ## Resumo 
 
 ## Introdução
 
-O League of Legends (LoL) é um jogo eletrônico extremamente popular que cativou milhões de jogadores ao redor do mundo. Desenvolvido pela Riot Games e lançado em 2009, o League of Legends rapidamente se tornou um fenômeno global, revolucionando o gênero de jogos online multiplayer de arena de batalha (MOBA, na sigla em inglês).
+O League of Legends (LOL) é um jogo eletrônico extremamente popular que cativou milhões de jogadores ao redor do mundo. Desenvolvido pela Riot Games e lançado em 2009, o League of Legends rapidamente se tornou um fenômeno global, revolucionando o gênero de jogos online multiplayer de arena de batalha (MOBA, na sigla em inglês).
 
 No jogo, jogadores assumem o papel de "invocadores", que controlam poderosos personagens fictícios em confrontos estratégicos. O objetivo principal é destruir a base inimiga enquanto defende a própria base dos ataques inimigos.
 
@@ -17,6 +17,10 @@ Os jogadores podem escolher entre mais de 140 personagens, cada um com habilidad
 Durante a partida, os jogadores acumulam ouro e experiência ao derrotar inimigos e monstros. O ouro pode ser utilizado para comprar itens que melhoram as habilidades do campeão, enquanto a experiência permite que o campeão evolua e desbloqueie novas habilidades. Os jogadores também podem utilizar runas e talentos para personalizar ainda mais o campeão, permitindo que ele se adapte a diferentes situações e estratégias.
 
 O jogo se destaca pela sua cena competitiva, com torneios profissionais. As ligas regionais e os campeonatos mundiais atraem milhões de espectadores online e presenciais, transformando jogadores habilidosos em ídolos e celebridades no mundo dos esports.
+
+Na área de ciência de dados, a classificação envolve o desenvolvimento de modelos preditivos que podem aprender a distinguir e categorizar diferentes classes de informações com base em um conjunto de dados de treinamento. Esse processo geralmente envolve a um tratamento prévio dos dados, seguida de uma fase de treinamento, onde algoritmos de aprendizado de máquina são aplicados para criar um modelo classificador. Uma vez treinado e validados segundo algumas métricas, esse modelo pode ser usado para fazer previsões em novos conjuntos de dados e classificar novas instâncias com base nas informações aprendidas durante o treinamento.
+
+Os modelos de classificação de dados podem ser usados em bases de dados de partidas esportidas para prever resultado com base em informações disponíveis. Utilizando dados de partidas anteriores, é possível treinar um modelo classificador capaz de identificar padrões e tendências que levam a certos resultados. Isso pode fornecer informações valiosas para times profissionais e amadores, ajudando-os a tomar decisões informadas e estratégicas antes das partidas.
 
 ### Definição do problema
 
