@@ -1,13 +1,24 @@
-# Informações gerais sobre 
+- [1. Informações gerais sobre](#1-informações-gerais-sobre)
+  - [1.1. Avaliações](#11-avaliações)
+- [2. Preambulo: Equação diferencial](#2-preambulo-equação-diferencial)
+  - [2.1. Terminologia e definições](#21-terminologia-e-definições)
+- [3. Equações diferenciais ordinárias de 1ª ordem](#3-equações-diferenciais-ordinárias-de-1ª-ordem)
+- [4. Equações diferenciais ordinárias de 2ª ordem](#4-equações-diferenciais-ordinárias-de-2ª-ordem)
+- [5. Transformada de Laplace](#5-transformada-de-laplace)
+- [6. Séries de Fourier](#6-séries-de-fourier)
+- [7. Integrais de Fourier](#7-integrais-de-fourier)
 
-## Avaliações
 
-Prova | Data | Matérias | Valor | Obtido
--|-|-|-|-
-1 | 06/09/2023 | Equações diferenciais ordinárias de 1ª ordem<br> Equações diferenciais ordinárias de 2ª ordem | 100/3 | ?
-2 | 11/10/2023 | Transformada de Laplace | 100/3 | ?
-3 | 16/11/2023 | Séries de Fourier<br> Integrais de Fourier| 100/3 | ?
-Rec | 22/11/2023 | Matéria toda | 100/3 | ?
+# 1. Informações gerais sobre 
+
+## 1.1. Avaliações
+
+| Prova | Data       | Matérias                                                                                      | Valor | Obtido |
+| ----- | ---------- | --------------------------------------------------------------------------------------------- | ----- | ------ |
+| 1     | 06/09/2023 | Equações diferenciais ordinárias de 1ª ordem<br> Equações diferenciais ordinárias de 2ª ordem | 100/3 | ?      |
+| 2     | 11/10/2023 | Transformada de Laplace                                                                       | 100/3 | ?      |
+| 3     | 16/11/2023 | Séries de Fourier<br> Integrais de Fourier                                                    | 100/3 | ?      |
+| Rec   | 22/11/2023 | Matéria toda                                                                                  | 100/3 | ?      |
 
 
 Nota caso pegue  sub =(Nota total final + sub)/2
@@ -15,7 +26,7 @@ Nota caso pegue  sub =(Nota total final + sub)/2
 10pts de trabalho no moodle
 
 
-# Preambulo: Equação diferencial
+# 2. Preambulo: Equação diferencial
 
 > Equação que envolva derivada
 
@@ -23,7 +34,7 @@ Exemplo: $y' = x^2$
 
 Uma equação diferencial é uma equação que envolve derivadas e da qual se requer uma solução
 
-## Terminologia e definições
+## 2.1. Terminologia e definições
 
 No Cálculo 1, foi aprendido que dada a função $y = f(x)$, a sua derivada $\frac{dy}{dx} = f'(x)$, é também uma função de x e é calculada através de regras apropriadas. Por exemplo se $y = e^(x^2)$, então $\frac{dy}{dx} = 2xe^(x^2)$ ou $\frac{dy}{dx} = 2xy$
 
@@ -82,12 +93,12 @@ $\frac{dy}{dx} = xy^\frac{1}{2}$ e portanto $y = \frac{x^4}{16}$ é uma soluçã
 
 
 
-# Equações diferenciais ordinárias de 1ª ordem
+# 3. Equações diferenciais ordinárias de 1ª ordem
 
-# Equações diferenciais ordinárias de 2ª ordem
+# 4. Equações diferenciais ordinárias de 2ª ordem
 
-# Transformada de Laplace
+# 5. Transformada de Laplace
 
-# Séries de Fourier
+# 6. Séries de Fourier
 
-# Integrais de Fourier
+# 7. Integrais de Fourier
