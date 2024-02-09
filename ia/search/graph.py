@@ -6,7 +6,7 @@ Raises:
     KeyError: Tentativa de acessar um vértice que não existe pelo nome
     ValueError: Tentativa de acessar um vértice com um tipo de dado inválido
 """
-from typing import List, Set, Dict, Tuple, Optional
+from typing import List, Set, Dict
 
 
 class Vertex:
