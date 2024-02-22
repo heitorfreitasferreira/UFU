@@ -119,10 +119,10 @@ def main(
     if end_city != -1:
         print(
             f"De {g.get_vertex(starting_city).name} para {g.get_vertex(end_city).name}")
-        path = g.a_star(1, end_city, view_trace=view_trace)
+        path = g.a_star(starting_city, end_city, view_trace=view_trace)
         print_path(path)
         return
-    for i in range(1, 11):
+    for i in range(1, 30):
         if i == starting_city:
             continue
         print(

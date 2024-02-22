@@ -7,6 +7,7 @@ Raises:
     ValueError: Tentativa de acessar um vértice com um tipo de dado inválido
 """
 from typing import List, Set, Dict
+from math import radians, sin, cos, sqrt, atan2
 
 
 class Vertex:
@@ -40,6 +41,23 @@ class Vertex:
         if neighbor not in self.neighbors:
             self.neighbors.append(neighbor)
 
+    def haversine(self, lat1, lon1, lat2, lon2) -> float:
+        R = 6371.0  # Raio médio da Terra em quilômetros
+
+        # Converte graus para radianos
+        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+        # Diferenças de latitude e longitude
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+
+        # Fórmula de Haversine
+        a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+        c = 2 * atan2(sqrt(a), sqrt(1-a))
+        distance = R * c
+
+        return distance
+
     def get_euclidian_distance(self, vertex: 'Vertex') -> float:
         """Calcula a distância euclidiana entre dois vértices
 
@@ -49,7 +67,10 @@ class Vertex:
         Returns:
             float: distância euclidiana entre os vértices
         """
-        return ((self.lat - vertex.lat) ** 2 + (self.long - vertex.long) ** 2) ** 0.5
+
+
+        # return ((self.lat - vertex.lat) ** 2 + (self.long - vertex.long) ** 2) ** 0.5
+        return self.haversine(self.lat, self.long, vertex.lat, vertex.long)
 
     def __str__(self):
         return self.name
