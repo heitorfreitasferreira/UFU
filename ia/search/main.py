@@ -87,7 +87,8 @@ def main(
         view_trace: bool,
         end_city: int,
         cities_filepath: str,
-        edges_filepath: str
+        edges_filepath: str,
+        algorithm
 ):
     """Função principal que lê os arquivos csv com as cidades e as arestas
     entre elas, instância o grafo e executa o algoritmo A* para encontrar 
@@ -119,7 +120,7 @@ def main(
     if end_city != -1:
         print(
             f"De {g.get_vertex(starting_city).name} para {g.get_vertex(end_city).name}")
-        path = g.a_star(starting_city, end_city, view_trace=view_trace)
+        path = g.get_path(starting_city, end_city, algorithm, view_trace=view_trace)
         print_path(path)
         return
     for i in range(1, 30):
@@ -127,7 +128,7 @@ def main(
             continue
         print(
             f"De {g.get_vertex(starting_city).name} para {g.get_vertex_by_id(i).name}")
-        path = g.a_star(1, i, view_trace=view_trace)
+        path = g.get_path(starting_city, i, algorithm, view_trace=view_trace)
         print_path(path)
 
 
@@ -144,7 +145,8 @@ if __name__ == "__main__":
                         help="Path to a csv file containing the cities data", default="cities.csv")
     parser.add_argument("--edges_filepath", help="Path to a csv file containing the edges data",
                         default="edges.csv")
-    args = parser.parse_args()
+    parser.add_argument("--algorithm", help="Algorithm to be used [a_star, bfs, dfs]",
+                        default="a_star")
 
-    main(args.starting_city, args.view_trace,
-         args.end_city, args.cities_filepath, args.edges_filepath)
+
+    main(**vars(parser.parse_args()))

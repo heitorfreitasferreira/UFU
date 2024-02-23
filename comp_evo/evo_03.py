@@ -113,7 +113,7 @@ from typing import List, Tuple, Callable
 from enum import Enum
 import argparse
 import numpy as np
-from numpy.typing import ArrayLike as NpArray, DTypeLike as NpDtype
+from numpy.typing import ArrayLike as NpArray
 from matplotlib import pyplot as plt
 
 ESTRATEGIAS_SELECAO = Enum('ESTRATEGIAS_SELECAO', [

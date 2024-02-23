@@ -41,8 +41,21 @@ class Vertex:
         if neighbor not in self.neighbors:
             self.neighbors.append(neighbor)
 
-    def haversine(self, lat1, lon1, lat2, lon2) -> float:
-        R = 6371.0  # Raio médio da Terra em quilômetros
+    def haversine(self, lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+        """Calcula a distância entre dois pontos na superfície da Terra usando a 
+        fórmula de Haversine
+
+        Args:
+            lat1 (float): latitude do ponto 1
+            lon1 (float): longitude do ponto 1
+            lat2 (float): latitude do ponto 2
+            lon2 (float): longitude do ponto 2
+
+        Returns:
+            float: Distância entre os pontos em quilômetros
+        """
+        Km = float
+        earth_radius: Km = 6371.0  # type: ignore # Raio médio da Terra em quilômetros
 
         # Converte graus para radianos
         lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
@@ -54,7 +67,7 @@ class Vertex:
         # Fórmula de Haversine
         a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
         c = 2 * atan2(sqrt(a), sqrt(1-a))
-        distance = R * c
+        distance = earth_radius * c
 
         return distance
 
@@ -173,7 +186,90 @@ class Graph:
             return self.get_vertex_by_name(key)
         raise ValueError("Key must be an integer or a string")
 
-    def a_star(self, start_id: int, end_id: int, view_trace=False):
+    def get_path(
+            self,
+            start_id: int,
+            end_id: int,
+            algorithm: str,
+            view_trace=False
+        ) -> List[Vertex]:
+        """Retorna o menor caminho entre dois vértices
+
+        Args:
+            start_id (int): identificador do vértice de origem
+            end_id (int): identificador do vértice de destino
+            algorithm (str): algoritmo a ser utilizado para encontrar o menor 
+            caminho, pode ser "dfs", "bfs" ou "a_star"
+            view_trace (bool, optional): Flag indicando se deverá imprimir na 
+            tela o caminho percorrido pelo algoritmo até encontrar o menor 
+            caminho. Defaults to False.
+
+        Returns:
+            List[Vertex]: Menor caminho entre os vértices de origem e destino
+        """
+        match algorithm:
+            case "dfs":
+                return self.__dfs(start_id, end_id, view_trace)
+            case "bfs":
+                return self.__bfs(start_id, end_id, view_trace)
+            case "a_star":
+                return self.__a_star(start_id, end_id, view_trace)
+            case _:
+                raise ValueError("Algorithm not supported")
+
+    def __dfs(self, start_id: int, end_id: int, view_trace=False):
+        """Executa a busca em profundidade para encontrar o menor caminho entre dois vértices
+
+        Args:
+            start_id (int): identificador do vértice de origem
+            end_id (int): identificador do vértice de destino
+            view_trace (bool, optional): Flag indicando se deverá imprimir na 
+            tela o caminho percorrido pelo algoritmo até encontrar o menor 
+            caminho. Defaults to False.
+
+        Returns:
+            List[Vertex]: Menor caminho entre os vértices de origem e destino
+        """
+        start = self.get_vertex_by_id(start_id)
+        end = self.get_vertex_by_id(end_id)
+        stack = [(start, [start])]
+        while stack:
+            (vertex, path) = stack.pop()
+            if vertex == end:
+                if view_trace:
+                    print(" -> ".join([vertex.name for vertex in path]))
+                return path
+            for neighbor in set(vertex.neighbors) - set(path):
+                stack.append((neighbor, path + [neighbor]))
+        return []
+
+    def __bfs(self, start_id: int, end_id: int, view_trace=False):
+        """Executa a busca em largura para encontrar o menor caminho entre dois vértices
+
+        Args:
+            start_id (int): identificador do vértice de origem
+            end_id (int): identificador do vértice de destino
+            view_trace (bool, optional): Flag indicando se deverá imprimir na 
+            tela o caminho percorrido pelo algoritmo até encontrar o menor 
+            caminho. Defaults to False.
+
+        Returns:
+            List[Vertex]: Menor caminho entre os vértices de origem e destino
+        """
+        start = self.get_vertex_by_id(start_id)
+        end = self.get_vertex_by_id(end_id)
+        queue = [(start, [start])]
+        while queue:
+            (vertex, path) = queue.pop(0)
+            if vertex == end:
+                if view_trace:
+                    print(" -> ".join([vertex.name for vertex in path]))
+                return path
+            for neighbor in set(vertex.neighbors) - set(path):
+                queue.append((neighbor, path + [neighbor]))
+        return []
+
+    def __a_star(self, start_id: int, end_id: int, view_trace=False):
         """Executa o algoritmo A* para encontrar o menor caminho entre dois vértices
 
         Args:
@@ -207,17 +303,22 @@ class Graph:
         # Distância em linha reta do vértice até o final
         # (a solução ótima tenta minimizar até essa distância)
         f_score[start] = start.get_euclidian_distance(end)
+        onde_visitei:List[Vertex] = []
         # Enquanto houver cidades a serem avaliadas
         while cidades_a_avaliar:
             # Define a cidade a ser avaliada como a cidade com menor distância até o final
             onde_estou: Vertex = min(cidades_a_avaliar,
                                      key=lambda vertex: f_score[vertex])
+            onde_visitei.append(onde_estou)
             # Se chegou ao fim, constrói o caminho e o retorna
             if onde_estou == end:
                 path = [onde_estou]
                 while onde_estou in came_from:
                     onde_estou = came_from[onde_estou]
                     path.append(onde_estou)
+                if view_trace:
+                    print("Cidades visitadas: ", end="")
+                    print(" -> ".join([vertex.name for vertex in onde_visitei]))
                 return path[::-1]
             # Remove a cidade a ser avaliada do conjunto de cidades a serem
             # avaliadas e adiciona ao conjunto de cidades já avaliadas
