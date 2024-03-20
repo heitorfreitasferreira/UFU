@@ -17,7 +17,7 @@ void inicializa_reticulado(
     {
       for (unsigned short nivel = 0; nivel < NIVEIS; nivel++)
       {
-        if (nivel == SUBTERRANEO_IDX)
+        if (nivel == ENTERRADO_IDX)
         {
           inicializa_celula(&r->celulas[i][j][nivel], RAIZ);
           continue;

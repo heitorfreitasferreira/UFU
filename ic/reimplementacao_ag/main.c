@@ -79,7 +79,7 @@ int main()
   params.fogo_espalhar[VEG_FLORESTA_IDX] = 0.0;
   params.fogo_espalhar[RAIZ_IDX] = 0.0;
   params.fogo_espalhar[TERRA_IDX] = 0.0;
-  params.fogo_espalhar[SUBTERRANEO_IDX] = 0.0;
+  params.fogo_espalhar[ENTERRADO_IDX] = 0.0;
   params.fogo_espalhar[FOG_INICIAL_IDX] = 0.6;
   params.fogo_espalhar[FOG_ESTAVEL_IDX] = 1.0;
   params.fogo_espalhar[FOG_BRAZA_IDX] = 0.2;
@@ -90,7 +90,7 @@ int main()
   params.vegetacao_pegar_fogo[VEG_FLORESTA_IDX] = 0.8;
   params.vegetacao_pegar_fogo[RAIZ_IDX] = 0.5;
   params.vegetacao_pegar_fogo[TERRA_IDX] = 0.0;
-  params.vegetacao_pegar_fogo[SUBTERRANEO_IDX] = 0.0;
+  params.vegetacao_pegar_fogo[ENTERRADO_IDX] = 0.0;
   params.vegetacao_pegar_fogo[FOG_INICIAL_IDX] = 0.0;
   params.vegetacao_pegar_fogo[FOG_ESTAVEL_IDX] = 0.0;
   params.vegetacao_pegar_fogo[FOG_BRAZA_IDX] = 0.0;
@@ -102,7 +102,7 @@ int main()
   params.transicoes[VEG_FLORESTA_IDX] = FOG_INICIAL;
   params.transicoes[RAIZ_IDX] = FOG_INICIAL;
   params.transicoes[TERRA_IDX] = VEG_CAMPESTRE;
-  params.transicoes[SUBTERRANEO_IDX] = FOG_BRAZA;
+  params.transicoes[ENTERRADO_IDX] = FOG_BRAZA;
   params.transicoes[FOG_INICIAL_IDX] = FOG_ESTAVEL;
   params.transicoes[FOG_ESTAVEL_IDX] = FOG_BRAZA;
   params.transicoes[FOG_BRAZA_IDX] = TERRA;

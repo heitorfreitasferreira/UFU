@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json",
+    "modelo.h": "c",
+    "reticulado.h": "c",
+    "celula.h": "c"
+  },
+  "cmake.configureOnOpen": false
+}

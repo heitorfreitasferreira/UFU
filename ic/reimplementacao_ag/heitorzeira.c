@@ -147,10 +147,10 @@ void rio_de_fogo(Experimento *e, ParametrosModelo p, Vizinhanca vizinhanca, Prob
     for (size_t j = 0; j < LARGURA; j++)
     {
       bool superficie_pegando_fogo = celula_esta_em_chamas(&e->reticulado.celulas[i][j][SUPERFICIE_IDX]);
-      bool subterraneo_pegando_fogo = celula_esta_em_chamas(&e->reticulado.celulas[i][j][SUBTERRANEO_IDX]);
+      bool subterraneo_pegando_fogo = celula_esta_em_chamas(&e->reticulado.celulas[i][j][ENTERRADO_IDX]);
 
       if ((superficie_pegando_fogo && !subterraneo_pegando_fogo) && rand() < p.passar_fogo_da_superficie_para_vegetacao)
-        avanca_tempo(&e->reticulado.celulas[i][j][SUBTERRANEO_IDX], FOG_INICIAL);
+        avanca_tempo(&e->reticulado.celulas[i][j][ENTERRADO_IDX], FOG_INICIAL);
       if ((!superficie_pegando_fogo && subterraneo_pegando_fogo) && rand() < p.passar_fogo_da_vegetacao_para_superficie)
         avanca_tempo(&e->reticulado.celulas[i][j][SUPERFICIE_IDX], FOG_INICIAL);
     }
@@ -236,7 +236,7 @@ void inicializa_tempo_no_estado(TempoNoEstado *tempo_no_estado, Probabilidade um
   tempo_no_estado[VEG_FLORESTA_IDX] = -1;
   tempo_no_estado[RAIZ_IDX] = -1;
   tempo_no_estado[TERRA_IDX] = -1;
-  tempo_no_estado[SUBTERRANEO_IDX] = -1;
+  tempo_no_estado[ENTERRADO_IDX] = -1;
   if (umidade <= tresholds_umidade.treshold1)
   {
     tempo_no_estado[FOG_INICIAL_IDX] = 3;

@@ -22,19 +22,19 @@ typedef struct
 
 typedef struct
 {
-  Reticulado reticulado;
-  Estado output[QUANTIDADE_EXPERIMENTOS][QUANTIDADE_ITERACOES][ALTURA][LARGURA][NIVEIS];
-  const char *output_file_name;
-  Tresholds tresholds_umidade;
-} Experimento;
-
-typedef struct
-{
   const Probabilidade treshold1;
   const Probabilidade treshold2;
   const Probabilidade treshold3;
   const Probabilidade treshold4;
 } Tresholds;
+
+typedef struct
+{
+  Reticulado reticulado;
+  Estado output[QUANTIDADE_EXPERIMENTOS][QUANTIDADE_ITERACOES][ALTURA][LARGURA][NIVEIS];
+  const char *output_file_name;
+  Tresholds tresholds_umidade;
+} Experimento;
 
 void inicializa_reticulado(
     Reticulado *r,
