@@ -1,0 +1,27 @@
+1 - Um problema é representado por uma linguagem formal que descreve as instancias do problema
+
+2 - É um conjunto infinito que seja contavel, tenha uma relação de ordem onde o elemento N é sucedido pelo elemtno N+1, de 0 até o infinito, assim como os numeros naturais
+
+3 - (0 U 1 U 2)*
+
+4 - Os procedimentos efetivos são expressos por linguagens recursivamente enumeraveis, não englobando por exemplo linguagens não recursivas e problemas indecidiveis, que são problemas que não existem algoritmos que possam produzir uma resposta para todas as instancias do problema
+
+5 - É possivel, por meio de listagem, listar todas as palavras de uma linguagem finita, e buscar por busca exaustiva se uma palavra pertence ou não à lista que contem todas as palavras da linguagem
+
+6 -  É possíel enumerar todas as palavras desse conjunto em sub conjuntos que contenham as palavras por tamanho, e ordenar dentro do subconjunto lexicograficamente (ordem alfabetica), logo esse conjunto é enumeravel pois possui uma bijeção com o conjunto dos naturais
+
+7 - Como as exp reg são representadas por cadeias de caracteres, elas podem ser ordenadas de forma alfabética, logo, cada exp reg teria uma bijeção com os numeros naturais, sendo assim enumeravel
+
+8 - 
+      a        a         b
+(q0) ---> (q4) ---> (q3) ---> (q2)
+  |         ^   b    |  a   |  b
+   ---------|--------   ------
+              b         a
+
+9 - 
+         /----- A, B -----\
+        v                   v
+(q0) -> q1 ---------------> q1 (aceitação)
+        ^                   ^
+         \----- A, B -----/

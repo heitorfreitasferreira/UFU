@@ -1,0 +1,26 @@
+1a) e somente se, para toda palavra de entrada, a máquina para em um estado de aceitação se a palavra pertence a L e em um estado de rejeição se a palavra não pertence a L.
+1b) e somente se, para toda palavra de entrada que pertence a L, a máquina para em um estado de aceitação.
+1c) Mostrar que, se L2 fosse decidível, então L1 também seria, o que é uma contradição. Isso é feito através de uma redução de L1 para L2, onde resolver L2 nos permite resolver L1.
+
+2) Sim, as linguagens regulares são decidíveis. Isso porque as linguagens regulares podem ser reconhecidas por autômatos finitos determinísticos (AFD), que sempre param após lerem a entrada. Como os AFDs têm um número finito de estados e uma transição definida para cada par de estado e símbolo de entrada, eles sempre decidem se uma palavra pertence ou não à linguagem em um número finito de passos.
+
+3) Uma linguagem composta por um conjunto finito de palavras é decidível porque podemos construir um autômato finito determinístico (AFD) que aceita exatamente essas palavras. Este AFD pode ser construído enumerando todas as palavras da linguagem e projetando transições específicas para cada palavra. Após ler uma palavra, se o AFD alcança um estado de aceitação, a palavra pertence à linguagem; caso contrário, não pertence. Como o conjunto de palavras é finito, o AFD também será finito e sempre decidirá a pertinência em um número finito de passos.
+
+4) Se todas as transições de uma máquina de Turing M movem a cabeça de leitura apenas para a direita, isso significa que M nunca revisita nenhum símbolo que já tenha lido. Isso implica que M opera em tempo linear em relação ao tamanho da entrada, pois move-se através de cada símbolo da entrada exatamente uma vez antes de parar. Além disso, a linguagem aceita por M pode ser reconhecida sem a necessidade de "voltar atrás" na entrada, o que sugere que a linguagem tem uma estrutura que pode ser reconhecida em uma única passagem linear.
+
+5) Se uma linguagem pode ser enumerada por uma máquina de Turing em ordem lexicográfica, então existe uma máquina de Turing que gera todas as palavras da linguagem em uma sequência ordenada. Para decidir se uma palavra pertence a esta linguagem, podemos construir uma máquina de Turing que utiliza esta máquina enumeradora para gerar sucessivamente as palavras da linguagem. Se a palavra gerada é igual à palavra de entrada, então a palavra pertence à linguagem e a máquina aceita; se uma palavra gerada é lexicograficamente maior que a palavra de entrada, a máquina rejeita (já que a palavra de entrada não será encontrada). Isso prova que a linguagem é decidível, pois existe um procedimento efetivo para determinar a pertinência de qualquer palavra.
+
+
+6a) No caso de linguagens recursivamente enumeraveis, mostrar que tal procedimento nao podera enumerar as palavras da linguagem usando a ordem lexicografica crescente:
+
+Para linguagens recursivamente enumeraveis, e importante notar que, embora possamos ter um procedimento que enumera todas as palavras da linguagem por exemplo, uma maquina de Turing que as gera, nao e possivel garantir que esse procedimento enumere as palavras em ordem lexicografica crescente. Isso ocorre porque, para algumas palavras, pode ser necessario um numero indeterminado de passos para verificar se pertencem ou nao a linguagem, especialmente no caso de linguagens indecidiveis. Alem disso, tentar enumerar na ordem lexicografica exigiria a capacidade de prever se palavras subsequentes seriam aceitas sem primeiro gerar todas as precedentes, o que nao e possivel para todas as linguagens recursivamente enumeraveis devido a sua natureza potencialmente indecidivel.
+
+6b) Enumerar os pares wn e explicar o funcionamento do procedimento efetivo:
+
+Para realizar a enumeracao efetiva das palavras aceitas por uma maquina de Turing M, utilizamos os pares w, n, onde w e uma palavra sobre o alfabeto de M e n e um numero natural. A estrategia e baseada na simulacao de M sobre w por um numero crescente de passos n.
+
+Ordem de enumeracao: Uma ordem possivel para enumerar os pares w, n envolve uma abordagem de diagonalizacao, comecando com palavras de comprimento minimo e aumentando progressivamente tanto o comprimento das palavras quanto o numero n de passos da simulacao. Essa abordagem assegura que todas as combinacoes de palavras e numeros de etapas sejam consideradas eventualmente.
+
+Funcionamento do procedimento efetivo: Para cada par w, n, simulamos a execucao de M sobre w por ate n etapas. Caso M aceite w dentro deste limite de etapas, w e entao reconhecida como parte da linguagem. Esse metodo garante que todas as palavras aceitas por M sejam eventualmente identificadas e listadas. Importante ressaltar que este procedimento permite a enumeracao efetiva das palavras da linguagem, mesmo sem seguir uma ordem lexicografica.
+
+Assim, podemos efetivamente enumerar todas as palavras de uma linguagem recursivamente enumeravel utilizando este metodo, que, embora nao siga uma ordem lexicografica estrita, assegura que todas as palavras aceitas serao eventualmente descobertas.
