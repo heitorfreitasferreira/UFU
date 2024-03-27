@@ -129,8 +129,8 @@ def main(k: int | None, threshold: float, scaler: MinMaxScaler | RobustScaler | 
     x, y = pre_process(data, threshold)
     if k:
         accuracy, cv_accuracy, conf_matrix, report = knn(x, y, k, scaler)
-
-        ic(f"{accuracy=}, {cv_accuracy=}")
+        a = f"{accuracy=}, {cv_accuracy=}"
+        ic(a)
         ic("Matriz de Confusão:")
         ic(conf_matrix)
         ic("Classification Report:")
@@ -150,7 +150,8 @@ def main(k: int | None, threshold: float, scaler: MinMaxScaler | RobustScaler | 
         results = test_knn(x, y, scaler)
 
         for k, (accuracy, cv_accuracy, conf_matrix, report) in results.items():
-            ic(f"{k=}, {accuracy=}, {cv_accuracy=}")
+            a = f"{k=}, {accuracy=}, {cv_accuracy=}"
+            ic(a)
             ic("Matriz de Confusão:")
             ic(conf_matrix)
             ic("Classification Report:")
