@@ -1,0 +1,23 @@
+\begin{thebibliography}{}
+
+\bibitem[Dias and Lovreglio 2018]{dias2018calibrating}
+Dias, C. and Lovreglio, R. (2018).
+\newblock Calibrating cellular automaton models for pedestrians walking through
+  corners.
+\newblock {\em Physics Letters A}, 382(19):1255--1261.
+
+\bibitem[Ferreira et~al. 2023]{ferreira2023stochastic}
+Ferreira, H.~F., Tinoco, C.~R., Martins, L.~G., and Oliveira, G.~M. (2023).
+\newblock Stochastic model for wildfire simulation based on the characteristics
+  of the brazilian cerrado.
+\newblock In {\em International Conference on Artificial Intelligence and Soft
+  Computing}, pages 487--496. Springer.
+
+\bibitem[Shan et~al. 2008]{shan2008genetic}
+Shan, J., Alkheder, S., and Wang, J. (2008).
+\newblock Genetic algorithms for the calibration of cellular automata urban
+  growth modeling.
+\newblock {\em Photogrammetric Engineering \& Remote Sensing},
+  74(10):1267--1277.
+
+\end{thebibliography}
