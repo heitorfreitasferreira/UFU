@@ -1,0 +1,335 @@
+ic| relevant_features: ['Pregnancies', 'Glucose', 'BMI', 'Age']
+ic| k: 3
+ic| acuracies: 'accuracy=0.7142857142857143, cross_validation_accuracy=0.7373485635167878'
+ic| conf_matrix: {'fn': 32, 'fp': 34, 'tn': 117, 'tp': 48}
+ic| metrics: {'f1_score': 0.5925925925925926, 'precision': 0.5853658536585366, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 5
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7503115264797507'
+ic| conf_matrix: {'fn': 29, 'fp': 33, 'tn': 118, 'tp': 51}
+ic| metrics: {'f1_score': 0.6219512195121951,
+              'precision': 0.6071428571428571,
+              'recall': 0.6375}
+ic| '---------------------------------------------------------'
+ic| k: 7
+ic| acuracies: 'accuracy=0.7445887445887446, cross_validation_accuracy=0.7559363101419175'
+ic| conf_matrix: {'fn': 32, 'fp': 27, 'tn': 124, 'tp': 48}
+ic| metrics: {'f1_score': 0.6193548387096774, 'precision': 0.64, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 9
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7577881619937694'
+ic| conf_matrix: {'fn': 32, 'fp': 28, 'tn': 123, 'tp': 48}
+ic| metrics: {'f1_score': 0.6153846153846154, 'precision': 0.631578947368421, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 11
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7764451367255105'
+ic| conf_matrix: {'fn': 31, 'fp': 29, 'tn': 122, 'tp': 49}
+ic| metrics: {'f1_score': 0.620253164556962,
+              'precision': 0.6282051282051282,
+              'recall': 0.6125}
+ic| '---------------------------------------------------------'
+ic| k: 13
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7782796815507096'
+ic| conf_matrix: {'fn': 30, 'fp': 32, 'tn': 119, 'tp': 50}
+ic| metrics: {'f1_score': 0.6172839506172839,
+              'precision': 0.6097560975609756,
+              'recall': 0.625}
+ic| '---------------------------------------------------------'
+ic| k: 15
+ic| acuracies: 'accuracy=0.7229437229437229, cross_validation_accuracy=0.7838871581862235'
+ic| conf_matrix: {'fn': 32, 'fp': 32, 'tn': 119, 'tp': 48}
+ic| metrics: {'f1_score': 0.6, 'precision': 0.6, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 17
+ic| acuracies: 'accuracy=0.7186147186147186, cross_validation_accuracy=0.7764797507788161'
+ic| conf_matrix: {'fn': 31, 'fp': 34, 'tn': 117, 'tp': 49}
+ic| metrics: {'f1_score': 0.6012269938650308,
+              'precision': 0.5903614457831325,
+              'recall': 0.6125}
+ic| '---------------------------------------------------------'
+ic| k: 19
+ic| acuracies: 'accuracy=0.7229437229437229, cross_validation_accuracy=0.7690377293181031'
+ic| conf_matrix: {'fn': 30, 'fp': 34, 'tn': 117, 'tp': 50}
+ic| metrics: {'f1_score': 0.6097560975609756,
+              'precision': 0.5952380952380952,
+              'recall': 0.625}
+ic| '---------------------------------------------------------'
+ic| k: 21
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7745932848736586'
+ic| conf_matrix: {'fn': 29, 'fp': 31, 'tn': 120, 'tp': 51}
+ic| metrics: {'f1_score': 0.6296296296296297,
+              'precision': 0.6219512195121951,
+              'recall': 0.6375}
+ic| '---------------------------------------------------------'
+ic| k: 23
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7745586708203531'
+ic| conf_matrix: {'fn': 31, 'fp': 31, 'tn': 120, 'tp': 49}
+ic| metrics: {'f1_score': 0.6125, 'precision': 0.6125, 'recall': 0.6125}
+ic| '---------------------------------------------------------'
+ic| k: 25
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.76711664935964'
+ic| conf_matrix: {'fn': 30, 'fp': 30, 'tn': 121, 'tp': 50}
+ic| metrics: {'f1_score': 0.625, 'precision': 0.625, 'recall': 0.625}
+ic| '---------------------------------------------------------'
+ic| k: 27
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7615437867774315'
+ic| conf_matrix: {'fn': 32, 'fp': 28, 'tn': 123, 'tp': 48}
+ic| metrics: {'f1_score': 0.6153846153846154, 'precision': 0.631578947368421, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 29
+ic| acuracies: 'accuracy=0.7445887445887446, cross_validation_accuracy=0.7634129456559362'
+ic| conf_matrix: {'fn': 32, 'fp': 27, 'tn': 124, 'tp': 48}
+ic| metrics: {'f1_score': 0.6193548387096774, 'precision': 0.64, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 31
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7615610938040845'
+ic| conf_matrix: {'fn': 32, 'fp': 26, 'tn': 125, 'tp': 48}
+ic| metrics: {'f1_score': 0.6233766233766234, 'precision': 0.6486486486486487, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 33
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7671512634129456'
+ic| conf_matrix: {'fn': 31, 'fp': 26, 'tn': 125, 'tp': 49}
+ic| metrics: {'f1_score': 0.632258064516129,
+              'precision': 0.6533333333333333,
+              'recall': 0.6125}
+ic| '---------------------------------------------------------'
+ic| k: 35
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7615784008307372'
+ic| conf_matrix: {'fn': 32, 'fp': 26, 'tn': 125, 'tp': 48}
+ic| metrics: {'f1_score': 0.6233766233766234, 'precision': 0.6486486486486487, 'recall': 0.6}
+ic| '---------------------------------------------------------'
+ic| k: 37
+ic| acuracies: 'accuracy=0.7445887445887446, cross_validation_accuracy=0.7597092419522327'
+ic| conf_matrix: {'fn': 33, 'fp': 26, 'tn': 125, 'tp': 47}
+ic| metrics: {'f1_score': 0.6143790849673203,
+              'precision': 0.6438356164383562,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 39
+ic| acuracies: 'accuracy=0.7445887445887446, cross_validation_accuracy=0.7597092419522327'
+ic| conf_matrix: {'fn': 33, 'fp': 26, 'tn': 125, 'tp': 47}
+ic| metrics: {'f1_score': 0.6143790849673203,
+              'precision': 0.6438356164383562,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 41
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7597092419522326'
+ic| conf_matrix: {'fn': 33, 'fp': 24, 'tn': 127, 'tp': 47}
+ic| metrics: {'f1_score': 0.6225165562913908,
+              'precision': 0.6619718309859155,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 43
+ic| acuracies: 'accuracy=0.7575757575757576, cross_validation_accuracy=0.7634129456559363'
+ic| conf_matrix: {'fn': 33, 'fp': 23, 'tn': 128, 'tp': 47}
+ic| metrics: {'f1_score': 0.6266666666666667,
+              'precision': 0.6714285714285714,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 45
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7652821045344409'
+ic| conf_matrix: {'fn': 34, 'fp': 23, 'tn': 128, 'tp': 46}
+ic| metrics: {'f1_score': 0.6174496644295301,
+              'precision': 0.6666666666666666,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 47
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7615610938040845'
+ic| conf_matrix: {'fn': 34, 'fp': 24, 'tn': 127, 'tp': 46}
+ic| metrics: {'f1_score': 0.6133333333333333,
+              'precision': 0.6571428571428571,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 49
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7615610938040844'
+ic| conf_matrix: {'fn': 34, 'fp': 23, 'tn': 128, 'tp': 46}
+ic| metrics: {'f1_score': 0.6174496644295301,
+              'precision': 0.6666666666666666,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 51
+ic| acuracies: 'accuracy=0.7575757575757576, cross_validation_accuracy=0.7634302526825891'
+ic| conf_matrix: {'fn': 33, 'fp': 23, 'tn': 128, 'tp': 47}
+ic| metrics: {'f1_score': 0.6266666666666667,
+              'precision': 0.6714285714285714,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 53
+ic| acuracies: 'accuracy=0.7575757575757576, cross_validation_accuracy=0.7578400830737279'
+ic| conf_matrix: {'fn': 34, 'fp': 22, 'tn': 129, 'tp': 46}
+ic| metrics: {'f1_score': 0.6216216216216216,
+              'precision': 0.6764705882352942,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 55
+ic| acuracies: 'accuracy=0.7619047619047619, cross_validation_accuracy=0.7578227760470752'
+ic| conf_matrix: {'fn': 34, 'fp': 21, 'tn': 130, 'tp': 46}
+ic| metrics: {'f1_score': 0.6258503401360543,
+              'precision': 0.6865671641791045,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 57
+ic| acuracies: 'accuracy=0.7575757575757576, cross_validation_accuracy=0.7578054690204222'
+ic| conf_matrix: {'fn': 34, 'fp': 22, 'tn': 129, 'tp': 46}
+ic| metrics: {'f1_score': 0.6216216216216216,
+              'precision': 0.6764705882352942,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 59
+ic| acuracies: 'accuracy=0.7662337662337663, cross_validation_accuracy=0.7596573208722741'
+ic| conf_matrix: {'fn': 33, 'fp': 21, 'tn': 130, 'tp': 47}
+ic| metrics: {'f1_score': 0.6351351351351351,
+              'precision': 0.6911764705882353,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 61
+ic| acuracies: 'accuracy=0.7619047619047619, cross_validation_accuracy=0.7577881619937695'
+ic| conf_matrix: {'fn': 33, 'fp': 22, 'tn': 129, 'tp': 47}
+ic| metrics: {'f1_score': 0.6308724832214765,
+              'precision': 0.6811594202898551,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 63
+ic| acuracies: 'accuracy=0.7619047619047619, cross_validation_accuracy=0.7559190031152647'
+ic| conf_matrix: {'fn': 33, 'fp': 22, 'tn': 129, 'tp': 47}
+ic| metrics: {'f1_score': 0.6308724832214765,
+              'precision': 0.6811594202898551,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 65
+ic| acuracies: 'accuracy=0.7575757575757576, cross_validation_accuracy=0.7596400138456213'
+ic| conf_matrix: {'fn': 33, 'fp': 23, 'tn': 128, 'tp': 47}
+ic| metrics: {'f1_score': 0.6266666666666667,
+              'precision': 0.6714285714285714,
+              'recall': 0.5875}
+ic| '---------------------------------------------------------'
+ic| k: 67
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7615091727241259'
+ic| conf_matrix: {'fn': 34, 'fp': 23, 'tn': 128, 'tp': 46}
+ic| metrics: {'f1_score': 0.6174496644295301,
+              'precision': 0.6666666666666666,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 69
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7559190031152647'
+ic| conf_matrix: {'fn': 34, 'fp': 23, 'tn': 128, 'tp': 46}
+ic| metrics: {'f1_score': 0.6174496644295301,
+              'precision': 0.6666666666666666,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 71
+ic| acuracies: 'accuracy=0.7532467532467533, cross_validation_accuracy=0.7577881619937695'
+ic| conf_matrix: {'fn': 34, 'fp': 23, 'tn': 128, 'tp': 46}
+ic| metrics: {'f1_score': 0.6174496644295301,
+              'precision': 0.6666666666666666,
+              'recall': 0.575}
+ic| '---------------------------------------------------------'
+ic| k: 73
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7577881619937694'
+ic| conf_matrix: {'fn': 35, 'fp': 23, 'tn': 128, 'tp': 45}
+ic| metrics: {'f1_score': 0.6081081081081082,
+              'precision': 0.6617647058823529,
+              'recall': 0.5625}
+ic| '---------------------------------------------------------'
+ic| k: 75
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7503461405330565'
+ic| conf_matrix: {'fn': 35, 'fp': 23, 'tn': 128, 'tp': 45}
+ic| metrics: {'f1_score': 0.6081081081081082,
+              'precision': 0.6617647058823529,
+              'recall': 0.5625}
+ic| '---------------------------------------------------------'
+ic| k: 77
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7559709241952233'
+ic| conf_matrix: {'fn': 35, 'fp': 23, 'tn': 128, 'tp': 45}
+ic| metrics: {'f1_score': 0.6081081081081082,
+              'precision': 0.6617647058823529,
+              'recall': 0.5625}
+ic| '---------------------------------------------------------'
+ic| k: 79
+ic| acuracies: 'accuracy=0.7445887445887446, cross_validation_accuracy=0.7540844582900658'
+ic| conf_matrix: {'fn': 35, 'fp': 24, 'tn': 127, 'tp': 45}
+ic| metrics: {'f1_score': 0.6040268456375839,
+              'precision': 0.6521739130434783,
+              'recall': 0.5625}
+ic| '---------------------------------------------------------'
+ic| k: 81
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7559536171685705'
+ic| conf_matrix: {'fn': 36, 'fp': 24, 'tn': 127, 'tp': 44}
+ic| metrics: {'f1_score': 0.5945945945945946,
+              'precision': 0.6470588235294118,
+              'recall': 0.55}
+ic| '---------------------------------------------------------'
+ic| k: 83
+ic| acuracies: 'accuracy=0.7489177489177489, cross_validation_accuracy=0.7596746278989269'
+ic| conf_matrix: {'fn': 37, 'fp': 21, 'tn': 130, 'tp': 43}
+ic| metrics: {'f1_score': 0.5972222222222222, 'precision': 0.671875, 'recall': 0.5375}
+ic| '---------------------------------------------------------'
+ic| k: 85
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7596746278989269'
+ic| conf_matrix: {'fn': 37, 'fp': 23, 'tn': 128, 'tp': 43}
+ic| metrics: {'f1_score': 0.589041095890411,
+              'precision': 0.6515151515151515,
+              'recall': 0.5375}
+ic| '---------------------------------------------------------'
+ic| k: 87
+ic| acuracies: 'accuracy=0.7359307359307359, cross_validation_accuracy=0.7596400138456213'
+ic| conf_matrix: {'fn': 37, 'fp': 24, 'tn': 127, 'tp': 43}
+ic| metrics: {'f1_score': 0.5850340136054422,
+              'precision': 0.6417910447761194,
+              'recall': 0.5375}
+ic| '---------------------------------------------------------'
+ic| k: 89
+ic| acuracies: 'accuracy=0.7402597402597403, cross_validation_accuracy=0.7559190031152648'
+ic| conf_matrix: {'fn': 37, 'fp': 23, 'tn': 128, 'tp': 43}
+ic| metrics: {'f1_score': 0.589041095890411,
+              'precision': 0.6515151515151515,
+              'recall': 0.5375}
+ic| '---------------------------------------------------------'
+ic| k: 91
+ic| acuracies: 'accuracy=0.7359307359307359, cross_validation_accuracy=0.7559363101419176'
+ic| conf_matrix: {'fn': 37, 'fp': 24, 'tn': 127, 'tp': 43}
+ic| metrics: {'f1_score': 0.5850340136054422,
+              'precision': 0.6417910447761194,
+              'recall': 0.5375}
+ic| '---------------------------------------------------------'
+ic| k: 93
+ic| acuracies: 'accuracy=0.7359307359307359, cross_validation_accuracy=0.7578227760470752'
+ic| conf_matrix: {'fn': 38, 'fp': 23, 'tn': 128, 'tp': 42}
+ic| metrics: {'f1_score': 0.5793103448275863,
+              'precision': 0.6461538461538462,
+              'recall': 0.525}
+ic| '---------------------------------------------------------'
+ic| k: 95
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7615437867774315'
+ic| conf_matrix: {'fn': 38, 'fp': 24, 'tn': 127, 'tp': 42}
+ic| metrics: {'f1_score': 0.5753424657534246,
+              'precision': 0.6363636363636364,
+              'recall': 0.525}
+ic| '---------------------------------------------------------'
+ic| k: 97
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7596919349255797'
+ic| conf_matrix: {'fn': 38, 'fp': 24, 'tn': 127, 'tp': 42}
+ic| metrics: {'f1_score': 0.5753424657534246,
+              'precision': 0.6363636363636364,
+              'recall': 0.525}
+ic| '---------------------------------------------------------'
+ic| k: 99
+ic| acuracies: 'accuracy=0.7316017316017316, cross_validation_accuracy=0.7578400830737279'
+ic| conf_matrix: {'fn': 38, 'fp': 24, 'tn': 127, 'tp': 42}
+ic| metrics: {'f1_score': 0.5753424657534246,
+              'precision': 0.6363636363636364,
+              'recall': 0.525}
+ic| '---------------------------------------------------------'
+ic| k: 101
+ic| acuracies: 'accuracy=0.7359307359307359, cross_validation_accuracy=0.7578227760470752'
+ic| conf_matrix: {'fn': 38, 'fp': 23, 'tn': 128, 'tp': 42}
+ic| metrics: {'f1_score': 0.5793103448275863,
+              'precision': 0.6461538461538462,
+              'recall': 0.525}
+ic| '---------------------------------------------------------'
+ic| 'Melhores resultados:'
+ic| sorted_k_f_score[:5]: [(59, 0.6351351351351351),
+                           (33, 0.632258064516129),
+                           (61, 0.6308724832214765),
+                           (63, 0.6308724832214765),
+                           (21, 0.6296296296296297)]

@@ -8,7 +8,7 @@ from typing import Callable
 import pandas as pd
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
 import matplotlib.pyplot as plt
 import numpy.typing as npt
@@ -30,6 +30,45 @@ def get_file_logger(file: str) -> Callable[[str], None]:
     return file_logger
 
 
+def get_measures(conf_matrix: npt.NDArray) -> dict[str, float]:
+    """Calcula as métricas de classificação a partir da matriz de confusão.
+
+    Args:
+        confusion_matrix (npt.ArrayLike): Matriz de confusão
+
+    Returns:
+        dict[str, float]: Dicionário com as métricas de classificação
+
+    """
+    tp = int(conf_matrix[1, 1])
+    fp = int(conf_matrix[0, 1])
+    fn = int(conf_matrix[1, 0])
+
+    precision = tp / (tp + fp)
+    recall = tp / (tp + fn)
+    f1_score = 2 * (precision * recall) / (precision + recall)
+
+    return {'precision': precision, 'recall': recall, 'f1_score': f1_score}
+
+
+def get_metrics(conf_matrix: npt.NDArray) -> dict[str, int]:
+    """Calcula as métricas de classificação a partir da matriz de confusão.
+
+    Args:
+        confusion_matrix (npt.ArrayLike): Matriz de confusão
+
+    Returns:
+        dict[str, int]: Dicionário com as métricas de classificação
+
+    """
+    tp = int(conf_matrix[1, 1])
+    tn = int(conf_matrix[0, 0])
+    fp = int(conf_matrix[0, 1])
+    fn = int(conf_matrix[1, 0])
+
+    return {'tp': tp, 'tn': tn, 'fp': fp, 'fn': fn}
+
+
 def pre_process(data: pd.DataFrame, threshold: float) -> tuple[pd.DataFrame, pd.Series]:
     """Seleciona as variáveis mais relevantes para o modelo.
 
@@ -44,7 +83,7 @@ def pre_process(data: pd.DataFrame, threshold: float) -> tuple[pd.DataFrame, pd.
     relevant_features = correlation_matrix[abs(
         correlation_matrix['Outcome']) > threshold].index.tolist()
     relevant_features.remove('Outcome')  # Remove the target variable
-    ic("Selected features:", relevant_features)
+    ic(relevant_features)
     y = data['Outcome']
     x = data[relevant_features]
     return x, y
@@ -55,7 +94,7 @@ def knn(
         y: npt.ArrayLike,
         k: int,
         scaler: MinMaxScaler | RobustScaler | StandardScaler
-) -> tuple[float, float, npt.ArrayLike, dict | str]:
+) -> tuple[float, float, dict[str, int], dict[str, float], npt.ArrayLike]:
     """Executa o algoritmo KNN para classificação binária.
 
     Args:
@@ -88,19 +127,21 @@ def knn(
 
     cv_accuracy = cross_val_score(
         clf, x_train_scaled, y_train, cv=5, scoring='accuracy').mean()
-
     conf_matrix = confusion_matrix(y_test, y_pred)
-
-    report = classification_report(y_test, y_pred)
-
-    return (float(accuracy), cv_accuracy, conf_matrix, report)
+    return (
+        float(accuracy),
+        cv_accuracy,
+        get_metrics(conf_matrix),
+        get_measures(conf_matrix),
+        conf_matrix
+    )
 
 
 def test_knn(
         x: npt.ArrayLike,
         y: npt.ArrayLike,
         scaler: MinMaxScaler | RobustScaler | StandardScaler
-) -> dict[int, tuple[float, float, npt.ArrayLike, dict | str]]:
+) -> dict[int, tuple[float, float, dict[str, int], dict[str, float], npt.ArrayLike]]:
     """Testa o algoritmo KNN para diferentes valores de k.
 
     Args:
@@ -114,7 +155,7 @@ def test_knn(
         k -> (accuracy, cv_accuracy, conf_matrix, report)
     """
     # [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
-    return {k: knn(x, y, k, scaler) for k in range(3, 22, 2)}
+    return {k: knn(x, y, k, scaler) for k in range(3, 102, 2)}
 
 
 def main(k: int | None, threshold: float, scaler: MinMaxScaler | RobustScaler | StandardScaler):
@@ -128,35 +169,48 @@ def main(k: int | None, threshold: float, scaler: MinMaxScaler | RobustScaler | 
 
     x, y = pre_process(data, threshold)
     if k:
-        accuracy, cv_accuracy, conf_matrix, report = knn(x, y, k, scaler)
-        a = f"{accuracy=}, {cv_accuracy=}"
-        ic(a)
-        ic("Matriz de Confusão:")
+        accuracy, cross_validation_accuracy, conf_matrix, metrics, matrix = knn(
+            x, y, k, scaler)
+        acuracies = f"{accuracy=}, {cross_validation_accuracy=}"
+        ic(acuracies)
         ic(conf_matrix)
-        ic("Classification Report:")
-        ic(report)
-
-        # Plot the confusion matrix as a heatmap gist_heat_r
-        plt.matshow(conf_matrix, alpha=0.7, cmap='gnuplot_r')
-        plt.colorbar()
-        plt.xlabel('Predicted label')
-        plt.ylabel('True label')
-        plt.xticks([0, 1], [0, 1])
-        plt.yticks([0, 1], [0, 1])
-        plt.title('Confusion Matrix')
-        plt.show()
+        ic(metrics)
+        if input("Deseja plotar a matriz de confusão? (s/n): ") == 's':
+            # Plot the confusion matrix as a heatmap gist_heat_r
+            plt.matshow(matrix, alpha=0.7, cmap='gnuplot_r')
+            plt.colorbar()
+            plt.xlabel('Predicted label')
+            plt.ylabel('True label')
+            plt.xticks([0, 1], [0, 1])
+            plt.yticks([0, 1], [0, 1])
+            plt.title('Confusion Matrix')
+            plt.show()
 
     else:
         results = test_knn(x, y, scaler)
+        k_f_score: list[tuple[int, float]] = []
+        for k, (accuracy, cross_validation_accuracy, conf_matrix, metrics, _) in results.items():
+            k_f_score.append((k, metrics['f1_score']))
 
-        for k, (accuracy, cv_accuracy, conf_matrix, report) in results.items():
-            a = f"{k=}, {accuracy=}, {cv_accuracy=}"
-            ic(a)
-            ic("Matriz de Confusão:")
+            acuracies = f"{accuracy=}, {cross_validation_accuracy=}"
+            ic(k)
+            ic(acuracies)
             ic(conf_matrix)
-            ic("Classification Report:")
-            ic(report)
+            ic(metrics)
             ic("---------------------------------------------------------")
+
+        sorted_k_f_score = sorted(k_f_score, key=lambda x: x[1], reverse=True)
+        ic("Melhores resultados:")
+        ic(sorted_k_f_score[:5])
+
+        if input("Deseja plotar a evolução do f_score: (s/n): ") == 's':
+            k_values = [k for k, _ in k_f_score]
+            f_scores = [f_score for _, f_score in k_f_score]
+            plt.plot(k_values, f_scores)
+            plt.xlabel('k')
+            plt.ylabel('f1_score')
+            plt.title('Evolução do f1_score')
+            plt.show()
 
 
 if __name__ == '__main__':
