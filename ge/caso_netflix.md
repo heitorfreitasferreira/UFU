@@ -1,0 +1,11 @@
+# Estudo de caso netflix
+
+Aluno: Heitor Freitas Ferreira [11921BCC026]
+
+A estratégia da cauda longa, como implementada pela Netflix, é uma reação às mudanças trazidas pela Internet e tecnologia. Antes da era digital, os negócios seguiam a regra de Pareto, onde 20% dos produtos geravam 80% das vendas. Com a popularização da internet, os consumidores passaram a ter mais poder de escolha, permitindo que as empresas oferecessem uma ampla variedade de produtos de nicho, cada um com sua própria base de clientes. Essa nova abordagem foi viabilizada pela redução de custos em transações, comunicação e estoque, graças ao ambiente digital. A expressão "cauda longa" refere-se à diversidade de produtos que podem ser oferecidos, onde itens de nicho podem ser tão lucrativos quanto produtos populares.
+
+A Netflix, como modelo de negócio, enfrenta concorrência direta de outras plataformas de streaming, como Amazon Prime e Disney+, todas buscando valorizar-se com conteúdos exclusivos. Os concorrentes indiretos incluem a TV a cabo, que oferece conteúdo ao vivo, como eventos esportivos, videogames, e os cinemas, que proporcionam uma experiência única com suas grandes telas e sistemas de som imersivos.
+
+A Netflix é uma plataforma online de filmes e séries, com foco em conteúdo de nicho para atender uma variedade de perfis de clientes. Seu público-alvo é amplo e diversificado, atendendo desde consumidores casuais até entusiastas de nichos específicos. A empresa gera receita principalmente por meio de assinaturas em diferentes níveis, adaptando-se às diferentes condições econômicas dos clientes. Possuindo milhões de usuários espalhandos em várias partes do mundo, e a produção de séries exclusivas tem sido um fator chave para o crescimento da base de assinantes desde o teste com a série House Of Cards.
+
+Entre seus diferenciais competitivos estão as parcerias com estúdios de cinema, tecnologia para garantir alta qualidade de transmissão, atendimento ao cliente eficiente, planos acessíveis e recomendações personalizadas de conteúdo, esta última que garante a netflix atingir diversos nichos separadamente, pois cada um tem sua propria visão do que a netflix entrega de conteúdo/valor para sí.
