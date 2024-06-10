@@ -55,3 +55,21 @@ Solucao: adicionar camdas ate que a moral aumente!!
 - Fluxo: sentido que e feito o processamento
 - Tipo de treinamento
 
+## Tipo de treinamento/aprendizagem
+
+Consistem em apresentar exemplos a fim de modificar os pesos, calibrando a saida de acordo com as entradas do treino
+
+Esse aprenizado pode ser:
+
+- Supervisionado, onde a saida e conhecida e classificada
+- Nao supervisionada, onde nao se conhece a classe, mas a rede agrupa as entradas
+- Por reforco, recompensa a rede onde o desempenho e bom, analogo a adestrar pets
+
+
+### Treinamento do perceptron
+
+consiste em determinar cada peso da sua rede
+![training rule](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ecmi4s_ob-cfOc3FHVjKtjCMP9ZsueFo4AeOfNj97-Izkw9DfQXQsbop&s=10)
+- considerando o erro $\sigma$ que e a dif entre o valor desenhado e o obtido
+- o valor do peso na proxima iteracao do treinamento sera $w_(i+1) = w_i + $
+$$
