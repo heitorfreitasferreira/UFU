@@ -1,24 +1,35 @@
 package lexer
 
-import "github.com/heitorfreitasferreira/UFU/cc/types"
+import (
+	"bufio"
 
-type mainLexer struct {
-	buffer      [][]rune
-	bufferIndex int
-	startIndex  int
-	endIndex    int
+	"github.com/heitorfreitasferreira/compiler/types"
+)
+
+type Lexer struct {
+	types.Position
+	at int
+	*bufio.Reader
 }
 
-func (l *mainLexer) prepareFile(path string) {
-
+func NewLexer(reader *bufio.Reader) *Lexer {
+	return &Lexer{
+		Reader: reader,
+		Position: types.Position{
+			Line:   1,
+			Column: 0,
+		},
+	}
 }
-func (l *mainLexer) loadNextChunck() {
 
-}
-func InitLexer() types.Lexer {
-	return mainLexer{}
+func (l *Lexer) GetNextToken() (types.Token, error) {
+	return types.Token{}, nil
 }
 
-func (l *mainLexer) GetNextToken() (types.Token, error) {
-
+func (l *Lexer) peak() (rune, error) {
+	bts, err := l.Reader.Peek(1)
+	if err != nil {
+		return ' ', err
+	}
+	return rune(bts[0]), nil
 }
