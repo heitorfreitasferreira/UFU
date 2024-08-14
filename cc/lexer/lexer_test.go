@@ -331,56 +331,180 @@ func TestTokenAndAtr(t *testing.T) {
 			desc: "SEPARATOR",
 			in:   ",",
 			out: types.Token{
-				TokenType: types.IDENTIFIER,
-				Position: types.Position{
-					Line:   1,
-					Column: 0,
-				},
-				Attr: map[string]interface{}{
-					"lexeme": ",",
-				},
-			},
-		},
-		{
-			desc: "SEPARATOR",
-			in:   ",",
-			out: types.Token{
-				TokenType: types.IDENTIFIER,
-				Position: types.Position{
-					Line:   1,
-					Column: 0,
-				},
-				Attr: map[string]interface{}{
-					"lexeme": ",",
-				},
+				TokenType: types.TYPE_SEPARATOR,
 			},
 		},
 		{
 			desc: "SEPARATOR",
 			in:   ";",
 			out: types.Token{
-				TokenType: types.IDENTIFIER,
-				Position: types.Position{
-					Line:   1,
-					Column: 0,
-				},
-				Attr: map[string]interface{}{
-					"lexeme": ";",
-				},
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "TYPE SEPARATOR",
+			in:   ":",
+			out: types.Token{
+				TokenType: types.TYPE_SEPARATOR,
 			},
 		},
 		{
 			desc: "SEPARATOR",
-			in:   "->",
+			in:   "\n",
 			out: types.Token{
-				TokenType: types.IDENTIFIER,
-				Position: types.Position{
-					Line:   1,
-					Column: 0,
-				},
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "SEPARATOR",
+			in:   "\t",
+			out: types.Token{
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "SEPARATOR",
+			in:   "",
+			out: types.Token{
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "COMMENT",
+			in:   "{ This is a comment }",
+			out: types.Token{
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "if",
+			out: types.Token{
+				TokenType: types.KEYWORD,
 				Attr: map[string]interface{}{
-					"lexeme": "->",
+					"lexeme": "if",
+					"type":   "conditional",
 				},
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "else",
+			out: types.Token{
+				TokenType: types.KEYWORD,
+				Attr: map[string]interface{}{
+					"lexeme": "else",
+					"type":   "conditional",
+				},
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "while",
+			out: types.Token{
+				TokenType: types.KEYWORD,
+				Attr: map[string]interface{}{
+					"lexeme": "while",
+					"type":   "loop",
+				},
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "do",
+			out: types.Token{
+				TokenType: types.KEYWORD,
+				Attr: map[string]interface{}{
+					"lexeme": "do",
+					"type":   "loop",
+				},
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "repeat",
+			out: types.Token{
+				TokenType: types.KEYWORD,
+				Attr: map[string]interface{}{
+					"lexeme": "repeat",
+					"type":   "loop",
+				},
+			},
+		},
+		{
+			desc: "KEYWORD",
+			in:   "until",
+			out: types.Token{
+				TokenType: types.KEYWORD,
+				Attr: map[string]interface{}{
+					"lexeme": "until",
+					"type":   "loop",
+				},
+			},
+		},
+		{
+			desc: "TYPE",
+			in:   "int",
+			out: types.Token{
+				TokenType: types.TYPE,
+				Attr: map[string]interface{}{
+					"lexeme": "int",
+				},
+			},
+		},
+		{
+			desc: "TYPE",
+			in:   "float",
+			out: types.Token{
+				TokenType: types.TYPE,
+				Attr: map[string]interface{}{
+					"lexeme": "float",
+				},
+			},
+		},
+		{
+			desc: "TYPE",
+			in:   "char",
+			out: types.Token{
+				TokenType: types.TYPE,
+				Attr: map[string]interface{}{
+					"lexeme": "char",
+				},
+			},
+		},
+		{
+			desc: "EOF",
+			in:   "",
+			out: types.Token{
+				TokenType: types.EOF,
+			},
+		},
+		{
+			desc: "START BLOCK",
+			in:   "begin",
+			out: types.Token{
+				TokenType: types.START_BLOCK,
+			},
+		},
+		{
+			desc: "END BLOCK",
+			in:   "end",
+			out: types.Token{
+				TokenType: types.END_BLOCK,
+			},
+		},
+		{
+			desc: "START PAREN",
+			in:   "(",
+			out: types.Token{
+				TokenType: types.START_PAREN,
+			},
+		},
+		{
+			desc: "END PAREN",
+			in:   ")",
+			out: types.Token{
+				TokenType: types.END_PAREN,
 			},
 		},
 	}
@@ -393,6 +517,59 @@ func TestTokenAndAtr(t *testing.T) {
 			}
 			if tk.TokenType != tC.out.TokenType {
 				t.Errorf("Expected token type to be %s, got %s", tC.out.TokenType, tk.TokenType)
+			}
+		})
+	}
+}
+
+func TestNeverReturnCommentsAndSeparators(t *testing.T) {
+	testCases := []struct {
+		desc string
+		in   string
+		out  []types.Token
+	}{
+		{
+			desc: "main",
+			in:   "  \t\tmain\n\t\t { This is a comment } \n\t\t begin \n\t\t int:4;\n end",
+			out: []types.Token{
+				{
+					TokenType: types.IDENTIFIER,
+				},
+				{
+					TokenType: types.START_BLOCK,
+				},
+				{
+					TokenType: types.TYPE,
+				},
+				{
+					TokenType: types.TYPE_SEPARATOR,
+				},
+				{
+					TokenType: types.CONSTANT,
+				},
+				{
+					TokenType: types.TYPE_SEPARATOR,
+				},
+				{
+					TokenType: types.END_BLOCK,
+				},
+				{
+					TokenType: types.EOF,
+				},
+			},
+		},
+	}
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			l := lexer.NewLexer(bufio.NewReader(strings.NewReader(tC.in)))
+			for _, out := range tC.out {
+				tk, err := l.GetNextToken()
+				if err != nil {
+					t.Errorf("Unexpected error: %v", err)
+				}
+				if tk.TokenType != out.TokenType {
+					t.Errorf("Expected token type to be %s, got %s", out.TokenType, tk.TokenType)
+				}
 			}
 		})
 	}
