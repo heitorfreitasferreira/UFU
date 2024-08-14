@@ -8,7 +8,6 @@ import (
 
 type Lexer struct {
 	types.Position
-	at int
 	*bufio.Reader
 }
 
