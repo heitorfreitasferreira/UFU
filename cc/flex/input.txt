@@ -1,0 +1,7 @@
+begin
+end
+while
+repeat
+until
+
+variavel a := 10

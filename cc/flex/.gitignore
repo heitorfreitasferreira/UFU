@@ -1,0 +1,7 @@
+# Binaries folder
+lexer
+.vscode/
+# flex generated files
+lexer.c
+lexer.h
+
