@@ -1,7 +1,7 @@
 run : build
 	./lexer
 clean:
-	rm -f lexer.c lexer lexer.h
+	rm -f lexer.c lexer lexer.h output.txt
 build-flex:
 	flex -DYY_DECL="Token * yylex()" main.lex
 build: build-flex

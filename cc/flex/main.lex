@@ -23,7 +23,7 @@ until { return token(TOK_UNTIL, NULL); }
 [[:space:]\n\t] { return token(TOK_SEP, NULL); }
 {DIGITS} { return token(TOK_INT, yytext); }
 {DIGITS}{FRACTION} { return token(TOK_FLOAT, yytext); }
-\/\*[.*\n]\*\/ { return token(TOK_COMMENT, NULL); }
+\/\*([^*]|\*+[^*/])*\*+\/ { return token(TOK_COMMENT, NULL); }
 <<EOF>> { return token(TOK_EOF, NULL); }
 := { return token(TOK_ASSIGN, NULL); }
 . { return token(TOK_ERROR, "0"); }
