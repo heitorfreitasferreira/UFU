@@ -1,0 +1,171 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel.
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazilian,				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+
+%--------------Pacotes de citações
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+\usepackage{hyperref}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+\definecolor{blue}{RGB}{41,5,195}
+
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{plano de trabalho},
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+
+\setlength{\parindent}{1.3cm}
+
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+\makeindex
+
+\begin{document}
+
+\frenchspacing
+
+\textbf{Graduação em Ciência da Computação - UFU}
+
+\textbf{Disciplina:} GBC072 - Projeto de Graduação 1
+
+\textbf{Professor:} Prof. Dr. Rodrigo Sanches Miani
+
+\textbf{Nome:} Heitor Freitas Ferreira
+
+% ------------------ Título -----------------------
+\section*{\centerline{\Large \textbf{Entrega 2 (E2) - Resenha crítica}}}
+
+%------------------- Corpo de dados --------------
+\vspace*{0.5cm}
+
+\begin{center}
+    \textbf{Uma Reflexão sobre a Pesquisa em Ciência da
+Computação à Luz da Classificação das
+Ciências e do Método Científico}
+\end{center}
+
+
+\section*{Visão Geral da Leitura}
+% Adicione aqui a visão geral da leitura
+
+\section*{Capítulo 1}
+No capítulo descrito, o autor usa um exemplo para ilustrar erros comuns em projetos de pesquisa. Um aluno de mestrado, tentando resolver um problema de mobilidade causado por um rio, falhou em seguir uma abordagem científica adequada. Aqui está um resumo dos erros cometidos:
+
+1. \textbf{Falta de Revisão Bibliográfica}: O aluno não fez uma revisão adequada para encontrar soluções existentes para atravessar rios, focando em aspectos tangenciais como as propriedades da água e correntezas.
+
+2. \textbf{Escolha de Métodos Inadequados}: Ao invés de explorar métodos comprovados, o aluno criou uma abordagem inovadora e arriscada—usando uma catapulta para lançar pessoas—sem justificar adequadamente essa escolha.
+
+3. \textbf{Falta de Comparação com Soluções Existentes}: O aluno comparou os resultados obtidos apenas entre as suas próprias tentativas, sem considerar soluções já estudadas na literatura.
+
+4. \textbf{Problema Local}: O aluno focou em um problema específico de um rio local sem avaliar se essa questão era relevante para outros contextos ou rios.
+
+5. \textbf{Não Consulta com Orientador}: O aluno não procurou orientação adequada ao longo do processo, o que poderia ter ajudado a corrigir a abordagem e evitar erros.
+
+Como resultado, apesar dos esforços e inovações, a pesquisa não foi bem-sucedida e o aluno foi reprovado. O exemplo sublinha a importância de seguir uma metodologia científica rigorosa, incluindo uma revisão bibliográfica abrangente, justificação adequada para métodos escolhidos, comparação com soluções existentes e consulta com orientadores.
+
+\section*{Capítulo 2}
+Após introduzir a história que serviu de base para a reflexão do autor, o capítulo 2 aborda os diferentes estilos de pesquisa correntes na computação, elencando principalmente 5 estilos com diferentes aplicabilidades e objetivos, sendo os 4 primeiros estilos empíricos e o ultimo necessita de provas matemáticas/lógicas, e demonstra que a escolha do estilo deve se dar de acordo com a natureza do problema, e como se da o estado da arte da área de pesquisa.
+
+\subsection*{Estilo "Apresentação de um produto"}
+Tipo de pesquisa normalmente exploratoria, focada na apresentação de algo novo comparado com trabalhos anteriores. Abordagem vista como ingenua, utilizada mais em eventos focados em aplicações práticas e não tanto em publicações cinetificas relevantes.
+
+\subsection*{Estilo "Apresentação de algo diferente"}
+Este tipo é considerado mais amadurecido que o anterior, focado em apresentar uma nova forma de resolver o problema, comparando técnicas existentes, muitas vezes de maneira qualitativa. Trabalhos que utilizam estudos de caso e comparações superficiais podem ser aceitos em publicações, desde que os argumentos sejam convincentes, embora sem rigor científico comprovado. A hipótese de pesquisa é central, sendo necessário justificá-la e testá-la. O uso de tabelas comparativas ajuda a estruturar essas pesquisas, destacando a incorporação de características que diferenciam o novo artefato proposto das soluções anteriores.
+
+\subsection*{Estilo "Apresentação de algo presumivelmente melhor"}
+Em áreas um pouco mais maduras, novas abordagens devem ser comparadas quantitativamente com métodos da literatura, e a criação de benchmarks é muitas vezes necessária. No entanto, esse tipo de pesquisa exige cuidado, pois o pesquisador pode incorrer em erros ao testar tanto sua abordagem quanto as anteriores. Para garantir credibilidade, a comparação deve ser feita com métodos atuais, preferencialmente de até dois anos atrás, e a aplicação precisa ser detalhada, isolando fatores que possam influenciar os resultados. Além disso, é fundamental definir métricas claras e objetivas para validar as afirmações, tornando as comparações mais precisas e confiáveis.
+
+\subsection*{Estilo "Apresentação de algo reconhecidamente melhor"}
+O nível mais avançado da pesquisa científica envolve a apresentação de resultados empíricos baseados em testes padronizados e internacionalmente aceitos, o que garante maior credibilidade e reprodutibilidade. Nessa abordagem, o autor não precisa testar outras metodologias, mas sim comparar sua solução com dados e métricas já estabelecidos pela comunidade. Esse tipo de pesquisa, típico de boas teses de doutorado, visa avançar o estado da arte, tornando a nova solução uma referência no campo. Embora os testes e dados estejam disponíveis, o maior desafio é encontrar uma hipótese inovadora e promissora que justifique o estudo. Um exemplo em computação seria uma pesquisa que propõe um novo algoritmo de ordenação e o compara com os algoritmos mais eficientes da literatura, mostrando que ele é superior em termos de tempo e espaço.
+
+\subsection*{Estilo "Apresentação de uma prova"}
+Pesquisas que envolvem provas matemáticas são essenciais em subáreas da computação, como métodos formais e compiladores, onde é necessário apresentar demonstrações rigorosas de correção e eficiência. Nesses casos, a construção teórica deve ser clara, definindo conceitos e provando que sua aplicação leva a resultados específicos. Esses resultados podem incluir a prova da optimalidade de um algoritmo, a impossibilidade de resolver certos problemas com algoritmos ou a demonstração de limites de complexidade mínima para a solução de problemas específicos. Este tipo apesar de o mais difícil de realizar, é o mais difícil de refutar.
+
+\section*{Capítulo 3}
+A preparação de um trabalho de pesquisa deve preceder a escrita propriamente dita. Muitos alunos, ansiosos por começar, cometem o erro de escrever sem ter realizado uma pesquisa substancial. É essencial distinguir a revisão bibliográfica, que compila conhecimentos existentes, da pesquisa científica, que gera novos conhecimentos. A revisão não deve ser extensa ou desconectada do objetivo principal da pesquisa, pois pode se tornar irrelevante e confusa. O sucesso de um trabalho depende de um objetivo bem definido, que orienta todo o processo de justificativa, metodologia, resultados e a própria revisão bibliográfica.
+
+\subsection*{Seção 3.1}
+Escolher um objetivo de pesquisa é um desafio crucial em mestrado ou doutorado. O objetivo deve ser claramente definido e normalmente envolve validar uma hipótese específica.
+Normalmente a descrição de um problema tem três etapas, que envolvem enunciar precisamente, explicar que a questão ainda não foi tratada, e justificar a importância da solução.
+Assim, para se escolher um objetivo de pesquisa é recomendado que se siga 3 passos: escolher a área de conhecimento, revisar a bibliografia, definir o objetivo. Porem este processo é iterativo, pois durante a pesquisa é possível alterar o objetivo ao saber mais sobre o problema e o tema.
+Já o tema é normalmente definido ao restringir as áreas de onde você está pesquisando, como restringir sua pesquisa sobre métodos de busca em apenas o algoritmo A*. Outra forma de pensar o tema é além destra restrição, pensar em um problema específico, como a busca de caminhos em um labirinto, com a atenção que a contribuição para a ciência no final deve ser à Computação, e não à área que contem o problema.
+Quanto ao problema, a monografia deve apresentar uma solução de algo, aqui o autor não aprofunda além de utilizar o exemplo do primeiro capítulo.
+\subsection*{Seção 3.2}
+Está seção versa sobre a importância da revisão bibliográfica, q
+
+\subsection*{Seção 3.3}
+% Adicione aqui a resenha crítica da Seção 3.3
+
+\subsection*{Seção 3.4}
+\subsubsection*{Subseção 3.4.1}
+% Adicione aqui a resenha crítica da Subseção 3.4.1
+
+\subsubsection*{Subseção 3.4.2}
+% Adicione aqui a resenha crítica da Subseção 3.4.2
+
+\subsubsection*{Subseção 3.4.3}
+% Adicione aqui a resenha crítica da Subseção 3.4.3
+
+\subsubsection*{Subseção 3.4.4}
+% Adicione aqui a resenha crítica da Subseção 3.4.4
+
+\section*{Conclusões}
+% Adicione aqui as conclusões da resenha crítica
+
+% \bibliographystyle{abntex2-alf}
+% \bibliography{ref}
+
+% Caso seja necessário, listar as principais referências bibliográficas (livros, artigos, sites) utilizadas ao redigir o trabalho.
+
+\end{document}
