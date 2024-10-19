@@ -1,0 +1,155 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+\usepackage{hyperref}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{plano de trabalho}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+
+\makeatother
+\setlength{\parindent}{1.3cm}
+
+\setlength{\parskip}{0.2cm} 
+
+\makeindex
+
+\begin{document}
+
+\frenchspacing 
+
+\textbf{Graduação em Ciência da Computação - UFU}
+
+\textbf{Disciplina:} GBC072 - Projeto de Graduação 1 
+
+\textbf{Professor:} Prof. Dr. Rodrigo Sanches Miani
+
+\textbf{Nome:} Heitor Freitas Ferreira
+
+\section*{\centerline{\Large \textbf{Entrega 2 (E2) - Visão geral sobre o tema escolhido}}}
+
+\vspace*{0.5cm}
+
+%\textbf{Escreva um documento de até três páginas sobre o tema do TCC - contextualização, relevância, alguns exemplos de trabalhos relacionados ao tema, os objetivos gerais e uma breve descrição das ferramentas computacionais que serão utilizadas durante o trabalho. O documento deverá ser organizado da seguinte forma:}
+
+% Parágrafo 1 - contextualização do tema, ou seja, uma descrição sobre o ambiente/cenário que o tema está inserido. Busque por monografias defendidas por alunos da FACOM no repositório UFU. Em geral, a contextualização do tema se encontra nos primeiros parágrafos do Capítulo 1.
+
+Nos últimos anos, o avanço das pesquisas em otimização e inteligência artificial tem se tornado essencial para enfrentar problemas complexos, como o roteamento de drones em missões de reconhecimento. Este tipo de operação, particularmente relevante em situações de emergência como o reconhecimento de áreas de incêndio, demanda uma abordagem altamente eficiente para garantir que os drones percorram todos os pontos de interesse no menor tempo possível. O cenário atual apresenta um contexto em que os drones são amplamente utilizados por equipes de resgate e combate a incêndios para mapear regiões afetadas, identificar focos de calor, estimar a extensão dos danos e até mesmo guiar esforços de contenção. No entanto, a definição de rotas otimizadas para drones em cenários dinâmicos e críticos, como áreas de incêndio florestal, é um desafio significativo, tanto do ponto de vista computacional quanto operacional.
+
+Modelar essa tarefa como um problema de roteamento se revela uma abordagem promissora, especialmente utilizando o Problema do Caixeiro Viajante (TSP). Nesse contexto, o objetivo é determinar a rota mais curta para que um drone visite uma série de pontos críticos, retornando ao ponto de partida após cobrir todas as áreas relevantes. Em operações de incêndio, esses pontos podem incluir focos de calor detectados por sensores térmicos, áreas onde há maior risco de propagação, ou locais prioritários para reconhecimento. A otimização dessas rotas não só acelera o tempo de resposta das equipes no solo, mas também maximiza o uso dos recursos limitados, como a capacidade de bateria dos drones, que pode ser crítica em operações extensas.
+
+A complexidade desse problema, devido à sua natureza NP-difícil, torna inviável a obtenção de soluções ótimas por métodos tradicionais, especialmente à medida que o número de pontos de reconhecimento aumenta. Em resposta a essa limitação, a utilização de algoritmos de otimização, como os algoritmos genéticos, tem se destacado como uma solução eficaz. Inspirados nos processos de evolução natural, esses algoritmos são capazes de explorar grandes espaços de soluções de maneira eficiente, encontrando boas soluções em um tempo computacionalmente viável. Aplicando algoritmos genéticos ao TSP no contexto de drones para reconhecimento de áreas de incêndio, é possível criar rotas otimizadas que permitem a cobertura eficiente de regiões afetadas, auxiliando diretamente as operações de combate e mitigação de incêndios.
+
+A relevância desse trabalho reside no fato de que a otimização de rotas para drones não é apenas uma questão acadêmica, mas uma necessidade real em contextos de emergência. A rápida identificação de áreas críticas em incêndios florestais pode fazer a diferença entre a contenção bem-sucedida ou a propagação descontrolada. Além disso, o uso de drones em operações de reconhecimento está se tornando uma ferramenta indispensável para governos e agências de emergência em todo o mundo, reforçando a importância de estudos voltados para a otimização de sua eficiência operacional.
+
+%Parágrafo 2 - discuta a relevância do tema para a sociedade e/ou para a academia. Uma boa forma de convencer o leitor sobre a relevância do tema envolve o uso de dados/fatos/estatísticas.
+
+A relevância deste trabalho se evidencia tanto na sua aplicação prática quanto na contribuição acadêmica, especialmente no contexto do aumento de incêndios florestais. Apenas no estado de Minas Gerais, segundo o portal G1, entre janeiro e setembro de 2024, foram registradas 24.475 ocorrências de incêndios em vegetação, o maior número da série histórica . Esses incêndios têm consequências ambientais e de saúde pública graves, como a degradação do solo, redução da umidade e da recarga de lençóis freáticos, além de problemas respiratórios e cardiovasculares causados pela fumaça de acordo com a cartilha sobre incêndios florestais do Distrito Federal. A otimização das rotas de drones em operações de reconhecimento em áreas de incêndio, por meio da aplicação de algoritmos genéticos ao Problema do Caixeiro Viajante (TSP), pode melhorar significativamente a eficiência dessas operações, proporcionando um reconhecimento mais rápido e preciso. Para a academia, este trabalho oferece uma contribuição valiosa na interseção entre inteligência artificial e problemas de otimização complexos, comparando a qualidade de diversas técnicas possíveis para .
+
+%Parágrafo 3 - liste e discuta brevemente alguns trabalhos relacionados sobre o tema. Em linhas gerais, quais problemas foram abordados por tais trabalhos? Uma estrutura muito comum para esse tipo de parágrafo é a seguinte: ``Os trabalhos X, Y e Z fornecem resultados que mostram a importância do tema. Já os trabalhos A, B e C indicam que os métodos propostos possuem bons resultados em conjuntos de dados semelhantes.'' Novamente, é importante buscar por monografias defendidas por alunos da FACOM e encontrar por parágrafos semelhantes a esse presentes no Capítulo 1.
+
+Várias abordagens são utilizadas para resolver o Problema do Caixeiro Viajante (TSP), dentre elas, se destacam as heuristicas bio-inspiradas Algoritmos Genéticos, Colônia de Formigas e Otimização por Enxame de Partículas.
+
+Uma das técnicas com destaque em otimizações de grafos é o Ant Colony Optimization (ACO), que tem mostrado bons resultados em abordagens multiobjetivo e híbridas. Por exemplo, \cite{ariyasingha2015performance} aplicaram ACO para resolver o TSP multiobjetivo com diferentes configurações de formigas e iterações, enquanto \cite{mahi2015new} propuseram uma abordagem híbrida que combina ACO com Particle Swarm Optimization (PSO) para otimizar os parâmetros do ACO, além de incorporar a heurística 3-opt para melhorar as soluções locais. Outras variações incluem aplicações do ACO ao TSP dinâmico, como visto em \cite{mavrovouniotis2016ant} onde utilizam operadores de busca local para melhorar a qualidade das soluções devido à natureza instável do cenário.
+
+No tangente ao PSO, desde sua introdução em 1995, foram criadas diversas adaptações para problemas discretos como o TSP. Nos últimos anos, surgiram abordagens inovadoras que combinam PSO com o critério de aceitação de Metropolis, como forma de evitar a convergência prematura \cite{zhong2018discrete}. \cite{marinakis2015adaptive} propuseram uma variante adaptativa do PSO com múltiplos enxames, onde os parâmetros são otimizados dinamicamente durante o processo de busca.
+
+O Algoritmo Genético (GA) tem sido amplamente aplicado ao TSP, com um foco significativo no desenvolvimento de novas estratégias para melhorar a eficiência dos operadores genéticos. Uma das principais áreas de inovação é a criação de novos operadores de cruzamento, que desempenham um papel crucial na diversificação das soluções geradas. Por exemplo, \cite{hussain2020simulated} propuseram um novo operador de crossover, enquanto \cite{roy2019novel} introduziram o chamado multiparent crossover, que utiliza múltiplos pais para gerar descendentes, aumentando a variabilidade genética. Esse operador compartilha semelhanças com o edge assembly crossover de \cite{sakai2018edge}, que também visa preservar características importantes das soluções dos pais. Além disso, o GA multi-offspring, proposto por \cite{wang2016multi}, modifica o número de descendentes gerados, permitindo que mais soluções sejam criadas a partir de um conjunto menor de pais.
+
+%Parágrafo 4 - enuncie os objetivos gerais do trabalho. Os objetivos poderão mudar ao longo do processo. A ideia aqui é fornecer um primeiro rascunho sobre o que será feito. Lembre-se das aulas! A redação do objetivo deve seguir algumas regras.
+
+Este trabalho tem como objetivo o estudo e comparação de metaheurísticas bio-inspiradas para o problema do caixeiro viajante aplicado ao escalonamento de rotas para veiculos aereos não tripulados (VANTs), com o intuito de minimizar o tempo que os mesmos levam para percorrer todos os pontos de interesse de uma determinada região.
+
+Esse objetivo se divide nos seguintes objetivos especificos: \begin{itemize}
+	\item Revisão  da literatura relacionada ao problema do caixeiro viajante com aplicações de VANTs;
+	\item Parametrização das variaveis de interesse da modelagem;
+	\item Revisão de metaheurística bio-inspiradas aplicadas ao problema do caixeiro viajante;
+	\item Escolha e implemetação dos modelos de cada metaheurísticas;
+	\item Implementar uma solução exata para o TSP;
+	\item Implementar um gerador de instâncias do problema;
+	\item Comparar estatisticamente os resultados obtidos por cada metaheurística, e comparar instâncias pequenas com a solução exata;
+\end{itemize}
+
+Dentre os objetivos secundários deste trabalho, destacam-se: \begin{itemize}
+	\item Implementação de um visualizador de instâncias e soluções do problema para visualizar os caminhos tomados pelos VANTs;
+	\item Disponibilizar as instâncias geradas em uma base de dados pública com o melhor resultado encontrado;
+	\item Disponibilizar o código de todas as implementações em um repositório público com licença Creative Commons.
+\end{itemize}
+
+%
+
+%Parágrafo 5 - apresente algoritmos/softwares/hardwares/métodos que serão utilizados durante o desenvolvimento do trabalho.
+
+% Visão geral do método (como resolver), quais algoritmos serão utilizados, explicar cada um deles, explicar o tipo de drone que foi pensado a modelagem, 
+% Métricas de avaliação, com base no tempo total (o que vai ta otimizando), distância total percorrida, soma dos angulos tomados
+
+Para a resolução do problema proposto, serão aplicadas três das principais metaheurísticas: o Algoritmo Genético (GA), a Otimização por Colônia de Formigas (ACO) e a Otimização por Enxame de Partículas (PSO). Cada uma dessas técnicas tem características específicas que permitem uma exploração eficiente do espaço de soluções do Problema do Caixeiro Viajante (TSP) modelado para otimizar rotas de drones. Os drones considerados na modelagem serão drones multirotores, que possuem maior flexibilidade de movimento e capacidade de pairar em locais específicos, tornando-os ideais para navegar em ambientes complexos e diminuir o tempo de troca de pontos de interesse.
+
+Para a modelagem do problema será utilizado o conceito de grafo completo, onde cada vértice representa um ponto de interesse e cada aresta uma tupla representando o tempo de trajeto entre os dois pontos, e uma penalização em tempo em função do angulos da curva feita. A métrica de avaliação será o tempo total necessário para percorrer todos os pontos de interesse, considerando a soma dos tempos e das penalizações de todas areastas escolhidas. Outras métricas serão coletadas para a análise que não serão utilizadas como função objetivo da otimização, como distância total percorrida, e a soma dos angulos das curvas. Além disso, será implementado um visualizador de instâncias e soluções do problema, permitindo a análise dos caminhos tomados pelos drones em cada cenário.
+
+
+% Observações:
+
+% \begin{enumerate}
+%     \item É de suma importância que os 5 parágrafos acima sejam coesos. Ou seja, o texto como um todo precisa fazer sentido;
+%     \item Use o formato de citações do Latex para apresentar as referências presentes nos parágrafos 3 e 5. O objetivo aqui é começar a entender como as citações funcionam no Latex, em particular o BibTeX. Iremos discutir o posicionamento de citações no texto e a ABNT em aulas posteriores.
+% \end{enumerate}
+
+
+\bibliography{ref}
+
+\end{document}
